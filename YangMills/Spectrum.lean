@@ -6,7 +6,8 @@ import Mathlib.Order.Bounds.Basic
 
 Here `σ` is intended to be the **full real spectrum** of the self-adjoint
 Hamiltonian, including continuous spectrum, not just its eigenvalues.
-The link to an actual Hamiltonian is an obligation of `Framework`.
+`QFT/Operator.lean` defines this set from the resolvent of an actual operator;
+`QFT/Wightman.lean` ties that operator to time translations.
 -/
 
 namespace YangMills
@@ -66,5 +67,28 @@ theorem gaps_bounded_of_positive_spectral_value (σ : Set ℝ)
   refine ⟨E, ?_⟩
   intro Δ hΔ
   exact le_of_not_gt (fun hlt => hΔ.2 E hE ⟨hpositive, hlt⟩)
+
+/-- A vacuum-only (or empty) spectrum cannot pass the finite-mass clause.
+More generally, without a positive spectral value every positive number
+would be a gap, so there could be no finite upper bound. -/
+theorem no_finite_mass_without_positive_energy (σ : Set ℝ)
+    (hnonpos : ∀ E ∈ σ, E ≤ 0) : ¬ HasPositiveFiniteMass σ := by
+  rintro ⟨_, M, hM⟩
+  have hpositive : 0 < max M 0 + 1 :=
+    lt_of_le_of_lt (le_max_right M 0) (lt_add_one (max M 0))
+  have hgap : IsMassGap σ (max M 0 + 1) := by
+    refine ⟨hpositive, ?_⟩
+    intro E hE hbetween
+    exact (not_lt_of_ge (hnonpos E hE)) hbetween.1
+  have hbound : max M 0 + 1 ≤ M := hM hgap
+  exact (not_le_of_gt
+    (lt_of_le_of_lt (le_max_left M 0) (lt_add_one (max M 0)))) hbound
+
+theorem vacuum_only_has_no_finite_mass :
+    ¬ HasPositiveFiniteMass ({0} : Set ℝ) := by
+  apply no_finite_mass_without_positive_energy
+  intro E hE
+  have hzero : E = 0 := Set.mem_singleton_iff.mp hE
+  exact hzero.le
 
 end YangMills

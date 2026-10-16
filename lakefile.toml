@@ -9,3 +9,4 @@ rev = "1ccd71f89cbbd82ae7d097723ce1722ca7b01c33"
 
 [[lean_lib]]
 name = "YangMills"
+moreLeanArgs = ["-DautoImplicit=false", "-DwarningAsError=true"]

@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+"""Build the specification and regression-test its proof audit.
+
+This does NOT certify the full Yang–Mills problem. See README.md.
+The negative fixtures deliberately contain forbidden assumptions/proof holes;
+they are generated under .lake and are never library declarations.
+"""
+from pathlib import Path
+import subprocess
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def lean(source: str, directory: Path, name: str) -> subprocess.CompletedProcess:
+    path = directory / f"{name}.lean"
+    path.write_text(source)
+    return subprocess.run(
+        ["lake", "env", "lean", str(path)], cwd=ROOT,
+        text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+    )
+
+
+def main() -> None:
+    subprocess.run(["lake", "build"], cwd=ROOT, check=True)
+    cases = [
+        ("honest_proof", "theorem honest : True := True.intro\n#audit_axioms honest", True, "Axiom audit passed"),
+        ("library_proofs", "\n".join([
+            "#audit_axioms YangMills.mass_pos",
+            "#audit_axioms YangMills.vacuum_only_has_no_finite_mass",
+            "#audit_axioms YangMills.isMassGap_iff",
+            "#audit_axioms YangMills.gaps_bounded_of_positive_spectral_value",
+            "#audit_axioms YangMills.DenselyDefinedOperator.eigenvalue_mem_spectrum",
+            "#audit_axioms YangMills.WightmanAxioms.vacuum_mem_spectrum",
+            "#audit_axioms YangMills.PoincareTransform.act_compose",
+            "#audit_axioms YangMills.QFTExistenceAndMassGap",
+        ]), True, "Axiom audit passed"),
+        ("direct_sorry", "theorem bad : True := by sorry\n#audit_axioms bad", False, "sorryAx"),
+        ("hidden_sorry", "theorem hidden : True := by sorry\ntheorem bad : True := hidden\n#audit_axioms bad", False, "sorryAx"),
+        ("custom_axiom", "axiom oracle : True\ntheorem bad : True := oracle\n#audit_axioms bad", False, "oracle"),
+        ("assumed_target", "axiom oracle : YangMills.QFTExistenceAndMassGap\n#check_qft_proof oracle", False, "Proof audit rejected"),
+        ("wrong_target", "theorem unrelated : True := True.intro\n#check_qft_proof unrelated", False, "Wrong target"),
+        ("conditional_target", "theorem conditional (h : YangMills.QFTExistenceAndMassGap) : YangMills.QFTExistenceAndMassGap := h\n#check_qft_proof conditional", False, "Wrong target"),
+        ("ex_falso", "theorem conditional (h : False) : YangMills.QFTExistenceAndMassGap := h.elim\n#check_qft_proof conditional", False, "Wrong target"),
+        ("removed_placeholder", "#check YangMills.Framework", False, "Unknown identifier"),
+        ("no_premature_full_target", "#check YangMills.YangMillsExistenceAndMassGap", False, "Unknown identifier"),
+    ]
+    with tempfile.TemporaryDirectory(prefix="proof-audit-", dir=ROOT / ".lake") as tmp:
+        directory = Path(tmp)
+        for name, body, success, marker in cases:
+            result = lean("import YangMills\n" + body + "\n", directory, name)
+            if (result.returncode == 0) != success or marker not in result.stdout:
+                raise SystemExit(f"FAIL {name}\n{result.stdout}")
+            print(f"PASS {name}", flush=True)
+    print(f"All {len(cases)} proof-audit checks passed.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,1 +1,1 @@
-import YangMills.Statement
+import YangMills.Verification
