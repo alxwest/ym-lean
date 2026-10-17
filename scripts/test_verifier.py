@@ -90,6 +90,54 @@ class SourceContractTests(unittest.TestCase):
             self.assertEqual(code, 1)
             self.assertIn("changed acceptance scope", report["error"])
 
+    def test_literal_and_interpretive_lean_have_separate_provenance(self):
+        inventory = v.load_inventory(ROOT)
+        levels = {entry["id"]: entry["formalization_layer"]
+                  for entry in inventory["requirements"]}
+        self.assertEqual({key for key, value in levels.items()
+                          if value == "literal_form"},
+                         {"group", "spacetime", "physical-gap",
+                          "universal-existence"})
+        self.assertEqual(levels["qft-axioms"], "cited_framework")
+        self.assertEqual(levels["ym-identification"], "interpretation_needed")
+        self.assertEqual(levels["gauge-observables"], "interpretation_needed")
+        self.assertEqual(levels["renormalized-filtration"], "nonbinding_guidance")
+        self.assertIn("PDF_EXPLICIT", (ROOT / "YangMills/PDFLiteral.lean").read_text())
+        self.assertIn("YangMills.PDFLiteral.HamiltonianKillsVacuum",
+                      next(e for e in inventory["requirements"]
+                           if e["id"] == "physical-gap")["lean"])
+        self.assertIn("interpretationStillNeeded",
+                      (ROOT / "YangMills/SourceClassification.lean").read_text())
+        report, code = v.verify(ROOT, "clay")
+        self.assertEqual(code, 2)
+        self.assertEqual(report["formalization_layers"], levels)
+        self.assertFalse(report["clay_certificate"])
+
+    def test_cannot_relabel_unfinished_interpretation_as_pdf_literal(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_source(Path(tmp))
+            inventory = json.loads((root / v.MANIFEST).read_text())
+            target = next(e for e in inventory["requirements"]
+                          if e["id"] == "ym-identification")
+            target["formalization_layer"] = "literal_form"
+            (root / v.MANIFEST).write_text(json.dumps(inventory))
+            report, code = v.verify(root, "clay")
+            self.assertEqual(code, 1)
+            self.assertEqual(report["status"], "INVALID_SPECIFICATION")
+            self.assertIn("provenance classification", report["error"])
+
+    def test_cannot_change_literal_quantifier_into_an_interpretation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_source(Path(tmp))
+            inventory = json.loads((root / v.MANIFEST).read_text())
+            target = next(e for e in inventory["requirements"]
+                          if e["id"] == "group")
+            target["formalization_layer"] = "interpretation_needed"
+            (root / v.MANIFEST).write_text(json.dumps(inventory))
+            report, code = v.verify(root, "clay")
+            self.assertEqual(code, 1)
+            self.assertIn("provenance classification", report["error"])
+
     def test_full_clay_certificate_fails_closed_even_without_proof(self):
         report, code = v.verify(ROOT, "clay")
         self.assertEqual(code, 2)

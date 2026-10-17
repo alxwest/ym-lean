@@ -18,6 +18,27 @@ including setting them to `True`. There are no replacement predicate parameters
 for the missing requirements. No full Yang–Mills submission target is exported
 until those requirements are defined.
 
+## Source versus interpretation: executable provenance
+
+The directly translatable mathematical fragments of Section 4 are now
+isolated in [YangMills/PDFLiteral.lean](YangMills/PDFLiteral.lean).
+Their docstrings use the tag PDF_EXPLICIT. The file implements
+four-dimensional space, the outer group quantifier, positive spectral gap
+and finite mass. It is explicitly NOT a Yang--Mills existence theorem.
+
+[YangMills/SourceClassification.lean](YangMills/SourceClassification.lean)
+marks concrete declarations as directMath, citedStandard, interpretedModel
+or optionalMethod. Its interpretationStillNeeded list contains the
+unformalized physical terms as STRINGS, not axioms, assumptions or freely
+choosable Prop parameters. The normal build runs #audit_pdf_origins and
+transitive dependency checks on the literal fragments.
+
+The independent [source/FORMALIZATION_LAYERS.md](source/FORMALIZATION_LAYERS.md)
+explains each tag, which claims come directly from the PDF, and which
+mathematical interpretations remain to be reviewed. The source manifest
+keeps required vs guidance *separate* from literal vs interpreted; the
+proof verifier rejects attempts to relabel either axis.
+
 ## Exact-statement acceptance policy
 
 Only what Section 4 of the Jaffe–Witten PDF actually requires, together

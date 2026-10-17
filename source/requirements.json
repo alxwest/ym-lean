@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "source": {
     "path": "source/yangmills.pdf",
     "title": "Quantum Yang–Mills Theory",
@@ -25,11 +25,14 @@
         "YangMills.GaugeLinks",
         "YangMills.gaugeHolonomy",
         "YangMills.wilsonConjugacyClass",
-        "YangMills.wilsonConjugacyClass_gauge_invariant"
+        "YangMills.wilsonConjugacyClass_gauge_invariant",
+        "YangMills.PDFLiteral.ForEveryCompactSimpleGroup"
       ],
       "gap": "Classical G-valued link multiplication and gauge-invariant holonomy conjugacy classes are now kernel-checked. Compact simple group quantification is defined, but the quantum theory is not yet identified with these G-dependent observables.",
       "acceptance_role": "required",
-      "source_basis": "section_4_theorem"
+      "source_basis": "section_4_theorem",
+      "formalization_layer": "literal_form",
+      "formalization_note": "Only the universal quantifier is direct. The concrete compact-simple Lie group encoding still needs mathematical review."
     },
     {
       "id": "spacetime",
@@ -38,11 +41,14 @@
       "status": "partial",
       "lean": [
         "YangMills.Spacetime",
-        "YangMills.QuantumTheory"
+        "YangMills.QuantumTheory",
+        "YangMills.PDFLiteral.FourDimensionalSpace"
       ],
       "gap": "QFT data live on four-dimensional Minkowski spacetime, but Yang–Mills existence there is not proved.",
       "acceptance_role": "required",
-      "source_basis": "section_4_theorem"
+      "source_basis": "section_4_theorem",
+      "formalization_layer": "literal_form",
+      "formalization_note": "R^4 has a direct coordinate encoding. Existence of its quantum theory is not supplied."
     },
     {
       "id": "qft-axioms",
@@ -54,7 +60,9 @@
       ],
       "gap": "A concrete Wightman-style schema exists but its adequacy relative to [45,35] has not been independently established; no candidate existence proof.",
       "acceptance_role": "required",
-      "source_basis": "section_4_theorem"
+      "source_basis": "section_4_theorem",
+      "formalization_layer": "cited_framework",
+      "formalization_note": "The text cites axiomatic systems. A Lean implementation of their conditions is not literally present in the PDF."
     },
     {
       "id": "ym-identification",
@@ -69,7 +77,9 @@
       ],
       "gap": "A genuinely G-dependent four-dimensional lattice action is kernel-checked, but its character weight, Haar measure, continuum limit and connection to Q's actual Wightman quantum correlations have not been established. A formal negative theorem proves that adding these classical checks without connecting them to Q leaves the unrelated-massive-QFT loophole open. Identification remains MISSING, never 'partial' by label alone.",
       "acceptance_role": "required",
-      "source_basis": "section_4_explanation"
+      "source_basis": "section_4_explanation",
+      "formalization_layer": "interpretation_needed",
+      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
     },
     {
       "id": "gauge-observables",
@@ -88,7 +98,9 @@
       ],
       "gap": "Classical curvature-jet trace polynomials and nonlocal G-valued lattice holonomy conjugacy classes are defined, with concrete gauge-invariance proofs for the latter. Local gauge invariance of curvature expressions, renormalized field matching, and the full operator algebra remain missing.",
       "acceptance_role": "required",
-      "source_basis": "section_4_explanation"
+      "source_basis": "section_4_explanation",
+      "formalization_layer": "interpretation_needed",
+      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
     },
     {
       "id": "renormalized-filtration",
@@ -103,7 +115,9 @@
       ],
       "gap": "The suggested dimension filtration is partially formalized on the classical side only. It remains interpretive guidance, not a separate compulsory theorem; the PDF still requires a defensible quantum/classical observable correspondence.",
       "acceptance_role": "interpretive_guidance",
-      "source_basis": "section_4_footnote_1"
+      "source_basis": "section_4_footnote_1",
+      "formalization_layer": "nonbinding_guidance",
+      "formalization_note": "Footnote 1 describes an expectation, not an additional compulsory formal theorem."
     },
     {
       "id": "ultraviolet",
@@ -116,7 +130,9 @@
       ],
       "gap": "Smeared vacuum n-point functions are now computed directly from QFT field words and the same vacuum. No short-distance scaling limits, asymptotic-freedom estimates, stress tensor or prescribed OPE singularities are proved or formalized.",
       "acceptance_role": "required",
-      "source_basis": "section_4_explanation"
+      "source_basis": "section_4_explanation",
+      "formalization_layer": "interpretation_needed",
+      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
     },
     {
       "id": "stress-tensor",
@@ -126,7 +142,9 @@
       "lean": [],
       "gap": "No stress-tensor operator or requisite identities are encoded.",
       "acceptance_role": "required",
-      "source_basis": "section_4_predictions"
+      "source_basis": "section_4_predictions",
+      "formalization_layer": "interpretation_needed",
+      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
     },
     {
       "id": "ope",
@@ -136,7 +154,9 @@
       "lean": [],
       "gap": "No fixed OPE coefficients, prescribed singular terms, or asymptotic remainder estimates are encoded.",
       "acceptance_role": "required",
-      "source_basis": "section_4_predictions"
+      "source_basis": "section_4_predictions",
+      "formalization_layer": "interpretation_needed",
+      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
     },
     {
       "id": "nontrivial",
@@ -146,7 +166,9 @@
       "lean": [],
       "gap": "Nontriviality for the actual Yang–Mills theory has not been formalized. No independent, stronger Gaussianity or preferred-interaction criterion is imposed just because it seems plausible.",
       "acceptance_role": "required",
-      "source_basis": "section_4_theorem"
+      "source_basis": "section_4_theorem",
+      "formalization_layer": "interpretation_needed",
+      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
     },
     {
       "id": "physical-gap",
@@ -155,11 +177,19 @@
       "status": "partial",
       "lean": [
         "YangMills.HasPositiveFiniteMass",
-        "YangMills.GappedWightmanTheory"
+        "YangMills.GappedWightmanTheory",
+        "YangMills.PDFLiteral.HamiltonianSpectralFacts",
+        "YangMills.PDFLiteral.PositiveGap",
+        "YangMills.PDFLiteral.PositiveFiniteMass",
+        "YangMills.PDFLiteral.DirectSpectralClauses",
+        "YangMills.PDFLiteral.HamiltonianKillsVacuum",
+        "YangMills.PDFLiteral.hamiltonianKillsVacuum_of_wightman"
       ],
       "gap": "Gap is defined from an unbounded Hamiltonian's spectrum, but no existence proof for a YM-identified theory.",
       "acceptance_role": "required",
-      "source_basis": "section_4_mass_definition"
+      "source_basis": "section_4_mass_definition",
+      "formalization_layer": "literal_form",
+      "formalization_note": "Explicit spectral facts, finite mass and the equation HΩ=0 are encoded. The equation is written relative to the chosen operator framework; no Hamiltonian or Yang--Mills theory is asserted to exist."
     },
     {
       "id": "universal-existence",
@@ -169,11 +199,14 @@
       "lean": [
         "YangMills.GroupwiseQFTExistenceAndMassGap",
         "YangMills.qft_exists_implies_groupwise_qft",
-        "YangMills.qft_exists_implies_unlinked_group_checks"
+        "YangMills.qft_exists_implies_unlinked_group_checks",
+        "YangMills.PDFLiteral.ForEveryCompactSimpleGroup"
       ],
       "gap": "The groupwise QFT-only shadow and unlinked G-dependent finite gauge invariants are formally provably insufficient. Actual quantum Yang--Mills identification for every compact simple G is not encoded or proved.",
       "acceptance_role": "required",
-      "source_basis": "section_4_theorem"
+      "source_basis": "section_4_theorem",
+      "formalization_layer": "literal_form",
+      "formalization_note": "Only the outer quantifier is direct. The full Yang--Mills theory property is still undefined and cannot be supplied by the proof author."
     }
   ],
   "outside_required_claim": [

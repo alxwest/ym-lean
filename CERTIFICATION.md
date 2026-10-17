@@ -145,6 +145,29 @@ must instead be proved for every G.
 The full Clay gate remains closed. No arbitrary predicate, user-picked
 meaning of Yang–Mills, or new mathematical assumption is introduced.
 
+## Separate literal mathematics from interpretive definitions
+
+The tag PDF_EXPLICIT in YangMills/PDFLiteral.lean denotes a mathematical
+fragment visible directly in Section 4: R^4, universal group binder,
+positive spectrum, spectral gap, and finite mass. No external
+definition or physical construction is asserted to follow merely
+from those fragments.
+
+YangMills/SourceClassification.lean provides a checked registry of
+declarations split into directMath, citedStandard, interpretedModel
+and optionalMethod. The source/requirements.json manifest separately
+labels the provenance of all twelve entries; the CLI verifies those
+layers have not been silently relabelled. Interpretive terms that do
+not yet have rigorous definitions are listed, not postulated.
+
+A mathematical interpretation of the phrase "quantum Yang--Mills for G"
+is not itself a new proof assumption. It is a proposed definition of
+the problem, requiring fidelity review before a submitted proof can
+claim to solve that problem. The proof must still prove every explicit
+required property from permitted foundations.
+
+See [source/FORMALIZATION_LAYERS.md](source/FORMALIZATION_LAYERS.md).
+
 ## No additional assumptions or preferred proof method
 
 [source/STATEMENT_POLICY.md](source/STATEMENT_POLICY.md) governs the scope:

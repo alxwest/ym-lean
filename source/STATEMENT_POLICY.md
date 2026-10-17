@@ -21,6 +21,24 @@ A full certificate may demand only mathematical consequences of the written theo
 
 Formalizing a required condition is **not** an assumption that the condition holds. The proof must establish it. The mathematical definition must be fixed and reviewed before acceptance.
 
+## Explicit Lean versus interpretation: a second provenance axis
+
+[FORMALIZATION_LAYERS.md](FORMALIZATION_LAYERS.md) and
+[YangMills/PDFLiteral.lean](../YangMills/PDFLiteral.lean) distinguish
+the formulae directly transcribed from Section 4 from mathematical
+frameworks cited by Section 4, interpretive definitions for its
+physically meaningful terms, and optional proof constructions.
+
+An "interpretation needed" label does **not** mean a new assumption
+is authorised; it means the full mathematical definition is still
+missing or needs independent fidelity review. An explicit requirement
+may legitimately be marked "interpretation needed", because the prose
+does not uniquely supply its entire formal meaning.
+
+The verifier pins formalization_layer as well as acceptance_role,
+and reports both. Neither provenance labels nor text coverage can
+unlock the full Clay checker.
+
 ## Traceability contract
 
 `requirements.json` distinguishes `required` Section 4 clauses from `interpretive_guidance` in footnote 1. The verifier fixes each clause's source basis in its own code, so tampering with the manifest cannot silently turn a suggested method into a strict certification requirement. A complete coverage label never automatically unlocks the Clay checker.

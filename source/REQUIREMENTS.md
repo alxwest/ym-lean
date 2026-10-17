@@ -17,6 +17,20 @@ an *expectation*, not as a separately stated theorem. That observation
 guides interpretation; requiring a specific exact filtered isomorphism
 as an additional acceptance condition would overstate the text.
 
+## Direct formalizations and interpretive formalizations
+
+The PDF's directly translatable formulae are in
+[YangMills/PDFLiteral.lean](../YangMills/PDFLiteral.lean),
+with exact source markers in docstrings. The distinction between these,
+cited standards, interpretive models and optional constructions is
+documented in [FORMALIZATION_LAYERS.md](FORMALIZATION_LAYERS.md).
+
+The machine-readable inventory now marks each clause on **two
+independent axes**: acceptance_role (is this a required part of
+the statement?) and formalization_layer (how much definition
+work is needed to represent the phrase faithfully in Lean?).
+Neither label constitutes a proof or an assumption.
+
 ## Clause roles and authority
 
 Eleven inventory entries track the Section 4 theorem and explanatory

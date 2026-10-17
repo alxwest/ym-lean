@@ -52,6 +52,23 @@ NORMATIVE_SOURCE_BASIS = {
 INTERPRETIVE_SOURCE_BASIS = {
     "renormalized-filtration": "section_4_footnote_1",
 }
+# Provenance is separate from *acceptance role*: an explicitly required
+# phrase can still need mathematical interpretation before it becomes Lean.
+# These are provenance classifications, never assumed physics propositions.
+FORMALIZATION_LAYER = {
+    "group": "literal_form",
+    "spacetime": "literal_form",
+    "qft-axioms": "cited_framework",
+    "ym-identification": "interpretation_needed",
+    "gauge-observables": "interpretation_needed",
+    "renormalized-filtration": "nonbinding_guidance",
+    "ultraviolet": "interpretation_needed",
+    "stress-tensor": "interpretation_needed",
+    "ope": "interpretation_needed",
+    "nontrivial": "interpretation_needed",
+    "physical-gap": "literal_form",
+    "universal-existence": "literal_form",
+}
 VALID_STATES = {"formalized", "partial", "missing"}
 THEOREM_NAME = re.compile(r"[A-Za-z_][A-Za-z_0-9']*(?:\.[A-Za-z_][A-Za-z_0-9']*)*\Z")
 
@@ -75,7 +92,7 @@ def load_inventory(root: Path) -> dict:
     unlock Clay verification, even if every annotation says "formalized".
     """
     manifest = json.loads((root / MANIFEST).read_text(encoding="utf-8"))
-    if manifest.get("schema_version") != 2:
+    if manifest.get("schema_version") != 3:
         raise SpecificationError("Unsupported requirements inventory version")
     source = manifest.get("source")
     if not isinstance(source, dict):
@@ -111,6 +128,12 @@ def load_inventory(root: Path) -> dict:
                 or entry.get("source_basis") != expected_basis):
             raise SpecificationError(
                 f"Non-source assumption or changed acceptance scope for {key}")
+        if entry.get("formalization_layer") != FORMALIZATION_LAYER[key]:
+            raise SpecificationError(
+                f"Changed PDF/Lean provenance classification for {key}")
+        if not isinstance(entry.get("formalization_note"), str):
+            raise SpecificationError(
+                f"Missing explanation of formalization boundary for {key}")
         if entry.get("status") not in VALID_STATES:
             raise SpecificationError(f"Unknown coverage status for {entry['id']}")
         if not all(isinstance(entry.get(k), str) and entry[k].strip()
@@ -130,6 +153,8 @@ def _run(args: list[str], root: Path, timeout: int = 1200) -> subprocess.Complet
 FINGERPRINTED_FILES = (
     "YangMills/Statement.lean",
     "YangMills/GaugeGroup.lean",
+    "YangMills/PDFLiteral.lean",
+    "YangMills/SourceClassification.lean",
     "YangMills/GaugeHolonomy.lean",
     "YangMills/LatticeGaugeAction.lean",
     "YangMills/PeriodicLattice4.lean",
@@ -190,6 +215,10 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         report["pdf_hash_verified"] = True
         report["provenance"] = provenance(root)
         report["coverage"] = {e["id"]: e["status"] for e in inventory["requirements"]}
+        report["formalization_layers"] = {
+            e["id"]: e["formalization_layer"]
+            for e in inventory["requirements"]
+        }
         report["source_basis"] = {
             e["id"]: {"role": e["acceptance_role"], "basis": e["source_basis"]}
             for e in inventory["requirements"]

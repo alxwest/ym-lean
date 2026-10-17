@@ -1,4 +1,5 @@
 import YangMills.Classical
+import YangMills.SourceClassification
 import YangMills.Audit
 import YangMills.LocalObservables
 import YangMills.QuantumCorrelations
@@ -56,3 +57,19 @@ to the QFT target. No existence proof is asserted here.
 #audit_axioms YangMills.periodicFourClassAction_gauge_invariant
 #audit_axioms YangMills.periodicFourClassBoltzmann_gauge_invariant
 #audit_axioms YangMills.qft_exists_implies_unlinked_group_checks
+
+-- PDF clause provenance: declarations exist, but physical fidelity is reviewed separately.
+#audit_pdf_origins
+
+-- Direct Section 4 mathematical fragments are kernel-audited separately.
+#audit_axioms YangMills.PDFLiteral.FourDimensionalSpace
+#audit_axioms YangMills.PDFLiteral.HamiltonianKillsVacuum
+#audit_axioms YangMills.PDFLiteral.hamiltonianKillsVacuum_of_wightman
+#audit_axioms YangMills.PDFLiteral.HamiltonianSpectralFacts
+#audit_axioms YangMills.PDFLiteral.PositiveGap
+#audit_axioms YangMills.PDFLiteral.PositiveFiniteMass
+#audit_axioms YangMills.PDFLiteral.positiveGap_iff
+#audit_axioms YangMills.PDFLiteral.positiveFiniteMass_iff
+#audit_axioms YangMills.PDFLiteral.ForEveryCompactSimpleGroup
+#audit_axioms YangMills.PDFLiteral.forEveryCompactSimpleGroup_iff
+#audit_axioms YangMills.PDFLiteral.DirectSpectralClauses
