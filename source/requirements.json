@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "source": {
+    "path": "source/yangmills.pdf",
+    "title": "Quantum Yang–Mills Theory",
+    "authors": [
+      "Arthur Jaffe",
+      "Edward Witten"
+    ],
+    "section": "4. The Problem",
+    "printed_page": 6,
+    "pdf_page_index": 5,
+    "sha256": "3558403ca14c11e382f73a09e548222708540bfdf478cf96aa11c52d43e23e09",
+    "git_blob_sha1": "2647452ed43c68632d786a9667e61e6f5e8a8e74",
+    "official_url": "https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf"
+  },
+  "requirements": [
+    {
+      "id": "group",
+      "description": "For every compact simple gauge group G",
+      "location": "Section 4, printed p.6; section 1 defines gauge-group convention",
+      "status": "partial",
+      "lean": [
+        "YangMills.CompactSimpleGaugeGroup"
+      ],
+      "gap": "Concrete compact simple Lie group type exists; no full existence theorem universally quantified over these groups."
+    },
+    {
+      "id": "spacetime",
+      "description": "Full four-dimensional R^4, not only a cutoff, torus or lower-dimensional model",
+      "location": "Section 4, printed p.6",
+      "status": "partial",
+      "lean": [
+        "YangMills.Spacetime",
+        "YangMills.QuantumTheory"
+      ],
+      "gap": "QFT data live on four-dimensional Minkowski spacetime, but Yang–Mills existence there is not proved."
+    },
+    {
+      "id": "qft-axioms",
+      "description": "Axioms at least as strong as the Wightman or Osterwalder–Schrader schemes [45,35]",
+      "location": "Sections 3-4, printed pp.5-6",
+      "status": "partial",
+      "lean": [
+        "YangMills.WightmanAxioms"
+      ],
+      "gap": "A concrete Wightman-style schema exists but its adequacy relative to [45,35] has not been independently established; no candidate existence proof."
+    },
+    {
+      "id": "ym-identification",
+      "description": "The quantum fields construct pure Yang–Mills for the specified gauge group and curvature action",
+      "location": "Sections 1 and 4, printed pp.2 and 6",
+      "status": "missing",
+      "lean": [
+        "YangMills.Connection.curvature",
+        "YangMills.Connection.euclideanAction"
+      ],
+      "gap": "Classical gauge action and QFT structures are disconnected; no proved renormalized same-object quantum Yang–Mills identification."
+    },
+    {
+      "id": "gauge-observables",
+      "description": "Local quantum operators corresponding to gauge-invariant polynomials in F and its covariant derivatives",
+      "location": "Section 4, printed p.6 and footnote 1",
+      "status": "missing",
+      "lean": [
+        "YangMills.Connection.covariantDerivative"
+      ],
+      "gap": "No formal space of gauge-invariant differential polynomial observables with a justified correspondence to the quantum field operators."
+    },
+    {
+      "id": "renormalized-filtration",
+      "description": "Operator renormalization and dimension ≤ d filtration; literal one-to-one operator mapping is NOT required",
+      "location": "Section 4, printed p.6, footnote 1",
+      "status": "missing",
+      "lean": [],
+      "gap": "Renormalized, dimension-filtered local-operator correspondence is not formalized."
+    },
+    {
+      "id": "ultraviolet",
+      "description": "Short-distance correlation functions agree with asymptotic freedom and perturbative renormalization",
+      "location": "Section 4, printed p.6",
+      "status": "missing",
+      "lean": [],
+      "gap": "No fixed asymptotic expressions and no proved correlation-function limits or estimates."
+    },
+    {
+      "id": "stress-tensor",
+      "description": "Existence of stress-energy tensor predicted by the renormalized theory",
+      "location": "Section 4, printed p.6",
+      "status": "missing",
+      "lean": [],
+      "gap": "No stress-tensor operator or requisite identities are encoded."
+    },
+    {
+      "id": "ope",
+      "description": "Operator product expansion with singularities prescribed by asymptotic freedom",
+      "location": "Section 4, printed p.6",
+      "status": "missing",
+      "lean": [],
+      "gap": "No fixed OPE coefficients, prescribed singular terms, or asymptotic remainder estimates are encoded."
+    },
+    {
+      "id": "nontrivial",
+      "description": "Nontrivial quantum Yang–Mills theory, excluding free/empty substitutes",
+      "location": "Section 4 theorem, printed p.6",
+      "status": "missing",
+      "lean": [],
+      "gap": "No nontriviality predicate justified for pure Yang–Mills; QFT-and-gap would admit free massive theories."
+    },
+    {
+      "id": "physical-gap",
+      "description": "Positive Hamiltonian spectrum with zero vacuum, Δ > 0, and finite supremum mass m",
+      "location": "Section 4, printed p.6",
+      "status": "partial",
+      "lean": [
+        "YangMills.HasPositiveFiniteMass",
+        "YangMills.GappedWightmanTheory"
+      ],
+      "gap": "Gap is defined from an unbounded Hamiltonian's spectrum, but no existence proof for a YM-identified theory."
+    },
+    {
+      "id": "universal-existence",
+      "description": "Existence of such a nontrivial, identified, gapped theory for every compact simple G",
+      "location": "Section 4 theorem, printed p.6",
+      "status": "missing",
+      "lean": [
+        "YangMills.QFTExistenceAndMassGap"
+      ],
+      "gap": "Current closed proposition only asks for some gapped Wightman-type QFT and is independent of G."
+    }
+  ],
+  "outside_required_claim": [
+    {
+      "description": "Quark confinement and chiral symmetry breaking in QCD are contextual motivations, not conditions of the pure Yang–Mills Millennium theorem.",
+      "location": "Section 1, printed pp.3-4"
+    },
+    {
+      "description": "Isolated one-particle eigenstates, confinement, extensions to other fields and manifolds are labelled extensions, not additional proof obligations.",
+      "location": "Section 5, printed pp.6-7"
+    },
+    {
+      "description": "A finite-volume regulator or constructive approximation is a possible proof method, not an independently sufficient endpoint.",
+      "location": "Section 6.1, printed pp.7-8"
+    }
+  ]
+}

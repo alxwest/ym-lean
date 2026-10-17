@@ -18,6 +18,43 @@ including setting them to `True`. There are no replacement predicate parameters
 for the missing requirements. No full Yang–Mills submission target is exported
 until those requirements are defined.
 
+## Source-anchored proof verification
+
+The **exact bytes** of the locally committed [`source/yangmills.pdf`](source/yangmills.pdf)
+(Jaffe–Witten, section 4, printed page 6) are pinned by SHA-256.
+[`source/requirements.json`](source/requirements.json) maps every principal clause
+to Lean declarations and explicitly records **partial or missing** formalization.
+The source-anchored verifier checks the PDF and rejects altered or incomplete
+clause inventories; a status label cannot unlock a Clay certificate.
+
+```sh
+# Paper-level submission: returns exit 2 / CLAY_CERTIFICATION_BLOCKED until
+# a full, independently reviewed specification exists.
+python3 scripts/verify_submission.py --claim clay --report .lake/clay-report.json
+
+# A submitted *QFT-only* Lean proof can be checked against the existing
+# precise theorem; this is NOT Clay certification.
+python3 scripts/verify_submission.py --claim qft \
+  --proof-file MyProof.lean --theorem MyNamespace.myProof \
+  --report .lake/qft-report.json
+
+# Source-identity, omission and malicious-proof regression tests (fast):
+python3 -m unittest discover -s scripts -p 'test_verifier.py' -v
+```
+
+Exit codes from the new CLI: `0` = genuine acceptance of the **QFT-only**
+exact target; `1` = failed verification or invalid source; `2` = blocked
+full Clay certification. The JSON report always has `clay_certificate: false`
+until the complete target has been specified and the Lean checker has been
+audited and deliberately unlocked. See [CERTIFICATION.md](CERTIFICATION.md)
+for the trust model and [source/REQUIREMENTS.md](source/REQUIREMENTS.md) for
+the precise clause-by-clause paper crosswalk.
+
+**Scope note:** The paper does *not* require a one-to-one identification of
+classical polynomials with renormalized quantum operators (footnote 1).
+It likewise distinguishes requirements from extensions such as an isolated
+one-particle state or quark confinement. The verifier reflects these
+distinctions rather than adding arbitrary extra conditions.
 ## Read alongside Jaffe–Witten
 
 See the supplied [reference PDF](source/yangmills.pdf) or the

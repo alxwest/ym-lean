@@ -1,0 +1,238 @@
+#!/usr/bin/env python3
+"""Fail-closed submission checker anchored to the exact Jaffe–Witten PDF.
+
+Exit 0: accepted proof of the QFT-only target (never a Clay certificate).
+Exit 1: invalid source, proof, or verification infrastructure.
+Exit 2: full Clay certification blocked by incomplete formal specification.
+
+This is a mathematical proof checker, not a security sandbox for hostile Lean code.
+Run on a trusted checkout/toolchain and have referees review the specification.
+"""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import re
+import subprocess
+import sys
+import tempfile
+
+ROOT = Path(__file__).resolve().parents[1]
+PDF_RELATIVE = "source/yangmills.pdf"
+PDF_SHA256 = "3558403ca14c11e382f73a09e548222708540bfdf478cf96aa11c52d43e23e09"
+PDF_BLOB_SHA1 = "2647452ed43c68632d786a9667e61e6f5e8a8e74"
+MANIFEST = "source/requirements.json"
+CLAUSE_IDS = frozenset({
+    "group", "spacetime", "qft-axioms", "ym-identification",
+    "gauge-observables", "renormalized-filtration", "ultraviolet",
+    "stress-tensor", "ope", "nontrivial", "physical-gap",
+    "universal-existence",
+})
+VALID_STATES = {"formalized", "partial", "missing"}
+THEOREM_NAME = re.compile(r"[A-Za-z_][A-Za-z_0-9']*(?:\.[A-Za-z_][A-Za-z_0-9']*)*\Z")
+
+
+class SpecificationError(ValueError):
+    pass
+
+
+def sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as source:
+        for chunk in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def load_inventory(root: Path) -> dict:
+    """Check source identity and enforce a complete, non-duplicated clause inventory.
+
+    A coverage annotation is NOT a proof of semantic fidelity. This does not
+    unlock Clay verification, even if every annotation says "formalized".
+    """
+    manifest = json.loads((root / MANIFEST).read_text(encoding="utf-8"))
+    if manifest.get("schema_version") != 1:
+        raise SpecificationError("Unsupported requirements inventory version")
+    source = manifest.get("source")
+    if not isinstance(source, dict):
+        raise SpecificationError("Missing canonical source declaration")
+    for key, fixed in (
+        ("path", PDF_RELATIVE),
+        ("sha256", PDF_SHA256),
+        ("git_blob_sha1", PDF_BLOB_SHA1),
+        ("section", "4. The Problem"),
+        ("printed_page", 6),
+    ):
+        if source.get(key) != fixed:
+            raise SpecificationError(f"Source contract changed: {key}")
+    pdf = root / PDF_RELATIVE
+    if not pdf.is_file() or sha256(pdf) != PDF_SHA256:
+        raise SpecificationError("source/yangmills.pdf does not match pinned Jaffe–Witten PDF")
+    entries = manifest.get("requirements")
+    if not isinstance(entries, list):
+        raise SpecificationError("Missing paper-clause inventory")
+    ids = [x.get("id") for x in entries if isinstance(x, dict)]
+    if len(ids) != len(entries) or len(ids) != len(set(ids)) or set(ids) != CLAUSE_IDS:
+        raise SpecificationError("Paper-clause inventory is incomplete, altered, or duplicated")
+    for entry in entries:
+        if entry.get("status") not in VALID_STATES:
+            raise SpecificationError(f"Unknown coverage status for {entry['id']}")
+        if not all(isinstance(entry.get(k), str) and entry[k].strip()
+                   for k in ("description", "location", "gap")):
+            raise SpecificationError(f"Missing provenance or gap for {entry['id']}")
+        if not isinstance(entry.get("lean"), list):
+            raise SpecificationError(f"Invalid declaration references for {entry['id']}")
+    return manifest
+
+
+def _run(args: list[str], root: Path, timeout: int = 1200) -> subprocess.CompletedProcess:
+    return subprocess.run(args, cwd=root, capture_output=True, text=True,
+                          timeout=timeout, check=False)
+
+
+
+FINGERPRINTED_FILES = (
+    "YangMills/Statement.lean",
+    "YangMills/GaugeGroup.lean",
+    "YangMills/Classical.lean",
+    "YangMills/QFT/Spacetime.lean",
+    "YangMills/QFT/Wightman.lean",
+    "YangMills/QFT/Operator.lean",
+    "YangMills/Spectrum.lean",
+    "YangMills/Audit.lean",
+    "YangMills/Verification.lean",
+    "lakefile.toml",
+    "lake-manifest.json",
+    "lean-toolchain",
+    MANIFEST,
+)
+
+
+def provenance(root: Path) -> dict:
+    """Reproducibility metadata; fingerprints do not certify semantics."""
+    result = {
+        "local_fingerprints_sha256": {
+            path: sha256(root / path)
+            for path in FINGERPRINTED_FILES if (root / path).is_file()
+        }
+    }
+    version = root / "lean-toolchain"
+    if version.is_file():
+        result["pinned_lean_toolchain"] = version.read_text(encoding="utf-8").strip()
+    if (root / ".git").exists():
+        try:
+            commit = _run(["git", "rev-parse", "HEAD"], root, timeout=10)
+            if commit.returncode == 0:
+                result["git_commit"] = commit.stdout.strip()
+            dirty = _run(["git", "status", "--porcelain"], root, timeout=10)
+            result["git_worktree_dirty"] = dirty.returncode != 0 or bool(dirty.stdout.strip())
+        except (OSError, subprocess.TimeoutExpired):
+            result["git_commit"] = None
+            result["git_worktree_dirty"] = None
+    return result
+
+def verify(root: Path, claim: str, proof_file: Path | None = None,
+           theorem: str | None = None) -> tuple[dict, int]:
+    report = {
+        "source": PDF_RELATIVE,
+        "expected_pdf_sha256": PDF_SHA256,
+        "claim": claim,
+        "status": "INVALID_SPECIFICATION",
+        "clay_certificate": False,
+        "qft_only_certificate": False,
+    }
+    try:
+        inventory = load_inventory(root)
+        report["pdf_hash_verified"] = True
+        report["provenance"] = provenance(root)
+        report["coverage"] = {e["id"]: e["status"] for e in inventory["requirements"]}
+        report["incomplete_clauses"] = sorted(
+            e["id"] for e in inventory["requirements"] if e["status"] != "formalized")
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        report["pdf_hash_verified"] = False
+        report["error"] = f"{type(exc).__name__}: {exc}"
+        return report, 1
+
+    if claim == "clay":
+        # Never inspect/accept a submitted proof as a solution to a theorem that
+        # has not yet been faithfully formalized. Metadata cannot unlock this.
+        report["status"] = "CLAY_CERTIFICATION_BLOCKED"
+        report["reason"] = (
+            "The current Lean proposition is QFT-only. The PDF's full "
+            "Yang–Mills identification, observable correspondence, UV/OPE "
+            "predictions, nontriviality and all-group existence are not "
+            "fully formalized and semantically reviewed. "
+            "#check_clay_proof always rejects submissions."
+        )
+        return report, 2
+
+    if claim != "qft":
+        report["error"] = f"Unknown claim: {claim}"
+        return report, 1
+    if proof_file is None or theorem is None or not THEOREM_NAME.fullmatch(theorem):
+        report["error"] = "QFT-only admission requires --proof-file and a simple qualified --theorem name"
+        return report, 1
+    if proof_file.suffix != ".lean" or not proof_file.is_file():
+        report["error"] = "A readable .lean proof-file is required"
+        return report, 1
+    try:
+        program = proof_file.read_text(encoding="utf-8")
+        report["proof_sha256"] = sha256(proof_file)
+        (root / ".lake").mkdir(exist_ok=True)
+        built = _run(["lake", "build"], root)
+        report["build_exit_code"] = built.returncode
+        if built.returncode:
+            report["status"] = "BUILD_FAILED"
+            report["error"] = (built.stdout + built.stderr)[-4000:]
+            return report, 1
+        # Audit is appended by the trusted verifier, not chosen by the submitter.
+        # A proof source must compile as a self-contained Lean file when imported
+        # from the project root (local imports must be available there).
+        with tempfile.TemporaryDirectory(prefix="verify-qft-", dir=root / ".lake") as temp:
+            path = Path(temp) / "Candidate.lean"
+            path.write_text(
+                "import YangMills\n" + program + "\n"
+                + "#check_qft_proof " + theorem + "\n",
+                encoding="utf-8",
+            )
+            result = _run(["lake", "env", "lean", str(path)], root)
+        report["lean_exit_code"] = result.returncode
+        report["lean_output_tail"] = (result.stdout + result.stderr)[-4000:]
+        if result.returncode == 0 and "QFT-and-gap target checked." in report["lean_output_tail"]:
+            report["status"] = "QFT_ONLY_PROOF_ACCEPTED"
+            report["qft_only_certificate"] = True
+            report["verified_theorem"] = theorem
+            report["reason"] = "Exactly QFTExistenceAndMassGap, not the Yang–Mills Clay statement"
+            return report, 0
+        report["status"] = "PROOF_REJECTED"
+        report["error"] = "Kernel compilation and/or exact-target transitive-axiom audit failed"
+        return report, 1
+    except (OSError, UnicodeError, subprocess.TimeoutExpired) as exc:
+        report["status"] = "VERIFIER_ERROR"
+        report["error"] = f"{type(exc).__name__}: {exc}"
+        return report, 1
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--claim", choices=["clay", "qft"], default="clay")
+    parser.add_argument("--proof-file", type=Path,
+                        help="Lean source file (necessary only for --claim qft)")
+    parser.add_argument("--theorem", type=str,
+                        help="Fully qualified theorem name (necessary only for --claim qft)")
+    parser.add_argument("--report", type=Path,
+                        help="Optional JSON report path (default: stdout only)")
+    args = parser.parse_args()
+    report, status = verify(ROOT, args.claim, args.proof_file, args.theorem)
+    payload = json.dumps(report, sort_keys=True, indent=2, ensure_ascii=True) + "\n"
+    if args.report:
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(payload, encoding="utf-8")
+    sys.stdout.write(payload)
+    return status
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

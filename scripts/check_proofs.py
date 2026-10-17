@@ -7,6 +7,7 @@ they are generated under .lake and are never library declarations.
 """
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -22,6 +23,8 @@ def lean(source: str, directory: Path, name: str) -> subprocess.CompletedProcess
 
 
 def main() -> None:
+    subprocess.run([sys.executable, "-m", "unittest", "discover", "-s", "scripts",
+                    "-p", "test_verifier.py"], cwd=ROOT, check=True)
     subprocess.run(["lake", "build"], cwd=ROOT, check=True)
     cases = [
         ("honest_proof", "theorem honest : True := True.intro\n#audit_axioms honest", True, "Axiom audit passed"),

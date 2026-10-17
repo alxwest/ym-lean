@@ -48,6 +48,45 @@ Do **not** satisfy any item by inventing an uninterpreted proposition,
 postulating an axiom, omitting the difficult terms, attaching an unused
 `G`, or assuming the desired conclusion.
 
+## Executable source-bound admission protocol
+
+The trusted paper is **the repository's own `source/yangmills.pdf`**.
+It was checked byte-for-byte against the published PDF. SHA-256:
+
+`3558403ca14c11e382f73a09e548222708540bfdf478cf96aa11c52d43e23e09`
+
+The structured coverage record `source/requirements.json` lists twelve
+required clauses from §4 (printed p.6), supporting context from §3, and
+requirements that are *not* part of the theorem. `scripts/verify_submission.py`
+checks both the paper bytes and the complete clause ID set. Its invariant
+is that even if metadata is marked `formalized`, it cannot itself license
+a full certification. The Lean gate stays blocked.
+
+Run:
+
+```sh
+python3 -m unittest discover -s scripts -p 'test_verifier.py' -v
+python3 scripts/verify_submission.py --claim clay --report .lake/clay-report.json
+python3 scripts/verify_submission.py --claim qft \
+  --proof-file MyProof.lean --theorem MyNamespace.myProof \
+  --report .lake/qft-report.json
+```
+
+The full-Clay claim currently returns exit `2` with
+`CLAY_CERTIFICATION_BLOCKED`. An invalid/mismatched source or failed proof
+returns `1`. The QFT-only target returns `0` **only** when its Lean proof
+kernel-checks with an exact-target transitive-axiom audit; the report still
+has `clay_certificate: false`. Proofs are supplied as Lean source, not
+unformalized prose. No proof body is bundled or presupposed.
+
+**Trust model:** The PDF's checksum protects against accidental or unnoticed
+source substitution *within this verifier*. The runner, checked-in script,
+Lean executable, Mathlib snapshot and fixed specification must still be
+trusted/pinned externally (for example by a reviewed Git commit hash).
+Someone capable of replacing both the checker and its expected hashes
+can defeat an unanchored local run. Lean's kernel checks mathematical
+implication from the fixed target; subject-matter review is indispensable
+for judging whether the fixed target actually captures the PDF.
 ## Machine-checking protocol
 
 - `lake update && lake exe cache get && lake build` checks the present library.
