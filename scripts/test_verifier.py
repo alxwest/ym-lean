@@ -53,6 +53,43 @@ class SourceContractTests(unittest.TestCase):
             self.assertIn(filename,
                           report["provenance"]["local_fingerprints_sha256"])
 
+    def test_footnote_expectation_is_not_a_mandatory_theorem(self):
+        inventory = v.load_inventory(ROOT)
+        by_id = {e["id"]: e for e in inventory["requirements"]}
+        hint = by_id["renormalized-filtration"]
+        self.assertEqual(hint["acceptance_role"], "interpretive_guidance")
+        self.assertEqual(hint["source_basis"], "section_4_footnote_1")
+        report, code = v.verify(ROOT, "clay")
+        self.assertEqual(code, 2)
+        self.assertIn("renormalized-filtration", report["interpretive_guidance"])
+        self.assertNotIn("renormalized-filtration", report["incomplete_clauses"])
+        self.assertEqual(len(report["incomplete_clauses"]), 11)
+
+    def test_promoting_footnote_expectation_to_hard_requirement_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_source(Path(tmp))
+            inventory = json.loads((root / v.MANIFEST).read_text())
+            hint = next(e for e in inventory["requirements"]
+                        if e["id"] == "renormalized-filtration")
+            hint["acceptance_role"] = "required"
+            (root / v.MANIFEST).write_text(json.dumps(inventory))
+            report, code = v.verify(root, "clay")
+            self.assertEqual(code, 1)
+            self.assertEqual(report["status"], "INVALID_SPECIFICATION")
+            self.assertIn("changed acceptance scope", report["error"])
+
+    def test_relabeling_source_section_fails(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_source(Path(tmp))
+            inventory = json.loads((root / v.MANIFEST).read_text())
+            requirement = next(e for e in inventory["requirements"]
+                               if e["id"] == "physical-gap")
+            requirement["source_basis"] = "section_4_footnote_1"
+            (root / v.MANIFEST).write_text(json.dumps(inventory))
+            report, code = v.verify(root, "clay")
+            self.assertEqual(code, 1)
+            self.assertIn("changed acceptance scope", report["error"])
+
     def test_full_clay_certificate_fails_closed_even_without_proof(self):
         report, code = v.verify(ROOT, "clay")
         self.assertEqual(code, 2)

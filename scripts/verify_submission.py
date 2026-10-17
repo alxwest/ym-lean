@@ -31,6 +31,27 @@ CLAUSE_IDS = frozenset({
     "stress-tensor", "ope", "nontrivial", "physical-gap",
     "universal-existence",
 })
+# Only these source-derived clauses affect the prospective Clay proof target.
+# Section 4 footnote 1 is explicitly framed as an expectation; the particular
+# dimension-filtration implementation is interpretive guidance, not an
+# additional mandatory existence theorem. Roles are fixed here: changing the
+# user-editable inventory cannot silently promote a strategy into a requirement.
+NORMATIVE_SOURCE_BASIS = {
+    "group": "section_4_theorem",
+    "spacetime": "section_4_theorem",
+    "qft-axioms": "section_4_theorem",
+    "ym-identification": "section_4_explanation",
+    "gauge-observables": "section_4_explanation",
+    "ultraviolet": "section_4_explanation",
+    "stress-tensor": "section_4_predictions",
+    "ope": "section_4_predictions",
+    "nontrivial": "section_4_theorem",
+    "physical-gap": "section_4_mass_definition",
+    "universal-existence": "section_4_theorem",
+}
+INTERPRETIVE_SOURCE_BASIS = {
+    "renormalized-filtration": "section_4_footnote_1",
+}
 VALID_STATES = {"formalized", "partial", "missing"}
 THEOREM_NAME = re.compile(r"[A-Za-z_][A-Za-z_0-9']*(?:\.[A-Za-z_][A-Za-z_0-9']*)*\Z")
 
@@ -54,7 +75,7 @@ def load_inventory(root: Path) -> dict:
     unlock Clay verification, even if every annotation says "formalized".
     """
     manifest = json.loads((root / MANIFEST).read_text(encoding="utf-8"))
-    if manifest.get("schema_version") != 1:
+    if manifest.get("schema_version") != 2:
         raise SpecificationError("Unsupported requirements inventory version")
     source = manifest.get("source")
     if not isinstance(source, dict):
@@ -77,7 +98,19 @@ def load_inventory(root: Path) -> dict:
     ids = [x.get("id") for x in entries if isinstance(x, dict)]
     if len(ids) != len(entries) or len(ids) != len(set(ids)) or set(ids) != CLAUSE_IDS:
         raise SpecificationError("Paper-clause inventory is incomplete, altered, or duplicated")
+    if set(NORMATIVE_SOURCE_BASIS) | set(INTERPRETIVE_SOURCE_BASIS) != CLAUSE_IDS:
+        raise SpecificationError("Verifier source-role contract no longer matches clause IDs")
     for entry in entries:
+        key = entry["id"]
+        expected_role, expected_basis = (
+            ("required", NORMATIVE_SOURCE_BASIS[key])
+            if key in NORMATIVE_SOURCE_BASIS else
+            ("interpretive_guidance", INTERPRETIVE_SOURCE_BASIS[key])
+        )
+        if (entry.get("acceptance_role") != expected_role
+                or entry.get("source_basis") != expected_basis):
+            raise SpecificationError(
+                f"Non-source assumption or changed acceptance scope for {key}")
         if entry.get("status") not in VALID_STATES:
             raise SpecificationError(f"Unknown coverage status for {entry['id']}")
         if not all(isinstance(entry.get(k), str) and entry[k].strip()
@@ -157,8 +190,16 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         report["pdf_hash_verified"] = True
         report["provenance"] = provenance(root)
         report["coverage"] = {e["id"]: e["status"] for e in inventory["requirements"]}
+        report["source_basis"] = {
+            e["id"]: {"role": e["acceptance_role"], "basis": e["source_basis"]}
+            for e in inventory["requirements"]
+        }
         report["incomplete_clauses"] = sorted(
-            e["id"] for e in inventory["requirements"] if e["status"] != "formalized")
+            e["id"] for e in inventory["requirements"]
+            if e["acceptance_role"] == "required" and e["status"] != "formalized")
+        report["interpretive_guidance"] = sorted(
+            e["id"] for e in inventory["requirements"]
+            if e["acceptance_role"] == "interpretive_guidance")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         report["pdf_hash_verified"] = False
         report["error"] = f"{type(exc).__name__}: {exc}"

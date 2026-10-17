@@ -12,8 +12,20 @@ The repository pins this digest in `scripts/verify_submission.py`.
 §1 and §3 supply the classical and quantum-field definitions.
 Footnote 1 explains that a naive bijection between classical local polynomials
 and quantum local operators is wrong: renormalization mixes operators.
-The expected relationship is between the *filtered spaces of operators of
-dimension at most d*. That subtlety is a proof obligation, not a waiver.
+The PDF describes a correspondence between dimension-filtered spaces as
+an *expectation*, not as a separately stated theorem. That observation
+guides interpretation; requiring a specific exact filtered isomorphism
+as an additional acceptance condition would overstate the text.
+
+## Clause roles and authority
+
+Eleven inventory entries track the Section 4 theorem and explanatory
+requirements; `renormalized-filtration` records footnote 1's interpretive
+expectation only. This is a **source crosswalk**, not twelve independent
+axioms. The verifier fixes these roles and rejects attempts to promote a
+suggestion into a mandatory acceptance condition.
+
+See [STATEMENT_POLICY.md](STATEMENT_POLICY.md) for the governing rule.
 
 ## Complete clause inventory
 
@@ -24,7 +36,7 @@ dimension at most d*. That subtlety is a proof obligation, not a waiver.
 | `qft-axioms` | Axioms at least as strong as [45,35] | Partial: operator-based Wightman conditions; formal equivalence/adequacy unreviewed |
 | `ym-identification` | Same theory is pure Yang–Mills for group G | **Missing:** G-specific four-dimensional lattice data now available, but no proven quantum/continuum identification |
 | `gauge-observables` | Local gauge-invariant polynomials in F and covariant derivatives | Partial: curvature jets plus **nonlocal** G-valued Wilson holonomy conjugacy classes with lattice gauge-invariance proofs; local quantum correspondence open |
-| `renormalized-filtration` | Renormalized dimension-filtered operator correspondence | Partial: classical engineering-degree filtration; filtered quantum operator identification still missing |
+| `renormalized-filtration` | Footnote 1's expected dimension-filtered interpretation | **Guidance, not a separate compulsory theorem.** Classical filtration is partially formalized |
 | `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Partial: genuine vacuum n-point functions defined; UV asymptotics and perturbative limits missing |
 | `stress-tensor` | Prescribed local stress tensor | Missing |
 | `ope` | Operator product expansion and prescribed local singularities | Missing |
@@ -68,10 +80,11 @@ New verified algebraic and finite-regulator constructions:
   invariance of its finite group-dependent action.
 
 These are nonlocal **finite classical** quantities, not a continuum quantum
-Yang–Mills theory. To establish identification, a proof must relate the
-actual quantum fields/correlations to a justified, fixed construction
-for the *same* G, including the appropriate character, Haar measure,
-renormalized continuum limit and the required local observable/UV behaviour.
+Yang–Mills theory. **If a proof chooses this lattice route**, its class
+function, measure and convergence steps must be justified and connected to
+actual quantum fields/correlations for the same G. An alternative mathematical
+construction is equally admissible if it establishes Section 4's requirements.
+No particular character, Haar measure, lattice or regulator is prescribed.
 A common Hilbert space across gauge groups is allowed if those separate
 identifications are proved.
 

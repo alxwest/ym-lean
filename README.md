@@ -18,6 +18,21 @@ including setting them to `True`. There are no replacement predicate parameters
 for the missing requirements. No full Yang–Mills submission target is exported
 until those requirements are defined.
 
+## Exact-statement acceptance policy
+
+Only what Section 4 of the Jaffe–Witten PDF actually requires, together
+with the mathematical standards it explicitly cites, may determine Clay
+proof acceptance. Footnote 1's expected dimension filtration is
+**interpretive guidance**, not an additional independently compulsory theorem.
+
+The formally checked holonomy, Wilson-type class actions and four-dimensional
+lattice are **optional proof infrastructure**, not requirements every
+solution must use. Neither extra restrictions nor unproved assumptions may
+be introduced merely to simplify certification. Natural-language conditions
+still require precise, reviewable mathematical definitions.
+
+See [source/STATEMENT_POLICY.md](source/STATEMENT_POLICY.md).
+
 ## Source-anchored proof verification
 
 The **exact bytes** of the locally committed [`source/yangmills.pdf`](source/yangmills.pdf)

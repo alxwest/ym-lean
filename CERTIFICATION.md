@@ -25,8 +25,10 @@ mathematical definitions and proven facts for all of:
    quantum field theory, rather than merely appending an unused group index.
 2. **Local gauge-invariant observables.** Specify genuine gauge-invariant
    differential polynomials in curvature and covariant derivatives and their
-   renormalized correspondence with quantum local fields. Include the
-   dimension-filtered operator-mixing/renormalization subtleties.
+   renormalized correspondence with quantum local fields. Footnote 1 warns
+   against a naive one-to-one correspondence and suggests dimension-filtered
+   spaces, but **does not make a particular filtered isomorphism a separate
+   mandatory theorem**.
 3. **Yang--Mills identification.** Give a non-circular mathematical account
    of the pure 4D Yang--Mills quantum theory for G, anchored to its action
    or an equivalent justified construction. A free massive field is not enough.
@@ -34,8 +36,9 @@ mathematical definitions and proven facts for all of:
    and asymptotic-freedom/perturbative-renormalization behavior as concrete
    estimates/limits/identities, including the stress tensor and prescribed
    operator product expansion singularities.
-5. **Nontriviality.** Exclude Gaussian/free/trivial substitutes in a way
-   appropriate to the identified pure Yang--Mills theory.
+5. **Nontriviality.** Give the PDF's term 'non-trivial quantum Yang--Mills'
+   a justified mathematical interpretation. Do not introduce a separate,
+   stronger Gaussianity criterion without support in the written statement.
 6. **Complete QFT and physical gap.** Prove the required axioms and show the
    gap belongs to the *time-translation Hamiltonian of that same theory*,
    with a positive finite spectral mass. A finite-volume/lattice gap alone
@@ -141,6 +144,26 @@ must instead be proved for every G.
 
 The full Clay gate remains closed. No arbitrary predicate, user-picked
 meaning of Yang–Mills, or new mathematical assumption is introduced.
+
+## No additional assumptions or preferred proof method
+
+[source/STATEMENT_POLICY.md](source/STATEMENT_POLICY.md) governs the scope:
+only Section 4's theorem, its explanatory requirements, and the explicitly
+cited mathematical axiom systems can determine pass/fail. Footnote 1's
+expected dimension filtration is interpretive guidance, not an additional
+axiom or independently compulsory theorem.
+
+No fixed lattice, representation/character, Haar construction, Wilson
+plaquette action, particular regulator or continuum-limit method is required
+of every proof. Distinct Hilbert spaces for distinct groups, confinement,
+isolated one-particle states and arbitrary Gaussianity tests are not additional
+universal conditions. If a proof uses such machinery, all necessary steps
+must of course be justified within that proof.
+
+Defining a missing required mathematical condition must not assume its truth.
+A formalization should be judged for fidelity to the PDF and cited axiom
+systems before its proof checker can claim certification. That independent
+review is a validation step, **not another hypothesis of the theorem**.
 
 ## Machine-checking protocol
 
