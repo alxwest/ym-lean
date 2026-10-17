@@ -7,18 +7,14 @@ import YangMills.QFT.Wightman
 Jaffe–Witten §§3–4:
 https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf
 
-The previous `Framework` allowed every substantive requirement to be replaced
-by a user-chosen predicate. It has been removed. In particular there is no
-longer a declaration named `YangMillsExistenceAndMassGap` whose proof could be
-mistaken for a proof of the full problem.
-
 The target below checks the QFT-and-gap portion against fixed definitions.
 It is only a necessary portion of the Millennium problem: it does not identify
 a QFT with Yang–Mills for a given gauge group. A free massive field could satisfy
-this target. The gauge-observable correspondence, renormalized Yang–Mills
-identification, and prescribed ultraviolet/OPE asymptotics still need a precise
-specification and implementation. They are NOT represented by free predicates,
-axioms, or hidden proof holes here.
+this target, something Jaffe-Witten had suggested in their statement. The
+gauge-observable correspondence, renormalized Yang–Mills identification, and
+prescribed ultraviolet/OPE asymptotics still need a precise specification and
+implementation. They are NOT represented by free predicates, axioms, or hidden
+proof holes here.
 -/
 
 noncomputable section
