@@ -42,6 +42,14 @@ python3 scripts/verify_submission.py --claim qft \
 python3 -m unittest discover -s scripts -p 'test_verifier.py' -v
 ```
 
+The QFT-only CLI **does not trust audit commands or success messages from
+the submitted source**. It first compiles the candidate into a Lean module;
+an independent [kernel inspector](scripts/InspectProof.lean) then imports
+the checked environment, requires the *exact* target theorem type, and
+traverses its axioms. This prevents proof-local command shadowing from
+counterfeiting acceptance. Use the CLI rather than a source-authored
+audit message when verifying someone else's proof.
+
 Exit codes from the new CLI: `0` = genuine acceptance of the **QFT-only**
 exact target; `1` = failed verification or invalid source; `2` = blocked
 full Clay certification. The JSON report always has `clay_certificate: false`

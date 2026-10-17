@@ -62,6 +62,12 @@ checks both the paper bytes and the complete clause ID set. Its invariant
 is that even if metadata is marked `formalized`, it cannot itself license
 a full certification. The Lean gate stays blocked.
 
+The complete `python3 scripts/check_proofs.py` run additionally executes
+[`scripts/test_kernel_inspector.py`](scripts/test_kernel_inspector.py),
+which compiles adversarial proof modules and verifies that the independent
+inspector rejects both type spoofing and `sorryAx` despite an overridden
+proof-local audit command.
+
 Run:
 
 ```sh
@@ -78,6 +84,16 @@ returns `1`. The QFT-only target returns `0` **only** when its Lean proof
 kernel-checks with an exact-target transitive-axiom audit; the report still
 has `clay_certificate: false`. Proofs are supplied as Lean source, not
 unformalized prose. No proof body is bundled or presupposed.
+
+The QFT-only admission path compiles the submitted Lean source separately
+to a temporary module, then calls [InspectProof.lean](scripts/InspectProof.lean).
+That trusted inspector dynamically imports the checked kernel environment
+and rejects non-theorems, wrong target types and all unapproved transitive
+axioms. It does not parse user-defined verification commands or trust
+submitted diagnostic text. An adversarial regression test explicitly checks
+this boundary. The inspector demands a theorem whose raw type is precisely
+the named target; authors of definitionally equivalent proof statements
+can add an unconditional wrapper theorem with the exact target type.
 
 **Trust model:** The PDF's checksum protects against accidental or unnoticed
 source substitution *within this verifier*. The runner, checked-in script,

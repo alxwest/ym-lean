@@ -60,6 +60,7 @@ def main() -> None:
                 raise SystemExit(f"FAIL {name}\n{result.stdout}")
             print(f"PASS {name}", flush=True)
     print(f"All {len(cases)} proof-audit checks passed.")
+    subprocess.run([sys.executable, "scripts/test_kernel_inspector.py"], cwd=ROOT, check=True)
 
 
 if __name__ == "__main__":

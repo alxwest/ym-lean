@@ -15,6 +15,7 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import secrets
 import subprocess
 import sys
 import tempfile
@@ -106,6 +107,8 @@ FINGERPRINTED_FILES = (
     "lakefile.toml",
     "lake-manifest.json",
     "lean-toolchain",
+    "scripts/InspectProof.lean",
+    "scripts/verify_submission.py",
     MANIFEST,
 )
 
@@ -191,24 +194,49 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         # A proof source must compile as a self-contained Lean file when imported
         # from the project root (local imports must be available there).
         with tempfile.TemporaryDirectory(prefix="verify-qft-", dir=root / ".lake") as temp:
-            path = Path(temp) / "Candidate.lean"
-            path.write_text(
-                "import YangMills\n" + program + "\n"
-                + "#check_qft_proof " + theorem + "\n",
-                encoding="utf-8",
-            )
-            result = _run(["lake", "env", "lean", str(path)], root)
-        report["lean_exit_code"] = result.returncode
-        report["lean_output_tail"] = (result.stdout + result.stderr)[-4000:]
-        if result.returncode == 0 and "QFT-and-gap target checked." in report["lean_output_tail"]:
-            report["status"] = "QFT_ONLY_PROOF_ACCEPTED"
-            report["qft_only_certificate"] = True
-            report["verified_theorem"] = theorem
-            report["reason"] = "Exactly QFTExistenceAndMassGap, not the Yang–Mills Clay statement"
-            return report, 0
-        report["status"] = "PROOF_REJECTED"
-        report["error"] = "Kernel compilation and/or exact-target transitive-axiom audit failed"
-        return report, 1
+            # Compile untrusted proof separately. Do NOT append a textual audit
+            # command: the submission could redefine its syntax and spoof output.
+            name = "QftCandidate_" + secrets.token_hex(12)
+            source_path = Path(temp) / (name + ".lean")
+            source_path.write_text("import YangMills\n" + program + "\n", encoding="utf-8")
+            olean = root / ".lake" / "build" / "lib" / "lean" / (name + ".olean")
+            olean.parent.mkdir(parents=True, exist_ok=True)
+            try:
+                compiled = _run(["lake", "env", "lean", "-o", str(olean),
+                                 str(source_path)], root)
+                report["proof_compile_exit_code"] = compiled.returncode
+                if compiled.returncode != 0:
+                    report["status"] = "PROOF_REJECTED"
+                    report["error"] = "Proof source failed to compile"
+                    report["proof_compile_output_tail"] = (
+                        compiled.stdout + compiled.stderr)[-3000:]
+                    return report, 1
+                # Auditing uses a trusted Lean program compiled independently
+                # of the candidate. It imports the candidate .olean dynamically
+                # and reads the checked kernel environment, with no submitted
+                # macros or user-defined audit syntax in the verifier source.
+                inspected = _run([
+                    "lake", "env", "lean", "--run",
+                    str(root / "scripts" / "InspectProof.lean"),
+                    name, theorem,
+                ], root)
+                report["kernel_audit_exit_code"] = inspected.returncode
+                report["kernel_audit_output_tail"] = (
+                    inspected.stdout + inspected.stderr)[-3000:]
+                if (inspected.returncode == 0 and
+                        "QFT_KERNEL_CHECK_PASSED:" in inspected.stdout):
+                    report["status"] = "QFT_ONLY_PROOF_ACCEPTED"
+                    report["qft_only_certificate"] = True
+                    report["verified_theorem"] = theorem
+                    report["reason"] = "Exactly QFTExistenceAndMassGap, not the Yang–Mills Clay statement"
+                    return report, 0
+                report["status"] = "PROOF_REJECTED"
+                report["error"] = (
+                    "Independent kernel-environment inspection rejected "
+                    "the theorem type and/or transitive axioms")
+                return report, 1
+            finally:
+                olean.unlink(missing_ok=True)
     except (OSError, UnicodeError, subprocess.TimeoutExpired) as exc:
         report["status"] = "VERIFIER_ERROR"
         report["error"] = f"{type(exc).__name__}: {exc}"

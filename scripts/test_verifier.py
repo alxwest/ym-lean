@@ -64,27 +64,39 @@ class SourceContractTests(unittest.TestCase):
 
     def test_qft_only_never_sets_clay_certificate(self):
         with tempfile.TemporaryDirectory() as tmp:
-            proof = Path(tmp) / "FakeProof.lean"
+            proof = Path(tmp) / "Candidate.lean"
             proof.write_text("theorem Foo : True := True.intro\n")
-            completed = subprocess.CompletedProcess(["lake"], 0, "QFT-and-gap target checked.\n", "")
-            with patch.object(v, "_run", return_value=completed) as call:
+            compile_ok = subprocess.CompletedProcess(["lake"], 0, "", "")
+            audit_ok = subprocess.CompletedProcess(["lean"], 0, "QFT_KERNEL_CHECK_PASSED: Foo\n", "")
+            with patch.object(v, "_run", side_effect=[compile_ok, compile_ok, audit_ok]) as call:
                 report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
             self.assertEqual(code, 0)
             self.assertTrue(report["qft_only_certificate"])
             self.assertFalse(report["clay_certificate"])
-            self.assertEqual(call.call_count, 2)
-            with self.assertRaises(FileNotFoundError):
-                # Temporary candidate source must have been cleaned up.
-                Path(call.call_args[0][0][-1]).read_text()
+            self.assertEqual(call.call_count, 3)
+            submitted_copy = Path(call.call_args_list[1].args[0][-1])
+            self.assertFalse(submitted_copy.exists())
 
     def test_qft_wrong_target_or_failed_audit_cannot_pass(self):
         with tempfile.TemporaryDirectory() as tmp:
             proof = Path(tmp) / "Wrong.lean"
             proof.write_text("theorem Foo : True := True.intro\n")
             ok = subprocess.CompletedProcess(["lake", "build"], 0, "", "")
-            reject = subprocess.CompletedProcess(["lake", "env", "lean"], 1, "Wrong target\n", "")
-            with patch.object(v, "_run", side_effect=[ok, reject]):
+            reject = subprocess.CompletedProcess(["lean"], 1, "REJECTED: wrong type\n", "")
+            with patch.object(v, "_run", side_effect=[ok, ok, reject]):
                 report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
+            self.assertEqual(code, 1)
+            self.assertEqual(report["status"], "PROOF_REJECTED")
+            self.assertFalse(report["qft_only_certificate"])
+
+    def test_spoofed_success_message_in_candidate_is_not_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proof = Path(tmp) / "Spoof.lean"
+            proof.write_text('theorem Fake : True := True.intro\n')
+            compiled = subprocess.CompletedProcess(["lean"], 0, "QFT-and-gap target checked.\n", "")
+            inspect_reject = subprocess.CompletedProcess(["lean"], 1, "REJECTED: wrong type\n", "")
+            with patch.object(v, "_run", side_effect=[compiled, compiled, inspect_reject]):
+                report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Fake")
             self.assertEqual(code, 1)
             self.assertEqual(report["status"], "PROOF_REJECTED")
             self.assertFalse(report["qft_only_certificate"])
