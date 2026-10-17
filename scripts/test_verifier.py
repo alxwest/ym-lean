@@ -22,6 +22,20 @@ class SourceContractTests(unittest.TestCase):
         self.assertEqual(record["source"]["git_blob_sha1"], v.PDF_BLOB_SHA1)
         self.assertEqual(len(record["requirements"]), len(v.CLAUSE_IDS))
 
+    def test_new_observable_definitions_remain_necessary_only(self):
+        inventory = v.load_inventory(ROOT)
+        by_id = {e["id"]: e for e in inventory["requirements"]}
+        for key in ("gauge-observables", "renormalized-filtration",
+                    "ultraviolet", "universal-existence"):
+            self.assertEqual(by_id[key]["status"], "partial")
+        for key in ("ym-identification", "stress-tensor", "ope", "nontrivial"):
+            self.assertEqual(by_id[key]["status"], "missing")
+        report, rc = v.verify(ROOT, "clay",
+                              theorem="YangMills.qft_exists_implies_groupwise_qft")
+        self.assertEqual(rc, 2)
+        self.assertFalse(report["clay_certificate"])
+        self.assertIn("ym-identification", report["incomplete_clauses"])
+
     def test_full_clay_certificate_fails_closed_even_without_proof(self):
         report, code = v.verify(ROOT, "clay")
         self.assertEqual(code, 2)

@@ -57,7 +57,7 @@ placeholder equivalent to `True`.
 
 /-- Report readiness without incorrectly calling a successful library build a proof. -/
 elab "#clay_certification_status" : command => do
-  logInfo "CLAY_CERTIFICATION_BLOCKED: Full Yang--Mills identification, gauge-invariant observable correspondence, ultraviolet/OPE conditions, nontriviality, and the universal group-indexed existence theorem are not yet formalized and proved. See CERTIFICATION.md."
+  logInfo "CLAY_CERTIFICATION_BLOCKED: Classical curvature-jet polynomials and QFT n-point functions are defined, but renormalized gauge-invariant quantum correspondence, UV/OPE requirements, nontrivial Yang--Mills identification, and groupwise existence remain missing. See CERTIFICATION.md."
 
 /-- Intentionally rejects *every* submitted theorem. There is currently no
 mathematically complete closed Clay target to compare against, so accepting

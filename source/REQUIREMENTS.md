@@ -23,19 +23,36 @@ dimension at most d*. That subtlety is a proof obligation, not a waiver.
 | `spacetime` | Noncompact four-dimensional spacetime | Partial: spacetime and field types, no existence |
 | `qft-axioms` | Axioms at least as strong as [45,35] | Partial: operator-based Wightman conditions; formal equivalence/adequacy unreviewed |
 | `ym-identification` | Same theory is pure Yang–Mills for group G | Missing: classical action and QFT not connected |
-| `gauge-observables` | Local gauge-invariant polynomials in F and covariant derivatives | Missing correspondence to quantum fields |
-| `renormalized-filtration` | Renormalized dimension-filtered operator correspondence | Missing |
-| `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Missing specified estimates |
+| `gauge-observables` | Local gauge-invariant polynomials in F and covariant derivatives | Partial: classical curvature-jet trace polynomials and action-density connection; gauge invariance and quantum correspondence open |
+| `renormalized-filtration` | Renormalized dimension-filtered operator correspondence | Partial: classical engineering-degree filtration; filtered quantum operator identification still missing |
+| `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Partial: genuine vacuum n-point functions defined; UV asymptotics and perturbative limits missing |
 | `stress-tensor` | Prescribed local stress tensor | Missing |
 | `ope` | Operator product expansion and prescribed local singularities | Missing |
 | `nontrivial` | Nontrivial, interacting Yang–Mills, not a free massive field | Missing fixed nontriviality test |
 | `physical-gap` | Spectrum H≥0, HΩ=0, positive Δ and finite mass m | Partial: spectral statements defined, existence unproved |
-| `universal-existence` | Such a theory for **every** compact simple G | Missing: existing QFT target has no G |
+| `universal-existence` | Such a theory for **every** compact simple G | Partial: group-quantified QFT-only shadow, proved insufficient by reuse-of-one-theory lemma; YM groupwise target missing |
 
 See [`requirements.json`](requirements.json) for the machine-readable version
 of this table. Every clause is currently `partial` or `missing`. No metadata
 changes are allowed to certify the full theorem; the Lean proof gate must be
 independently reviewed and explicitly enabled once the mathematics is formalized.
+
+## Newly formalized necessary mathematics
+
+- `YangMills/LocalObservables.lean`: concrete finite curvature-jet trace-polynomial
+  expressions, engineering dimensions, degree filtration, and a theorem
+  identifying quadratic trace components with the classical action density.
+  This is **not** yet a proof of gauge invariance or quantum correspondence.
+- `YangMills/QuantumCorrelations.lean`: vacuum n-point functions are calculated
+  from Wightman field products in the physical Hilbert space, rather than
+  supplied as arbitrary data. The actual UV/OPE estimates are still absent.
+- `YangMills/GroupwiseNecessary.lean`: exhibits a formally proved loophole.
+  A group-indexed QFT-only existence formula follows from a single unlabelled
+  massive QFT; it therefore cannot be accepted as Yang--Mills identification.
+
+The evidence above advances the definitions, but **does not** enable Clay
+proof admission, does not assume any mass-gap proof and does not settle the
+adequacy of the formal QFT axioms.
 
 ## Clarifying non-requirements
 

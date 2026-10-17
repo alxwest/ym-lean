@@ -48,6 +48,21 @@ Do **not** satisfy any item by inventing an uninterpreted proposition,
 postulating an axiom, omitting the difficult terms, attaching an unused
 `G`, or assuming the desired conclusion.
 
+## Additional definitions, not an unblocked certificate
+
+The repository now formally defines and kernel-checks a *classical*
+curvature-jet trace-polynomial grammar, its engineering-dimension filtration,
+vacuum Wightman n-point correlation functions, and a group-quantified
+QFT-only necessary theorem. The groupwise theorem has an explicit proof
+that **any one** gapped QFT suffices when G is not actually used; this is a
+formal counterexample to an inadequate target formulation.
+
+These fragments do not address gauge invariance of the classical expressions
+under local transformations, renormalized quantum operator correspondence,
+non-Gaussian pure Yang–Mills identification, the prescribed UV/OPE
+coefficients, or universal existence *of the identified theory*. The full
+Clay checker therefore must continue to return `CLAY_CERTIFICATION_BLOCKED`.
+
 ## Executable source-bound admission protocol
 
 The trusted paper is **the repository's own `source/yangmills.pdf`**.

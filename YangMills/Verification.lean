@@ -1,5 +1,8 @@
 import YangMills.Classical
 import YangMills.Audit
+import YangMills.LocalObservables
+import YangMills.QuantumCorrelations
+import YangMills.GroupwiseNecessary
 
 /-!
 # Dependency audit of the specification and its supporting lemmas
@@ -28,3 +31,15 @@ to the QFT target. No existence proof is asserted here.
 -- All the `#audit_axioms` declarations above are definitions or local lemmas;
 -- none is a proof of a complete Yang--Mills existence theorem.
 #clay_certification_status
+
+-- Audited concrete fragments of the paper's source-level verification target.
+-- These are *definitions* of necessary structures, not Yang--Mills existence.
+#audit_axioms YangMills.CurvatureJet.evaluate
+#audit_axioms YangMills.CurvatureScalarPolynomial.evaluate
+#audit_axioms YangMills.CurvatureScalarPolynomial.add_in_filtration
+#audit_axioms YangMills.CurvatureScalarPolynomial.mul_in_filtration
+#audit_axioms YangMills.WightmanData.vacuumNPoint
+#audit_axioms YangMills.qft_exists_implies_groupwise_qft
+
+#audit_axioms YangMills.actionDensity_eq_curvaturePairs
+#audit_axioms YangMills.WightmanData.vacuumNPoint_nil_eq_one

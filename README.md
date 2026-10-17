@@ -80,6 +80,30 @@ See the supplied [reference PDF](source/yangmills.pdf) or the
 | Proof admission | [Audit.lean](YangMills/Audit.lean) | Exact-target and transitive axiom checks |
 | Default-build audit | [Verification.lean](YangMills/Verification.lean) | Audits the current specification and all supporting lemmas |
 
+## Additional formally checked building blocks
+
+The source crosswalk now includes three concrete, **necessary but not sufficient**
+steps toward the exact Jaffe–Witten statement:
+
+- [LocalObservables.lean](YangMills/LocalObservables.lean) implements
+  curvature jets, finite trace-polynomial expressions and a calculated
+  engineering-dimension filtration, including the quadratic action-density
+  generators. It does **not** establish gauge invariance or a renormalized
+  quantum observable correspondence.
+- [QuantumCorrelations.lean](YangMills/QuantumCorrelations.lean)
+  computes smeared vacuum n-point functions directly from the Wightman
+  fields on their Hilbert space; the required short-distance asymptotics
+  are *not* asserted.
+- [GroupwiseNecessary.lean](YangMills/GroupwiseNecessary.lean)
+  formalizes the all-groups quantifier for a **QFT-only necessary**
+  condition, then **proves** why it is insufficient: one unrelated
+  gapped QFT can be reused for every G. Merely attaching a gauge group
+  does not identify a quantum Yang–Mills theory.
+
+The new declarations are imported and axiom-audited by the default
+`YangMills.Verification` build. None is a complete Clay proof target.
+The full proof verifier remains intentionally fail-closed.
+
 ## What a QFT proof must establish
 
 `WightmanData` supplies the mathematical objects. `WightmanAxioms` contains

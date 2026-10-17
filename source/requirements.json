@@ -61,27 +61,39 @@
       "id": "gauge-observables",
       "description": "Local quantum operators corresponding to gauge-invariant polynomials in F and its covariant derivatives",
       "location": "Section 4, printed p.6 and footnote 1",
-      "status": "missing",
+      "status": "partial",
       "lean": [
-        "YangMills.Connection.covariantDerivative"
+        "YangMills.Connection.covariantDerivative",
+        "YangMills.CurvatureJet.evaluate",
+        "YangMills.CurvatureTracePair.evaluate",
+        "YangMills.CurvatureScalarPolynomial.evaluate",
+        "YangMills.actionDensity_eq_curvaturePairs"
       ],
-      "gap": "No formal space of gauge-invariant differential polynomial observables with a justified correspondence to the quantum field operators."
+      "gap": "A concrete classical curvature-jet trace-polynomial grammar and its evaluation are formalized, with a proof linking the usual action density to trace pairs. Local gauge transformation/invariance, the full invariant-polynomial algebra, and correspondence with renormalized quantum operators remain missing."
     },
     {
       "id": "renormalized-filtration",
       "description": "Operator renormalization and dimension ≤ d filtration; literal one-to-one operator mapping is NOT required",
       "location": "Section 4, printed p.6, footnote 1",
-      "status": "missing",
-      "lean": [],
-      "gap": "Renormalized, dimension-filtered local-operator correspondence is not formalized."
+      "status": "partial",
+      "lean": [
+        "YangMills.CurvatureJet.dimension",
+        "YangMills.CurvatureScalarPolynomial.ofDimensionAtMost",
+        "YangMills.CurvatureScalarPolynomial.add_in_filtration",
+        "YangMills.CurvatureScalarPolynomial.mul_in_filtration"
+      ],
+      "gap": "A concrete classical engineering-dimension filtration is defined and closed under addition and bounded-degree multiplication. No corresponding filtered quantum operator spaces or renormalized mixing/identification have been defined."
     },
     {
       "id": "ultraviolet",
       "description": "Short-distance correlation functions agree with asymptotic freedom and perturbative renormalization",
       "location": "Section 4, printed p.6",
-      "status": "missing",
-      "lean": [],
-      "gap": "No fixed asymptotic expressions and no proved correlation-function limits or estimates."
+      "status": "partial",
+      "lean": [
+        "YangMills.WightmanData.vacuumNPoint",
+        "YangMills.WightmanData.vacuumNPoint_nil_eq_one"
+      ],
+      "gap": "Smeared vacuum n-point functions are now computed directly from QFT field words and the same vacuum. No short-distance scaling limits, asymptotic-freedom estimates, stress tensor or prescribed OPE singularities are proved or formalized."
     },
     {
       "id": "stress-tensor",
@@ -122,11 +134,12 @@
       "id": "universal-existence",
       "description": "Existence of such a nontrivial, identified, gapped theory for every compact simple G",
       "location": "Section 4 theorem, printed p.6",
-      "status": "missing",
+      "status": "partial",
       "lean": [
-        "YangMills.QFTExistenceAndMassGap"
+        "YangMills.GroupwiseQFTExistenceAndMassGap",
+        "YangMills.qft_exists_implies_groupwise_qft"
       ],
-      "gap": "Current closed proposition only asks for some gapped Wightman-type QFT and is independent of G."
+      "gap": "The all-groups quantifier has been written as a QFT-only necessary shadow, and a formal theorem exposes its insufficiency: a single unrelated gapped QFT satisfies it for every G. The Yang–Mills identification and full groupwise existence statement are missing."
     }
   ],
   "outside_required_claim": [
