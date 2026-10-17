@@ -36,6 +36,23 @@ class SourceContractTests(unittest.TestCase):
         self.assertFalse(report["clay_certificate"])
         self.assertIn("ym-identification", report["incomplete_clauses"])
 
+    def test_group_dependent_lattice_does_not_unlock_certificate(self):
+        inventory = v.load_inventory(ROOT)
+        by_id = {x["id"]: x for x in inventory["requirements"]}
+        self.assertEqual(by_id["ym-identification"]["status"], "missing")
+        self.assertIn("YangMills.periodicFourClassAction",
+                      by_id["ym-identification"]["lean"])
+        self.assertIn("YangMills.qft_exists_implies_unlinked_group_checks",
+                      by_id["universal-existence"]["lean"])
+        report, rc = v.verify(ROOT, "clay")
+        self.assertEqual(rc, 2)
+        self.assertFalse(report["clay_certificate"])
+        for filename in ("YangMills/GaugeHolonomy.lean",
+                         "YangMills/LatticeGaugeAction.lean",
+                         "YangMills/PeriodicLattice4.lean"):
+            self.assertIn(filename,
+                          report["provenance"]["local_fingerprints_sha256"])
+
     def test_full_clay_certificate_fails_closed_even_without_proof(self):
         report, code = v.verify(ROOT, "clay")
         self.assertEqual(code, 2)

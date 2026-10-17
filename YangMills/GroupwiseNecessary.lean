@@ -1,4 +1,5 @@
 import YangMills.Statement
+import YangMills.PeriodicLattice4
 
 /-!
 # Group quantifier alone is NOT Yang–Mills identification
@@ -30,5 +31,32 @@ theorem qft_exists_implies_groupwise_qft
     GroupwiseQFTExistenceAndMassGap := by
   intro _G
   exact h
+
+
+/-- Adding a genuine G-dependent lattice *check* to a theorem, without
+requiring that Q's quantum fields represent that lattice theory, is still
+insufficient. This is an intentionally inadequate necessary shadow. -/
+def GroupwiseQFTWithUnlinkedLatticeChecks : Prop :=
+  ∀ G : CompactSimpleGaugeGroup.{u},
+    ∃ Q : QuantumTheory,
+      GappedWightmanTheory Q.State Q.fields ∧
+      (∀ (n : ℕ) (χ : ConjClasses G.Carrier → ℝ)
+          (h : PeriodicFourVertex n → G.Carrier)
+          (links : GaugeLinks (PeriodicFourVertex n) G),
+        periodicFourClassAction n G χ (gaugeTransform G h links) =
+          periodicFourClassAction n G χ links)
+
+/-- Kernel-checkable negative control: QFT existence alone also implies
+every group-dependent *but unlinked* finite-gauge consistency test.
+Therefore proving those two ingredients side-by-side never identifies
+the quantum theory with Yang--Mills for G. -/
+theorem qft_exists_implies_unlinked_group_checks
+    (h : QFTExistenceAndMassGap) :
+    GroupwiseQFTWithUnlinkedLatticeChecks := by
+  obtain ⟨Q, hQ⟩ := h
+  intro G
+  refine ⟨Q, hQ, ?_⟩
+  intro n χ gauges links
+  exact periodicFourClassAction_gauge_invariant n G χ gauges links
 
 end YangMills

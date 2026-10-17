@@ -21,9 +21,13 @@
       "location": "Section 4, printed p.6; section 1 defines gauge-group convention",
       "status": "partial",
       "lean": [
-        "YangMills.CompactSimpleGaugeGroup"
+        "YangMills.CompactSimpleGaugeGroup",
+        "YangMills.GaugeLinks",
+        "YangMills.gaugeHolonomy",
+        "YangMills.wilsonConjugacyClass",
+        "YangMills.wilsonConjugacyClass_gauge_invariant"
       ],
-      "gap": "Concrete compact simple Lie group type exists; no full existence theorem universally quantified over these groups."
+      "gap": "Classical G-valued link multiplication and gauge-invariant holonomy conjugacy classes are now kernel-checked. Compact simple group quantification is defined, but the quantum theory is not yet identified with these G-dependent observables."
     },
     {
       "id": "spacetime",
@@ -53,9 +57,11 @@
       "status": "missing",
       "lean": [
         "YangMills.Connection.curvature",
-        "YangMills.Connection.euclideanAction"
+        "YangMills.Connection.euclideanAction",
+        "YangMills.periodicFourClassAction",
+        "YangMills.qft_exists_implies_unlinked_group_checks"
       ],
-      "gap": "Classical gauge action and QFT structures are disconnected; no proved renormalized same-object quantum Yang–Mills identification."
+      "gap": "A genuinely G-dependent four-dimensional lattice action is kernel-checked, but its character weight, Haar measure, continuum limit and connection to Q's actual Wightman quantum correlations have not been established. A formal negative theorem proves that adding these classical checks without connecting them to Q leaves the unrelated-massive-QFT loophole open. Identification remains MISSING, never 'partial' by label alone."
     },
     {
       "id": "gauge-observables",
@@ -67,9 +73,12 @@
         "YangMills.CurvatureJet.evaluate",
         "YangMills.CurvatureTracePair.evaluate",
         "YangMills.CurvatureScalarPolynomial.evaluate",
-        "YangMills.actionDensity_eq_curvaturePairs"
+        "YangMills.actionDensity_eq_curvaturePairs",
+        "YangMills.wilsonConjugacyClass_gauge_invariant",
+        "YangMills.finiteCentralPlaquetteAction_gauge_invariant",
+        "YangMills.periodicFourClassAction_gauge_invariant"
       ],
-      "gap": "A concrete classical curvature-jet trace-polynomial grammar and its evaluation are formalized, with a proof linking the usual action density to trace pairs. Local gauge transformation/invariance, the full invariant-polynomial algebra, and correspondence with renormalized quantum operators remain missing."
+      "gap": "Classical curvature-jet trace polynomials and nonlocal G-valued lattice holonomy conjugacy classes are defined, with concrete gauge-invariance proofs for the latter. Local gauge invariance of curvature expressions, renormalized field matching, and the full operator algebra remain missing."
     },
     {
       "id": "renormalized-filtration",
@@ -137,9 +146,10 @@
       "status": "partial",
       "lean": [
         "YangMills.GroupwiseQFTExistenceAndMassGap",
-        "YangMills.qft_exists_implies_groupwise_qft"
+        "YangMills.qft_exists_implies_groupwise_qft",
+        "YangMills.qft_exists_implies_unlinked_group_checks"
       ],
-      "gap": "The all-groups quantifier has been written as a QFT-only necessary shadow, and a formal theorem exposes its insufficiency: a single unrelated gapped QFT satisfies it for every G. The Yang–Mills identification and full groupwise existence statement are missing."
+      "gap": "The groupwise QFT-only shadow and unlinked G-dependent finite gauge invariants are formally provably insufficient. Actual quantum Yang--Mills identification for every compact simple G is not encoded or proved."
     }
   ],
   "outside_required_claim": [

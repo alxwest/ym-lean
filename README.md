@@ -104,6 +104,33 @@ The new declarations are imported and axiom-audited by the default
 `YangMills.Verification` build. None is a complete Clay proof target.
 The full proof verifier remains intentionally fail-closed.
 
+## Closing the unused-gauge-group loophole
+
+The repository now verifies algebraic group dependence, rather than just
+carrying the name `G`:
+
+- [GaugeHolonomy.lean](YangMills/GaugeHolonomy.lean) defines links valued
+  in the actual group, group multiplication along paths and gauge-invariant
+  conjugacy classes of closed holonomies.
+- [LatticeGaugeAction.lean](YangMills/LatticeGaugeAction.lean) constructs
+  finite central plaquette actions and Boltzmann weights and proves they
+  are invariant under local gauge transformations.
+- [PeriodicLattice4.lean](YangMills/PeriodicLattice4.lean) fixes a genuine
+  four-dimensional periodic lattice and its elementary oriented plaquettes.
+- [GroupwiseNecessary.lean](YangMills/GroupwiseNecessary.lean) proves a
+  stronger **negative control**: a single unrelated gapped QFT can still
+  satisfy all those G-dependent classical tests *if* the quantum/classical
+  identification is omitted.
+
+These are genuine, axiom-audited, group-dependent **classical/finite**
+definitions—not a complete Yang–Mills identification. A sound certificate
+must additionally derive the *same theory's* renormalized local quantum
+observables and short-distance correlations for that G. The finite class
+weight is not yet fixed to a canonical Wilson representation or measure.
+The formal verifier therefore still rejects full Clay claims. Sharing an
+underlying Hilbert space across groups is permissible; what matters is
+the proved correspondence for each G.
+
 ## What a QFT proof must establish
 
 `WightmanData` supplies the mathematical objects. `WightmanAxioms` contains

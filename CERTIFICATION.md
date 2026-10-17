@@ -118,6 +118,30 @@ Someone capable of replacing both the checker and its expected hashes
 can defeat an unanchored local run. Lean's kernel checks mathematical
 implication from the fixed target; subject-matter review is indispensable
 for judging whether the fixed target actually captures the PDF.
+## Group-specific lattice mathematics without claiming continuum identification
+
+The repository now defines concrete links in `G.Carrier`, gauge-transform
+laws, closed-loop conjugacy classes, finite central actions, Boltzmann
+weights and a four-dimensional periodic lattice. Their gauge-invariance
+properties have kernel-checked proofs for the **actual multiplication
+law of G**.
+
+These are classical/finite and nonlocal. The physical character weight
+and measure are not yet fixed, and no rigorous continuum limit has been
+related to the actual quantum field operators or Schwinger/Wightman
+correlations. The required local gauge-observable renormalization and
+UV/OPE behaviour are also still absent.
+
+`qft_exists_implies_unlinked_group_checks` proves an essential negative
+case: even a correct G-dependent classical lattice sector can simply
+sit alongside one unrelated massive QFT unless an explicit, mathematical
+quantum/classical identification is required. A common underlying QFT
+or Hilbert carrier is **not** prohibited; group-specific compatibility
+must instead be proved for every G.
+
+The full Clay gate remains closed. No arbitrary predicate, user-picked
+meaning of Yang–Mills, or new mathematical assumption is introduced.
+
 ## Machine-checking protocol
 
 - `lake update && lake exe cache get && lake build` checks the present library.

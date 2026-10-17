@@ -3,6 +3,7 @@ import YangMills.Audit
 import YangMills.LocalObservables
 import YangMills.QuantumCorrelations
 import YangMills.GroupwiseNecessary
+import YangMills.PeriodicLattice4
 
 /-!
 # Dependency audit of the specification and its supporting lemmas
@@ -43,3 +44,15 @@ to the QFT target. No existence proof is asserted here.
 
 #audit_axioms YangMills.actionDensity_eq_curvaturePairs
 #audit_axioms YangMills.WightmanData.vacuumNPoint_nil_eq_one
+
+-- Genuine G-dependent lattice objects and negative controls for false identification.
+#audit_axioms YangMills.gaugeTransform_comp
+#audit_axioms YangMills.gaugeHolonomy_transform
+#audit_axioms YangMills.wilsonConjugacyClass_gauge_invariant
+#audit_axioms YangMills.squareGaugeLoop_holonomy
+#audit_axioms YangMills.finiteCentralPlaquetteAction_gauge_invariant
+#audit_axioms YangMills.finiteCentralBoltzmannWeight_gauge_invariant
+#audit_axioms YangMills.periodicShift_comm
+#audit_axioms YangMills.periodicFourClassAction_gauge_invariant
+#audit_axioms YangMills.periodicFourClassBoltzmann_gauge_invariant
+#audit_axioms YangMills.qft_exists_implies_unlinked_group_checks

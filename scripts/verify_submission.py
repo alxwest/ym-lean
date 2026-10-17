@@ -97,6 +97,12 @@ def _run(args: list[str], root: Path, timeout: int = 1200) -> subprocess.Complet
 FINGERPRINTED_FILES = (
     "YangMills/Statement.lean",
     "YangMills/GaugeGroup.lean",
+    "YangMills/GaugeHolonomy.lean",
+    "YangMills/LatticeGaugeAction.lean",
+    "YangMills/PeriodicLattice4.lean",
+    "YangMills/GroupwiseNecessary.lean",
+    "YangMills/LocalObservables.lean",
+    "YangMills/QuantumCorrelations.lean",
     "YangMills/Classical.lean",
     "YangMills/QFT/Spacetime.lean",
     "YangMills/QFT/Wightman.lean",
