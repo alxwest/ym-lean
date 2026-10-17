@@ -7,6 +7,11 @@ Yang–Mills identification and prescribed ultraviolet behavior remain unfinishe
 A kernel-checked proof of the current target is not a proof of the Millennium
 problem.
 
+**Certification safety:** see [CERTIFICATION.md](CERTIFICATION.md). The
+`#clay_certification_status` command reports `CLAY_CERTIFICATION_BLOCKED` on
+ordinary builds. `#check_clay_proof` rejects all candidates until an independently
+reviewed full statement is encoded; this is intentional, not a Lean limitation.
+
 The old `Framework` and `YangMillsExistenceAndMassGap` declarations have been
 removed: they let the prover choose the meaning of the central requirements,
 including setting them to `True`. There are no replacement predicate parameters
@@ -99,6 +104,10 @@ For an actual submitted proof of the current QFT-only existence target, add
 `lake env lean YourFile.lean`. This command requires **exactly** the closed
 `YangMills.QFTExistenceAndMassGap` type. A theorem assuming the target or `False`
 is rejected even if it contains no extra axioms.
+
+`#check_clay_proof SomeTheorem` currently **always fails**, even if the theorem
+has no sorry or extra axioms. That is the correct result while no faithful full
+Clay statement has been encoded. `#clay_certification_status` reports why.
 
 Both audit commands inspect transitive dependencies, including dependencies
 in declaration types. Only the usual Lean foundations `propext`,

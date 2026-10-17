@@ -40,3 +40,32 @@ elab "#check_qft_proof " id:ident : command => do
       throwError "Wrong target: expected exactly YangMills.QFTExistenceAndMassGap, without extra hypotheses."
   auditDeclaration name
   logInfo "QFT-and-gap target checked. This is not a certification of Yang–Mills."
+
+/-!
+# Full Clay certification gate (fail closed)
+
+The repository deliberately has no declaration encoding the entire Jaffe--Witten
+problem. In particular, `QFTExistenceAndMassGap` does not connect its fields to
+Yang--Mills observables for a specified gauge group. A checker that accepted a
+proof of it as a Clay certificate would be unsound as a certification *claim*.
+
+`#check_clay_proof` must reject every submission until a separately reviewed,
+fixed, full-strength mathematical statement is actually formalized. Do not
+replace this gate with a check for an arbitrary user-supplied `Prop` or a
+placeholder equivalent to `True`.
+-/
+
+/-- Report readiness without incorrectly calling a successful library build a proof. -/
+elab "#clay_certification_status" : command => do
+  logInfo "CLAY_CERTIFICATION_BLOCKED: Full Yang--Mills identification, gauge-invariant observable correspondence, ultraviolet/OPE conditions, nontriviality, and the universal group-indexed existence theorem are not yet formalized and proved. See CERTIFICATION.md."
+
+/-- Intentionally rejects *every* submitted theorem. There is currently no
+mathematically complete closed Clay target to compare against, so accepting
+any declaration would amount to certifying an unreviewed weaker statement.
+After the missing mathematics is developed and the fixed target independently
+reviewed, replace this with an exact-type check plus `auditDeclaration`. -/
+elab "#check_clay_proof " candidate:ident : command => do
+  let names ← liftCoreM <| realizeGlobalConstWithInfos candidate
+  unless names.length == 1 do
+    throwError "Expected one unambiguous declaration."
+  throwError "CLAY_CERTIFICATION_BLOCKED: no full, reviewed, closed Yang--Mills Millennium statement is encoded in this library. QFTExistenceAndMassGap is insufficient. See CERTIFICATION.md."

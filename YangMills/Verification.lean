@@ -23,3 +23,8 @@ to the QFT target. No existence proof is asserted here.
 #audit_axioms YangMills.gaps_bounded_of_positive_spectral_value
 #audit_axioms YangMills.no_finite_mass_without_positive_energy
 #audit_axioms YangMills.vacuum_only_has_no_finite_mass
+
+-- Report the missing Clay-level obligations on every default build.
+-- All the `#audit_axioms` declarations above are definitions or local lemmas;
+-- none is a proof of a complete Yang--Mills existence theorem.
+#clay_certification_status

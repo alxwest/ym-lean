@@ -44,6 +44,10 @@ def main() -> None:
         ("ex_falso", "theorem conditional (h : False) : YangMills.QFTExistenceAndMassGap := h.elim\n#check_qft_proof conditional", False, "Wrong target"),
         ("removed_placeholder", "#check YangMills.Framework", False, "Unknown identifier"),
         ("no_premature_full_target", "#check YangMills.YangMillsExistenceAndMassGap", False, "Unknown identifier"),
+        ("clay_status", "#clay_certification_status", True, "CLAY_CERTIFICATION_BLOCKED"),
+        ("clay_rejects_true", "theorem unrelated : True := True.intro\n#check_clay_proof unrelated", False, "CLAY_CERTIFICATION_BLOCKED"),
+        ("clay_rejects_assumed_qft", "axiom oracle : YangMills.QFTExistenceAndMassGap\n#check_clay_proof oracle", False, "CLAY_CERTIFICATION_BLOCKED"),
+        ("clay_rejects_group_agnostic", "theorem merely_group_indexed (h : YangMills.QFTExistenceAndMassGap) : ∀ (_G : YangMills.CompactSimpleGaugeGroup), YangMills.QFTExistenceAndMassGap := by\n  intro _G\n  exact h\n#check_clay_proof merely_group_indexed", False, "CLAY_CERTIFICATION_BLOCKED"),
     ]
     with tempfile.TemporaryDirectory(prefix="proof-audit-", dir=ROOT / ".lake") as tmp:
         directory = Path(tmp)
