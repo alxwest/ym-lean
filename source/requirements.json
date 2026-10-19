@@ -163,8 +163,14 @@
       "description": "A nontrivial quantum Yang–Mills theory for each compact simple group, as stated in the theorem",
       "location": "Section 4 theorem, printed p.6",
       "status": "missing",
-      "lean": [],
-      "gap": "Nontriviality for the actual Yang–Mills theory has not been formalized. No independent, stronger Gaussianity or preferred-interaction criterion is imposed just because it seems plausible.",
+      "lean": [
+        "YangMills.WightmanData.HasNonVacuumState",
+        "YangMills.WightmanData.HasFieldExcitation",
+        "YangMills.WightmanAxioms.hasFieldExcitation_iff",
+        "YangMills.GappedWightmanTheory.hasNonVacuumState",
+        "YangMills.GappedWightmanTheory.hasFieldExcitation"
+      ],
+      "gap": "Vacuum-only QFTs are now excluded by concrete same-theory state and field-word definitions, proved to follow from the existing finite-mass QFT condition. Their adequacy for nontriviality of an identified Yang–Mills theory still requires the missing identification and semantic review; this clause remains missing. No Gaussianity or preferred-interaction criterion is imposed.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "interpretation_needed",

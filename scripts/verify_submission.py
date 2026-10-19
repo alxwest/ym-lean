@@ -161,6 +161,7 @@ FINGERPRINTED_FILES = (
     "YangMills/GroupwiseNecessary.lean",
     "YangMills/LocalObservables.lean",
     "YangMills/QuantumCorrelations.lean",
+    "YangMills/Nontriviality.lean",
     "YangMills/Classical.lean",
     "YangMills/QFT/Spacetime.lean",
     "YangMills/QFT/Wightman.lean",

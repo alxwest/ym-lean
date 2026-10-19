@@ -5,6 +5,7 @@ import YangMills.LocalObservables
 import YangMills.QuantumCorrelations
 import YangMills.PeriodicLattice4
 import YangMills.GroupwiseNecessary
+import YangMills.Nontriviality
 
 /-!
 # Provenance labels for the formal specification
@@ -79,6 +80,12 @@ def marks : List Mark :=
     { declaration := declarationName "YangMills.WightmanData.vacuumNPoint",
       layer := .interpretedModel, sourceLocation := "section 4 correlators",
       scopeNote := "vacuum correlation in chosen operator realization" },
+    { declaration := declarationName "YangMills.WightmanData.HasNonVacuumState",
+      layer := .interpretedModel, sourceLocation := "section 4 nontriviality",
+      scopeNote := "excludes vacuum-only states; not full Yang--Mills nontriviality" },
+    { declaration := declarationName "YangMills.GappedWightmanTheory.hasFieldExcitation",
+      layer := .interpretedModel, sourceLocation := "consequence of chosen QFT and mass definitions",
+      scopeNote := "derived excitation in the same theory, not an added assumption" },
 
     { declaration := declarationName "YangMills.wilsonConjugacyClass_gauge_invariant",
       layer := .optionalMethod, sourceLocation := "not prescribed by section 4",

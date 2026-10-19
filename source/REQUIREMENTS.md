@@ -54,7 +54,7 @@ See [STATEMENT_POLICY.md](STATEMENT_POLICY.md) for the governing rule.
 | `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Partial: genuine vacuum n-point functions defined; UV asymptotics and perturbative limits missing |
 | `stress-tensor` | Prescribed local stress tensor | Missing |
 | `ope` | Operator product expansion and prescribed local singularities | Missing |
-| `nontrivial` | Nontrivial, interacting Yang–Mills, not a free massive field | Missing fixed nontriviality test |
+| `nontrivial` | Nontrivial quantum Yang–Mills for G | Non-vacuum states and field excitations defined and derived from the QFT mass condition; Yang–Mills identification and adequacy review remain missing |
 | `physical-gap` | Spectrum H≥0, HΩ=0, positive Δ and finite mass m | Partial: spectral statements defined, existence unproved |
 | `universal-existence` | Such a theory for **every** compact simple G | Partial: group-quantified QFT-only shadow, proved insufficient by reuse-of-one-theory lemma; YM groupwise target missing |
 

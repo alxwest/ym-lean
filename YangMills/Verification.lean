@@ -5,6 +5,7 @@ import YangMills.LocalObservables
 import YangMills.QuantumCorrelations
 import YangMills.GroupwiseNecessary
 import YangMills.PeriodicLattice4
+import YangMills.Nontriviality
 
 /-!
 # Dependency audit of the specification and its supporting lemmas
@@ -28,6 +29,13 @@ to the QFT target. No existence proof is asserted here.
 #audit_axioms YangMills.gaps_bounded_of_positive_spectral_value
 #audit_axioms YangMills.no_finite_mass_without_positive_energy
 #audit_axioms YangMills.vacuum_only_has_no_finite_mass
+#audit_axioms YangMills.WightmanData.HasNonVacuumState
+#audit_axioms YangMills.WightmanData.HasFieldExcitation
+#audit_axioms YangMills.DenselyDefinedOperator.zero_inResolvent
+#audit_axioms YangMills.WightmanAxioms.hasFieldExcitation_iff
+#audit_axioms YangMills.WightmanAxioms.no_positive_spectrum_of_no_nonVacuumState
+#audit_axioms YangMills.GappedWightmanTheory.hasNonVacuumState
+#audit_axioms YangMills.GappedWightmanTheory.hasFieldExcitation
 
 -- Report the missing Clay-level obligations on every default build.
 -- All the `#audit_axioms` declarations above are definitions or local lemmas;

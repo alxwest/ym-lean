@@ -256,6 +256,16 @@ it, or defend against someone modifying the target or the checker itself.
 
 ## What must be completed before accepting a Yang–Mills proof
 
+[Nontriviality.lean](YangMills/Nontriviality.lean) now defines a state outside
+the vacuum line and a finite field word that creates such a state. Under
+cyclicity these are equivalent. The existing finite-mass QFT condition implies
+both: a vacuum-only Hilbert space would make the Hamiltonian zero everywhere,
+with every positive energy in its resolvent and hence no finite mass.
+These are audited consequences, not additional proof assumptions. They do
+not establish nontriviality of an identified Yang–Mills theory; the source
+manifest deliberately retains that clause as missing pending identification
+and review of the full interpretation.
+
 The following are missing mathematical specifications, not assumptions accepted
 by the checker:
 

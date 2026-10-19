@@ -209,6 +209,12 @@ by itself constitute Clay Mathematics Institute's independent acceptance.
 
 ## Current evidence
 
+- `YangMills/Nontriviality.lean` defines non-vacuum states and field-word
+  excitations for the same QFT. It proves their equivalence under cyclicity
+  and derives both from `GappedWightmanTheory`, using the actual Hamiltonian
+  resolvent. This excludes a vacuum-only theory without an added assumption,
+  but does not identify it as Yang–Mills or resolve the full nontriviality clause.
+
 - `YangMills/Statement.lean` defines only a gauge-independent QFT-and-gap
   existential proposition.
 - `YangMills/GaugeGroup.lean` and `YangMills/Classical.lean` supply classical

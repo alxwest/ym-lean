@@ -17,6 +17,18 @@ import verify_submission as v  # noqa: E402
 
 
 class SourceContractTests(unittest.TestCase):
+    def test_provenance_records_git_state(self):
+        commit = subprocess.CompletedProcess(["git"], 0, "abc123\n", "")
+        dirty = subprocess.CompletedProcess(["git"], 0, " M README.md\n", "")
+        with patch.object(v, "_run", side_effect=[commit, dirty]) as call:
+            record = v.provenance(ROOT)
+        self.assertEqual(record["git_commit"], "abc123")
+        self.assertTrue(record["git_worktree_dirty"])
+        self.assertEqual(call.call_args_list[0].args[0],
+                         ["git", "rev-parse", "HEAD"])
+        self.assertEqual(call.call_args_list[1].args[0],
+                         ["git", "status", "--porcelain"])
+
     def test_pdf_is_identical_to_pinned_clay_source(self):
         record = v.load_inventory(ROOT)
         self.assertEqual(record["source"]["git_blob_sha1"], v.PDF_BLOB_SHA1)
@@ -52,6 +64,20 @@ class SourceContractTests(unittest.TestCase):
                          "YangMills/PeriodicLattice4.lean"):
             self.assertIn(filename,
                           report["provenance"]["local_fingerprints_sha256"])
+
+    def test_qft_nonvacuum_result_does_not_identify_yang_mills(self):
+        inventory = v.load_inventory(ROOT)
+        requirement = next(e for e in inventory["requirements"]
+                           if e["id"] == "nontrivial")
+        theorem = "YangMills.GappedWightmanTheory.hasFieldExcitation"
+        self.assertIn(theorem, requirement["lean"])
+        self.assertEqual(requirement["status"], "missing")
+        report, code = v.verify(ROOT, "clay", theorem=theorem)
+        self.assertEqual(code, 2)
+        self.assertFalse(report["clay_certificate"])
+        self.assertIn("nontrivial", report["incomplete_clauses"])
+        self.assertIn("YangMills/Nontriviality.lean",
+                      report["provenance"]["local_fingerprints_sha256"])
 
     def test_footnote_expectation_is_not_a_mandatory_theorem(self):
         inventory = v.load_inventory(ROOT)
@@ -184,7 +210,10 @@ class SourceContractTests(unittest.TestCase):
             proof.write_text("theorem Foo : True := True.intro\n")
             compile_ok = subprocess.CompletedProcess(["lake"], 0, "", "")
             audit_ok = subprocess.CompletedProcess(["lean"], 0, "QFT_KERNEL_CHECK_PASSED: Foo\n", "")
-            with patch.object(v, "_run", side_effect=[compile_ok, compile_ok, audit_ok]) as call:
+            # Git provenance has its own subprocesses; these responses model
+            # only the build, candidate compilation and independent inspector.
+            with patch.object(v, "provenance", return_value={}), \
+                    patch.object(v, "_run", side_effect=[compile_ok, compile_ok, audit_ok]) as call:
                 report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
             self.assertEqual(code, 0)
             self.assertTrue(report["qft_only_certificate"])
@@ -199,7 +228,8 @@ class SourceContractTests(unittest.TestCase):
             proof.write_text("theorem Foo : True := True.intro\n")
             ok = subprocess.CompletedProcess(["lake", "build"], 0, "", "")
             reject = subprocess.CompletedProcess(["lean"], 1, "REJECTED: wrong type\n", "")
-            with patch.object(v, "_run", side_effect=[ok, ok, reject]):
+            with patch.object(v, "provenance", return_value={}), \
+                    patch.object(v, "_run", side_effect=[ok, ok, reject]):
                 report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
             self.assertEqual(code, 1)
             self.assertEqual(report["status"], "PROOF_REJECTED")
@@ -211,7 +241,8 @@ class SourceContractTests(unittest.TestCase):
             proof.write_text('theorem Fake : True := True.intro\n')
             compiled = subprocess.CompletedProcess(["lean"], 0, "QFT-and-gap target checked.\n", "")
             inspect_reject = subprocess.CompletedProcess(["lean"], 1, "REJECTED: wrong type\n", "")
-            with patch.object(v, "_run", side_effect=[compiled, compiled, inspect_reject]):
+            with patch.object(v, "provenance", return_value={}), \
+                    patch.object(v, "_run", side_effect=[compiled, compiled, inspect_reject]):
                 report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Fake")
             self.assertEqual(code, 1)
             self.assertEqual(report["status"], "PROOF_REJECTED")
