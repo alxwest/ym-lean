@@ -9,8 +9,8 @@ https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf
 
 The target below checks the QFT-and-gap portion against fixed definitions.
 It is only a necessary portion of the Millennium problem: it does not identify
-a QFT with Yang–Mills for a given gauge group. A free massive field could satisfy
-this target, something Jaffe-Witten had suggested in their statement. The
+a QFT with Yang–Mills for a given gauge group. An unrelated massive free field is not excluded by
+this necessary target; no such model is constructed here. The
 gauge-observable correspondence, renormalized Yang–Mills identification, and
 prescribed ultraviolet/OPE asymptotics still need a precise specification and
 implementation. They are NOT represented by free predicates, axioms, or hidden

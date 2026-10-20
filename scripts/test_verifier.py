@@ -183,6 +183,22 @@ class SourceContractTests(unittest.TestCase):
             self.assertFalse(report["clay_certificate"])
             self.assertEqual(report["incomplete_clauses"], [])
 
+    def test_specification_readiness_does_not_require_existence_proof(self):
+        report, code = v.verify(ROOT, "specification")
+        self.assertEqual(code, 2)
+        self.assertEqual(report["status"], "SPECIFICATION_INCOMPLETE")
+        self.assertFalse(report["existence_proof_required_for_specification"])
+        self.assertEqual(report["proof_submission_status"], "not_submitted")
+        self.assertEqual(report["kernel_verification_status"], "not_run")
+        self.assertFalse(report["full_target_defined"])
+
+    def test_supplied_proof_cannot_bypass_missing_specification(self):
+        report, code = v.verify(ROOT, "specification", proof_file=Path("Candidate.lean"))
+        self.assertEqual(code, 2)
+        self.assertEqual(report["proof_submission_status"],
+                         "not_evaluated_specification_incomplete")
+        self.assertEqual(report["external_acceptance_status"], "not_assessed")
+
     def test_tampered_pdf_is_rejected(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = self.copy_source(Path(tmp))
@@ -217,6 +233,10 @@ class SourceContractTests(unittest.TestCase):
                 report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
             self.assertEqual(code, 0)
             self.assertTrue(report["qft_only_certificate"])
+            self.assertEqual(report["kernel_verification_status"], "passed_declared_qft_target")
+            self.assertEqual(report["specification_readiness"], "incomplete")
+            self.assertEqual(report["semantic_review_status"], "unresolved_findings")
+            self.assertEqual(report["external_acceptance_status"], "not_assessed")
             self.assertFalse(report["clay_certificate"])
             self.assertEqual(call.call_count, 3)
             submitted_copy = Path(call.call_args_list[1].args[0][-1])
@@ -234,6 +254,7 @@ class SourceContractTests(unittest.TestCase):
             self.assertEqual(code, 1)
             self.assertEqual(report["status"], "PROOF_REJECTED")
             self.assertFalse(report["qft_only_certificate"])
+            self.assertIsNone(report["admitted_target"])
 
     def test_spoofed_success_message_in_candidate_is_not_evidence(self):
         with tempfile.TemporaryDirectory() as tmp:

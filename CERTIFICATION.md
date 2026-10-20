@@ -1,6 +1,6 @@
 # Yang--Mills Millennium certification contract
 
-**Status: BLOCKED (2026-10-17). This repository does not currently define or prove
+**Status: SPECIFICATION INCOMPLETE (2026-10-20). This repository does not currently define or prove
 the full Clay/Jaffe--Witten problem. A green `lake build`, successful axiom
 audit, or even a future proof of `QFTExistenceAndMassGap` is not a Clay
 certificate.**
@@ -62,7 +62,7 @@ formal counterexample to an inadequate target formulation.
 
 These fragments do not address gauge invariance of the classical expressions
 under local transformations, renormalized quantum operator correspondence,
-non-Gaussian pure Yang–Mills identification, the prescribed UV/OPE
+same-theory pure Yang–Mills identification, the prescribed UV/OPE
 coefficients, or universal existence *of the identified theory*. The full
 Clay checker therefore must continue to return `CLAY_CERTIFICATION_BLOCKED`.
 
@@ -222,6 +222,32 @@ by itself constitute Clay Mathematics Institute's independent acceptance.
 - `YangMills/Verification.lean` audits definitions and helper lemmas. It
   deliberately contains **no existence proof**.
 
-**Next scientific milestone:** give a complete, reviewable mathematical
+**Next specification milestone:** give a complete, reviewable mathematical
 definition of the quantum Yang--Mills identification and UV correspondences
 before attempting to add an exact Clay proof-admission command.
+
+
+## Specification work of 20 October 2026
+
+The specification task is still **incomplete**, independently of the absence
+of any existence proof. New central fragments cover arbitrary group-invariant
+curvature-jet polynomials and their equality-on-connections quotient, normalized
+Schwartz dilation of actual field correlations, finite remainder estimates and
+a checked arbitrary-coefficient negative control. New supporting lemmas prove
+smeared-field closability, physical-Hamiltonian uniqueness, and properties of
+the supremum mass. These additions are transitively audited in the default build.
+
+The exact unresolved meanings, attempted approaches, source crosswalk and
+independent adversarial review are in [source/SPECIFICATION_REVIEW.md](source/SPECIFICATION_REVIEW.md).
+Missing fixed perturbative Yang–Mills coefficients and their same-theory
+renormalized/UV/OPE/stress-tensor relations prevent introducing a full target.
+Geometric gauge covariance and exact cited-standard equivalences also remain.
+A passing build does not resolve these findings.
+
+Use `python3 scripts/verify_submission.py --claim specification` to assess
+readiness without a proof file. The JSON report separates specification
+readiness, proof submission, kernel checking, semantic review and external
+acceptance. No missing existence proof is a specification blocker. Exact full
+proof admission remains closed because the required definitions and fidelity
+argument are incomplete; QFT-only admission still concerns its named necessary
+formal target only.

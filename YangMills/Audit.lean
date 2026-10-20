@@ -57,7 +57,7 @@ placeholder equivalent to `True`.
 
 /-- Report readiness without incorrectly calling a successful library build a proof. -/
 elab "#clay_certification_status" : command => do
-  logInfo "CLAY_CERTIFICATION_BLOCKED: Concrete G-valued four-dimensional lattice gauge invariants and QFT n-point functions are defined, but the SAME quantum theory has not been identified with renormalized Yang--Mills for G. Required UV/OPE properties, nontriviality and groupwise physical existence remain unformalized. See CERTIFICATION.md."
+  logInfo "CLAY_CERTIFICATION_BLOCKED: Concrete G-valued four-dimensional lattice gauge invariants and QFT n-point functions are defined, but the SAME quantum theory has not been identified with renormalized Yang--Mills for G. Required YM identification, renormalized correspondence, stress tensor, prescribed UV/OPE and cited-standard adequacy remain incomplete definitions/equivalence work. Missing existence proofs are not specification blockers. See CERTIFICATION.md."
 
 /-- Intentionally rejects *every* submitted theorem. There is currently no
 mathematically complete closed Clay target to compare against, so accepting

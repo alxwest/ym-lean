@@ -91,4 +91,36 @@ theorem vacuum_only_has_no_finite_mass :
   have hzero : E = 0 := Set.mem_singleton_iff.mp hE
   exact hzero.le
 
+/-- Finite supremum mass is equivalent to the existence of some positive
+spectral value, once a gap exists. No isolated particle/eigenvector is required. -/
+theorem hasPositiveFiniteMass_iff (σ : Set ℝ) :
+    HasPositiveFiniteMass σ ↔
+      (∃ Δ : ℝ, IsMassGap σ Δ) ∧ ∃ E ∈ σ, 0 < E := by
+  constructor
+  · intro h
+    refine ⟨h.1, ?_⟩
+    by_contra hnone
+    have hnonpos : ∀ E ∈ σ, E ≤ 0 := by
+      intro E hE
+      exact le_of_not_gt (fun hpos => hnone ⟨E, hE, hpos⟩)
+    exact no_finite_mass_without_positive_energy σ hnonpos h
+  · rintro ⟨hgap, E, hE, hpos⟩
+    exact ⟨hgap, gaps_bounded_of_positive_spectral_value σ hE hpos⟩
+
+/-- Every positive spectral energy is at least the supremum mass. -/
+theorem mass_le_positive_spectral_value (σ : Set ℝ)
+    (h : HasPositiveFiniteMass σ) {E : ℝ} (hE : E ∈ σ) (hpos : 0 < E) :
+    mass σ ≤ E := by
+  apply csSup_le h.1
+  intro Δ hΔ
+  exact le_of_not_gt (fun hlt => hΔ.2 E hE ⟨hpos, hlt⟩)
+
+/-- The supremum in the source is itself an admissible gap, so the
+supremum-based formulation cannot hide spectrum strictly below its mass. -/
+theorem mass_isMassGap (σ : Set ℝ) (h : HasPositiveFiniteMass σ) :
+    IsMassGap σ (mass σ) := by
+  refine ⟨mass_pos σ h, ?_⟩
+  intro E hE hbetween
+  exact (not_lt_of_ge (mass_le_positive_spectral_value σ h hE hbetween.1)) hbetween.2
+
 end YangMills

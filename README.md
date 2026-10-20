@@ -287,3 +287,22 @@ Until these are implemented, a massive free field could pass the QFT-only
 target. The checker explicitly labels its result accordingly. Naming a free
 predicate “Yang–Mills” or requiring a proof of an arbitrary proposition would
 not resolve these missing steps.
+
+
+## Specification review — 20 October 2026
+
+The requested full fixed proposition remains incomplete. See the integrated
+[source/specification review](source/SPECIFICATION_REVIEW.md) for the exact
+central missing definitions and fidelity arguments, attempts made, and next
+mathematical work. No Yang–Mills existence proof is required for this task.
+
+New checked mathematics includes the actual-group invariant jet-polynomial
+algebra and observable quotient, physical-Hamiltonian uniqueness, smeared-field
+closability, the supremum mass as an admissible gap, and normalized dilation of
+the same quantum fields' correlations. A negative-control theorem demonstrates
+why freely selected asymptotic terms cannot define the prescribed predictions.
+
+`python3 scripts/verify_submission.py --claim specification` reports readiness
+separately from proof submission, kernel verification, semantic review and
+external acceptance. It currently returns `SPECIFICATION_INCOMPLETE` (exit 2).
+Neither metadata coverage nor these partial definitions unlocks full admission.

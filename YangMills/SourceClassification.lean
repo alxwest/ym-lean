@@ -6,6 +6,8 @@ import YangMills.QuantumCorrelations
 import YangMills.PeriodicLattice4
 import YangMills.GroupwiseNecessary
 import YangMills.Nontriviality
+import YangMills.InvariantJetPolynomials
+import YangMills.Ultraviolet
 
 /-!
 # Provenance labels for the formal specification
@@ -77,6 +79,15 @@ def marks : List Mark :=
     { declaration := declarationName "YangMills.CurvatureScalarPolynomial.evaluate",
       layer := .interpretedModel, sourceLocation := "section 4 and footnote 1",
       scopeNote := "partial classical observables, not quantum identification" },
+    { declaration := declarationName "YangMills.CurvatureJetPolynomial.invariantAlgebra",
+      layer := .interpretedModel, sourceLocation := "section 4 local observables",
+      scopeNote := "general classical formal-jet invariants; geometric covariance still conditional" },
+    { declaration := declarationName "YangMills.WightmanData.scaledVacuumNPoint",
+      layer := .interpretedModel, sourceLocation := "section 4 short-distance correlations",
+      scopeNote := "actual scaled field words; not prescribed YM asymptotics" },
+    { declaration := declarationName "YangMills.WightmanData.selfSelectedExpansion",
+      layer := .interpretedModel, sourceLocation := "adversarial logical negative control",
+      scopeNote := "freely selected terms make a scalar expansion vacuous" },
     { declaration := declarationName "YangMills.WightmanData.vacuumNPoint",
       layer := .interpretedModel, sourceLocation := "section 4 correlators",
       scopeNote := "vacuum correlation in chosen operator realization" },

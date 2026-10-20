@@ -16,7 +16,7 @@ A full certificate may demand only mathematical consequences of the written theo
 - No specific four-dimensional lattice, Wilson character, central plaquette function, Haar product measure, regulator, or continuum-limit technique is imposed as a universal obligation.
 - No requirement for different Hilbert spaces for distinct G; the same carrier may be reused if it meets the actual requirements for each G.
 - No independent requirement for confinement, an isolated one-particle state, or chiral-symmetry breaking (the statement treats related topics as motivations/extensions).
-- No arbitrary non-Gaussian criterion, extra numerical bounds, prescribed perturbative coefficients, or unreferenced physical conditions may be added as admission conditions.
+- No arbitrary non-Gaussian criterion, extra numerical bounds, coefficients not justified by the cited perturbative predictions, or unreferenced physical conditions may be added as admission conditions.
 - No missing condition may be assumed true, replaced by a free predicate, supplied by the proof author's choice of meanings, or omitted as inconvenient.
 
 Formalizing a required condition is **not** an assumption that the condition holds. The proof must establish it. The mathematical definition must be fixed and reviewed before acceptance.
@@ -48,3 +48,13 @@ New formal lemmas about group-valued links, plaquette gauge invariance, or Wilso
 Any proposed full Lean statement must come with a reviewable equivalence/sufficiency argument relative to the PDF and cited frameworks. The kernel certifies derivations from that Lean statement; it cannot independently decide whether a chosen formalization faithfully represents physics.
 
 **Current status:** `CLAY_CERTIFICATION_BLOCKED`. No complete faithful mathematical statement or proof is yet certified.
+
+
+## Specification readiness is independent of proof submission
+
+Missing definitions and missing supporting equivalence/fidelity arguments block
+specification readiness. Absence of an existence proof does not. The executable
+`--claim specification` assessment returns `SPECIFICATION_INCOMPLETE` for the
+current missing meanings even when no proof file is supplied. Kernel verification
+of a submitted theorem, semantic review of its fixed target, and external/CMI
+acceptance are separate report fields. See `SPECIFICATION_REVIEW.md`.

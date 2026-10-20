@@ -44,11 +44,11 @@
         "YangMills.QuantumTheory",
         "YangMills.PDFLiteral.FourDimensionalSpace"
       ],
-      "gap": "QFT data live on four-dimensional Minkowski spacetime, but Yang–Mills existence there is not proved.",
+      "gap": "The R^4 coordinate and field-test spaces are defined. No existence witness is required for specification readiness. Adequacy of the surrounding QFT framework remains supporting equivalence work in qft-axioms.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "literal_form",
-      "formalization_note": "R^4 has a direct coordinate encoding. Existence of its quantum theory is not supplied."
+      "formalization_note": "R^4 has a direct coordinate encoding. Its definition is available independently of any existence proof; overall clause coverage remains partial pending framework adequacy."
     },
     {
       "id": "qft-axioms",
@@ -56,9 +56,10 @@
       "location": "Sections 3-4, printed pp.5-6",
       "status": "partial",
       "lean": [
-        "YangMills.WightmanAxioms"
+        "YangMills.WightmanAxioms",
+        "YangMills.WightmanAxioms.field_graph_limit_zero"
       ],
-      "gap": "A concrete Wightman-style schema exists but its adequacy relative to [45,35] has not been independently established; no candidate existence proof.",
+      "gap": "Concrete common-domain Wightman conditions include a closability consequence and uniqueness of the physical generator. Precise adequacy against the cited standard, multi-point tempered-distribution kernel and spectral-support equivalence remain supporting equivalence/fidelity work. No existence proof is required to resolve this audit.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "cited_framework",
@@ -94,9 +95,13 @@
         "YangMills.actionDensity_eq_curvaturePairs",
         "YangMills.wilsonConjugacyClass_gauge_invariant",
         "YangMills.finiteCentralPlaquetteAction_gauge_invariant",
-        "YangMills.periodicFourClassAction_gauge_invariant"
+        "YangMills.periodicFourClassAction_gauge_invariant",
+        "YangMills.CompactSimpleGaugeGroup.adjoint",
+        "YangMills.CurvatureJetPolynomial.invariantAlgebra",
+        "YangMills.CurvatureJetPolynomial.ConnectionObservable",
+        "YangMills.CurvatureJetPolynomial.onConnection_eq_of_covariant_jets"
       ],
-      "gap": "Classical curvature-jet trace polynomials and nonlocal G-valued lattice holonomy conjugacy classes are defined, with concrete gauge-invariance proofs for the latter. Local gauge invariance of curvature expressions, renormalized field matching, and the full operator algebra remain missing.",
+      "gap": "Full finite polynomials on formal curvature jets now use the actual differentiated group conjugation, with invariant algebra, weighted filtration and quotient by equality on smooth connections. Local gauge transformation covariance, invariant representative adequacy and renormalized same-theory correspondence remain missing definition/equivalence work.",
       "acceptance_role": "required",
       "source_basis": "section_4_explanation",
       "formalization_layer": "interpretation_needed",
@@ -111,9 +116,12 @@
         "YangMills.CurvatureJet.dimension",
         "YangMills.CurvatureScalarPolynomial.ofDimensionAtMost",
         "YangMills.CurvatureScalarPolynomial.add_in_filtration",
-        "YangMills.CurvatureScalarPolynomial.mul_in_filtration"
+        "YangMills.CurvatureScalarPolynomial.mul_in_filtration",
+        "YangMills.CurvatureJetPolynomial.HasDimensionAtMost",
+        "YangMills.CurvatureJetPolynomial.dimension_add",
+        "YangMills.CurvatureJetPolynomial.dimension_mul"
       ],
-      "gap": "The suggested dimension filtration is partially formalized on the classical side only. It remains interpretive guidance, not a separate compulsory theorem; the PDF still requires a defensible quantum/classical observable correspondence.",
+      "gap": "Classical weighted filtration includes arbitrary invariant jet polynomials and algebraic cancellation. No quantum mixing or renormalization correspondence is defined. A particular exact filtered isomorphism remains nonbinding guidance.",
       "acceptance_role": "interpretive_guidance",
       "source_basis": "section_4_footnote_1",
       "formalization_layer": "nonbinding_guidance",
@@ -126,9 +134,13 @@
       "status": "partial",
       "lean": [
         "YangMills.WightmanData.vacuumNPoint",
-        "YangMills.WightmanData.vacuumNPoint_nil_eq_one"
+        "YangMills.WightmanData.vacuumNPoint_nil_eq_one",
+        "YangMills.dilateTest",
+        "YangMills.WightmanData.scaledVacuumNPoint",
+        "YangMills.WightmanData.TestwiseExpansion",
+        "YangMills.WightmanData.selfSelectedExpansion"
       ],
-      "gap": "Smeared vacuum n-point functions are now computed directly from QFT field words and the same vacuum. No short-distance scaling limits, asymptotic-freedom estimates, stress tensor or prescribed OPE singularities are proved or formalized.",
+      "gap": "Normalized Schwartz dilation and actual same-theory scaled correlators, finite subtraction and explicit testwise remainder estimates are defined. The selfSelectedExpansion lemma proves arbitrary coefficient selection is vacuous. Fixed G-sensitive perturbative coefficients, RG/mixing and a justified distributional UV/OPE topology remain missing.",
       "acceptance_role": "required",
       "source_basis": "section_4_explanation",
       "formalization_layer": "interpretation_needed",
@@ -189,13 +201,17 @@
         "YangMills.PDFLiteral.PositiveFiniteMass",
         "YangMills.PDFLiteral.DirectSpectralClauses",
         "YangMills.PDFLiteral.HamiltonianKillsVacuum",
-        "YangMills.PDFLiteral.hamiltonianKillsVacuum_of_wightman"
+        "YangMills.PDFLiteral.hamiltonianKillsVacuum_of_wightman",
+        "YangMills.hasPositiveFiniteMass_iff",
+        "YangMills.mass_isMassGap",
+        "YangMills.WightmanAxioms.hamiltonian_domain_unique",
+        "YangMills.WightmanAxioms.hamiltonian_action_unique"
       ],
-      "gap": "Gap is defined from an unbounded Hamiltonian's spectrum, but no existence proof for a YM-identified theory.",
+      "gap": "The actual Hamiltonian generator domain/action and full resolvent spectrum are defined. New lemmas establish generator uniqueness, positive spectral value equivalence and that the supremum mass is itself a gap. Standard spectral-framework equivalence remains supporting work, not an unproved Yang–Mills existence obligation.",
       "acceptance_role": "required",
       "source_basis": "section_4_mass_definition",
       "formalization_layer": "literal_form",
-      "formalization_note": "Explicit spectral facts, finite mass and the equation HΩ=0 are encoded. The equation is written relative to the chosen operator framework; no Hamiltonian or Yang--Mills theory is asserted to exist."
+      "formalization_note": "Explicit spectral facts, finite mass and HΩ=0 use the actual same-theory generator. A missing existence proof is not counted as a missing definition."
     },
     {
       "id": "universal-existence",
@@ -208,7 +224,7 @@
         "YangMills.qft_exists_implies_unlinked_group_checks",
         "YangMills.PDFLiteral.ForEveryCompactSimpleGroup"
       ],
-      "gap": "The groupwise QFT-only shadow and unlinked G-dependent finite gauge invariants are formally provably insufficient. Actual quantum Yang--Mills identification for every compact simple G is not encoded or proved.",
+      "gap": "The outer group quantifier is defined and necessary shadows have negative controls. The fixed assembled Yang–Mills predicate is missing because identification/UV/OPE definitions are absent. Proving future witnesses for each G is outside specification readiness.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "literal_form",

@@ -3,7 +3,7 @@
 
 Exit 0: accepted proof of the QFT-only target (never a Clay certificate).
 Exit 1: invalid source, proof, or verification infrastructure.
-Exit 2: full Clay certification blocked by incomplete formal specification.
+Exit 2: specification incomplete (independent of existence-proof submission).
 
 This is a mathematical proof checker, not a security sandbox for hostile Lean code.
 Run on a trusted checkout/toolchain and have referees review the specification.
@@ -161,6 +161,8 @@ FINGERPRINTED_FILES = (
     "YangMills/GroupwiseNecessary.lean",
     "YangMills/LocalObservables.lean",
     "YangMills/QuantumCorrelations.lean",
+    "YangMills/InvariantJetPolynomials.lean",
+    "YangMills/Ultraviolet.lean",
     "YangMills/Nontriviality.lean",
     "YangMills/Classical.lean",
     "YangMills/QFT/Spacetime.lean",
@@ -174,6 +176,11 @@ FINGERPRINTED_FILES = (
     "lean-toolchain",
     "scripts/InspectProof.lean",
     "scripts/verify_submission.py",
+    "source/SPECIFICATION_REVIEW.md",
+    "source/SOURCE_ANALYSIS.md",
+    "source/QFT_REVIEW.md",
+    "source/YANG_MILLS_REVIEW.md",
+    "source/ADVERSARIAL_REVIEW.md",
     MANIFEST,
 )
 
@@ -210,6 +217,15 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         "status": "INVALID_SPECIFICATION",
         "clay_certificate": False,
         "qft_only_certificate": False,
+        # These are fixed verifier judgments, never inferred from coverage labels.
+        "specification_readiness": "incomplete",
+        "full_target_defined": False,
+        "existence_proof_required_for_specification": False,
+        "proof_submission_status": "submitted" if proof_file is not None else "not_submitted",
+        "kernel_verification_status": "not_run",
+        "semantic_review_status": "unresolved_findings",
+        "external_acceptance_status": "not_assessed",
+        "admitted_target": None,
     }
     try:
         inventory = load_inventory(root)
@@ -235,15 +251,20 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         report["error"] = f"{type(exc).__name__}: {exc}"
         return report, 1
 
-    if claim == "clay":
+    if claim in {"clay", "specification"}:
         # Never inspect/accept a submitted proof as a solution to a theorem that
         # has not yet been faithfully formalized. Metadata cannot unlock this.
-        report["status"] = "CLAY_CERTIFICATION_BLOCKED"
+        report["status"] = (
+            "SPECIFICATION_INCOMPLETE" if claim == "specification"
+            else "CLAY_CERTIFICATION_BLOCKED")
+        if proof_file is not None:
+            report["proof_submission_status"] = "not_evaluated_specification_incomplete"
         report["reason"] = (
             "The current Lean proposition is QFT-only. The PDF's full "
             "Yang–Mills identification, observable correspondence, UV/OPE "
-            "predictions, nontriviality and all-group existence are not "
-            "fully formalized and semantically reviewed. "
+            "predictions, nontriviality and the assembled all-group predicate are not "
+            "fully defined and justified. Missing existence proofs are not "
+            "specification blockers. "
             "#check_clay_proof always rejects submissions."
         )
         return report, 2
@@ -284,6 +305,8 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                 report["proof_compile_exit_code"] = compiled.returncode
                 if compiled.returncode != 0:
                     report["status"] = "PROOF_REJECTED"
+                    report["kernel_verification_status"] = "compilation_failed"
+                    report["proof_submission_status"] = "rejected"
                     report["error"] = "Proof source failed to compile"
                     report["proof_compile_output_tail"] = (
                         compiled.stdout + compiled.stderr)[-3000:]
@@ -298,16 +321,21 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                     name, theorem,
                 ], root)
                 report["kernel_audit_exit_code"] = inspected.returncode
+                report["kernel_verification_status"] = "rejected"
                 report["kernel_audit_output_tail"] = (
                     inspected.stdout + inspected.stderr)[-3000:]
                 if (inspected.returncode == 0 and
                         "QFT_KERNEL_CHECK_PASSED:" in inspected.stdout):
                     report["status"] = "QFT_ONLY_PROOF_ACCEPTED"
+                    report["admitted_target"] = "YangMills.QFTExistenceAndMassGap"
                     report["qft_only_certificate"] = True
+                    report["kernel_verification_status"] = "passed_declared_qft_target"
+                    report["proof_submission_status"] = "accepted_declared_qft_target"
                     report["verified_theorem"] = theorem
                     report["reason"] = "Exactly QFTExistenceAndMassGap, not the Yang–Mills Clay statement"
                     return report, 0
                 report["status"] = "PROOF_REJECTED"
+                report["proof_submission_status"] = "rejected"
                 report["error"] = (
                     "Independent kernel-environment inspection rejected "
                     "the theorem type and/or transitive axioms")
@@ -322,7 +350,7 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--claim", choices=["clay", "qft"], default="clay")
+    parser.add_argument("--claim", choices=["clay", "qft", "specification"], default="clay")
     parser.add_argument("--proof-file", type=Path,
                         help="Lean source file (necessary only for --claim qft)")
     parser.add_argument("--theorem", type=str,

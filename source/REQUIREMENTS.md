@@ -46,16 +46,16 @@ See [STATEMENT_POLICY.md](STATEMENT_POLICY.md) for the governing rule.
 | ID | From the PDF | Implemented in Lean? |
 |---|---|---|
 | `group` | Any compact simple gauge group | Partial: G-valued link multiplication, conjugacy-class holonomies and local lattice gauge action; not yet linked to QFT |
-| `spacetime` | Noncompact four-dimensional spacetime | Partial: spacetime and field types, no existence |
+| `spacetime` | Noncompact four-dimensional spacetime | Coordinate/test spaces defined; framework adequacy remains, not a missing existence proof |
 | `qft-axioms` | Axioms at least as strong as [45,35] | Partial: operator-based Wightman conditions; formal equivalence/adequacy unreviewed |
 | `ym-identification` | Same theory is pure Yang–Mills for group G | **Missing:** G-specific four-dimensional lattice data now available, but no proven quantum/continuum identification |
-| `gauge-observables` | Local gauge-invariant polynomials in F and covariant derivatives | Partial: curvature jets plus **nonlocal** G-valued Wilson holonomy conjugacy classes with lattice gauge-invariance proofs; local quantum correspondence open |
+| `gauge-observables` | Local gauge-invariant polynomials in F and covariant derivatives | General actual-G invariant jet-polynomial algebra and equality-on-connections quotient; geometric covariance/presentation equivalence and quantum correspondence open |
 | `renormalized-filtration` | Footnote 1's expected dimension-filtered interpretation | **Guidance, not a separate compulsory theorem.** Classical filtration is partially formalized |
-| `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Partial: genuine vacuum n-point functions defined; UV asymptotics and perturbative limits missing |
+| `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Actual scaled vacuum correlations and finite testwise remainders defined; fixed YM predictions, RG/mixing and OPE topology missing |
 | `stress-tensor` | Prescribed local stress tensor | Missing |
 | `ope` | Operator product expansion and prescribed local singularities | Missing |
 | `nontrivial` | Nontrivial quantum Yang–Mills for G | Non-vacuum states and field excitations defined and derived from the QFT mass condition; Yang–Mills identification and adequacy review remain missing |
-| `physical-gap` | Spectrum H≥0, HΩ=0, positive Δ and finite mass m | Partial: spectral statements defined, existence unproved |
+| `physical-gap` | Spectrum H≥0, HΩ=0, positive Δ and finite mass m | Concrete spectral statements and generator uniqueness; standard analytic equivalences remain |
 | `universal-existence` | Such a theory for **every** compact simple G | Partial: group-quantified QFT-only shadow, proved insufficient by reuse-of-one-theory lemma; YM groupwise target missing |
 
 See [`requirements.json`](requirements.json) for the machine-readable version
@@ -129,3 +129,10 @@ alone. A completed formalization must supply those meanings *in fixed
 definitions*, never as freely selected predicates or axioms in the submission.
 Until it exists, `#check_clay_proof` and the source-bound CLI correctly reject
 every claimed full certificate.
+
+
+The detailed updated clause analysis separates missing definitions, missing
+supporting equivalence lemmas, and future witness proofs in
+[SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md). The integrated design and outstanding
+central work are in [SPECIFICATION_REVIEW.md](SPECIFICATION_REVIEW.md). Missing
+existence proofs do not make an otherwise complete definition incomplete.

@@ -155,6 +155,57 @@ theorem vacuum_mem_spectrum (h : WightmanAxioms H Q) :
   exact Q.hamiltonian.eigenvalue_mem_spectrum 0
     ⟨(Q.vacuum : H), h.vacuum_mem⟩ hne (by simpa using h.vacuum_zero)
 
+/-- The adjoint relation on the common dense domain guarantees
+closability of each smeared field: a graph limit above zero is zero.
+This is the sequential graph criterion in the ambient Hilbert norm. -/
+theorem field_graph_limit_zero (h : WightmanAxioms H Q)
+    (i : Q.FieldIndex) (f : TestFunction) (v : ℕ → Q.domain) (w : H)
+    (hv : Filter.Tendsto (fun n => (v n : H)) Filter.atTop (nhds 0))
+    (hfield : Filter.Tendsto (fun n => (Q.field i f (v n) : H))
+      Filter.atTop (nhds w)) : w = 0 := by
+  have hclosed : IsClosed {x : H | inner ℂ w x = 0} :=
+    isClosed_eq (continuous_const.inner continuous_id) continuous_const
+  have hsub : (Q.domain : Set H) ⊆ {x : H | inner ℂ w x = 0} := by
+    intro x hx
+    have hleft := hfield.inner (𝕜 := ℂ) (tendsto_const_nhds (x := x))
+    have hright := hv.inner (𝕜 := ℂ)
+      (tendsto_const_nhds (x := (Q.field (Q.adjointIndex i) (Q.conjugateTest f) ⟨x, hx⟩ : H)))
+    have heq : (fun n => inner ℂ (Q.field i f (v n) : H) x) =
+        (fun n => inner ℂ (v n : H)
+          (Q.field (Q.adjointIndex i) (Q.conjugateTest f) ⟨x, hx⟩ : H)) :=
+      funext (fun n => h.adjoint_relation i f (v n) ⟨x, hx⟩)
+    rw [heq] at hleft
+    simpa using tendsto_nhds_unique hleft hright
+  apply (inner_self_eq_zero (𝕜 := ℂ)).mp
+  exact hclosed.closure_subset_iff.mpr hsub (h.dense_domain w)
+
+/-- Two admissible Hamiltonians generating the same actual time evolution
+have exactly the same domains. This rules out replacing the physical
+Hamiltonian by a restriction with a more convenient spectrum. -/
+theorem hamiltonian_domain_unique {R : WightmanData H}
+    (hQ : WightmanAxioms H Q) (hR : WightmanAxioms H R)
+    (hsame : ∀ t v, Q.timeTranslation t v = R.timeTranslation t v) :
+    Q.hamiltonian.domain = R.hamiltonian.domain := by
+  ext v
+  rw [← hQ.generator_domain v, ← hR.generator_domain v]
+  simp_rw [hsame]
+
+/-- The action, as well as the full domain, is fixed by time translations.
+This is derivative uniqueness, without invoking Stone's existence theorem. -/
+theorem hamiltonian_action_unique {R : WightmanData H}
+    (hQ : WightmanAxioms H Q) (hR : WightmanAxioms H R)
+    (hsame : ∀ t v, Q.timeTranslation t v = R.timeTranslation t v)
+    (v : H) (hvQ : v ∈ Q.hamiltonian.domain) (hvR : v ∈ R.hamiltonian.domain) :
+    Q.hamiltonian.toLinearMap ⟨v, hvQ⟩ = R.hamiltonian.toLinearMap ⟨v, hvR⟩ := by
+  have hderivQ := hQ.generator_action ⟨v, hvQ⟩
+  have hderivR := hR.generator_action ⟨v, hvR⟩
+  have heq : (fun t => Q.timeTranslation t v) = (fun t => R.timeTranslation t v) :=
+    funext (fun t => hsame t v)
+  rw [heq] at hderivQ
+  have hI := hderivQ.unique hderivR
+  have hc := congrArg (fun x : H => (-Complex.I) • x) hI
+  simpa [smul_smul] using hc
+
 end WightmanAxioms
 
 /-- A precise necessary QFT-and-gap condition. This deliberately does not

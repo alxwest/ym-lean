@@ -6,6 +6,8 @@ import YangMills.QuantumCorrelations
 import YangMills.GroupwiseNecessary
 import YangMills.PeriodicLattice4
 import YangMills.Nontriviality
+import YangMills.InvariantJetPolynomials
+import YangMills.Ultraviolet
 
 /-!
 # Dependency audit of the specification and its supporting lemmas
@@ -81,3 +83,33 @@ to the QFT target. No existence proof is asserted here.
 #audit_axioms YangMills.PDFLiteral.ForEveryCompactSimpleGroup
 #audit_axioms YangMills.PDFLiteral.forEveryCompactSimpleGroup_iff
 #audit_axioms YangMills.PDFLiteral.DirectSpectralClauses
+
+-- Supporting equivalence/domain work and central observable/UV fragments.
+#audit_axioms YangMills.hasPositiveFiniteMass_iff
+#audit_axioms YangMills.mass_le_positive_spectral_value
+#audit_axioms YangMills.mass_isMassGap
+#audit_axioms YangMills.WightmanAxioms.field_graph_limit_zero
+#audit_axioms YangMills.WightmanAxioms.hamiltonian_domain_unique
+#audit_axioms YangMills.WightmanAxioms.hamiltonian_action_unique
+#audit_axioms YangMills.CompactSimpleGaugeGroup.adjoint
+#audit_axioms YangMills.CurvatureJetPolynomial.invariantAlgebra
+#audit_axioms YangMills.CurvatureJetPolynomial.dimension_add
+#audit_axioms YangMills.CurvatureJetPolynomial.dimension_mul
+#audit_axioms YangMills.CurvatureJetPolynomial.onConnection_eq_of_covariant_jets
+#audit_axioms YangMills.dilateTest
+#audit_axioms YangMills.dilateTest_apply
+#audit_axioms YangMills.WightmanData.scaledVacuumNPoint
+#audit_axioms YangMills.WightmanData.TestwiseExpansion
+#audit_axioms YangMills.WightmanData.selfSelectedExpansion
+
+#audit_axioms YangMills.CompactSimpleGaugeGroup.adjoint_one
+#audit_axioms YangMills.CompactSimpleGaugeGroup.adjoint_mul
+#audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable
+
+#audit_axioms YangMills.CurvatureJetPolynomial.transform_one
+#audit_axioms YangMills.CurvatureJetPolynomial.transform_mul
+#audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable.evaluate
+#audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable.HasDimensionAtMost
+#audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable.finite_dimension
+#audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable.monotone
+#audit_axioms YangMills.WightmanData.scaledVacuumNPoint_one
