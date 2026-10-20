@@ -1,3 +1,5 @@
+import YangMills.Renormalization
+import YangMills.RenormalizationGroup
 import Lean
 import YangMills.PDFLiteral
 import YangMills.QFT.Wightman
@@ -88,6 +90,21 @@ def marks : List Mark :=
     { declaration := declarationName "YangMills.WightmanData.selfSelectedExpansion",
       layer := .interpretedModel, sourceLocation := "adversarial logical negative control",
       scopeNote := "freely selected terms make a scalar expansion vacuous" },
+    { declaration := declarationName "YangMills.RenormalizedCompositeMap.Compatible",
+      layer := .interpretedModel, sourceLocation := "section 4 local fields and footnote 1",
+      scopeNote := "same-domain linear correspondence, derivatives, covariance, composite cyclicity; fixed YM predictions still missing" },
+    { declaration := declarationName "YangMills.StressTensorData.Compatible",
+      layer := .interpretedModel, sourceLocation := "section 4 stress tensor",
+      scopeNote := "actual translation charge/core conditions; not exact classical traceless image" },
+    { declaration := declarationName "YangMills.OPE.WeakBasisExpansion",
+      layer := .interpretedModel, sourceLocation := "section 4 OPE; precise weak presentation needs fidelity review",
+      scopeNote := "same-field pair kernels and coherent all-degree remainders; not complete multi-cluster/contact prescription" },
+    { declaration := declarationName "YangMills.RG.CoupledSectorConditions",
+      layer := .interpretedModel, sourceLocation := "section 4 UV/renormalization",
+      scopeNote := "same fields, coefficients, common RG, tensor Wick and stress links; formal inputs NOT yet fixed YM outputs" },
+    { declaration := declarationName "YangMills.Perturbative.bareCompositeCoefficient",
+      layer := .optionalMethod, sourceLocation := "fixed auxiliary perturbative construction; not a universal nonperturbative regulator",
+      scopeNote := "actual-group all-order bare Wick expansion and fixed classical insertions; no renormalized UV/Ward limit" },
     { declaration := declarationName "YangMills.WightmanData.vacuumNPoint",
       layer := .interpretedModel, sourceLocation := "section 4 correlators",
       scopeNote := "vacuum correlation in chosen operator realization" },

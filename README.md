@@ -306,3 +306,18 @@ why freely selected asymptotic terms cannot define the prescribed predictions.
 separately from proof submission, kernel verification, semantic review and
 external acceptance. It currently returns `SPECIFICATION_INCOMPLETE` (exit 2).
 Neither metadata coverage nor these partial definitions unlocks full admission.
+
+
+## Central specification continuation
+
+Seven new modules now define actual-group action vertices and all-order bare
+Wick/composite coefficients, same-domain renormalized composite fields,
+translation-normalized stress tensors, coherent weak pair OPEs, explicit
+RG transport/remainders, and tensor-aware Wick boundary relations. These are
+central definitions; no new existence proof is asserted.
+
+The fixed **renormalized** prediction generator is still incomplete: local
+counterterms and quantum gauge identities, UV/switching removal and OPE
+extraction must determine the formal inputs to the coupled relations.
+[source/SPECIFICATION_REVIEW.md](source/SPECIFICATION_REVIEW.md) describes the
+implemented links and the exact remaining work. Full admission stays closed.

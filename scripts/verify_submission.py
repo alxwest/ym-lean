@@ -163,6 +163,13 @@ FINGERPRINTED_FILES = (
     "YangMills/QuantumCorrelations.lean",
     "YangMills/InvariantJetPolynomials.lean",
     "YangMills/Ultraviolet.lean",
+    "YangMills/CompositeFields.lean",
+    "YangMills/StressTensor.lean",
+    "YangMills/PerturbativeYangMills.lean",
+    "YangMills/Renormalization.lean",
+    "YangMills/OperatorProductExpansion.lean",
+    "YangMills/WickRotation.lean",
+    "YangMills/RenormalizationGroup.lean",
     "YangMills/Nontriviality.lean",
     "YangMills/Classical.lean",
     "YangMills/QFT/Spacetime.lean",
@@ -181,6 +188,10 @@ FINGERPRINTED_FILES = (
     "source/QFT_REVIEW.md",
     "source/YANG_MILLS_REVIEW.md",
     "source/ADVERSARIAL_REVIEW.md",
+    "source/PERTURBATIVE_PRESCRIPTION.md",
+    "source/COMPOSITE_STRESS_REVIEW.md",
+    "source/PERTURBATIVE_IMPLEMENTATION.md",
+    "source/CENTRAL_ADVERSARIAL_REVIEW.md",
     MANIFEST,
 )
 
@@ -260,10 +271,11 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         if proof_file is not None:
             report["proof_submission_status"] = "not_evaluated_specification_incomplete"
         report["reason"] = (
-            "The current Lean proposition is QFT-only. The PDF's full "
-            "Yang–Mills identification, observable correspondence, UV/OPE "
-            "predictions, nontriviality and the assembled all-group predicate are not "
-            "fully defined and justified. Missing existence proofs are not "
+            "The admitted Lean proposition is QFT-only. "
+            "Central same-field correspondence, stress charges and weak OPE/RG relations are "
+            "encoded. The fixed renormalized YM prediction generator, quantum gauge "
+            "identities, limits/extraction and their fidelity argument remain incomplete. "
+            "The assembled all-group YM predicate is therefore not fixed. Missing existence proofs are not "
             "specification blockers. "
             "#check_clay_proof always rejects submissions."
         )

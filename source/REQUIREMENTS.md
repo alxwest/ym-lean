@@ -52,8 +52,8 @@ See [STATEMENT_POLICY.md](STATEMENT_POLICY.md) for the governing rule.
 | `gauge-observables` | Local gauge-invariant polynomials in F and covariant derivatives | General actual-G invariant jet-polynomial algebra and equality-on-connections quotient; geometric covariance/presentation equivalence and quantum correspondence open |
 | `renormalized-filtration` | Footnote 1's expected dimension-filtered interpretation | **Guidance, not a separate compulsory theorem.** Classical filtration is partially formalized |
 | `ultraviolet` | Short-distance asymptotic freedom and renormalization predictions | Actual scaled vacuum correlations and finite testwise remainders defined; fixed YM predictions, RG/mixing and OPE topology missing |
-| `stress-tensor` | Prescribed local stress tensor | Missing |
-| `ope` | Operator product expansion and prescribed local singularities | Missing |
+| `stress-tensor` | Prescribed local stress tensor | Partial: same-composite tensor, actual translation charges and anomaly relation; fixed perturbative symbol/beta link unfinished |
+| `ope` | Operator product expansion and prescribed local singularities | Partial: actual pair kernels and exhaustive weak remainders; fixed renormalized coefficients and multi-cluster/contact prescription unfinished |
 | `nontrivial` | Nontrivial quantum Yang–Mills for G | Non-vacuum states and field excitations defined and derived from the QFT mass condition; Yang–Mills identification and adequacy review remain missing |
 | `physical-gap` | Spectrum H≥0, HΩ=0, positive Δ and finite mass m | Concrete spectral statements and generator uniqueness; standard analytic equivalences remain |
 | `universal-existence` | Such a theory for **every** compact simple G | Partial: group-quantified QFT-only shadow, proved insufficient by reuse-of-one-theory lemma; YM groupwise target missing |
@@ -136,3 +136,10 @@ supporting equivalence lemmas, and future witness proofs in
 [SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md). The integrated design and outstanding
 central work are in [SPECIFICATION_REVIEW.md](SPECIFICATION_REVIEW.md). Missing
 existence proofs do not make an otherwise complete definition incomplete.
+
+
+Current central definitions and exact remaining renormalization work are in
+[SPECIFICATION_REVIEW.md](SPECIFICATION_REVIEW.md). The detailed chosen
+perturbative flow/BRST prescription and primary equations are in
+[PERTURBATIVE_PRESCRIPTION.md](PERTURBATIVE_PRESCRIPTION.md). Bare finite-cutoff
+Wick coefficients are implemented; they do not replace renormalized predictions.

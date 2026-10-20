@@ -1,155 +1,157 @@
-# Specification review, 20 October 2026
+# Central Yang–Mills specification review — 20 October 2026
 
-**Outcome: partial implementation; the requested complete fixed Yang–Mills
-proposition has not been completed.** This is a definition/equivalence gap,
-independent of whether an existence proof is available. No full target or exact
-full-target proof admission has been introduced.
+**The complete fixed Jaffe–Witten target remains unfinished.** This continuation
+implements central definitions and their same-theory links. It does not replace
+the missing renormalized prediction prescription with assumed conclusions or
+proof-author-selected meanings. No existence proof is required for this task.
 
-The existing target `YangMills.QFTExistenceAndMassGap` remains a necessary
-QFT-only existential. Its proof would not establish Yang–Mills identification.
+## Implemented central objects and exact links
 
-## Integrated mathematical design and its unresolved parts
-
-For each source-admissible compact simple G, the intended witness has one
-Hilbert space, one vacuum, one common invariant field domain, and one strongly
-continuous spacetime representation. The Hamiltonian is the full derivative
-generator of its time translations. All local composite fields, correlation
-functions, and the stress tensor must be built on these same data.
-
-The classical labels must come from the actual G-adjoint-invariant curvature
-jet polynomials, with identities evaluated on actual smooth connections.
-Renormalized quantum correspondence must allow finite mixing among appropriate
-composites. It cannot be an arbitrary field-index labelling, a zero map, a naive
-polynomial/operator bijection, or an independent classical algebra next to Q.
-The current concrete classical quotient is progress toward these labels, not
-that correspondence.
-
-A fixed perturbative pure Yang–Mills calculation must determine the required
-coefficient system from the actual Lie bracket and action normalization. Its
-admissible finite renormalizations and composite mixing must be defined and
-shown to preserve the required meaning. This does not require choosing a unique
-formalization or forcing every construction to use one regulator. It does
-require a justified sufficient presentation before any proof author supplies
-witnesses. **This fixed perturbative calculation and fidelity argument remain
-absent.**
-
-The same Q's correlations must then satisfy the resulting UV scaling laws and
-OPE collision expansions. For each justified finite truncation, the subtraction
-and remainder must have fixed meanings, including test domains, spectators,
-running coupling, logarithms, mixing, and the topology of convergence. The new
-`TestwiseExpansion` fixes only a finite scalar testwise remainder relation; it is
-not a completed OPE or prescribed UV condition. The checked negative control
-`selfSelectedExpansion` proves why existentially selecting its terms is vacuous.
-
-The stress tensor must be a normalized local composite of this same theory,
-with distributional symmetry/conservation and a precise connection to its
-translation generators, including any domain, cutoff-limit, contact-term and
-improvement qualifications. No such complete definition is implemented.
-
-Only after these fixed relations and the cited-QFT adequacy argument exist can
-the outer proposition combine them for every G. Non-vacuum excitations alone
-cannot replace Yang–Mills identification. No missing existence proof is listed
-as a missing definition in this design.
-
-## Implemented mathematics
-
-| Requirement | Concrete addition | Remaining boundary |
+| Component | Definitions and behavior now encoded | Boundary |
 |---|---|---|
-| General classical observables | `InvariantJetPolynomials.lean`: all finite multivariate jet polynomials; actual differentiated conjugation; invariant subalgebra; weighted filtration; equality-on-connections quotient | Geometric gauge covariance and presentation-equivalence; quantum mixing/correspondence |
-| Actual time-translation H | `hamiltonian_domain_unique`, `hamiltonian_action_unique` | Standard analytic equivalences remain to be supplied |
-| Unbounded field domains | `field_graph_limit_zero` derives smeared-field closability | Multi-point tempered-distribution kernel and cited-standard adequacy |
-| Finite physical mass | `hasPositiveFiniteMass_iff`, `mass_le_positive_spectral_value`, `mass_isMassGap` | No mass-gap existence proof is requested here |
-| Short-distance quantities | `dilateTest`, same-Q `scaledVacuumNPoint`, finite subtraction and quantified `TestwiseExpansion` | Fixed perturbative predictions and justified UV/OPE topology |
-| Arbitrary-asymptotic-data attack | `selfSelectedExpansion` holds for every Q if terms can equal its correlator | The coefficient anchor is still missing; the attack is documented, not solved |
+| Actual G action | `PerturbativeYangMills`: curvature, quadratic/cubic/quartic action, ordered ghost vertex, actual Lie-bracket contractions; action-expansion and convention-bridge proofs | Auxiliary perturbative presentation; no universal nonperturbative regulator requirement |
+| All-order bare coefficients | `Renormalization`: fixed finite-cutoff covariance, derivative Fourier contractions, graded Wick signs, action insertion sum, coupling extraction and vacuum division | Counterterm normalization, UV removal, quantum gauge identities and switching removal unfinished |
+| Classical insertions | `classicalInsertionPolynomial`, `bareCompositeCoefficient`: actual structure constants, commuting partial-jet derivation, covariant curvature descendants, source/canonical coupling factors, fixed bare insertion kernels | Evaluation/quotient-descent equivalences and renormalized insertion mixing unfinished |
+| Physical composites | `RenormalizedCompositeMap`: real-linear actual finite combinations of Q fields on Q's original invariant domain, at each positive scale | Group-specific renormalized prediction link still missing |
+| Correspondence behavior | `Compatible`: classical evaluation identities, unit, Hermitian fields, actual derivative descendants, Poincare intertwining, composite-word cyclicity | Universal polynomial-transform/descendant construction and complete scheme constraints need supporting work |
+| Physical stress | `StressTensorData.Compatible`: same-C tensor, symmetry/covariance/conservation, admissible weak charge smearing and graph-core charges to actual Q translations; time component is Q's Hamiltonian | Leading perturbative symbol and fixed beta/anomaly prescription unfinished; chosen graph-core presentation needs fidelity argument |
+| Physical OPE | `PairKernels`, `FilteredBasis`, `WeakBasisExpansion`: product kernels fixed on a dense Schwartz tensor span by actual C-field products, coherent all-degree truncations, relative-only scaling, separated spectator field-word matrix elements | Full multi-cluster/contact prescription and supporting kernel/basis existence facts unfinished |
+| UV/RG | `RunningCoupling`, `Frame`, `ExhaustiveMatching`: fixed-series all-order weak matching, intrinsic dimension powers, matrix logarithmic transport, common running system and compatible sectors exhausting the classical basis | Formal series remain inputs pending the renormalized generator |
+| Euclidean/physical bridge | `Wick.AnalyticContinuation`, `LabelRotation`, `RG.FamilyContinuation`: explicit tube holomorphy/boundary limits plus fixed time-index phases and incoming/outgoing tensor-label transport | Must establish these relations for the actual prescribed renormalized coefficients, including contact qualifications |
+| Assembled central relations | `RG.CoupledSectorConditions`: the same C, exact coefficients, common running system, stress form/coupling/scale, and analytic coefficient family enter one formula | Parameterized relation, **not** the closed Yang–Mills target |
 
-The new lemmas add no assumptions to the existing QFT-only target. The
-classical and UV fragments are imported and transitively audited in the default
-library build, but are not represented as a completed Yang–Mills predicate.
+The classical basis is a basis of the classical evaluation quotient only.
+There is no classical/quantum bijection, injectivity or multiplicative
+quantization requirement. The physical Hilbert space is generated by C's own
+composite words, so unrelated extra Q fields cannot silently supply its gap.
 
-## Fidelity decisions and risks
+## Precise OPE and RG meanings
 
-- Wightman is the selected presentation, subject to exact cited-standard
-  adequacy. A second OS construction is not imposed. If an OS route is later
-  chosen, the corrections in OS II must be respected.
-- The connected compact-simple-Lie-algebra group convention includes finite
-  central quotients; its exact source coverage still needs a fidelity argument.
-- Differentiated conjugation fixes the group dependence of classical
-  invariance. Independent jet coordinates are quotiented by equality on actual
-  smooth connections. Surjectivity onto all intended local invariants and
-  coordinate independence are supporting equivalence work, not established here.
-- Classical engineering dimension is not an anomalous quantum dimension.
-  The filtration is vocabulary guided by footnote 1, not an additional exact
-  quantum filtered-isomorphism theorem.
-- Normalized test dilation uses exponent four for the smearing Jacobian.
-  No field dimension, anomalous logarithm or prescribed OPE coefficient is
-  silently inferred from this exponent.
-- No norm-convergent operator OPE, unrestricted composite-spectator rule,
-  preferred scheme/lattice/regulator, confinement, one-particle eigenstate,
-  or independent non-Gaussianity criterion has been added.
+The actual pair kernel acts on a Schwartz test of `(x,y)`. Cluster coordinates
+are `(r,z)=(x-y,y)`. Center smearing remains fixed while the normalized relative
+test is `scale^(-4) f(r/scale)`. Finite subtractions pair each coefficient with
+that relative test and multiply by the actual output composite's matrix element
+on the center test. For truncation degree D and every positive slack delta,
+`scale^(dim(a)+dim(b)-D+delta)` times the remainder tends to zero through
+positive scales. Dimensions are the least bounds in the evaluation-quotient
+filtration, not inflatable witness labels. Spectator supports stay a positive
+distance from the center support.
 
-## Exact unresolved work and approaches rejected
+OPE coefficient distributions satisfy explicit finite-order continuity bounds
+on every compact support. They are not required to be globally tempered: the
+finite-IR Euclidean exponential cutoff can continue to exponential timelike
+growth. Values on noncompact Schwartz tests are auxiliary algebraic extensions;
+all coefficient conditions observe compact tests. Physical product kernels
+remain genuinely tempered continuous functionals, as required by the chosen
+Wightman framework.
 
-The central unresolved issue is a fixed, group-sensitive renormalized
-perturbative coefficient construction and its mathematical relation to the
-same nonperturbative local fields. This affects §4's Yang–Mills identification,
-local correspondence, UV, stress-tensor and OPE clauses. The source analysis,
-Yang–Mills review and adversarial review specify the subsidiary gaps.
+The map-on-label convention is `Q_base(v)=Q_run(R_t v)`, with
+`t=log(1/scale)`, `g'=beta(g)` and `R'=gamma(g)R`. Canonical dimension transport
+uses input-degree sum minus output degree. The stripped coefficient is
+`R Cbar (R^-1 tensor R^-1)`. Every finite-order remainder is little-o of the
+last retained running-coupling power, not merely little-o(1). Smooth beta and
+gamma completions may contain flat nonperturbative terms, but all perturbative
+jets must equal the prescribed series. The exact series are **not yet fixed**
+by a completed renormalized construction in this repository.
 
-Approaches considered and rejected as completions:
+All finite sectors share one actual running coupling, including its initial
+value and beta completion, and coherent gamma/transport restrictions. Exact
+operator equations connect their transport to C at both scales. The trace
+relation uses that same running beta, C, invariant form, coupling and scale.
+Finite-mixing operator-component matrices and RG label maps have explicitly
+different conventions; no universal scheme-equivalence theorem is claimed.
 
-1. Quantifying G without quantum dependence: the existing reuse-one-QFT lemma
-   proves insufficiency.
-2. Adding a genuine G-dependent classical/lattice sector beside Q: the existing
-   unlinked-check lemma proves insufficiency.
-3. Restricting classical observables to quadratic pairings: replaced with the
-   general invariant-jet algebra, but still no quantum correspondence follows.
-4. Giving an arbitrary linear correspondence/mixing matrix: permits zero or
-   unrelated free-field images and has no perturbative anchor.
-5. Supplying arbitrary asymptotic coefficients: the new checked self-selection
-   lemma shows zero remainder for any Q.
-6. Imposing a Wilson-lattice limit or one preferred renormalization prescription
-   universally: no sufficient fidelity argument was obtained, so not imposed.
-7. Using the beta-function sign alone: omits composite mixing and prescribed
-   OPE singularities and cannot define the full source requirement.
+Coordinate continuation alone is insufficient for tensor labels. Each
+covariant time index contributes `-i`; curvature contributes its two indices
+and each derivative contributes another. `LabelRotation` fixes the resulting
+complexified polynomial transformation by actual connection evaluations. The
+coefficient bridge transforms both incoming and outgoing labels accordingly.
 
-Concrete next work: formalize one admissible perturbative Yang–Mills
-presentation with graph amplitudes, gauge/ghost or equivalent invariant data,
-local counterterms, composite insertions and symmetry identities; derive its
-G-dependent beta/anomalous/OPE system; define allowed scheme transformations;
-then state and justify the corresponding distributional short-distance and OPE
-conditions on the same Q. In parallel, finish geometric jet covariance and
-cited-Wightman kernel/spectral equivalences. These are definition/equivalence
-projects, not a request to prove Yang–Mills existence.
+## Adversarial findings resolved in the definitions
 
-## Admission and verification
+- An exact linear image of the classically traceless stress tensor would force
+  quantum trace zero. That condition was removed. Stress has physical charge
+  normalization and an explicit anomaly relation, with its prescribed symbol
+  and beta identification still to be supplied.
+- Spatial coordinate-translation generators have the metric sign needed for
+  contravariant momentum charges. The stress charge equation includes it.
+- Composite-only cyclicity closes the unused spectator-sector loophole.
+- Intrinsic minimal degrees prevent inflation of bounds from weakening OPE or
+  mixing conditions.
+- One coherent filtered basis prevents duplicate or independently selected
+  truncations from changing coefficient subtraction multiplicities.
+- One common running system and actual operator transport prevent sectorwise
+  or disconnected numerical RG data from masquerading as one theory.
+- Tensor Wick transport prevents identifying Euclidean and physical coefficient
+  components merely because their coordinate types agree.
+- The old action convention's factor-two mismatch is exposed by proved
+  normalization bridges; it is not silently equated with the canonical action.
 
-`python3 scripts/verify_submission.py --claim specification` assesses readiness
-without requiring a proof file. For the present definitions it exits 2 with
-`SPECIFICATION_INCOMPLETE`. Full Clay admission continues to exit 2 with
-`CLAY_CERTIFICATION_BLOCKED`, regardless of manifest coverage labels.
+The review also found that equal cutoffs or zero switching can erase bare
+interactions. The finite-cutoff helpers permit these mathematical inputs, but
+**cannot** be accepted as final predictions by existentially selecting them.
+Switching/cutoff removal and the fixed local normalization are essential next
+work. The previous arbitrary-coefficient negative control remains relevant:
+parameterized asymptotic relations alone cannot define prescribed predictions.
 
-The JSON report separately records `specification_readiness`,
-`proof_submission_status`, `kernel_verification_status`, `semantic_review_status`,
-and `external_acceptance_status`. `admitted_target` is populated only after an
-actual QFT-only proof passes the independent exact-type/transitive-axiom audit.
-No automated status or agent consensus establishes physical fidelity or CMI
-acceptance. No existence proof was submitted in this task.
+## Exact central work still required
 
-For clause-by-clause source locations and definitions/equivalence versus proof
-work, see [SOURCE_ANALYSIS.md](SOURCE_ANALYSIS.md). For domain/framework review,
-see [QFT_REVIEW.md](QFT_REVIEW.md). For central Yang–Mills issues, see
-[YANG_MILLS_REVIEW.md](YANG_MILLS_REVIEW.md). The independent attack report is
-[ADVERSARIAL_REVIEW.md](ADVERSARIAL_REVIEW.md).
+1. Add local counterterm insertions and composite mixing to the fixed all-order
+   construction, with the chosen flow/forest normalization and boundary data.
+2. Define the complete graded quantum gauge/BRST/Slavnov–Taylor system. The
+   renormalized interaction insertion is not merely the bare action derivative;
+   its coefficients, quantum differential and contact antibracket must be
+   constrained together. No free interaction-insertion family is permitted.
+3. Fix the UV and switching/IR-removal operations and coefficient extraction,
+   including multi-insertion oversubtractions, to produce the actual formal
+   OPE/beta/gamma inputs. Prove the necessary perturbative existence and
+   equivalence facts; these are not the future massive-YM existence theorem.
+4. Establish gauge, basis, regulator and finite-scheme equivalence, the
+   source/canonical insertion evaluation and quotient descent, tensor analytic
+   boundary relations, and leading stress-symbol/anomaly normalization.
+5. Complete multi-cluster/contact OPE and source-fidelity arguments for the
+   selected weak topology, graph-core stress presentation and homogeneous RG
+   sectors. Finish the outstanding cited-Wightman kernel/spectral equivalences.
+
+The implemented source/canonical map keeps `F_source=g F_canonical` and all
+covariant derivative factors. Two beta coefficients are computed from the
+actual structure constants as normalization checks; those two terms do not
+supply all-order renormalized predictions. The full formal input family must
+be an output of items 1–3, rather than a theorem/proof parameter.
+
+## Sources and admission boundary
+
+Jaffe–Witten §4 p6 remains normative. The cited textbook's relevant RG, mixing
+and weak-OPE equations were inspected. Additional primary mathematical
+presentations [Fröb–Holland](https://arxiv.org/abs/1603.08012) and
+[Fröb–Holland–Hollands](https://arxiv.org/abs/1511.09425) give precise flow,
+normalization, coefficient extraction and quantum gauge identities. They guide
+an explicit presentation; their choice does not add a universal construction
+method to the source theorem. Exact equations and qualifications are recorded
+in [PERTURBATIVE_PRESCRIPTION.md](PERTURBATIVE_PRESCRIPTION.md).
+
+For implementation details see [PERTURBATIVE_IMPLEMENTATION.md](PERTURBATIVE_IMPLEMENTATION.md)
+and [COMPOSITE_STRESS_REVIEW.md](COMPOSITE_STRESS_REVIEW.md). The independent
+findings and integration dispositions are in
+[CENTRAL_ADVERSARIAL_REVIEW.md](CENTRAL_ADVERSARIAL_REVIEW.md).
+
+Full exact-target admission stays closed. `--claim specification` reports
+`SPECIFICATION_INCOMPLETE` independently of proof submission; kernel checking,
+semantic review and external/CMI acceptance remain separate. Neither the new
+central relations, the build nor agent agreement completes the missing fixed
+prescription or establishes source fidelity.
 
 
-## Validation performed
+## Integration validation
 
-In the requested checkout, `python3 scripts/check_proofs.py` completed with
-exit 0 under pinned Lean 4.25.0. It passed 21 verifier unit tests, the default
-build with transitive axiom audits (2739 jobs), 15 proof-audit regressions, and
-both independent kernel-inspector adversarial rejections (wrong target and
-`sorryAx` despite spoofed local audit syntax). The readiness assessment returns
-expected exit 2, `SPECIFICATION_INCOMPLETE`, without requiring a proof file.
-The patch passed the whitespace and reverse-applicability checks. These checks
-validate the implemented fragments and admission boundaries; they do not
-establish the missing semantic fidelity argument or complete the specification.
+`python3 scripts/check_proofs.py` completed with exit 0 in the requested
+repository under pinned Lean 4.25.0. The 2750-job default build and transitive
+axiom audits passed, including the actual bare composite generator and coupled
+central relation. All 21 verifier unit tests, 15 proof-audit regressions and
+both separate kernel-inspector adversarial rejections passed. No new axioms,
+`sorry`, opaque placeholders or existence assumptions were introduced.
+
+These checks validate the implemented definitions, supporting proofs and
+admission boundaries. They do not resolve the missing fixed renormalized
+prediction prescription or prove semantic sufficiency. Full admission stays
+closed; missing existence proofs are not the reason for that status.

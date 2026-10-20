@@ -30,6 +30,10 @@ def main() -> None:
         ("honest_proof", "theorem honest : True := True.intro\n#audit_axioms honest", True, "Axiom audit passed"),
         ("library_proofs", "\n".join([
             "#audit_axioms YangMills.mass_pos",
+            "#audit_axioms YangMills.RenormalizedCompositeMap.Compatible",
+            "#audit_axioms YangMills.StressTensorData.not_zero_tensor_of_massGap",
+            "#audit_axioms YangMills.Perturbative.bareCompositeCoefficient",
+            "#audit_axioms YangMills.RG.CoupledSectorConditions",
             "#audit_axioms YangMills.mass_isMassGap",
             "#audit_axioms YangMills.WightmanAxioms.field_graph_limit_zero",
             "#audit_axioms YangMills.WightmanAxioms.hamiltonian_action_unique",

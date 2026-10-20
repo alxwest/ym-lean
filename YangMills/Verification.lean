@@ -1,3 +1,5 @@
+import YangMills.Renormalization
+import YangMills.RenormalizationGroup
 import YangMills.Classical
 import YangMills.SourceClassification
 import YangMills.Audit
@@ -113,3 +115,34 @@ to the QFT target. No existence proof is asserted here.
 #audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable.finite_dimension
 #audit_axioms YangMills.CurvatureJetPolynomial.ConnectionObservable.monotone
 #audit_axioms YangMills.WightmanData.scaledVacuumNPoint_one
+
+-- Central renormalized correspondence, fixed perturbative anchor, and same-field OPE/RG.
+#audit_axioms YangMills.RenormalizedCompositeMap
+#audit_axioms YangMills.RenormalizedCompositeMap.Compatible
+#audit_axioms YangMills.RenormalizedCompositeMap.FiniteMixing
+#audit_axioms YangMills.intrinsicEngineeringDimension_le_iff
+#audit_axioms YangMills.Connection.poincarePullback
+#audit_axioms YangMills.classicalPoincareTransform_unique
+#audit_axioms YangMills.StressTensorData.Compatible
+#audit_axioms YangMills.StressTensorData.HasTraceAnomaly
+#audit_axioms YangMills.StressTensorData.not_zero_tensor_of_massGap
+#audit_axioms YangMills.Perturbative.density_expansion
+#audit_axioms YangMills.Perturbative.sourceDensity_eq_canonical
+#audit_axioms YangMills.Perturbative.canonicalDensity_eq_half_oldDensity
+#audit_axioms YangMills.Perturbative.bracket_coordinates
+#audit_axioms YangMills.Perturbative.betaTwoLoop
+#audit_axioms YangMills.Perturbative.bareCoefficient
+#audit_axioms YangMills.Perturbative.bare_normalization_identity
+#audit_axioms YangMills.Perturbative.bareNormalizedCoefficient_vacuum
+#audit_axioms YangMills.Perturbative.classicalInsertionPolynomial
+#audit_axioms YangMills.Perturbative.bareCompositeCoefficient
+#audit_axioms YangMills.Perturbative.LocalCounterterm.distribution
+#audit_axioms YangMills.OPE.PairKernels
+#audit_axioms YangMills.OPE.FilteredBasis
+#audit_axioms YangMills.OPE.WeakBasisExpansion
+#audit_axioms YangMills.RG.Frame
+#audit_axioms YangMills.RG.AllOrderMatch
+#audit_axioms YangMills.RG.ExhaustiveMatching
+#audit_axioms YangMills.RG.CoupledSectorConditions
+#audit_axioms YangMills.Wick.AnalyticContinuation
+#audit_axioms YangMills.Wick.LabelRotation

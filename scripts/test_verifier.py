@@ -40,8 +40,10 @@ class SourceContractTests(unittest.TestCase):
         for key in ("gauge-observables", "renormalized-filtration",
                     "ultraviolet", "universal-existence"):
             self.assertEqual(by_id[key]["status"], "partial")
-        for key in ("ym-identification", "stress-tensor", "ope", "nontrivial"):
+        for key in ("ym-identification", "nontrivial"):
             self.assertEqual(by_id[key]["status"], "missing")
+        for key in ("stress-tensor", "ope"):
+            self.assertEqual(by_id[key]["status"], "partial")
         report, rc = v.verify(ROOT, "clay",
                               theorem="YangMills.qft_exists_implies_groupwise_qft")
         self.assertEqual(rc, 2)

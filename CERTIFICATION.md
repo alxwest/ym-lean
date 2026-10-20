@@ -251,3 +251,23 @@ acceptance. No missing existence proof is a specification blocker. Exact full
 proof admission remains closed because the required definitions and fidelity
 argument are incomplete; QFT-only admission still concerns its named necessary
 formal target only.
+
+
+## Central continuation: actual fields, stress and OPE/RG relations
+
+The current specification includes same-domain renormalized composite maps,
+derivative and Poincare identities, composite-only cyclicity, intrinsic-degree
+mixing, stress-tensor charges to the actual physical Hamiltonian, coherent weak
+OPE truncations and all-order running-coupling matching. Tensor Wick rotation
+and one common running system across all finite sectors are explicit. The
+perturbative anchor fixes actual-G vertices, all-order **bare finite-cutoff**
+Wick coefficients and classical observable insertions.
+
+These advances do not complete the target. The formal prediction parameters
+in `RG.CoupledSectorConditions` must be replaced by outputs of a fully specified
+renormalized construction with the quantum gauge identities, normalization,
+UV/switching limits and OPE extraction. No proof of this parameterized relation
+is admitted as full YM. The old action's factor-two normalization difference
+is exposed by a checked bridge, not silently equated to the new convention.
+See the rewritten [integrated review](source/SPECIFICATION_REVIEW.md) and
+[central adversarial review](source/CENTRAL_ADVERSARIAL_REVIEW.md).
