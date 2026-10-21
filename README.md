@@ -1,323 +1,89 @@
-# Yang–Mills: concrete Lean proof obligations
+# Yang–Mills: a fixed Lean specification
 
-**Status: substantially expanded, but not yet a complete formalization of the
-Jaffe–Witten problem.** The QFT axioms, unbounded Hamiltonian, mass-gap condition,
-gauge groups, and classical action now have concrete definitions. The quantum
-Yang–Mills identification and prescribed ultraviolet behavior remain unfinished.
-A kernel-checked proof of the current target is not a proof of the Millennium
-problem.
+This repository defines a complete, reviewed **proposed formal specification**
+of the Jaffe–Witten existence and mass-gap problem. It does **not** contain an
+existence proof. External mathematical acceptance has not been assessed.
 
-**Certification safety:** see [CERTIFICATION.md](CERTIFICATION.md). The
-`#clay_certification_status` command reports `CLAY_CERTIFICATION_BLOCKED` on
-ordinary builds. `#check_clay_proof` rejects all candidates until an independently
-reviewed full statement is encoded; this is intentional, not a Lean limitation.
-
-The old `Framework` and `YangMillsExistenceAndMassGap` declarations have been
-removed: they let the prover choose the meaning of the central requirements,
-including setting them to `True`. There are no replacement predicate parameters
-for the missing requirements. No full Yang–Mills submission target is exported
-until those requirements are defined.
-
-## Source versus interpretation: executable provenance
-
-The directly translatable mathematical fragments of Section 4 are now
-isolated in [YangMills/PDFLiteral.lean](YangMills/PDFLiteral.lean).
-Their docstrings use the tag PDF_EXPLICIT. The file implements
-four-dimensional space, the outer group quantifier, positive spectral gap
-and finite mass. It is explicitly NOT a Yang--Mills existence theorem.
-
-[YangMills/SourceClassification.lean](YangMills/SourceClassification.lean)
-marks concrete declarations as directMath, citedStandard, interpretedModel
-or optionalMethod. Its interpretationStillNeeded list contains the
-unformalized physical terms as STRINGS, not axioms, assumptions or freely
-choosable Prop parameters. The normal build runs #audit_pdf_origins and
-transitive dependency checks on the literal fragments.
-
-The independent [source/FORMALIZATION_LAYERS.md](source/FORMALIZATION_LAYERS.md)
-explains each tag, which claims come directly from the PDF, and which
-mathematical interpretations remain to be reviewed. The source manifest
-keeps required vs guidance *separate* from literal vs interpreted; the
-proof verifier rejects attempts to relabel either axis.
-
-## Exact-statement acceptance policy
-
-Only what Section 4 of the Jaffe–Witten PDF actually requires, together
-with the mathematical standards it explicitly cites, may determine Clay
-proof acceptance. Footnote 1's expected dimension filtration is
-**interpretive guidance**, not an additional independently compulsory theorem.
-
-The formally checked holonomy, Wilson-type class actions and four-dimensional
-lattice are **optional proof infrastructure**, not requirements every
-solution must use. Neither extra restrictions nor unproved assumptions may
-be introduced merely to simplify certification. Natural-language conditions
-still require precise, reviewable mathematical definitions.
-
-See [source/STATEMENT_POLICY.md](source/STATEMENT_POLICY.md).
-
-## Source-anchored proof verification
-
-The **exact bytes** of the locally committed [`source/yangmills.pdf`](source/yangmills.pdf)
-(Jaffe–Witten, section 4, printed page 6) are pinned by SHA-256.
-[`source/requirements.json`](source/requirements.json) maps every principal clause
-to Lean declarations and explicitly records **partial or missing** formalization.
-The source-anchored verifier checks the PDF and rejects altered or incomplete
-clause inventories; a status label cannot unlock a Clay certificate.
-
-```sh
-# Paper-level submission: returns exit 2 / CLAY_CERTIFICATION_BLOCKED until
-# a full, independently reviewed specification exists.
-python3 scripts/verify_submission.py --claim clay --report .lake/clay-report.json
-
-# A submitted *QFT-only* Lean proof can be checked against the existing
-# precise theorem; this is NOT Clay certification.
-python3 scripts/verify_submission.py --claim qft \
-  --proof-file MyProof.lean --theorem MyNamespace.myProof \
-  --report .lake/qft-report.json
-
-# Source-identity, omission and malicious-proof regression tests (fast):
-python3 -m unittest discover -s scripts -p 'test_verifier.py' -v
-```
-
-The QFT-only CLI **does not trust audit commands or success messages from
-the submitted source**. It first compiles the candidate into a Lean module;
-an independent [kernel inspector](scripts/InspectProof.lean) then imports
-the checked environment, requires the *exact* target theorem type, and
-traverses its axioms. This prevents proof-local command shadowing from
-counterfeiting acceptance. Use the CLI rather than a source-authored
-audit message when verifying someone else's proof.
-
-Exit codes from the new CLI: `0` = genuine acceptance of the **QFT-only**
-exact target; `1` = failed verification or invalid source; `2` = blocked
-full Clay certification. The JSON report always has `clay_certificate: false`
-until the complete target has been specified and the Lean checker has been
-audited and deliberately unlocked. See [CERTIFICATION.md](CERTIFICATION.md)
-for the trust model and [source/REQUIREMENTS.md](source/REQUIREMENTS.md) for
-the precise clause-by-clause paper crosswalk.
-
-**Scope note:** The paper does *not* require a one-to-one identification of
-classical polynomials with renormalized quantum operators (footnote 1).
-It likewise distinguishes requirements from extensions such as an isolated
-one-particle state or quark confinement. The verifier reflects these
-distinctions rather than adding arbitrary extra conditions.
-## Read alongside Jaffe–Witten
-
-See the supplied [reference PDF](source/yangmills.pdf) or the
-[official description](https://www.claymath.org/wp-content/uploads/2022/06/yangmills.pdf).
-
-| Paper | Lean file | What is defined |
-| --- | --- | --- |
-| §1: gauge group | [GaugeGroup.lean](YangMills/GaugeGroup.lean) | Compact connected finite-dimensional smooth real Lie group, simple tangent Lie algebra |
-| §1: classical theory | [Classical.lean](YangMills/Classical.lean) | Smooth connection, curvature, covariant derivative, invariant quadratic form, finite Euclidean action |
-| §3: spacetime and symmetries | [Spacetime.lean](YangMills/QFT/Spacetime.lean) | Minkowski metric, forward cone, proper orthochronous transformations, spacelike supports |
-| §3: quantum fields | [Wightman.lean](YangMills/QFT/Wightman.lean) | Explicit bosonic field axioms on one invariant domain |
-| §§3–4: Hamiltonian | [Operator.lean](YangMills/QFT/Operator.lean) | Dense operator domain, adjoint graph, bounded two-sided resolvent, actual spectrum |
-| §4: positive finite mass | [Spectrum.lean](YangMills/Spectrum.lean) | Spectral gap, bounded set of admissible gaps, supremum mass, supporting theorems |
-| Current necessary target | [Statement.lean](YangMills/Statement.lean) | `QFTExistenceAndMassGap`, **not** full Yang–Mills existence |
-| Proof admission | [Audit.lean](YangMills/Audit.lean) | Exact-target and transitive axiom checks |
-| Default-build audit | [Verification.lean](YangMills/Verification.lean) | Audits the current specification and all supporting lemmas |
-
-## Additional formally checked building blocks
-
-The source crosswalk now includes three concrete, **necessary but not sufficient**
-steps toward the exact Jaffe–Witten statement:
-
-- [LocalObservables.lean](YangMills/LocalObservables.lean) implements
-  curvature jets, finite trace-polynomial expressions and a calculated
-  engineering-dimension filtration, including the quadratic action-density
-  generators. It does **not** establish gauge invariance or a renormalized
-  quantum observable correspondence.
-- [QuantumCorrelations.lean](YangMills/QuantumCorrelations.lean)
-  computes smeared vacuum n-point functions directly from the Wightman
-  fields on their Hilbert space; the required short-distance asymptotics
-  are *not* asserted.
-- [GroupwiseNecessary.lean](YangMills/GroupwiseNecessary.lean)
-  formalizes the all-groups quantifier for a **QFT-only necessary**
-  condition, then **proves** why it is insufficient: one unrelated
-  gapped QFT can be reused for every G. Merely attaching a gauge group
-  does not identify a quantum Yang–Mills theory.
-
-The new declarations are imported and axiom-audited by the default
-`YangMills.Verification` build. None is a complete Clay proof target.
-The full proof verifier remains intentionally fail-closed.
-
-## Closing the unused-gauge-group loophole
-
-The repository now verifies algebraic group dependence, rather than just
-carrying the name `G`:
-
-- [GaugeHolonomy.lean](YangMills/GaugeHolonomy.lean) defines links valued
-  in the actual group, group multiplication along paths and gauge-invariant
-  conjugacy classes of closed holonomies.
-- [LatticeGaugeAction.lean](YangMills/LatticeGaugeAction.lean) constructs
-  finite central plaquette actions and Boltzmann weights and proves they
-  are invariant under local gauge transformations.
-- [PeriodicLattice4.lean](YangMills/PeriodicLattice4.lean) fixes a genuine
-  four-dimensional periodic lattice and its elementary oriented plaquettes.
-- [GroupwiseNecessary.lean](YangMills/GroupwiseNecessary.lean) proves a
-  stronger **negative control**: a single unrelated gapped QFT can still
-  satisfy all those G-dependent classical tests *if* the quantum/classical
-  identification is omitted.
-
-These are genuine, axiom-audited, group-dependent **classical/finite**
-definitions—not a complete Yang–Mills identification. A sound certificate
-must additionally derive the *same theory's* renormalized local quantum
-observables and short-distance correlations for that G. The finite class
-weight is not yet fixed to a canonical Wilson representation or measure.
-The formal verifier therefore still rejects full Clay claims. Sharing an
-underlying Hilbert space across groups is permissible; what matters is
-the proved correspondence for each G.
-
-## What a QFT proof must establish
-
-`WightmanData` supplies the mathematical objects. `WightmanAxioms` contains
-fixed propositions about them, each requiring a proof:
-
-- Completeness and separability of the complex Hilbert space; a common dense
-  domain preserved by all smeared fields and symmetry transformations.
-- A strongly continuous unitary representation of the proper orthochronous
-  Poincaré transformations, with explicit identity and composition laws.
-- A normalized invariant vacuum, unique among translation-invariant vectors
-  up to a complex scalar.
-- The joint energy–momentum spectral condition, expressed by Fourier tests
-  outside the closed forward cone, with explicit integrability obligations.
-- Continuous linear dependence of smeared fields on Schwartz test functions,
-  and the adjoint relation on the invariant domain.
-- Covariance of finite-component field multiplets, with continuous component
-  representations and the actual spacetime pullback of test functions.
-- Local commutativity for spacelike-separated test-function supports.
-- Vacuum cyclicity under finite products of smeared fields.
-- Self-adjointness of the Hamiltonian, including its adjoint domain; equality
-  of its domain and action with those of the time-translation generator.
-- Real, nonnegative Hamiltonian spectrum and a zero-energy vacuum.
-
-The operator formulation here uses countably many finite-component bosonic
-multiplets. It is not a formal equivalence theorem with every published
-Wightman or Osterwalder–Schrader formulation. The Euclidean reconstruction
-route has not been implemented.
-
-`GappedWightmanTheory` adds a strictly positive gap and a finite supremum of
-admissible gaps. Its spectrum is derived from the actual Hamiltonian's
-resolvent; it cannot be supplied as an arbitrary set. The code proves that
-an eigenvalue lies in this spectrum, that the vacuum therefore has spectral
-energy zero, and that a vacuum-only spectrum fails the finite-mass condition.
-Continuous spectrum is included; no isolated particle eigenvalue is required.
-
-## Check a proof
-
-With `elan` installed:
-
-```sh
-lake update
-lake exe cache get
-lake build
-python3 scripts/check_proofs.py
-```
-
-The regression runner checks both acceptance of legitimate lemmas and rejection
-of direct/hidden `sorry`, custom axioms, an assumed target, the wrong target,
-and conclusions requiring additional hypotheses. Negative fixtures are generated
-under `.lake`, not imported into the library.
-
-The library build treats warnings as errors and disables implicit declaration
-of unbound names. Its `Verification` module audits the current definitions and
-lemmas for extra axioms. Future submitted proofs must still use the submission
-command below; adding a theorem somewhere does not automatically audit it.
-
-To audit a theorem's dependencies in a Lean file:
+The closed target is `YangMills.YangMillsExistenceAndMassGap.{u}` in
+[YangMillsSpecification.lean](YangMills/YangMillsSpecification.lean):
 
 ```lean
-import YangMills
-
-#audit_axioms YangMills.WightmanAxioms.vacuum_mem_spectrum
+def YangMillsExistenceAndMassGap : Prop :=
+  ∀ G : CompactSimpleGaugeGroup.{u}, Nonempty (FilteredGeneratedCandidate G)
 ```
 
-For an actual submitted proof of the current QFT-only existence target, add
-`#check_qft_proof YourTheoremName` after its declaration, then run
-`lake env lean YourFile.lean`. This command requires **exactly** the closed
-`YangMills.QFTExistenceAndMassGap` type. A theorem assuming the target or `False`
-is rejected even if it contains no extra axioms.
+For each actual compact connected simple Lie gauge group, the candidate binds
+one physical QFT, its complete Wightman hierarchy and physical Hamiltonian to
+the same group-specific action, renormalization flow, corrected observables,
+all-order UV/OPE predictions, local contact terms and stress tensor. A future
+proof supplies witnesses satisfying these concrete definitions; it cannot
+choose substitute predicates for Yang–Mills or the prescribed predictions.
 
-`#check_clay_proof SomeTheorem` currently **always fails**, even if the theorem
-has no sorry or extra axioms. That is the correct result while no faithful full
-Clay statement has been encoded. `#clay_certification_status` reports why.
+The physical Hilbert space is positive, the common field domain is dense and
+invariant, and the Hamiltonian is the full self-adjoint time generator. Its
+spectral mass must be positive and finite; no isolated particle or confinement
+condition is added. The composite correspondence respects classical identities
+and descendants and generates the same physical space, while allowing quantum
+relations and operator mixing.
 
-Both audit commands inspect transitive dependencies, including dependencies
-in declaration types. Only the usual Lean foundations `propext`,
-`Classical.choice`, and `Quot.sound` are allowed. `sorryAx`, project-specific
-axioms, and additional native-evaluation trust axioms are rejected. An axiom
-audit alone does not check which proposition was proved; use the exact-target
-command for a submission. Ordinary `lake build` alone also does not establish
-absence of proof holes in future submissions.
+The auxiliary Gaussian flow fixes perturbative predictions, not a required
+nonperturbative construction method. Its original canonical insertion rows
+now determine the actual smooth responses by proof. The literal finite
+Fourier/Taylor density, its normalization jets and the same-field stress
+transport have checked meanings. All-order asymptotics use finite remainders
+as the running coupling tends to zero; they do not assert convergence of a
+formal series. Smooth completions and nonperturbative flat terms are allowed.
+The physical stress dictionary has degree four; its BRST response has the
+distinct degree-five bound. Both sides of the trace anomaly use the same
+actual vacuum centering, with the identity term computed from their onepoints.
 
-These checks trust the installed Lean kernel, the pinned mathlib dependency,
-and the unchanged specification/audit code. They cannot establish that a
-mathematical definition faithfully captures the physics merely by typechecking
-it, or defend against someone modifying the target or the checker itself.
+## Review and provenance
 
-## What must be completed before accepting a Yang–Mills proof
+- [Final fidelity argument](source/FINAL_FIDELITY_ARGUMENT.md)
+- [Clause-by-clause source crosswalk](source/CURRENT_JW4_READINESS_CROSSWALK.md)
+- [Final adversarial review](source/FINAL_ADVERSARIAL_REVIEW.md)
+- [Statement policy](source/STATEMENT_POLICY.md) and
+  [certification contract](CERTIFICATION.md)
+- [Source registry](source/requirements.json) and
+  [provenance classifications](source/FORMALIZATION_LAYERS.md)
 
-[Nontriviality.lean](YangMills/Nontriviality.lean) now defines a state outside
-the vacuum line and a finite field word that creates such a state. Under
-cyclicity these are equivalent. The existing finite-mass QFT condition implies
-both: a vacuum-only Hilbert space would make the Hamiltonian zero everywhere,
-with every positive energy in its resolvent and hence no finite mass.
-These are audited consequences, not additional proof assumptions. They do
-not establish nontriviality of an identified Yang–Mills theory; the source
-manifest deliberately retains that clause as missing pending identification
-and review of the full interpretation.
+These explain the presentation choices, the exact source comparisons and
+limitations of the review. The full cited [45] book chapter was not directly
+accessed; the comparison uses the primary coauthor exposition and the OS
+sources, with that access qualification recorded. A checked build or an agent
+review is not a proof of equivalence to prose or evidence of CMI acceptance.
+Earlier review files record historical findings; current readiness is governed
+by the documents above, not superseded gap paragraphs.
 
-The following are missing mathematical specifications, not assumptions accepted
-by the checker:
+## Checks and future proof admission
 
-1. A renormalized correspondence between local quantum observables and
-   gauge-invariant differential polynomials in the curvature, respecting
-   dimension filtrations and operator mixing.
-2. A precise quantum identification with **pure Yang–Mills for the specified
-   group**. Merely having the classical curvature/action in a separate file
-   does not supply this link.
-3. The required short-distance asymptotics and perturbative renormalization
-   predictions, including a stress tensor and operator product expansion with
-   specified singularities, formulated as actual limits, estimates, and identities.
-4. A justified non-triviality condition for that identified theory, and the
-   final quantifier over all the concrete compact simple gauge groups.
-5. A mathematical review of the resulting specification against the cited
-   axiomatic frameworks and Jaffe–Witten's full requirements.
+The pinned Lean/mathlib environment is recorded in `lean-toolchain` and
+`lake-manifest.json`.
 
-Until these are implemented, a massive free field could pass the QFT-only
-target. The checker explicitly labels its result accordingly. Naming a free
-predicate “Yang–Mills” or requiring a proof of an arbitrary proposition would
-not resolve these missing steps.
+```sh
+lake build
+python3 scripts/check_proofs.py
+python3 scripts/verify_submission.py --claim specification
+```
 
+The last command checks the compiled exact target shape and reports
+`SPECIFICATION_READY`; it does not verify an existence proof. With no proof,
+`--claim yangmills` instead reports `PROOF_NOT_SUBMITTED`.
 
-## Specification review — 20 October 2026
+A future submission uses:
 
-The requested full fixed proposition remains incomplete. See the integrated
-[source/specification review](source/SPECIFICATION_REVIEW.md) for the exact
-central missing definitions and fidelity arguments, attempts made, and next
-mathematical work. No Yang–Mills existence proof is required for this task.
+```sh
+python3 scripts/verify_submission.py --claim yangmills --proof-file proof.lean --theorem MyProof.solution
+```
 
-New checked mathematics includes the actual-group invariant jet-polynomial
-algebra and observable quotient, physical-Hamiltonian uniqueness, smeared-field
-closability, the supremum mass as an admissible gap, and normalized dilation of
-the same quantum fields' correlations. A negative-control theorem demonstrates
-why freely selected asymptotic terms cannot define the prescribed predictions.
+The submitted declaration must be an unconditional theorem of the exact
+universe-polymorphic target, with one universe parameter. A separate process
+inspects the compiled checked environment and transitive axioms. Only the
+standard Lean foundations `propext`, `Classical.choice` and `Quot.sound` are
+allowed. A fixed-universe, conditional, assumed, wrong-type or sorry-based
+claim is rejected. The QFT-only mode remains separately available.
 
-`python3 scripts/verify_submission.py --claim specification` reports readiness
-separately from proof submission, kernel verification, semantic review and
-external acceptance. It currently returns `SPECIFICATION_INCOMPLETE` (exit 2).
-Neither metadata coverage nor these partial definitions unlocks full admission.
-
-
-## Central specification continuation
-
-Seven new modules now define actual-group action vertices and all-order bare
-Wick/composite coefficients, same-domain renormalized composite fields,
-translation-normalized stress tensors, coherent weak pair OPEs, explicit
-RG transport/remainders, and tensor-aware Wick boundary relations. These are
-central definitions; no new existence proof is asserted.
-
-The fixed **renormalized** prediction generator is still incomplete: local
-counterterms and quantum gauge identities, UV/switching removal and OPE
-extraction must determine the formal inputs to the coupled relations.
-[source/SPECIFICATION_REVIEW.md](source/SPECIFICATION_REVIEW.md) describes the
-implemented links and the exact remaining work. Full admission stays closed.
+Kernel acceptance, source interpretation and external acceptance are distinct.
+The verifier always reports `clay_certificate=false`, including after a future
+exact-target kernel proof. The legacy `--claim clay` spelling is only an alias
+for mathematical proof checking.

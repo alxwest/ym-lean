@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""Regression tests for the source-locked, fail-closed proof verifier."""
+"""Regression tests: source roles, trusted activation, and exact-target reports.
+Mocked inspector results test runner plumbing only; they are NOT Lean proofs.
+Real negative kernel fixtures are in test_kernel_inspector.py.
+"""
 from __future__ import annotations
-
+import copy
 import json
+import os
 from pathlib import Path
 import shutil
 import subprocess
@@ -10,283 +14,250 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
-
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / "scripts"))
-import verify_submission as v  # noqa: E402
-
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import verify_submission as v
+ROOT = Path(os.environ.get("YM_VERIFIER_TEST_ROOT", Path(__file__).resolve().parents[1]))
 
 class SourceContractTests(unittest.TestCase):
-    def test_provenance_records_git_state(self):
-        commit = subprocess.CompletedProcess(["git"], 0, "abc123\n", "")
-        dirty = subprocess.CompletedProcess(["git"], 0, " M README.md\n", "")
-        with patch.object(v, "_run", side_effect=[commit, dirty]) as call:
-            record = v.provenance(ROOT)
-        self.assertEqual(record["git_commit"], "abc123")
-        self.assertTrue(record["git_worktree_dirty"])
-        self.assertEqual(call.call_args_list[0].args[0],
-                         ["git", "rev-parse", "HEAD"])
-        self.assertEqual(call.call_args_list[1].args[0],
-                         ["git", "status", "--porcelain"])
+    def inventory(self):
+        return v.load_inventory(ROOT)
 
-    def test_pdf_is_identical_to_pinned_clay_source(self):
-        record = v.load_inventory(ROOT)
-        self.assertEqual(record["source"]["git_blob_sha1"], v.PDF_BLOB_SHA1)
-        self.assertEqual(len(record["requirements"]), len(v.CLAUSE_IDS))
-
-    def test_new_observable_definitions_remain_necessary_only(self):
-        inventory = v.load_inventory(ROOT)
-        by_id = {e["id"]: e for e in inventory["requirements"]}
-        for key in ("gauge-observables", "renormalized-filtration",
-                    "ultraviolet", "universal-existence"):
-            self.assertEqual(by_id[key]["status"], "partial")
-        for key in ("ym-identification", "nontrivial"):
-            self.assertEqual(by_id[key]["status"], "missing")
-        for key in ("stress-tensor", "ope"):
-            self.assertEqual(by_id[key]["status"], "partial")
-        report, rc = v.verify(ROOT, "clay",
-                              theorem="YangMills.qft_exists_implies_groupwise_qft")
-        self.assertEqual(rc, 2)
-        self.assertFalse(report["clay_certificate"])
-        self.assertIn("ym-identification", report["incomplete_clauses"])
-
-    def test_group_dependent_lattice_does_not_unlock_certificate(self):
-        inventory = v.load_inventory(ROOT)
-        by_id = {x["id"]: x for x in inventory["requirements"]}
-        self.assertEqual(by_id["ym-identification"]["status"], "missing")
-        self.assertIn("YangMills.periodicFourClassAction",
-                      by_id["ym-identification"]["lean"])
-        self.assertIn("YangMills.qft_exists_implies_unlinked_group_checks",
-                      by_id["universal-existence"]["lean"])
-        report, rc = v.verify(ROOT, "clay")
-        self.assertEqual(rc, 2)
-        self.assertFalse(report["clay_certificate"])
-        for filename in ("YangMills/GaugeHolonomy.lean",
-                         "YangMills/LatticeGaugeAction.lean",
-                         "YangMills/PeriodicLattice4.lean"):
-            self.assertIn(filename,
-                          report["provenance"]["local_fingerprints_sha256"])
-
-    def test_qft_nonvacuum_result_does_not_identify_yang_mills(self):
-        inventory = v.load_inventory(ROOT)
-        requirement = next(e for e in inventory["requirements"]
-                           if e["id"] == "nontrivial")
-        theorem = "YangMills.GappedWightmanTheory.hasFieldExcitation"
-        self.assertIn(theorem, requirement["lean"])
-        self.assertEqual(requirement["status"], "missing")
-        report, code = v.verify(ROOT, "clay", theorem=theorem)
-        self.assertEqual(code, 2)
-        self.assertFalse(report["clay_certificate"])
-        self.assertIn("nontrivial", report["incomplete_clauses"])
-        self.assertIn("YangMills/Nontriviality.lean",
-                      report["provenance"]["local_fingerprints_sha256"])
-
-    def test_footnote_expectation_is_not_a_mandatory_theorem(self):
-        inventory = v.load_inventory(ROOT)
-        by_id = {e["id"]: e for e in inventory["requirements"]}
-        hint = by_id["renormalized-filtration"]
-        self.assertEqual(hint["acceptance_role"], "interpretive_guidance")
-        self.assertEqual(hint["source_basis"], "section_4_footnote_1")
-        report, code = v.verify(ROOT, "clay")
-        self.assertEqual(code, 2)
-        self.assertIn("renormalized-filtration", report["interpretive_guidance"])
-        self.assertNotIn("renormalized-filtration", report["incomplete_clauses"])
-        self.assertEqual(len(report["incomplete_clauses"]), 11)
-
-    def test_promoting_footnote_expectation_to_hard_requirement_fails(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            inventory = json.loads((root / v.MANIFEST).read_text())
-            hint = next(e for e in inventory["requirements"]
-                        if e["id"] == "renormalized-filtration")
-            hint["acceptance_role"] = "required"
-            (root / v.MANIFEST).write_text(json.dumps(inventory))
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 1)
-            self.assertEqual(report["status"], "INVALID_SPECIFICATION")
-            self.assertIn("changed acceptance scope", report["error"])
-
-    def test_relabeling_source_section_fails(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            inventory = json.loads((root / v.MANIFEST).read_text())
-            requirement = next(e for e in inventory["requirements"]
-                               if e["id"] == "physical-gap")
-            requirement["source_basis"] = "section_4_footnote_1"
-            (root / v.MANIFEST).write_text(json.dumps(inventory))
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 1)
-            self.assertIn("changed acceptance scope", report["error"])
-
-    def test_literal_and_interpretive_lean_have_separate_provenance(self):
-        inventory = v.load_inventory(ROOT)
-        levels = {entry["id"]: entry["formalization_layer"]
-                  for entry in inventory["requirements"]}
-        self.assertEqual({key for key, value in levels.items()
-                          if value == "literal_form"},
-                         {"group", "spacetime", "physical-gap",
-                          "universal-existence"})
-        self.assertEqual(levels["qft-axioms"], "cited_framework")
-        self.assertEqual(levels["ym-identification"], "interpretation_needed")
-        self.assertEqual(levels["gauge-observables"], "interpretation_needed")
-        self.assertEqual(levels["renormalized-filtration"], "nonbinding_guidance")
-        self.assertIn("PDF_EXPLICIT", (ROOT / "YangMills/PDFLiteral.lean").read_text())
-        self.assertIn("YangMills.PDFLiteral.HamiltonianKillsVacuum",
-                      next(e for e in inventory["requirements"]
-                           if e["id"] == "physical-gap")["lean"])
-        self.assertIn("interpretationStillNeeded",
-                      (ROOT / "YangMills/SourceClassification.lean").read_text())
-        report, code = v.verify(ROOT, "clay")
-        self.assertEqual(code, 2)
-        self.assertEqual(report["formalization_layers"], levels)
-        self.assertFalse(report["clay_certificate"])
-
-    def test_cannot_relabel_unfinished_interpretation_as_pdf_literal(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            inventory = json.loads((root / v.MANIFEST).read_text())
-            target = next(e for e in inventory["requirements"]
-                          if e["id"] == "ym-identification")
-            target["formalization_layer"] = "literal_form"
-            (root / v.MANIFEST).write_text(json.dumps(inventory))
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 1)
-            self.assertEqual(report["status"], "INVALID_SPECIFICATION")
-            self.assertIn("provenance classification", report["error"])
-
-    def test_cannot_change_literal_quantifier_into_an_interpretation(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            inventory = json.loads((root / v.MANIFEST).read_text())
-            target = next(e for e in inventory["requirements"]
-                          if e["id"] == "group")
-            target["formalization_layer"] = "interpretation_needed"
-            (root / v.MANIFEST).write_text(json.dumps(inventory))
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 1)
-            self.assertIn("provenance classification", report["error"])
-
-    def test_full_clay_certificate_fails_closed_even_without_proof(self):
-        report, code = v.verify(ROOT, "clay")
-        self.assertEqual(code, 2)
-        self.assertEqual(report["status"], "CLAY_CERTIFICATION_BLOCKED")
-        self.assertFalse(report["clay_certificate"])
-        self.assertIn("ym-identification", report["incomplete_clauses"])
-
-    def test_adversarial_status_metadata_cannot_enable_clay(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            inventory = json.loads((root / v.MANIFEST).read_text())
-            for req in inventory["requirements"]:
-                req["status"] = "formalized"
-            (root / v.MANIFEST).write_text(json.dumps(inventory))
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 2)
-            self.assertFalse(report["clay_certificate"])
-            self.assertEqual(report["incomplete_clauses"], [])
-
-    def test_specification_readiness_does_not_require_existence_proof(self):
-        report, code = v.verify(ROOT, "specification")
-        self.assertEqual(code, 2)
-        self.assertEqual(report["status"], "SPECIFICATION_INCOMPLETE")
-        self.assertFalse(report["existence_proof_required_for_specification"])
-        self.assertEqual(report["proof_submission_status"], "not_submitted")
-        self.assertEqual(report["kernel_verification_status"], "not_run")
-        self.assertFalse(report["full_target_defined"])
-
-    def test_supplied_proof_cannot_bypass_missing_specification(self):
-        report, code = v.verify(ROOT, "specification", proof_file=Path("Candidate.lean"))
-        self.assertEqual(code, 2)
-        self.assertEqual(report["proof_submission_status"],
-                         "not_evaluated_specification_incomplete")
-        self.assertEqual(report["external_acceptance_status"], "not_assessed")
-
-    def test_tampered_pdf_is_rejected(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            with (root / v.PDF_RELATIVE).open("ab") as fh:
-                fh.write(b"\nThis PDF was modified.\n")
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 1)
-            self.assertEqual(report["status"], "INVALID_SPECIFICATION")
-            self.assertFalse(report["pdf_hash_verified"])
-
-    def test_removing_requirement_cannot_silently_reduce_scope(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            root = self.copy_source(Path(tmp))
-            inventory = json.loads((root / v.MANIFEST).read_text())
-            inventory["requirements"] = [r for r in inventory["requirements"]
-                                         if r["id"] != "ultraviolet"]
-            (root / v.MANIFEST).write_text(json.dumps(inventory))
-            report, code = v.verify(root, "clay")
-            self.assertEqual(code, 1)
-            self.assertIn("incomplete", report["error"])
-
-    def test_qft_only_never_sets_clay_certificate(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            proof = Path(tmp) / "Candidate.lean"
-            proof.write_text("theorem Foo : True := True.intro\n")
-            compile_ok = subprocess.CompletedProcess(["lake"], 0, "", "")
-            audit_ok = subprocess.CompletedProcess(["lean"], 0, "QFT_KERNEL_CHECK_PASSED: Foo\n", "")
-            # Git provenance has its own subprocesses; these responses model
-            # only the build, candidate compilation and independent inspector.
-            with patch.object(v, "provenance", return_value={}), \
-                    patch.object(v, "_run", side_effect=[compile_ok, compile_ok, audit_ok]) as call:
-                report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
-            self.assertEqual(code, 0)
-            self.assertTrue(report["qft_only_certificate"])
-            self.assertEqual(report["kernel_verification_status"], "passed_declared_qft_target")
-            self.assertEqual(report["specification_readiness"], "incomplete")
-            self.assertEqual(report["semantic_review_status"], "unresolved_findings")
-            self.assertEqual(report["external_acceptance_status"], "not_assessed")
-            self.assertFalse(report["clay_certificate"])
-            self.assertEqual(call.call_count, 3)
-            submitted_copy = Path(call.call_args_list[1].args[0][-1])
-            self.assertFalse(submitted_copy.exists())
-
-    def test_qft_wrong_target_or_failed_audit_cannot_pass(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            proof = Path(tmp) / "Wrong.lean"
-            proof.write_text("theorem Foo : True := True.intro\n")
-            ok = subprocess.CompletedProcess(["lake", "build"], 0, "", "")
-            reject = subprocess.CompletedProcess(["lean"], 1, "REJECTED: wrong type\n", "")
-            with patch.object(v, "provenance", return_value={}), \
-                    patch.object(v, "_run", side_effect=[ok, ok, reject]):
-                report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Foo")
-            self.assertEqual(code, 1)
-            self.assertEqual(report["status"], "PROOF_REJECTED")
-            self.assertFalse(report["qft_only_certificate"])
-            self.assertIsNone(report["admitted_target"])
-
-    def test_spoofed_success_message_in_candidate_is_not_evidence(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            proof = Path(tmp) / "Spoof.lean"
-            proof.write_text('theorem Fake : True := True.intro\n')
-            compiled = subprocess.CompletedProcess(["lean"], 0, "QFT-and-gap target checked.\n", "")
-            inspect_reject = subprocess.CompletedProcess(["lean"], 1, "REJECTED: wrong type\n", "")
-            with patch.object(v, "provenance", return_value={}), \
-                    patch.object(v, "_run", side_effect=[compiled, compiled, inspect_reject]):
-                report, code = v.verify(ROOT, "qft", proof_file=proof, theorem="Fake")
-            self.assertEqual(code, 1)
-            self.assertEqual(report["status"], "PROOF_REJECTED")
-            self.assertFalse(report["qft_only_certificate"])
-
-    def test_unsafe_theorem_name_is_not_interpreted_as_code(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            proof = Path(tmp) / "Proof.lean"
-            proof.write_text("theorem Foo : True := True.intro\n")
-            report, code = v.verify(ROOT, "qft", proof_file=proof,
-                                    theorem="Foo\n#print axioms Mathlib")
-            self.assertEqual(code, 1)
-            self.assertFalse(report["qft_only_certificate"])
+    def ready_inventory(self):
+        record = copy.deepcopy(self.inventory())
+        for row in record['requirements']:
+            if row['acceptance_role'] == 'required': row['status'] = 'formalized'
+        return record
 
     @staticmethod
-    def copy_source(root: Path) -> Path:
-        (root / "source").mkdir()
-        shutil.copy2(ROOT / v.PDF_RELATIVE, root / v.PDF_RELATIVE)
-        shutil.copy2(ROOT / v.MANIFEST, root / v.MANIFEST)
+    def cp(code=0, text=''):
+        return subprocess.CompletedProcess(['fixture'], code, text, '')
+
+    def run_ready(self, claim, proof_file=None, theorem=None, outputs=None, root=ROOT):
+        responses = outputs or [self.cp(), self.cp(text='YM_SPECIFICATION_SHAPE_PASSED: fixture')]
+        with patch.object(v, 'YM_ADMISSION_REVIEWED', True), \
+             patch.object(v, 'load_inventory', return_value=self.ready_inventory()), \
+             patch.object(v, 'provenance', return_value={}), \
+             patch.object(v, '_run', side_effect=responses) as calls:
+            report, rc = v.verify(root, claim, proof_file, theorem)
+        return report, rc, calls
+
+    @staticmethod
+    def copy_source(root):
+        (root/'source').mkdir()
+        shutil.copy2(ROOT/v.PDF_RELATIVE, root/v.PDF_RELATIVE)
+        shutil.copy2(ROOT/v.MANIFEST, root/v.MANIFEST)
         return root
 
+    def tamper(self, change):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_source(Path(tmp))
+            manifest = json.loads((root/v.MANIFEST).read_text())
+            change(manifest)
+            (root/v.MANIFEST).write_text(json.dumps(manifest))
+            return v.verify(root, 'clay')
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_pdf_pinned(self):
+        self.assertEqual(self.inventory()['source']['sha256'],v.PDF_SHA256)
+        self.assertEqual(len(self.inventory()['requirements']),len(v.CLAUSE_IDS))
+
+    def test_provenance_git_state(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp); (root/'.git').mkdir()
+            with patch.object(v,'_run',side_effect=[self.cp(text='abc\n'),self.cp(text=' M foo\n')]):
+                p=v.provenance(root)
+            self.assertEqual(p['git_commit'],'abc'); self.assertTrue(p['git_worktree_dirty'])
+
+    def test_all_model_sources_fingerprinted(self):
+        p=v.provenance(ROOT)['local_fingerprints_sha256']
+        self.assertIn('YangMills/FilteredGeneratedCandidate.lean',p)
+        self.assertIn('YangMills/FullBVActualNilpotency.lean',p)
+
+    def test_footnote_guidance_not_requirement(self):
+        rows={r['id']:r for r in self.inventory()['requirements']}
+        self.assertEqual(rows['renormalized-filtration']['acceptance_role'],'interpretive_guidance')
+        self.assertNotIn('renormalized-filtration',v.NORMATIVE_SOURCE_BASIS)
+
+    def test_footnote_cannot_be_promoted(self):
+        report,rc=self.tamper(lambda m:next(r for r in m['requirements'] if r['id']=='renormalized-filtration').update(acceptance_role='required'))
+        self.assertEqual(rc,1); self.assertIn('acceptance scope',report['error'])
+
+    def test_source_basis_cannot_change(self):
+        report,rc=self.tamper(lambda m:next(r for r in m['requirements'] if r['id']=='physical-gap').update(source_basis='section_4_footnote_1'))
+        self.assertEqual(rc,1); self.assertIn('acceptance scope',report['error'])
+
+    def test_layer_cannot_be_relabelled(self):
+        report,rc=self.tamper(lambda m:next(r for r in m['requirements'] if r['id']=='ym-identification').update(formalization_layer='literal_form'))
+        self.assertEqual(rc,1); self.assertIn('provenance classification',report['error'])
+
+    def test_group_literal_layer_preserved(self):
+        report,rc=self.tamper(lambda m:next(r for r in m['requirements'] if r['id']=='group').update(formalization_layer='interpretation_needed'))
+        self.assertEqual(rc,1); self.assertIn('provenance classification',report['error'])
+
+    def test_missing_clause_rejected(self):
+        report,rc=self.tamper(lambda m:m['requirements'].pop())
+        self.assertEqual(rc,1); self.assertIn('incomplete',report['error'])
+
+    def test_duplicate_clause_rejected(self):
+        report,rc=self.tamper(lambda m:m['requirements'].append(m['requirements'][0]))
+        self.assertEqual(rc,1); self.assertIn('duplicated',report['error'])
+
+    def test_tampered_pdf_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=self.copy_source(Path(tmp))
+            with (root/v.PDF_RELATIVE).open('ab') as f:f.write(b'changed')
+            report,rc=v.verify(root,'specification')
+        self.assertEqual(rc,1); self.assertFalse(report['pdf_hash_verified'])
+
+    def test_status_labels_alone_cannot_activate(self):
+        with patch.object(v,'load_inventory',return_value=self.ready_inventory()),patch.object(v,'YM_ADMISSION_REVIEWED',False):
+            report,rc=v.verify(ROOT,'clay')
+        self.assertEqual(rc,2); self.assertEqual(report['incomplete_clauses'],[])
+        self.assertEqual(report['specification_readiness'],'incomplete'); self.assertFalse(report['clay_certificate'])
+
+    def test_disabled_specification_needs_no_existence_proof(self):
+        with patch.object(v,'YM_ADMISSION_REVIEWED',False): report,rc=v.verify(ROOT,'specification')
+        self.assertEqual(rc,2); self.assertFalse(report['existence_proof_required_for_specification'])
+        self.assertEqual(report['kernel_verification_status'],'not_run')
+
+    def test_proof_does_not_bypass_disabled_gate(self):
+        with patch.object(v,'YM_ADMISSION_REVIEWED',False):report,rc=v.verify(ROOT,'clay',Path('absent.lean'),'Fake')
+        self.assertEqual(rc,2); self.assertEqual(report['proof_submission_status'],'not_evaluated_specification_incomplete')
+
+    def test_ready_without_proof(self):
+        report,rc,_=self.run_ready('specification')
+        self.assertEqual(rc,0); self.assertEqual(report['status'],'SPECIFICATION_READY')
+        self.assertEqual(report['proof_submission_status'],'not_submitted')
+        self.assertEqual(report['kernel_verification_status'],'not_run')
+        self.assertEqual(report['semantic_review_status'],'reviewed_fixed_specification')
+        self.assertEqual(report['external_acceptance_status'],'not_assessed'); self.assertFalse(report['clay_certificate'])
+
+    def test_ready_ym_no_proof_distinct(self):
+        report,rc,_=self.run_ready('yangmills')
+        self.assertEqual(rc,2); self.assertEqual(report['status'],'PROOF_NOT_SUBMITTED')
+        self.assertEqual(report['specification_readiness'],'ready'); self.assertFalse(report['yang_mills_kernel_certificate'])
+
+    def test_ready_wrong_compiled_definition_rejected(self):
+        report,rc,_=self.run_ready('specification',outputs=[self.cp(),self.cp(1,'REJECTED: wrong target')])
+        self.assertEqual(rc,1); self.assertEqual(report['specification_shape_status'],'rejected')
+
+    def assert_ready_invalid_submission(self, report, rc):
+        self.assertEqual(rc,1)
+        self.assertEqual(report['status'],'INVALID_PROOF_SUBMISSION')
+        self.assertEqual(report['proof_submission_status'],'invalid_arguments')
+        self.assertEqual(report['specification_readiness'],'ready')
+        self.assertTrue(report['full_target_defined'])
+        self.assertEqual(report['specification_shape_status'],'passed')
+        self.assertEqual(report['kernel_verification_status'],'not_run')
+        self.assertFalse(report['yang_mills_kernel_certificate'])
+        self.assertFalse(report['clay_certificate'])
+
+    def test_ready_theorem_without_file_invalid(self):
+        report,rc,_=self.run_ready('yangmills',theorem='Foo')
+        self.assert_ready_invalid_submission(report,rc)
+
+    def test_ready_file_without_theorem_invalid(self):
+        report,rc,_=self.run_ready('yangmills',proof_file=Path('Candidate.lean'))
+        self.assert_ready_invalid_submission(report,rc)
+
+    def test_ready_bad_theorem_name_invalid(self):
+        report,rc,_=self.run_ready('yangmills',Path('Candidate.lean'),'Foo\n#eval 1')
+        self.assert_ready_invalid_submission(report,rc)
+
+    def test_ready_nonlean_file_invalid(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proof=Path(tmp)/'Candidate.txt'; proof.write_text('not a Lean source')
+            report,rc,_=self.run_ready('yangmills',proof,'Foo')
+        self.assert_ready_invalid_submission(report,rc)
+
+    def test_ready_absent_file_invalid(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            report,rc,_=self.run_ready('yangmills',Path(tmp)/'absent.lean','Foo')
+        self.assert_ready_invalid_submission(report,rc)
+
+    def test_ready_unreadable_file_invalid(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proof=Path(tmp)/'Candidate.lean'; proof.write_text('theorem Foo : True := True.intro')
+            original=Path.read_text
+            def read(path,*args,**kwargs):
+                if path==proof: raise PermissionError('fixture cannot read proof')
+                return original(path,*args,**kwargs)
+            with patch.object(Path,'read_text',read):
+                report,rc,_=self.run_ready('yangmills',proof,'Foo')
+        self.assert_ready_invalid_submission(report,rc)
+
+    def test_ready_shape_marker_without_success_rejected(self):
+        report,rc,_=self.run_ready('specification',outputs=[self.cp(),self.cp(1,'YM_SPECIFICATION_SHAPE_PASSED: spoof')])
+        self.assertEqual(rc,1); self.assertFalse(report['full_target_defined'])
+
+    def test_build_failure_no_readiness(self):
+        report,rc,_=self.run_ready('specification',outputs=[self.cp(1,'build fail')])
+        self.assertEqual(rc,1); self.assertEqual(report['status'],'BUILD_FAILED')
+
+    def proof_case(self,mode,inspection):
+        with tempfile.TemporaryDirectory() as tmp:
+            fixture=Path(tmp)/'repo'; fixture.mkdir(); self.copy_source(fixture)
+            proof=Path(tmp)/'Candidate.lean'; proof.write_text('theorem Foo : True := True.intro\n')
+            if mode=='qft':
+                with patch.object(v,'provenance',return_value={}),patch.object(v,'_run',side_effect=[self.cp(),self.cp(),inspection],root=fixture) as calls:
+                    report,rc=v.verify(fixture,mode,proof,'Foo')
+            else:
+                report,rc,calls=self.run_ready(mode,proof,'Foo',[self.cp(),self.cp(text='YM_SPECIFICATION_SHAPE_PASSED:'),self.cp(),inspection],root=fixture)
+        return report,rc,calls
+
+    def test_qft_certificate_never_clay(self):
+        report,rc,calls=self.proof_case('qft',self.cp(text='QFT_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,0); self.assertTrue(report['qft_only_certificate']); self.assertFalse(report['clay_certificate'])
+        self.assertFalse(report['yang_mills_kernel_certificate']); self.assertEqual(calls.call_count,3)
+
+    def test_qft_mode_does_not_misreport_global_ym_readiness(self):
+        # The QFT branch deliberately never runs the YM definition-shape check.
+        # This remains true even after the separately trusted YM gate activates.
+        with patch.object(v,'YM_ADMISSION_REVIEWED',True):
+            report,rc,calls=self.proof_case('qft',self.cp(text='QFT_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,0)
+        self.assertEqual(report['specification_readiness'],'not_assessed_in_qft_mode')
+        self.assertIsNone(report['full_target_defined'])
+        self.assertEqual(report['semantic_review_status'],'not_assessed_in_qft_mode')
+        self.assertEqual(report['specification_shape_status'],'not_run')
+        self.assertEqual(calls.call_count,3)
+        self.assertEqual(report['external_acceptance_status'],'not_assessed')
+        self.assertFalse(report['clay_certificate'])
+
+    def test_ym_kernel_not_external_certificate(self):
+        report,rc,calls=self.proof_case('yangmills',self.cp(text='YM_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,0); self.assertTrue(report['yang_mills_kernel_certificate'])
+        self.assertFalse(report['clay_certificate']); self.assertFalse(report['qft_only_certificate'])
+        self.assertEqual(report['external_acceptance_status'],'not_assessed')
+        self.assertEqual(report['admitted_target'],v.YM_TARGET)
+        self.assertIn('yangmills',calls.call_args_list[-1].args[0])
+
+    def test_clay_alias_is_kernel_only(self):
+        report,rc,_=self.proof_case('clay',self.cp(text='YM_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,0); self.assertFalse(report['clay_certificate']); self.assertTrue(report['yang_mills_kernel_certificate'])
+
+    def test_wrong_mode_marker_rejected(self):
+        report,rc,_=self.proof_case('yangmills',self.cp(text='QFT_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,1); self.assertEqual(report['status'],'PROOF_REJECTED')
+
+    def test_qft_failed_audit_rejected(self):
+        report,rc,_=self.proof_case('qft',self.cp(1,'REJECTED: wrong type'))
+        self.assertEqual(rc,1); self.assertFalse(report['qft_only_certificate'])
+
+    def test_spoofed_compilation_message_not_evidence(self):
+        report,rc,_=self.proof_case('yangmills',self.cp(1,'YM_KERNEL_CHECK_PASSED: spoof'))
+        self.assertEqual(rc,1); self.assertFalse(report['yang_mills_kernel_certificate'])
+
+    def test_unsafe_theorem_name_rejected(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            proof=Path(tmp)/'Proof.lean';proof.write_text('theorem Foo : True := True.intro')
+            report,rc=v.verify(ROOT,'qft',proof,'Foo\n#print axioms Mathlib')
+        self.assertEqual(rc,1); self.assertFalse(report['qft_only_certificate'])
+        self.assertEqual(report['status'],'INVALID_PROOF_SUBMISSION')
+        self.assertEqual(report['proof_submission_status'],'invalid_arguments')
+        self.assertEqual(report['specification_readiness'],'not_assessed_in_qft_mode')
+
+    def test_unknown_claim_rejected(self):
+        report,rc=v.verify(ROOT,'unreviewed-mode')
+        self.assertEqual(rc,1);self.assertIn('Unknown claim',report['error'])
+
+if __name__=='__main__':unittest.main()

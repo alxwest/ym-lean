@@ -1,5 +1,6 @@
 import Lean
 import YangMills.Statement
+import YangMills.YangMillsSpecification
 
 /-!
 # Audit submitted proofs
@@ -11,7 +12,8 @@ are Lean's usual `propext`, `Classical.choice`, and `Quot.sound`.
 `#audit_axioms declaration` audits dependencies; it does not check a target.
 `#check_qft_proof declaration` additionally requires exactly the closed
 `QFTExistenceAndMassGap` proposition. A conditional theorem cannot pass it.
-Neither command certifies the as-yet-unspecified Yang–Mills identification.
+These QFT-only commands do not verify the full Yang--Mills target; the
+separate exact-target command below does. Neither asserts external acceptance.
 -/
 
 open Lean Elab Command Meta
@@ -41,31 +43,35 @@ elab "#check_qft_proof " id:ident : command => do
   auditDeclaration name
   logInfo "QFT-and-gap target checked. This is not a certification of Yang–Mills."
 
-/-!
-# Full Clay certification gate (fail closed)
+/-! Exact Yang--Mills kernel admission is separate from external/CMI acceptance.
+The explicit trusted switch records the completed definition review; it does not supply an existence proof or external acceptance. -/
+private def yangMillsAdmissionReviewed : Bool := true
 
-The repository deliberately has no declaration encoding the entire Jaffe--Witten
-problem. In particular, `QFTExistenceAndMassGap` does not connect its fields to
-Yang--Mills observables for a specified gauge group. A checker that accepted a
-proof of it as a Clay certificate would be unsound as a certification *claim*.
-
-`#check_clay_proof` must reject every submission until a separately reviewed,
-fixed, full-strength mathematical statement is actually formalized. Do not
-replace this gate with a check for an arbitrary user-supplied `Prop` or a
-placeholder equivalent to `True`.
--/
-
-/-- Report readiness without incorrectly calling a successful library build a proof. -/
-elab "#clay_certification_status" : command => do
-  logInfo "CLAY_CERTIFICATION_BLOCKED: Concrete G-valued four-dimensional lattice gauge invariants and QFT n-point functions are defined, but the SAME quantum theory has not been identified with renormalized Yang--Mills for G. Required YM identification, renormalized correspondence, stress tensor, prescribed UV/OPE and cited-standard adequacy remain incomplete definitions/equivalence work. Missing existence proofs are not specification blockers. See CERTIFICATION.md."
-
-/-- Intentionally rejects *every* submitted theorem. There is currently no
-mathematically complete closed Clay target to compare against, so accepting
-any declaration would amount to certifying an unreviewed weaker statement.
-After the missing mathematics is developed and the fixed target independently
-reviewed, replace this with an exact-type check plus `auditDeclaration`. -/
-elab "#check_clay_proof " candidate:ident : command => do
+private def checkYangMillsDeclaration (candidate : Syntax) : CommandElabM Unit := do
+  unless yangMillsAdmissionReviewed do
+    throwError "CLAY_CERTIFICATION_BLOCKED: reviewed-target admission is not activated."
   let names ← liftCoreM <| realizeGlobalConstWithInfos candidate
-  unless names.length == 1 do
-    throwError "Expected one unambiguous declaration."
-  throwError "CLAY_CERTIFICATION_BLOCKED: no full, reviewed, closed Yang--Mills Millennium statement is encoded in this library. QFTExistenceAndMassGap is insufficient. See CERTIFICATION.md."
+  unless names.length == 1 do throwError "Expected one unambiguous declaration."
+  let name := names[0]!
+  let info ← liftCoreM <| getConstInfo name
+  let .thmInfo proofInfo := info
+    | throwError "Proof audit rejected: submitted declaration is not a theorem."
+  let [u] := proofInfo.levelParams
+    | throwError "Wrong target: Yang--Mills theorem must have ONE universe parameter."
+  unless proofInfo.type == mkConst `YangMills.YangMillsExistenceAndMassGap [.param u] do
+    throwError "Wrong target: expected exact universe-polymorphic YangMillsExistenceAndMassGap, without fixed universes or hypotheses."
+  auditDeclaration name
+  logInfo "YM_KERNEL_CHECK_PASSED: exact declared Yang--Mills target; external acceptance not assessed; not a Clay certificate."
+
+elab "#check_yang_mills_proof " candidate:ident : command =>
+  checkYangMillsDeclaration candidate
+
+/-- Compatibility command name; output is a mathematical kernel result only. -/
+elab "#check_clay_proof " candidate:ident : command =>
+  checkYangMillsDeclaration candidate
+
+elab "#clay_certification_status" : command => do
+  if yangMillsAdmissionReviewed then
+    logInfo "YM_SPECIFICATION_READY: reviewed fixed target defined; existence proof not submitted by this command; kernel proof verification not run; external acceptance not assessed; no Clay certificate."
+  else
+    logInfo "CLAY_CERTIFICATION_BLOCKED: reviewed-target admission is not activated."

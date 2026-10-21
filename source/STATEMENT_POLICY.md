@@ -1,60 +1,54 @@
-# Literal-statement verification policy
+# Current statement policy
 
-**Normative document:** [`yangmills.pdf`](yangmills.pdf), Jaffe–Witten, Section 4 (printed page 6). The source PDF has a pinned SHA-256 digest enforced by the CLI.
+The fixed target is `YangMills.YangMillsExistenceAndMassGap.{u}`, the closed
+all-group assembly of `FilteredGeneratedCandidate`. The specification is a
+complete reviewed proposal; existence and external acceptance are separate.
+The controlling source crosswalk and fidelity/adversarial arguments are
+`FINAL_FIDELITY_ARGUMENT.md`, `CURRENT_JW4_READINESS_CROSSWALK.md` and
+`FINAL_ADVERSARIAL_REVIEW.md`. Earlier implementation reviews are historical
+snapshots and do not create fresh admission gates.
 
-## What may be a pass/fail condition
+Every required meaning is fixed by concrete mathematical definitions. Witnesses
+may include fields, operators, coefficient distributions, formal corrections
+and constructions, but cannot supply the meaning of Yang–Mills, the prescribed
+predictions or a freely selected correctness predicate. No existence proof,
+axiom or assumed conclusion is added to fill a missing definition.
 
-A full certificate may demand only mathematical consequences of the written theorem, its Section 4 explanation, and the axiom systems explicitly referenced in the paper. In particular:
+The physical theory is the same object throughout: actual group/bracket and
+master action, generated flow and quantum differential, corrected local
+observable correspondence, Ward/CS normalization, vacuum words and OPE,
+stress tensor, charge limits and physical Hamiltonian. Quantum operator
+relations and lower-degree mixing are allowed. The full fixed Ward and CS
+identities remain required; diagnostic finite projections are not substituted
+for them.
 
-- The Section 4 theorem asks for a nontrivial quantum Yang–Mills theory on four-dimensional R^4 for every compact simple gauge group G, with a positive mass gap and axioms at least as strong as the cited standards.
-- The accompanying Section 4 text specifies correspondence of local quantum fields to gauge-invariant local curvature polynomials and their covariant derivatives; short-distance agreement with asymptotic freedom and perturbative renormalization, including stress tensor and operator product expansion; and a finite mass defined using the Hamiltonian's spectral gap.
-- Section 4 footnote 1 **rejects naive one-to-one matching** of classical polynomials and quantum operators. It **expects** a relationship between spaces filtered by dimension. This expectation informs interpretation, but the particular exact filtered isomorphism is **not** a standalone mandatory theorem.
-- External references [45,35] provide mathematical meanings for the cited axiomatic standards. A candidate formalization must identify any other external definitions it relies on, and justify fidelity to the written conditions.
+The auxiliary Gaussian prescription identifies perturbative predictions and
+is justified by the same-action gauge-fixing/CME/nilpotency and exact
+source contraction/Fourier/projector dictionary. It is not a mandated
+nonperturbative construction method. The original admissible canonical low
+and high boundary rows are retained; their smooth determinacy and actual
+insertion/OPE uniqueness are supporting theorems. No stronger all-coordinate
+boundary clause is silently imposed.
 
-## What cannot be added as an assumption or required proof strategy
+C∞ means the pinned ContDiff order infinity, not analytic top. Exact smooth
+completions can have divergent formal jets and flat terms. Genuine complex
+analytic Wightman continuation conditions are retained. The stress dictionary
+uses degree four; the BRST response has degree five. The trace anomaly centers
+both actual fields in the same actual vacuum, equivalently leaving only the
+computed vacuum identity scalar. It does not impose absolute local vacuum
+energy or an extra positive cutoff condition.
 
-- No specific four-dimensional lattice, Wilson character, central plaquette function, Haar product measure, regulator, or continuum-limit technique is imposed as a universal obligation.
-- No requirement for different Hilbert spaces for distinct G; the same carrier may be reused if it meets the actual requirements for each G.
-- No independent requirement for confinement, an isolated one-particle state, or chiral-symmetry breaking (the statement treats related topics as motivations/extensions).
-- No arbitrary non-Gaussian criterion, extra numerical bounds, coefficients not justified by the cited perturbative predictions, or unreferenced physical conditions may be added as admission conditions.
-- No missing condition may be assumed true, replaced by a free predicate, supplied by the proof author's choice of meanings, or omitted as inconvenient.
+The source footnote's dimension-filtration expectation is interpretive guidance,
+not a demanded quantum bijection or universal classification theorem. Neither
+beta-representative uniqueness, a general cohomology classification, a PVM/SNAG
+construction, OS reconstruction of an already complete Minkowski model, nor
+construction/restoration of the existence witnesses is an extra readiness gate.
+Any stronger result claimed independently must receive its own proof.
 
-Formalizing a required condition is **not** an assumption that the condition holds. The proof must establish it. The mathematical definition must be fixed and reviewed before acceptance.
-
-## Explicit Lean versus interpretation: a second provenance axis
-
-[FORMALIZATION_LAYERS.md](FORMALIZATION_LAYERS.md) and
-[YangMills/PDFLiteral.lean](../YangMills/PDFLiteral.lean) distinguish
-the formulae directly transcribed from Section 4 from mathematical
-frameworks cited by Section 4, interpretive definitions for its
-physically meaningful terms, and optional proof constructions.
-
-An "interpretation needed" label does **not** mean a new assumption
-is authorised; it means the full mathematical definition is still
-missing or needs independent fidelity review. An explicit requirement
-may legitimately be marked "interpretation needed", because the prose
-does not uniquely supply its entire formal meaning.
-
-The verifier pins formalization_layer as well as acceptance_role,
-and reports both. Neither provenance labels nor text coverage can
-unlock the full Clay checker.
-
-## Traceability contract
-
-`requirements.json` distinguishes `required` Section 4 clauses from `interpretive_guidance` in footnote 1. The verifier fixes each clause's source basis in its own code, so tampering with the manifest cannot silently turn a suggested method into a strict certification requirement. A complete coverage label never automatically unlocks the Clay checker.
-
-New formal lemmas about group-valued links, plaquette gauge invariance, or Wilson holonomy are legitimate **optional infrastructure**, not conditions every valid solution must use. The group-specific identification in the theorem is required because it says **Yang–Mills for G**; this does not imply a particular construction or presentation.
-
-Any proposed full Lean statement must come with a reviewable equivalence/sufficiency argument relative to the PDF and cited frameworks. The kernel certifies derivations from that Lean statement; it cannot independently decide whether a chosen formalization faithfully represents physics.
-
-**Current status:** `CLAY_CERTIFICATION_BLOCKED`. No complete faithful mathematical statement or proof is yet certified.
-
-
-## Specification readiness is independent of proof submission
-
-Missing definitions and missing supporting equivalence/fidelity arguments block
-specification readiness. Absence of an existence proof does not. The executable
-`--claim specification` assessment returns `SPECIFICATION_INCOMPLETE` for the
-current missing meanings even when no proof file is supplied. Kernel verification
-of a submitted theorem, semantic review of its fixed target, and external/CMI
-acceptance are separate report fields. See `SPECIFICATION_REVIEW.md`.
+The source registry preserves required versus guidance roles and provenance
+classifications. Its status labels do not establish semantic fidelity or
+enable admission by themselves. A future proof must have the exact closed
+universe-polymorphic target and pass independent compiled-environment and
+transitive-axiom inspection. QFT-only checking remains distinct. Kernel
+validity, semantic interpretation and external acceptance must never be
+conflated; no CMI certificate is issued by this repository.

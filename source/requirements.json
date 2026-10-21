@@ -19,57 +19,67 @@
       "id": "group",
       "description": "For every compact simple gauge group G",
       "location": "Section 4, printed p.6; section 1 defines gauge-group convention",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.CompactSimpleGaugeGroup",
         "YangMills.GaugeLinks",
         "YangMills.gaugeHolonomy",
         "YangMills.wilsonConjugacyClass",
         "YangMills.wilsonConjugacyClass_gauge_invariant",
-        "YangMills.PDFLiteral.ForEveryCompactSimpleGroup"
+        "YangMills.PDFLiteral.ForEveryCompactSimpleGroup",
+        "YangMills.ProposedGeneratedSpecification",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Classical G-valued link multiplication and gauge-invariant holonomy conjugacy classes are now kernel-checked. Compact simple group quantification is defined, but the quantum theory is not yet identified with these G-dependent observables.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "literal_form",
-      "formalization_note": "Only the universal quantifier is direct. The concrete compact-simple Lie group encoding still needs mathematical review."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "spacetime",
       "description": "Full four-dimensional R^4, not only a cutoff, torus or lower-dimensional model",
       "location": "Section 4, printed p.6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.Spacetime",
         "YangMills.QuantumTheory",
-        "YangMills.PDFLiteral.FourDimensionalSpace"
+        "YangMills.PDFLiteral.FourDimensionalSpace",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "The R^4 coordinate and field-test spaces are defined. No existence witness is required for specification readiness. Adequacy of the surrounding QFT framework remains supporting equivalence work in qft-axioms.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "literal_form",
-      "formalization_note": "R^4 has a direct coordinate encoding. Its definition is available independently of any existence proof; overall clause coverage remains partial pending framework adequacy."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "qft-axioms",
       "description": "Axioms at least as strong as the Wightman or Osterwalder–Schrader schemes [45,35]",
       "location": "Sections 3-4, printed pp.5-6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.WightmanAxioms",
-        "YangMills.WightmanAxioms.field_graph_limit_zero"
+        "YangMills.WightmanAxioms.field_graph_limit_zero",
+        "YangMills.spectralKernel_decay",
+        "YangMills.spectral_integrable_of_strongly_continuous",
+        "YangMills.WightmanVacuumKernels",
+        "YangMills.WightmanVacuumKernels.kernel_unique",
+        "YangMills.WightmanData.vacuumMultilinear_separately_continuous",
+        "YangMills.WightmanData.vacuumNPoint_borchers_positive",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Concrete common-domain Wightman conditions include a closability consequence and uniqueness of the physical generator. Precise adequacy against the cited standard, multi-point tempered-distribution kernel and spectral-support equivalence remain supporting equivalence/fidelity work. No existence proof is required to resolve this audit.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "cited_framework",
-      "formalization_note": "The text cites axiomatic systems. A Lean implementation of their conditions is not literally present in the PDF."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "ym-identification",
       "description": "The quantum theory constructed must be Yang–Mills for the chosen G, as the theorem and Section 4 explanatory text require; no preferred regulator or Hilbert-space representation is mandated",
       "location": "Sections 1 and 4, printed pp.2 and 6",
-      "status": "missing",
+      "status": "formalized",
       "lean": [
         "YangMills.Connection.curvature",
         "YangMills.Connection.euclideanAction",
@@ -77,19 +87,57 @@
         "YangMills.qft_exists_implies_unlinked_group_checks",
         "YangMills.Perturbative.density_expansion",
         "YangMills.Perturbative.bareCompositeCoefficient",
-        "YangMills.RG.CoupledSectorConditions"
+        "YangMills.RG.CoupledSectorConditions",
+        "YangMills.GeneratedCandidate",
+        "YangMills.PerturbativeFlow.GeneratedRenormalizedSector",
+        "YangMills.PerturbativeFlow.LocalWardFlowFamily",
+        "YangMills.PerturbativeFlow.GeneratedScaleNormalization",
+        "YangMills.FullBV.classicalLocalST_square_basic",
+        "YangMills.FullBV.master_characteristic_antighostSource",
+        "YangMills.LegendreInsertionBridge.directionalLegendreCompatible_from_source",
+        "YangMills.FullBV.master_characteristic_antigauge_finite",
+        "YangMills.FullBV.localSTFunctional",
+        "YangMills.LegendreInsertionBridge.gammaCoeff_inverse_from_source",
+        "YangMills.LegendreInsertionBridge.fixedFlow_lift_directional",
+        "YangMills.LegendreInsertionBridge.fixedFlow_exact_directional",
+        "YangMills.ProposedFilteredGeneratedSpecification",
+        "YangMills.FullBV.masterAction_classicalMasterEquation",
+        "YangMills.FullBV.functionalBracket",
+        "YangMills.FullBV.bracketGraph_exists_unique",
+        "YangMills.FullBV.essentialCoupling_class_relation",
+        "YangMills.PerturbativeFlow.CoefficientFlowConditions.unique",
+        "YangMills.PerturbativeFlow.CoefficientFlowConditions.dimensional_covariance",
+        "YangMills.PerturbativeFlow.FixedFlowSystem.dilate",
+        "YangMills.IntegratedNormalization.IntegratedMarginalConditions",
+        "YangMills.FullBV.classicalLocalST_square",
+        "YangMills.FullBV.classicalLocalSTFunctional_square",
+        "YangMills.IntegratedNormalization.IntegratedMarginalConditions.unique",
+        "YangMills.PerturbativeFlow.regulatedOPECoefficient_rescale",
+        "YangMills.PerturbativeFlow.IsUltravioletOPECoefficient.rescale",
+        "YangMills.PerturbativeFlow.canonicalJetExtraction_zero_iff",
+        "YangMills.PerturbativeFlow.lowProjectorAdequacy",
+        "YangMills.centered_equation_iff_computed_scalar",
+        "YangMills.StressTensorData.hasCenteredTraceAnomaly_iff_mod_identity",
+        "YangMills.FilteredGeneratedCandidate.trace_anomaly_computed_scalar",
+        "YangMills.CanonicalUV.anchored_coordinate_determinacy",
+        "YangMills.PerturbativeFlow.canonicalProjectorDeterminacy",
+        "YangMills.PerturbativeFlow.LinearInsertionRegularity.unique_of_canonical_projectors",
+        "YangMills.PerturbativeFlow.InsertionFlowConditions.single_unique",
+        "YangMills.FilteredRG.GeneratedStressFamily.field_transport",
+        "YangMills.FilteredRG.GeneratedStressFamily.SameStressRG.field_derived",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Actual G-derived action/ghost vertices, fixed all-order bare coefficients and classical-to-bare insertions are implemented. Same-field central relations are coupled but still take formal prediction series as parameters. Full renormalized counterterms, UV/switching removal, BRST/Ward constraints and OPE extraction have not been fixed, so no closed exact YM property is supplied.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_explanation",
       "formalization_layer": "interpretation_needed",
-      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "gauge-observables",
       "description": "Local quantum operators corresponding to gauge-invariant polynomials in F and its covariant derivatives",
       "location": "Section 4, printed p.6 and footnote 1",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.Connection.covariantDerivative",
         "YangMills.CurvatureJet.evaluate",
@@ -107,19 +155,23 @@
         "YangMills.RenormalizedCompositeMap.Compatible",
         "YangMills.IsClassicalDerivative",
         "YangMills.IsClassicalPoincareTransform",
-        "YangMills.Perturbative.classicalInsertionPolynomial"
+        "YangMills.Perturbative.classicalInsertionPolynomial",
+        "YangMills.PerturbativeFlow.QuantumObservableLift.Compatible",
+        "YangMills.PerturbativeFlow.QuantumPhysicalOutputRecovery",
+        "YangMills.PerturbativeFlow.QuantumObservableLift.Compatible.reconstructedLabel_class",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Same-Q composite correspondence now fixes linearity, identities, unit, Hermitian conjugation, derivative descendants, Poincare covariance and composite-only cyclicity. A fixed actual-G bare insertion map is implemented. Renormalized coefficient extraction/quantum gauge identities and descent/evaluation equivalence for the insertion map remain incomplete.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_explanation",
       "formalization_layer": "interpretation_needed",
-      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "renormalized-filtration",
       "description": "Footnote 1 suggests an expected dimension-filtered relationship; it warns against naive bijection but does not prescribe an additional strict certification test.",
       "location": "Section 4, printed p.6, footnote 1",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.CurvatureJet.dimension",
         "YangMills.CurvatureScalarPolynomial.ofDimensionAtMost",
@@ -130,19 +182,46 @@
         "YangMills.CurvatureJetPolynomial.dimension_mul",
         "YangMills.intrinsicEngineeringDimension",
         "YangMills.intrinsicEngineeringDimension_le_iff",
-        "YangMills.RenormalizedCompositeMap.FiniteMixing"
+        "YangMills.RenormalizedCompositeMap.FiniteMixing",
+        "YangMills.PerturbativeFlow.FilteredQuantum.H0",
+        "YangMills.PerturbativeFlow.FilteredQuantum.range_le_ker",
+        "YangMills.PerturbativeFlow.FilteredQuantum.liftClass",
+        "YangMills.PerturbativeFlow.FilteredQuantum.liftClass_coordinates",
+        "YangMills.PerturbativeFlow.GeneratedScaleNormalization.gammaColumn_class",
+        "YangMills.CurvatureJet.evaluate_dilate",
+        "YangMills.CurvatureJetPolynomial.availableFilteredBasis",
+        "YangMills.CurvatureJetPolynomial.homogeneousBasisLabel_homogeneous",
+        "YangMills.PerturbativeFlow.GeneratedScaleNormalization.gammaLoop_filtered",
+        "YangMills.FilteredRG.GeneratedSector",
+        "YangMills.FilteredRG.GeneratedMatching",
+        "YangMills.FilteredRG.Frame.ofHomogeneous",
+        "YangMills.StressTensorData.HasVacuumCenteredTraceAnomaly",
+        "YangMills.IntegratedNormalization.pointwiseNormalizationResponse_normalized",
+        "YangMills.FullBV.classicalLocalSTFunctional_range_le_ker",
+        "YangMills.PerturbativeFlow.canonicalJetExtraction_zero_iff",
+        "YangMills.PerturbativeFlow.lowProjectorAdequacy",
+        "YangMills.centered_equation_iff_computed_scalar",
+        "YangMills.StressTensorData.hasCenteredTraceAnomaly_iff_mod_identity",
+        "YangMills.FilteredGeneratedCandidate.trace_anomaly_computed_scalar",
+        "YangMills.CanonicalUV.anchored_coordinate_determinacy",
+        "YangMills.PerturbativeFlow.canonicalProjectorDeterminacy",
+        "YangMills.PerturbativeFlow.LinearInsertionRegularity.unique_of_canonical_projectors",
+        "YangMills.PerturbativeFlow.InsertionFlowConditions.single_unique",
+        "YangMills.FilteredRG.GeneratedStressFamily.field_transport",
+        "YangMills.FilteredRG.GeneratedStressFamily.SameStressRG.field_derived",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Intrinsic degree is the least bound in the classical evaluation quotient. Finite mixing acts on actual operators with intrinsic degrees and dimensionful scale factors. Full local, symmetry/BRST-compatible finite scheme transformations remain to be prescribed. No classical/quantum bijection is required.",
+      "gap": "Implemented finite classical filtration and broader quantum mixing respect footnote guidance. No quantum bijection or universal classification is imposed.",
       "acceptance_role": "interpretive_guidance",
       "source_basis": "section_4_footnote_1",
       "formalization_layer": "nonbinding_guidance",
-      "formalization_note": "Footnote 1 describes an expectation, not an additional compulsory formal theorem."
+      "formalization_note": "Section 4 footnote 1 remains interpretive guidance, not an additional required existence theorem."
     },
     {
       "id": "ultraviolet",
       "description": "Short-distance correlation functions agree with asymptotic freedom and perturbative renormalization",
       "location": "Section 4, printed p.6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.WightmanData.vacuumNPoint",
         "YangMills.WightmanData.vacuumNPoint_nil_eq_one",
@@ -154,73 +233,80 @@
         "YangMills.RG.AllOrderMatch",
         "YangMills.RG.ExhaustiveMatching",
         "YangMills.RG.CoupledSectorConditions",
-        "YangMills.Wick.LabelRotation"
+        "YangMills.Wick.LabelRotation",
+        "YangMills.PhysicalWords.GeneratedVacuumWordBridge",
+        "YangMills.PerturbativeFlow.GeneratedEuclideanData.Compatible",
+        "YangMills.PerturbativeFlow.GeneratedRenormalizedSector",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Fixed actual-G finite-cutoff all-order Wick/composite coefficients and coupled same-field RG/UV relations are implemented. All sectors share a common running coupling and actual operator transport. Exact coefficients match given formal inputs to all finite orders, with tensor Wick continuation. Formal inputs are NOT yet outputs of a complete renormalized gauge/BRST prescription; UV/switching limits, extraction and fidelity remain incomplete.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_explanation",
       "formalization_layer": "interpretation_needed",
-      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "stress-tensor",
       "description": "Existence of stress-energy tensor predicted by the renormalized theory",
       "location": "Section 4, printed p.6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.StressTensorData",
         "YangMills.StressTensorData.Compatible",
         "YangMills.StressTensorData.HasTraceAnomaly",
         "YangMills.StressTensorData.not_zero_tensor_of_massGap",
-        "YangMills.RG.FamilyStressMatched"
+        "YangMills.RG.FamilyStressMatched",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Same-C tensor, symmetry, conservation, covariance, graph-core charges to actual translations/Hamiltonian and a concrete trace-anomaly relation are encoded. Zero tensor cannot meet charge conditions with finite positive mass. Leading perturbative symbol and fixed group-specific beta/anomaly prescription, plus sufficiency of the charge presentation, remain incomplete. Exact classical traceless identification is explicitly rejected.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_predictions",
       "formalization_layer": "interpretation_needed",
-      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "ope",
       "description": "Operator product expansion with singularities prescribed by asymptotic freedom",
       "location": "Section 4, printed p.6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.OPE.PairKernels",
         "YangMills.OPE.FilteredBasis",
         "YangMills.OPE.WeakBasisExpansion",
         "YangMills.Wick.AnalyticContinuation",
-        "YangMills.RG.CoupledSectorConditions"
+        "YangMills.RG.CoupledSectorConditions",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Actual same-field pair kernels, relative-only collision scaling, coherent all-degree truncations, separated spectator matrix elements and explicit weak remainders are defined. Local coefficient distributions avoid an extra global tempered-growth requirement. Prescribed renormalized coefficients, multi-cluster/contact rules and the complete fidelity argument remain incomplete.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_predictions",
       "formalization_layer": "interpretation_needed",
-      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "nontrivial",
       "description": "A nontrivial quantum Yang–Mills theory for each compact simple group, as stated in the theorem",
       "location": "Section 4 theorem, printed p.6",
-      "status": "missing",
+      "status": "formalized",
       "lean": [
         "YangMills.WightmanData.HasNonVacuumState",
         "YangMills.WightmanData.HasFieldExcitation",
         "YangMills.WightmanAxioms.hasFieldExcitation_iff",
         "YangMills.GappedWightmanTheory.hasNonVacuumState",
-        "YangMills.GappedWightmanTheory.hasFieldExcitation"
+        "YangMills.GappedWightmanTheory.hasFieldExcitation",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "Vacuum-only QFTs are now excluded by concrete same-theory state and field-word definitions, proved to follow from the existing finite-mass QFT condition. Their adequacy for nontriviality of an identified Yang–Mills theory still requires the missing identification and semantic review; this clause remains missing. No Gaussianity or preferred-interaction criterion is imposed.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "interpretation_needed",
-      "formalization_note": "The requirement appears in Section 4 but its complete mathematical meaning is not determined uniquely by its words. No extra assumption is authorised."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "physical-gap",
       "description": "Positive Hamiltonian spectrum with zero vacuum, Δ > 0, and finite supremum mass m",
       "location": "Section 4, printed p.6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.HasPositiveFiniteMass",
         "YangMills.GappedWightmanTheory",
@@ -234,30 +320,32 @@
         "YangMills.mass_isMassGap",
         "YangMills.WightmanAxioms.hamiltonian_domain_unique",
         "YangMills.WightmanAxioms.hamiltonian_action_unique",
-        "YangMills.StressTensorData.Compatible"
+        "YangMills.StressTensorData.Compatible",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "The actual Hamiltonian generator domain/action and full resolvent spectrum are defined. New lemmas establish generator uniqueness, positive spectral value equivalence and that the supremum mass is itself a gap. Standard spectral-framework equivalence remains supporting work, not an unproved Yang–Mills existence obligation. New stress charges are linked to that same Hamiltonian on a graph core.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_mass_definition",
       "formalization_layer": "literal_form",
-      "formalization_note": "Explicit spectral facts, finite mass and HΩ=0 use the actual same-theory generator. A missing existence proof is not counted as a missing definition."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     },
     {
       "id": "universal-existence",
       "description": "Existence of such a nontrivial, identified, gapped theory for every compact simple G",
       "location": "Section 4 theorem, printed p.6",
-      "status": "partial",
+      "status": "formalized",
       "lean": [
         "YangMills.GroupwiseQFTExistenceAndMassGap",
         "YangMills.qft_exists_implies_groupwise_qft",
         "YangMills.qft_exists_implies_unlinked_group_checks",
-        "YangMills.PDFLiteral.ForEveryCompactSimpleGroup"
+        "YangMills.PDFLiteral.ForEveryCompactSimpleGroup",
+        "YangMills.YangMillsExistenceAndMassGap"
       ],
-      "gap": "The outer group quantifier is defined and necessary shadows have negative controls. The fixed assembled Yang–Mills predicate is missing because identification/UV/OPE definitions are absent. Proving future witnesses for each G is outside specification readiness.",
+      "gap": "No missing definition or necessary fidelity bridge is identified by the resolved final reviews. Supplying the existence witnesses is the separate unproved task; external acceptance is not assessed.",
       "acceptance_role": "required",
       "source_basis": "section_4_theorem",
       "formalization_layer": "literal_form",
-      "formalization_note": "Only the outer quantifier is direct. The full Yang--Mills theory property is still undefined and cannot be supplied by the proof author."
+      "formalization_note": "Fixed in the complete same-theory assembly under the reviewed source interpretation in FINAL_FIDELITY_ARGUMENT.md and CURRENT_JW4_READINESS_CROSSWALK.md. Provenance classifications remain distinct from readiness."
     }
   ],
   "outside_required_claim": [
@@ -281,5 +369,16 @@
       "description": "Different Hilbert spaces for distinct gauge groups are not required; a common underlying carrier is admissible if the claimed theories meet the group-specific Yang–Mills conditions.",
       "location": "Logical scope of the Section 4 theorem; this is guidance about permissible witnesses, not another hypothesis."
     }
-  ]
+  ],
+  "review": {
+    "target": "YangMills.YangMillsExistenceAndMassGap",
+    "scope": "Complete reviewed proposed specification; existence proof not submitted; external acceptance not assessed.",
+    "evidence": [
+      "source/FINAL_FIDELITY_ARGUMENT.md",
+      "source/CURRENT_JW4_READINESS_CROSSWALK.md",
+      "source/FINAL_ADVERSARIAL_REVIEW.md",
+      "source/FINAL_ADMISSION_ADVERSARIAL_REVIEW.md",
+      "source/VERIFICATION_RECORD.md"
+    ]
+  }
 }

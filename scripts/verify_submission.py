@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Fail-closed submission checker anchored to the exact Jaffe–Witten PDF.
 
-Exit 0: accepted proof of the QFT-only target (never a Clay certificate).
+Exit 0: reviewed specification ready, or exact declared-target kernel proof accepted.
+Never an assertion of external acceptance or a Clay certificate.
 Exit 1: invalid source, proof, or verification infrastructure.
-Exit 2: specification incomplete (independent of existence-proof submission).
+Exit 2: specification incomplete or a reviewed-target proof was not submitted.
 
 This is a mathematical proof checker, not a security sandbox for hostile Lean code.
 Run on a trusted checkout/toolchain and have referees review the specification.
@@ -69,6 +70,11 @@ FORMALIZATION_LAYER = {
     "physical-gap": "literal_form",
     "universal-existence": "literal_form",
 }
+# Trusted activation switch: root may change ONLY after final fixed-target review.
+# Coverage metadata, proof text, and CLI arguments cannot enable this switch.
+YM_ADMISSION_REVIEWED = True
+YM_TARGET = "YangMills.YangMillsExistenceAndMassGap"
+
 VALID_STATES = {"formalized", "partial", "missing"}
 THEOREM_NAME = re.compile(r"[A-Za-z_][A-Za-z_0-9']*(?:\.[A-Za-z_][A-Za-z_0-9']*)*\Z")
 
@@ -201,7 +207,11 @@ def provenance(root: Path) -> dict:
     result = {
         "local_fingerprints_sha256": {
             path: sha256(root / path)
-            for path in FINGERPRINTED_FILES if (root / path).is_file()
+            for path in sorted(set(FINGERPRINTED_FILES) |
+                {str(p.relative_to(root)) for p in (root / "YangMills").rglob("*.lean")} |
+                {str(p.relative_to(root)) for p in (root / "source").glob("*.md")} |
+                {str(p.relative_to(root)) for p in (root / "scripts").glob("*.py")})
+            if (root / path).is_file()
         }
     }
     version = root / "lean-toolchain"
@@ -228,6 +238,8 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         "status": "INVALID_SPECIFICATION",
         "clay_certificate": False,
         "qft_only_certificate": False,
+        "yang_mills_kernel_certificate": False,
+        "specification_shape_status": "not_run",
         # These are fixed verifier judgments, never inferred from coverage labels.
         "specification_readiness": "incomplete",
         "full_target_defined": False,
@@ -262,39 +274,85 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         report["error"] = f"{type(exc).__name__}: {exc}"
         return report, 1
 
-    if claim in {"clay", "specification"}:
-        # Never inspect/accept a submitted proof as a solution to a theorem that
-        # has not yet been faithfully formalized. Metadata cannot unlock this.
-        report["status"] = (
-            "SPECIFICATION_INCOMPLETE" if claim == "specification"
-            else "CLAY_CERTIFICATION_BLOCKED")
-        if proof_file is not None:
-            report["proof_submission_status"] = "not_evaluated_specification_incomplete"
-        report["reason"] = (
-            "The admitted Lean proposition is QFT-only. "
-            "Central same-field correspondence, stress charges and weak OPE/RG relations are "
-            "encoded. The fixed renormalized YM prediction generator, quantum gauge "
-            "identities, limits/extraction and their fidelity argument remain incomplete. "
-            "The assembled all-group YM predicate is therefore not fixed. Missing existence proofs are not "
-            "specification blockers. "
-            "#check_clay_proof always rejects submissions."
-        )
-        return report, 2
-
-    if claim != "qft":
+    if claim == "qft":
+        # QFT proof checking does not inspect the full YM definition or its
+        # semantic admission. Do not turn a mode-local omission into a false
+        # assertion that the globally reviewed specification is incomplete.
+        report.update(specification_readiness="not_assessed_in_qft_mode",
+                      full_target_defined=None,
+                      semantic_review_status="not_assessed_in_qft_mode")
+    ym_claim = claim in {"clay", "yangmills"}
+    if claim not in {"clay", "yangmills", "specification", "qft"}:
         report["error"] = f"Unknown claim: {claim}"
         return report, 1
+    built_already = False
+    if ym_claim or claim == "specification":
+        if not YM_ADMISSION_REVIEWED or report["incomplete_clauses"]:
+            report["status"] = ("SPECIFICATION_INCOMPLETE" if claim == "specification"
+                                else "CLAY_CERTIFICATION_BLOCKED")
+            if proof_file is not None:
+                report["proof_submission_status"] = "not_evaluated_specification_incomplete"
+            report["reason"] = (
+                "The trusted reviewed-target activation is disabled or required coverage "
+                "is incomplete. Coverage labels alone cannot activate admission. "
+                "Existence proofs are not specification-readiness requirements.")
+            return report, 2
+        try:
+            built = _run(["lake", "build"], root)
+            report["build_exit_code"] = built.returncode
+            if built.returncode:
+                report["status"] = "BUILD_FAILED"
+                report["error"] = (built.stdout + built.stderr)[-4000:]
+                return report, 1
+            built_already = True
+            shape = _run(["lake", "env", "lean", "--run",
+                          str(root / "scripts" / "InspectProof.lean"),
+                          "specification", "YangMills"], root)
+            report["specification_shape_output_tail"] = (shape.stdout + shape.stderr)[-3000:]
+            if shape.returncode or "YM_SPECIFICATION_SHAPE_PASSED:" not in shape.stdout:
+                report["status"] = "INVALID_SPECIFICATION"
+                report["specification_shape_status"] = "rejected"
+                report["error"] = "Compiled exact all-group universe-polymorphic target check failed"
+                return report, 1
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            report["status"] = "VERIFIER_ERROR"
+            report["error"] = f"{type(exc).__name__}: {exc}"
+            return report, 1
+        report.update(specification_readiness="ready", full_target_defined=True,
+                      semantic_review_status="reviewed_fixed_specification",
+                      specification_shape_status="passed", admitted_target=YM_TARGET)
+        if claim == "specification":
+            if proof_file is not None:
+                report["proof_submission_status"] = "not_evaluated_specification_only"
+            report["status"] = "SPECIFICATION_READY"
+            report["reason"] = "Reviewed fixed target is defined; no existence proof was requested or verified"
+            return report, 0
+        if proof_file is None and theorem is None:
+            report["status"] = "PROOF_NOT_SUBMITTED"
+            report["reason"] = "Specification ready; no existence proof submitted; kernel verification not run"
+            return report, 2
     if proof_file is None or theorem is None or not THEOREM_NAME.fullmatch(theorem):
-        report["error"] = "QFT-only admission requires --proof-file and a simple qualified --theorem name"
+        report.update(status="INVALID_PROOF_SUBMISSION",
+                      proof_submission_status="invalid_arguments")
+        report["error"] = "Kernel admission requires --proof-file and a simple qualified --theorem name"
         return report, 1
     if proof_file.suffix != ".lean" or not proof_file.is_file():
+        report.update(status="INVALID_PROOF_SUBMISSION",
+                      proof_submission_status="invalid_arguments")
         report["error"] = "A readable .lean proof-file is required"
         return report, 1
     try:
         program = proof_file.read_text(encoding="utf-8")
         report["proof_sha256"] = sha256(proof_file)
+    except (OSError, UnicodeError) as exc:
+        report.update(status="INVALID_PROOF_SUBMISSION",
+                      proof_submission_status="invalid_arguments")
+        report["error"] = f"Unreadable UTF-8 proof source: {type(exc).__name__}: {exc}"
+        return report, 1
+    try:
         (root / ".lake").mkdir(exist_ok=True)
-        built = _run(["lake", "build"], root)
+        built = (subprocess.CompletedProcess(["lake", "build"], 0, "", "")
+                 if built_already else _run(["lake", "build"], root))
         report["build_exit_code"] = built.returncode
         if built.returncode:
             report["status"] = "BUILD_FAILED"
@@ -303,10 +361,10 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         # Audit is appended by the trusted verifier, not chosen by the submitter.
         # A proof source must compile as a self-contained Lean file when imported
         # from the project root (local imports must be available there).
-        with tempfile.TemporaryDirectory(prefix="verify-qft-", dir=root / ".lake") as temp:
+        with tempfile.TemporaryDirectory(prefix="verify-kernel-", dir=root / ".lake") as temp:
             # Compile untrusted proof separately. Do NOT append a textual audit
             # command: the submission could redefine its syntax and spoof output.
-            name = "QftCandidate_" + secrets.token_hex(12)
+            name = "KernelCandidate_" + secrets.token_hex(12)
             source_path = Path(temp) / (name + ".lean")
             source_path.write_text("import YangMills\n" + program + "\n", encoding="utf-8")
             olean = root / ".lake" / "build" / "lib" / "lean" / (name + ".olean")
@@ -330,14 +388,25 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                 inspected = _run([
                     "lake", "env", "lean", "--run",
                     str(root / "scripts" / "InspectProof.lean"),
-                    name, theorem,
+                    "yangmills" if ym_claim else "qft", name, theorem,
                 ], root)
                 report["kernel_audit_exit_code"] = inspected.returncode
                 report["kernel_verification_status"] = "rejected"
                 report["kernel_audit_output_tail"] = (
                     inspected.stdout + inspected.stderr)[-3000:]
                 if (inspected.returncode == 0 and
-                        "QFT_KERNEL_CHECK_PASSED:" in inspected.stdout):
+                        ("YM_KERNEL_CHECK_PASSED:" if ym_claim else "QFT_KERNEL_CHECK_PASSED:")
+                        in inspected.stdout):
+                    if ym_claim:
+                        report.update(status="YANG_MILLS_KERNEL_PROOF_ACCEPTED",
+                                      admitted_target=YM_TARGET, yang_mills_kernel_certificate=True,
+                                      kernel_verification_status="passed_declared_yang_mills_target",
+                                      proof_submission_status="accepted_declared_yang_mills_target",
+                                      verified_theorem=theorem)
+                        report["reason"] = ("Exact reviewed universe-polymorphic target and approved "
+                                            "transitive axioms; external acceptance not assessed; "
+                                            "this report is not a Clay certificate")
+                        return report, 0
                     report["status"] = "QFT_ONLY_PROOF_ACCEPTED"
                     report["admitted_target"] = "YangMills.QFTExistenceAndMassGap"
                     report["qft_only_certificate"] = True
@@ -362,11 +431,11 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--claim", choices=["clay", "qft", "specification"], default="clay")
+    parser.add_argument("--claim", choices=["clay", "yangmills", "qft", "specification"], default="clay")
     parser.add_argument("--proof-file", type=Path,
-                        help="Lean source file (necessary only for --claim qft)")
+                        help="Lean source file (necessary for kernel proof verification)")
     parser.add_argument("--theorem", type=str,
-                        help="Fully qualified theorem name (necessary only for --claim qft)")
+                        help="Fully qualified theorem name (necessary for kernel proof verification)")
     parser.add_argument("--report", type=Path,
                         help="Optional JSON report path (default: stdout only)")
     args = parser.parse_args()

@@ -10,6 +10,7 @@ import YangMills.GroupwiseNecessary
 import YangMills.Nontriviality
 import YangMills.InvariantJetPolynomials
 import YangMills.Ultraviolet
+import YangMills.YangMillsSpecification
 
 /-!
 # Provenance labels for the formal specification
@@ -21,8 +22,9 @@ These labels are review metadata, not Lean hypotheses or axioms.
 * interpretedModel: a chosen Lean encoding of natural-language requirements
 * optionalMethod: possible proof machinery, never a mandatory theorem clause
 
-Unformalized interpretive requirements below are strings only. We deliberately
-do not define an arbitrary "IsYangMills : Prop" to bypass missing semantics.
+Interpretive provenance is independent of readiness: a reviewed concrete
+encoding remains interpretedModel rather than becoming literal source text.
+The closed Yang--Mills target uses fixed generated definitions, not a free predicate.
 -/
 
 open Lean Elab Command
@@ -45,10 +47,16 @@ structure Mark where
 private def declarationName (name : String) : Name :=
   (name.splitOn ".").foldl (fun n c => Name.str n c) Name.anonymous
 
-/-- Reviewed provenance is metadata only. None of these source labels means
-that the entire PDF has a complete and correct Lean theorem yet. -/
+/-- Reviewed provenance is metadata only. These source labels do not by
+themselves establish specification readiness, an existence theorem, or external acceptance. -/
 def marks : List Mark :=
   [
+    { declaration := declarationName "YangMills.YangMillsExistenceAndMassGap",
+      layer := .interpretedModel, sourceLocation := "section 4 complete reviewed assembly",
+      scopeNote := "closed universe-polymorphic all-group generated candidate; definition is not an existence proof" },
+    { declaration := declarationName "YangMills.FilteredRG.GeneratedSector",
+      layer := .interpretedModel, sourceLocation := "section 4 local fields, UV, stress and OPE",
+      scopeNote := "same-Q actual-G generated Ward/CS/OPE/word/stress conditions; no external acceptance asserted" },
     { declaration := declarationName "YangMills.PDFLiteral.FourDimensionalSpace",
       layer := .directMath, sourceLocation := "section 4 p.6",
       scopeNote := "R^4 coordinate type; not a constructed quantum theory" },
@@ -83,7 +91,7 @@ def marks : List Mark :=
       scopeNote := "partial classical observables, not quantum identification" },
     { declaration := declarationName "YangMills.CurvatureJetPolynomial.invariantAlgebra",
       layer := .interpretedModel, sourceLocation := "section 4 local observables",
-      scopeNote := "general classical formal-jet invariants; geometric covariance still conditional" },
+      scopeNote := "general actual-Ad classical curvature-jet invariants with connection evaluation" },
     { declaration := declarationName "YangMills.WightmanData.scaledVacuumNPoint",
       layer := .interpretedModel, sourceLocation := "section 4 short-distance correlations",
       scopeNote := "actual scaled field words; not prescribed YM asymptotics" },
@@ -92,16 +100,16 @@ def marks : List Mark :=
       scopeNote := "freely selected terms make a scalar expansion vacuous" },
     { declaration := declarationName "YangMills.RenormalizedCompositeMap.Compatible",
       layer := .interpretedModel, sourceLocation := "section 4 local fields and footnote 1",
-      scopeNote := "same-domain linear correspondence, derivatives, covariance, composite cyclicity; fixed YM predictions still missing" },
+      scopeNote := "same-domain correspondence; fixed generated predictions are additionally bound in FilteredRG.GeneratedSector" },
     { declaration := declarationName "YangMills.StressTensorData.Compatible",
       layer := .interpretedModel, sourceLocation := "section 4 stress tensor",
       scopeNote := "actual translation charge/core conditions; not exact classical traceless image" },
     { declaration := declarationName "YangMills.OPE.WeakBasisExpansion",
-      layer := .interpretedModel, sourceLocation := "section 4 OPE; precise weak presentation needs fidelity review",
+      layer := .interpretedModel, sourceLocation := "section 4 OPE; legacy pair-only necessary component",
       scopeNote := "same-field pair kernels and coherent all-degree remainders; not complete multi-cluster/contact prescription" },
     { declaration := declarationName "YangMills.RG.CoupledSectorConditions",
       layer := .interpretedModel, sourceLocation := "section 4 UV/renormalization",
-      scopeNote := "same fields, coefficients, common RG, tensor Wick and stress links; formal inputs NOT yet fixed YM outputs" },
+      scopeNote := "same fields, coefficients, common RG, tensor Wick and stress links; legacy formal-input component; the admitted assembly instead uses GeneratedScaleNormalization outputs" },
     { declaration := declarationName "YangMills.Perturbative.bareCompositeCoefficient",
       layer := .optionalMethod, sourceLocation := "fixed auxiliary perturbative construction; not a universal nonperturbative regulator",
       scopeNote := "actual-group all-order bare Wick expansion and fixed classical insertions; no renormalized UV/Ward limit" },
@@ -126,13 +134,18 @@ def marks : List Mark :=
       scopeNote := "classical consistency does not identify a QFT" }
   ]
 
-/-- Requirements that need definitions: they are NOT axioms or hypotheses. -/
-def interpretationStillNeeded : List String :=
+/-- Source phrases requiring interpretive mathematical choices. This is
+PROVENANCE, not a list of outstanding definitions or readiness blockers. -/
+def interpretiveScope : List String :=
   [ "nontrivial pure quantum Yang--Mills theory for each G",
     "renormalized correspondence of local gauge-invariant observables",
     "short-distance asymptotic-freedom/renormalization predictions",
     "stress-energy tensor and prescribed OPE singularities",
     "formal adequacy of chosen axioms against the cited standards" ]
+
+/-- Legacy registry name retained for compatibility; it denotes interpretive
+provenance, NOT unresolved readiness findings. See interpretiveScope. -/
+abbrev interpretationStillNeeded : List String := interpretiveScope
 
 /-- Verify existence of tagged declarations, not the physical fidelity of
 their classifications. Physical fidelity requires independent review. -/
@@ -141,6 +154,6 @@ elab "#audit_pdf_origins" : command => do
   for entry in marks do
     unless env.contains entry.declaration do
       throwError "Missing declared PDF provenance referent: {entry.declaration}"
-  logInfo m!"PDF provenance: {marks.length} declared symbols checked; no interpretive assumption is discharged."
+  logInfo m!"PDF provenance: {marks.length} declared symbols checked; provenance is distinct from readiness, existence proof and external acceptance."
 
 end YangMills.PDFOrigin
