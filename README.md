@@ -228,14 +228,14 @@ distinguish literal source requirements from interpretive choices. Earlier
 review files preserve historical findings. Use the current documents above
 for the repository's readiness assessment.
 
-One source-access limitation remains explicit: the full book chapter cited
-as reference [45] in Jaffe–Witten was not directly accessed. The relevant material
-is Chapter 3, “Fields and Vacuum Expectation Values,” pp. 96–133 in the
-[publisher listing](https://www.jstor.org/stable/j.ctt1cx3vcq). The framework
-comparison instead uses a primary exposition by a coauthor and the
-Osterwalder–Schrader papers, which relate Euclidean correlation functions to
-quantum field theory. The [framework comparison](source/CURRENT_JW4_READINESS_CROSSWALK.md#complete-qft-presentation-comparison)
-records the citations and qualification.
+The previously unavailable sources were supplied on 22 October 2026.
+[Streater–Wightman Chapter 3](source/SOURCE_ANALYSIS.md#direct-streaterwightman-reading-22-october-2026),
+“Fields and Vacuum Expectation Values,” pp.96–133, has now been read and
+compared with the Wightman definitions using the **2000 reissue**, rather than
+the cited 1964 printing. A [scoped reading of OS II](source/SOURCE_ANALYSIS.md#direct-os-ii-reading-22-october-2026)
+also records its corrected reconstruction conditions. These readings close
+the access gaps, not the fidelity question: the source record lists remaining
+convention and equivalence obligations and the limits of review.
 
 Lean's **kernel** is the core proof checker. Kernel acceptance establishes a
 proof relative to the formal statement and its foundations. Fidelity to the

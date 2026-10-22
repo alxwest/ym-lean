@@ -62,6 +62,7 @@ The introductory physical source is Jaffe–Witten,
 | Schwartz function; tempered distribution | A smooth function whose derivatives decay faster than every inverse polynomial; a continuous linear functional on the space of such functions. |
 | Kernel; n-point function; vacuum word | A distribution representing a multilinear expression; the vacuum expectation of a product of `n` fields. “Word” keeps track of the fields' order. |
 | Tensor tests; dense tensor span | Products of test functions in separate variables; finite sums of these products form a dense subspace in the specified test space. Equality there determines a continuous kernel. |
+| Spin cover | A group that distinguishes rotations identified in the ordinary Lorentz group, allowing half-integer-spin representations. The book uses SL(2,C), the double cover of the proper orthochronous Lorentz group; the code uses the ordinary group for bosonic observables. See the [source comparison](SOURCE_ANALYSIS.md#direct-streaterwightman-reading-22-october-2026), p.97. |
 | Cyclic vacuum | Field words acting on the vacuum span a dense subspace. Composite-only cyclicity requires the specified observable family itself to generate the physical space. |
 | Borchers positivity | Positivity of combinations of vacuum correlations corresponding to squared norms of field-word states. |
 | Euclidean; Minkowski; OS reconstruction | Euclidean signature versus relativistic spacetime signature; the Osterwalder–Schrader route reconstructing a physical theory from suitably constrained Euclidean correlations. |
@@ -69,8 +70,8 @@ The introductory physical source is Jaffe–Witten,
 See the [QFT review](QFT_REVIEW.md),
 [full-kernel construction](KERNEL_BV_COHOMOLOGY_REVIEW.md), and
 [current comparison with the cited frameworks](CURRENT_JW4_READINESS_CROSSWALK.md#complete-qft-presentation-comparison).
-The latter records exactly which primary sources were consulted and the
-unavailable full-book chapter.
+The latter links the primary-source reading records, including the newly
+available book chapter, the edition consulted and remaining comparison limits.
 
 ## Operators and spectrum
 

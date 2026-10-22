@@ -75,9 +75,10 @@ Strong fixed-vector field continuity follows from the usual weak matrix version 
 Schwartz-to-Hilbert closed graph theorem.
 
 The standards comparison uses the primary coauthor Wightman exposition and
-Osterwalder–Schrader I/II, as detailed in the crosswalk. The full [45] book axiom
-chapter was not directly accessed; publisher preview access does not establish that
-chapter's contents. This qualification is preserved. The explicit endpoint comparison
+Osterwalder–Schrader I/II, as detailed in the crosswalk. A subsequent
+[direct reading of Chapter 3 in the 2000 reissue](SOURCE_ANALYSIS.md#direct-streaterwightman-reading-22-october-2026)
+supersedes the earlier contents-only access. It records remaining convention
+and equivalence questions and does not establish complete fidelity. The internal endpoint comparison
 supports the chosen complete Minkowski formulation; requiring an additional [OS](GLOSSARY.md#notation-and-source-abbreviations)
 construction would prescribe a method rather than fill an identified endpoint axiom.
 

@@ -83,19 +83,17 @@ mathematical review question.
 
 ## Source, provenance and external review
 
-The unavailable book material is Chapter 3, **“Fields and Vacuum Expectation
-Values,”** pp. 96–133 in the [publisher's listing](https://www.jstor.org/stable/j.ctt1cx3vcq),
-of R. F. Streater and A. S. Wightman, *PCT, Spin and Statistics, and All That*
-(Jaffe–Witten reference [45]). Its contents listing is not a direct chapter audit.
-The existing comparison uses [Streater's own exposition](https://www.scholarpedia.org/article/Wightman_quantum_field_theory)
-and the original Osterwalder–Schrader papers. Thus it is not based solely on
-unrelated secondary summaries, but the exact cited-book comparison remains
-unverified. The OS II access gap was closed on 22 October 2026 with a supplied
-full PDF; a [scoped direct reading](SOURCE_ANALYSIS.md#direct-os-ii-reading-22-october-2026)
-records its corrected reconstruction conditions. This does not replace the
-missing book chapter. A reviewer should check each domain, multiplet, distribution,
-spectral and locality condition against the actual chapter and record precise
-locations and deviations.
+Both previously reported access gaps were closed on 22 October 2026 with
+user-supplied PDFs. The [Chapter 3 comparison](SOURCE_ANALYSIS.md#direct-streaterwightman-reading-22-october-2026)
+of Streater–Wightman, *PCT, Spin and Statistics, and All That* uses the 2000
+reissue, not a checked copy of the 1964 printing cited as Jaffe–Witten [45].
+It records actual axiom/page locations and open comparisons for domains,
+continuity, the spin cover, covariance, spectral support and locality.
+The [OS II reading](SOURCE_ANALYSIS.md#direct-os-ii-reading-22-october-2026)
+records its corrected reconstruction conditions. These are direct source
+readings, not completed equivalence proofs or independent expert validation.
+Chapter 3 itself discusses free and generalized-free examples (pp.102–105);
+it therefore reinforces, rather than settles, the countermodel question above.
 
 The [AI disclosure](../README.md#6-ai-disclosure) records the models identified
 in coordinating-session metadata and their work areas. It does not establish

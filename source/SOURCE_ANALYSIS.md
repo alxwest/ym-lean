@@ -4,10 +4,11 @@
 > reviewed stage. For current status, read the [final fidelity argument](FINAL_FIDELITY_ARGUMENT.md)
 > and [verification record](VERIFICATION_RECORD.md).
 
-> **Source-access update, 22 October 2026.** The user has supplied the full OS II
-> PDF. The [direct reading below](#direct-os-ii-reading-22-october-2026) supersedes
-> the historical OS II access limitation, but not the missing Streater–Wightman
-> chapter or the remaining source-equivalence obligations.
+> **Source-access update, 22 October 2026.** The user supplied OS II and the
+> 2000 reissue of Streater–Wightman. The direct readings below supersede the
+> historical access limitations for [OS II](#direct-os-ii-reading-22-october-2026)
+> and [Chapter 3](#direct-streaterwightman-reading-22-october-2026).
+> Source-equivalence obligations remain; access and reading are not validation.
 
 This early source analysis separates three tasks: defining the intended conditions,
 justifying their relation to the prose source, and eventually constructing a theory
@@ -84,6 +85,9 @@ Reference [45] publisher contents are available at https://www.jstor.org/stable/
 obtained in this role. The QFT formalizer must independently audit domain/temperedness
 details against the actual text. A source crosswalk is not that audit.
 
+This is the historical access record; the supplied book and direct comparison
+below supersede the lack of access.
+
 ## Direct OS II reading (22 October 2026)
 
 The user supplied `osterwalder1975.pdf`, a 25-page copy of Konrad Osterwalder
@@ -131,8 +135,67 @@ not perform that task.
 
 **Status:** the OS II access gap is closed and the earlier reconstruction
 warning is directly supported. No Lean definition or proof was changed. The
-exact Streater–Wightman chapter comparison, full source-equivalence arguments
-and independent human expert validation remain outstanding.
+Streater–Wightman comparison is now recorded below; full source-equivalence
+arguments and independent human expert validation remain outstanding.
+
+## Direct Streater–Wightman reading (22 October 2026)
+
+The user supplied `/Users/alx/physics/spin-and-statistics-and-all-that.pdf`,
+a 221-page scan of R. F. Streater and A. S. Wightman, *PCT, Spin and Statistics,
+and All That*. The copyright page identifies the **2000 Princeton paperback
+reissue, with revised preface and corrections**, of the book originally
+published in 1964. This is a later edition of Jaffe–Witten reference [45], not
+a verified scan of its cited 1964 printing. No comparison between editions was
+performed. SHA-256:
+`44fadba731cafe7f009d4e561372febb3597e1f2a4819346ce2efd16befcb889`.
+
+**Coverage:** Chapter 3, “Fields and Vacuum Expectation Values,” printed
+pp.96–133, corresponding to PDF pages 108–145. The chapter was read using OCR
+and rendered pages; the central axiom and kernel statements on pp.97–101, 106
+and 118 were checked visually. The chapter includes the reconstruction proof,
+symmetry discussion and bibliography. Reading them is not a verification of
+every proof step. Dependencies in Chapters 1–2 and 4, and the bibliography's
+papers, were not recursively audited. This is an AI-assisted comparison with
+the current definitions, not independent expert review.
+
+The main comparison is with [WightmanData / WightmanAxioms](../YangMills/QFT/Wightman.lean),
+[spacetime and test functions](../YangMills/QFT/Spacetime.lean) and
+[WightmanVacuumKernels](../YangMills/WightmanVacuumKernels.lean).
+The book labels its basic assumptions O, I, II and III; the repository uses a
+different numbering. The table follows the book, not the code's comment labels.
+
+| Book location and condition | Repository counterpart | Assessment and remaining comparison |
+| --- | --- | --- |
+| p.97, O: separable Hilbert space, continuous unitary representation of the inhomogeneous SL(2,C), forward energy-momentum spectrum and unique invariant vacuum | `complete`, `separable`, unitary representation fields, `vacuum_invariant`, `vacuum_unique`, `spectral_integrable`, `spectral_support` | These are identifiable counterparts, not identical formulas. The code uses the proper orthochronous Poincaré group rather than its spin cover, translation-invariant vacuum uniqueness, and an integrated Fourier-test condition. Cover descent for bosonic observables and equivalence of the spectral and vacuum formulations still need explicit justification. |
+| p.98, I, Eqs. (3-2)–(3-3): common dense linear domain containing the vacuum, preserved by transformations, fields and adjoints; matrix elements are tempered distributions | `domain`, `dense_domain`, `domainAction`, field codomain, `adjoint_relation`, `adjoint_involution`, `conjugateTest_eq`, `field_continuous` | The common domain and adjoint requirements are explicit. The code requires Hilbert-norm continuity for a fixed domain vector, whereas the book states continuity of matrix elements. The closed-graph argument relating them is a supporting mathematical obligation, not literal textual equality. The book does not require essential self-adjointness of each smeared field. |
+| p.99, II, Eqs. (3-4)–(3-5): field covariance and inverse spacetime pullback | `componentAction`, its representation laws, `covariance`, `pullback_eq` | The inverse spacetime pullback agrees in form. Compare the book's inverse matrix with the code's matrix-column action through an explicit dual/index convention; do not identify them by notation alone. |
+| p.100, III, Eq. (3-6): spacelike commutation or anticommutation, including adjoints | `locality` for all field indices, plus adjoint closure | The code selects the commuting observable case. Its hypothesis uses strictly spacelike-separated closed supports. The book's parenthetical criterion uses the nonzero test-function values. Boundary-touching supports and passage to the distributional locality statement require a continuity/approximation argument. |
+| p.101: field theory requires vacuum cyclicity for polynomials in smeared fields | `cyclic`, using the span of all `Q.word` vectors | Direct structural match. Composite-only cyclicity elsewhere in the candidate is an additional identification condition; this page alone does not justify that stronger selection of generators. |
+| pp.106–110, Eqs. (3-19)–(3-36), Theorems 3-1–3-3: full tempered vacuum distributions, covariance, spectral support, adjoint reversal, locality and positivity | `WightmanVacuumKernels.kernel`, `tensor_eq`, `tensor_dense`, `actual_words`, together with the actual Hilbert-space field products | The book explicitly invokes its nuclear theorem to extend product-test matrix elements to full Schwartz distributions. This directly supports the intended kernel presentation; it does not supply a Lean proof of the kernel theorem or of all full-test consequences from the code's predicates. |
+| pp.111–116, Theorems 3-4–3-6: clustering and analytic continuation | Intended consequences of the operator axioms, spectrum, locality and vacuum uniqueness | These are substantive theorems, not automatic results of compiling a structure. The displayed clustering proof assumes a mass threshold; the book refers elsewhere for the case without a gap. Relating that threshold to the repository's Hamiltonian-gap presentation requires spectral reasoning. |
+| pp.117–126, Theorem 3-7: reconstruction from tempered correlations with the listed properties, including clustering; unitary uniqueness | The candidate supplies the operator theory and matching kernels directly | No separate reconstruction field is needed just to state that endpoint. The written proof is for a Hermitian scalar field; p.126 states extension to countably many fields of any spin. That supports countable presentations but does not show that every source-admissible Yang–Mills observable family is captured by this particular one. |
+
+Two boundaries are now supported directly by the chapter. On pp.101–102 the
+authors distinguish equal-time canonical commutation relations and asymptotic
+completeness from the axioms used for their field-theory results; p.126 again
+says reconstruction does not establish asymptotic completeness. They should
+not be silently added as general Wightman obligations. On pp.102–105 the
+authors construct free-field examples, discuss Wick polynomials and introduce
+generalized-free fields; p.116 gives free-field correlation functions. Thus
+the cited framework itself allows these examples. Reading it does not resolve
+the full candidate's free/generalized-free countermodel challenge.
+
+Section 3-5, pp.126–132, treats additional symmetries and the reconstruction
+of a PCT operator under specified correlation identities; it points forward
+to Chapter 4 for the general local-field PCT result. This reading does not
+audit that later theorem or establish separate P, C and T invariance.
+
+**Status:** Chapter 3 is now accessible and directly compared in the supplied
+edition. The former access blocker is closed. The explicit convention and
+equivalence questions above remain open; neither an edition-to-edition audit
+nor a completed fidelity proof is claimed. No Lean definitions or proofs were
+changed as a result of this reading. Terms such as cyclicity, temperedness and
+the spin cover are explained in the [glossary](GLOSSARY.md).
 
 ## Interpretive choices and scope
 

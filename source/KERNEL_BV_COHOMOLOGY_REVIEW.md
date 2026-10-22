@@ -1,5 +1,10 @@
 # Full kernels, actual BV identities and the quantum observable quotient
 
+> **Source-access update, 22 October 2026.** The book-access limitation recorded
+> below describes this historical review. Chapter 3 of the supplied 2000 reissue
+> has since been [read and compared](SOURCE_ANALYSIS.md#direct-streaterwightman-reading-22-october-2026).
+> That comparison records remaining obligations; it does not validate all earlier conclusions.
+
 > **Historical snapshot.** Findings and “remaining work” below refer to the
 > reviewed stage. For current status, read the [final fidelity argument](FINAL_FIDELITY_ARGUMENT.md)
 > and [verification record](VERIFICATION_RECORD.md).
