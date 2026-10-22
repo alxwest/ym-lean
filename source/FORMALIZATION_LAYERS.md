@@ -1,30 +1,42 @@
-# Provenance and readiness are different
+# Provenance and readiness answer different questions
 
-The pinned Jaffe–Witten source is §4, printed p.6, together with its action,
-QFT context and cited mathematical standards. Each source registry row has
-an acceptance role and a provenance classification. These classifications
-are not physics premises and are not readiness states.
+**Provenance** records where a formal requirement comes from. **Readiness** records
+whether the repository regards its proposed specification as complete under the
+documented interpretation. A provenance label is neither a physics assumption nor a
+readiness verdict.
 
-- `literal_form` identifies directly written mathematical shape, such as the
-  universal group quantifier, full R4 or the physical spectral mass interval.
-- `cited_framework` identifies a meaning delegated to an axiom system, such as
-  the complete Wightman formulation.
-- The legacy enum `interpretation_needed` identifies a phrase that requires
-  interpretive mathematical judgment. Its meaning is now fixed and reviewed
-  in the full assembled specification; the enum does not say a definition is
-  still missing.
-- `nonbinding_guidance` preserves §4 footnote 1 as guidance about observable
-  filtrations, rather than a compulsory classical/quantum isomorphism.
+The source is Jaffe–Witten §4, printed p.6, with its action, [QFT](GLOSSARY.md#quantum-fields-and-distributions) context and
+cited mathematical standards. Each row in the [source registry](requirements.json) has both an acceptance role and
+a provenance classification. The [requirements table](REQUIREMENTS.md) explains the roles; the classifications are
+described below.
 
-`YangMills/SourceClassification.lean` records declaration origins. Its
-`interpretiveScope` list documents choices; the legacy name
-`interpretationStillNeeded` is a compatibility alias, not a gap list. Optional
-lattice/holonomy and other construction lemmas remain optional methods.
+## How to read the classifications
 
-Current readiness and its reviewed sufficiency argument are recorded in
-`FINAL_FIDELITY_ARGUMENT.md` and the current source/adversarial crosswalks.
-The verifier separately checks fixed source roles, trusted review activation,
-the actual compiled exact target shape and any submitted proof. Metadata,
-labels, compilation and agent consensus alone do not prove semantic fidelity.
-No interpretation supplies an existence assumption, and no kernel result
-asserts external acceptance.
+| Registry value | Meaning | Example |
+| --- | --- | --- |
+| `literal_form` | Mathematical shape written directly in the source. | The universal group quantifier, full four-dimensional spacetime, or the physical spectral gap interval. |
+| `cited_framework` | Meaning delegated to a cited axiom system. | The complete [Wightman](GLOSSARY.md#quantum-fields-and-distributions) formulation of QFT. |
+| `interpretation_needed` | A phrase requiring mathematical interpretation. This legacy name does not mean a definition is still missing. | The fixed, reviewed interpretation of prescribed quantum predictions. |
+| `nonbinding_guidance` | Guidance retained without turning it into an extra mandatory theorem. | Footnote 1's expectation of a dimension-filtered observable relationship. |
+
+For terminology, see the glossary entries on [formalization](GLOSSARY.md#reading-a-formalization) and [filtrations](GLOSSARY.md#gauge-fields-and-observables).
+
+## Where the interpretation is recorded
+
+[SourceClassification.lean](../YangMills/SourceClassification.lean) records declaration origins. Its `interpretiveScope` list documents presentation
+choices. The legacy name `interpretationStillNeeded` is a compatibility alias, not a list of outstanding
+gaps. Optional lattice, holonomy and other construction lemmas remain possible methods
+rather than compulsory parts of the target.
+
+The [final fidelity argument](FINAL_FIDELITY_ARGUMENT.md), [current crosswalk](CURRENT_JW4_READINESS_CROSSWALK.md) and [final adversarial review](FINAL_ADVERSARIAL_REVIEW.md) record present readiness and the supporting
+interpretation.
+
+## Why metadata cannot certify a proof
+
+The verifier separately checks source roles, trusted review activation, the compiled
+target shape and any submitted proof. Editing a label does not supply a mathematical
+argument or activate admission. Compilation and agent agreement also do not establish
+[source fidelity](GLOSSARY.md#reading-a-formalization).
+
+No interpretation supplies an existence assumption, and no kernel result asserts
+external acceptance. The [certification contract](../CERTIFICATION.md) sets out those distinct checks.
