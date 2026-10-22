@@ -103,7 +103,7 @@ No owner file was modified by this reviewer.
 ## Independent validation
 
 The 28 Python unit tests independently pass with
-YM_VERIFIER_TEST_ROOT=/Users/alx/source/ym-lean. Mocked inspector outcomes in these
+`YM_VERIFIER_TEST_ROOT` set to the repository root. Mocked inspector outcomes in these
 tests exercise runner branches only; they are not Lean existence proofs. The first
 attempted run against [PRIMARY](GLOSSARY.md#notation-and-source-abbreviations) scratch lacked the pinned PDF and failed source setup;
 rerunning against the intended actual repository passed. This setup failure is not

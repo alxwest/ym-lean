@@ -93,8 +93,8 @@ below supersede the lack of access.
 The user supplied `osterwalder1975.pdf`, a 25-page copy of Konrad Osterwalder
 and Robert Schrader, *Axioms for Euclidean Green's Functions II*, with an
 appendix by Stephen Summers, *Communications in Mathematical Physics* **42**,
-281–305 (1975). The local source is
-`/Users/alx/physics/papers/osterwalder1975.pdf`; its SHA-256 is
+281–305 (1975). The supplied source filename is
+`osterwalder1975.pdf`; its SHA-256 is
 `36413586b83b491c8e0ef318e98d6e882619019826e62dc24daf898dc7f486ec`.
 The [publisher-hosted paper](https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-42/issue-3/Axioms-for-Euclidean-Greens-functions-II-with-an-Appendix-by/cmp/1103899050.pdf)
 provides a portable bibliographic link; this reading used the supplied local copy.
@@ -140,7 +140,7 @@ arguments and independent human expert validation remain outstanding.
 
 ## Direct Streater–Wightman reading (22 October 2026)
 
-The user supplied `/Users/alx/physics/spin-and-statistics-and-all-that.pdf`,
+The user supplied `spin-and-statistics-and-all-that.pdf`,
 a 221-page scan of R. F. Streater and A. S. Wightman, *PCT, Spin and Statistics,
 and All That*. The copyright page identifies the **2000 Princeton paperback
 reissue, with revised preface and corrections**, of the book originally

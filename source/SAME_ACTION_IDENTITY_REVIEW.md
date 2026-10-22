@@ -73,7 +73,7 @@ certify the full classical master equation or authorize that claim.
 
 [LegendreInsertionBridge.lean](../YangMills/LegendreInsertionBridge.lean) SHA256: `53e9f97cbad9e5757a602f40361058221d3ba1a3e30ce4856394f40d4542b4b1`.
 
-Pinned Lean, warnings-as-errors build passed; object available at `/tmp/ym-scheme-overlay/YangMills/LegendreInsertionBridge.olean`.
+Pinned Lean, warnings-as-errors build passed; the temporary build produced `YangMills/LegendreInsertionBridge.olean`.
 
 The file proves for the actual finite partition operator:
 
