@@ -1,14 +1,21 @@
-# Yang–Mills existence and mass gap: a Lean specification
+# Yang–Mills existence and mass gap: a proposed Lean specification
 
 This repository proposes a precise, machine-checkable statement of the
 **Yang–Mills existence and mass-gap problem** in Lean. It contains the
 specification, supporting mathematical lemmas and tools for checking a future
-proof. **It does not contain an existence proof.** The repository records a
-completed review of the proposed specification; external mathematical
-acceptance has not been assessed.
+proof. **It does not contain an existence proof or an independently validated
+formalization of the source problem.** Its fidelity arguments are internal,
+AI-assisted assessments. No independent human expert validation is documented.
+Whether the combined definitions are too weak or too strong remains a question
+for mathematical review.
 
 AI agents contributed substantially to the formulation and implementation;
 see the [AI disclosure](#6-ai-disclosure) for their role and the limits of review.
+
+For evaluation, start with the [witness-constraint audit and open review questions](source/WITNESS_AUDIT.md).
+It distinguishes checked consequences, structural links and untested
+countermodel challenges. File names containing `FINAL` or `READINESS` identify
+internal workflow stages, not external certification.
 
 This guide assumes graduate-level mathematics, including some familiarity
 with Hilbert spaces and Lie groups. No prior Lean experience is needed to
@@ -77,8 +84,10 @@ listed in [FilteredGeneratedCandidate.lean](YangMills/FilteredGeneratedCandidate
 The central requirement is consistency across the whole construction: the
 group, action, quantum fields, short-distance predictions, stress tensor and
 Hamiltonian must describe the **same theory**. The definitions fix their
-relationships; a future proof cannot supply substitute predicates for what
-counts as Yang–Mills.
+relationships; a future proof must satisfy those definitions. This fixes a
+formal proposition, but does not establish that its predicates capture
+Yang–Mills. The [audit map](source/WITNESS_AUDIT.md#witness-freedom-and-where-it-is-constrained)
+shows what the prover supplies and where the constraints are imposed.
 
 1. **A physical quantum field theory.** The specification uses the
    **Wightman framework**: quantum fields on a positive Hilbert space,
@@ -134,6 +143,13 @@ flow supplies the perturbative predictions; it does not prescribe how to
 construct the full quantum theory beyond perturbation theory. These choices
 are detailed in the [fidelity argument](source/FINAL_FIDELITY_ARGUMENT.md#actual-yangmills-action-and-prescription).
 
+Consequently, perturbative matching alone does not uniquely identify a
+nonperturbative theory. Composite cyclicity excludes an invisible extra sector,
+and a checked theorem excludes identically zero stress in a candidate; neither
+is a general exclusion theorem for massive free or generalized-free theories.
+Such an exclusion for the full target has not been established here. See the
+[countermodel review tasks](source/WITNESS_AUDIT.md#countermodel-tests-and-their-present-status).
+
 For readers following the implementation, that argument also covers
 **jets** (derivative data), the finite Fourier/Taylor prescription and the
 proofs determining smooth insertion responses. The physical stress dictionary
@@ -165,7 +181,9 @@ mathematical library) is recorded in [lake-manifest.json](lake-manifest.json).
 | `python3 scripts/check_proofs.py` | Builds the specification and runs proof-audit regression checks. |
 | `python3 scripts/verify_submission.py --claim specification` | Checks specification admission, including the compiled target's exact shape; on success, reports `SPECIFICATION_READY`. |
 
-`SPECIFICATION_READY` describes the specification, not an existence proof.
+`SPECIFICATION_READY` is the verifier's internal admission status: its configured
+source, build and target-shape checks passed with internal review activation.
+It does not certify semantic fidelity, independent expert approval or an existence proof.
 Running the verifier with `--claim yangmills` and no submission reports
 `PROOF_NOT_SUBMITTED`.
 
@@ -193,13 +211,15 @@ exact-target proof. See the [certification contract](CERTIFICATION.md).
 
 For a closer mathematical review, read these in order:
 
-1. [Final fidelity argument](source/FINAL_FIDELITY_ARGUMENT.md): why the
+1. [Witness audit](source/WITNESS_AUDIT.md): constraints, evidence limits and
+   concrete unresolved review tasks.
+2. [Internal fidelity argument](source/FINAL_FIDELITY_ARGUMENT.md): why the
    proposed definitions are intended to capture the source problem.
-2. [Clause-by-clause source crosswalk](source/CURRENT_JW4_READINESS_CROSSWALK.md):
+3. [Internal source crosswalk](source/CURRENT_JW4_READINESS_CROSSWALK.md):
    how each source requirement maps to the formal construction.
-3. [Final adversarial review](source/FINAL_ADVERSARIAL_REVIEW.md): challenges
+4. [Internal adversarial review](source/FINAL_ADVERSARIAL_REVIEW.md): challenges
    to the specification and their recorded resolutions.
-4. [Statement policy](source/STATEMENT_POLICY.md) and
+5. [Statement policy](source/STATEMENT_POLICY.md) and
    [certification contract](CERTIFICATION.md): the scope of claims and checks.
 
 The [source registry](source/requirements.json) records citations and source
@@ -209,7 +229,9 @@ review files preserve historical findings. Use the current documents above
 for the repository's readiness assessment.
 
 One source-access limitation remains explicit: the full book chapter cited
-as reference [45] in Jaffe–Witten was not directly accessed. The framework
+as reference [45] in Jaffe–Witten was not directly accessed. The relevant material
+is Chapter 3, “Fields and Vacuum Expectation Values,” pp. 96–133 in the
+[publisher listing](https://www.jstor.org/stable/j.ctt1cx3vcq). The framework
 comparison instead uses a primary exposition by a coauthor and the
 Osterwalder–Schrader papers, which relate Euclidean correlation functions to
 quantum field theory. The [framework comparison](source/CURRENT_JW4_READINESS_CROSSWALK.md#complete-qft-presentation-comparison)
@@ -219,6 +241,14 @@ Lean's **kernel** is the core proof checker. Kernel acceptance establishes a
 proof relative to the formal statement and its foundations. Fidelity to the
 source prose and external mathematical acceptance are separate judgments;
 a successful build or an agent review does not establish either.
+
+The artifact's present use is as an inspectable proposal for constructive and
+axiomatic QFT specialists and Lean formalizers to criticize or revise. Repository
+age, commit count, stars, model settings and documentation volume are not evidence
+of mathematical correctness. Clay eligibility is a separate process: its
+[official rules](https://www.claymath.org/millennium-problems/rules/) require
+publication in a qualifying outlet, at least two years since publication, and
+general acceptance in the global mathematics community before consideration.
 
 ## 6. AI disclosure
 
@@ -245,6 +275,14 @@ do not establish a complete model roster for those agents. We therefore do not
 attribute every delegated contribution to this model or claim that reviews used
 different model families. The repository does not contain a complete per-file
 or per-line model-attribution log.
+
+Separately, the user attributed the structural critique supplied on 22 October
+2026 to **Claude Sonnet 5.5**, with **medium** reasoning effort. This attribution
+is user-reported, not verified from session metadata. That review covered the
+README and `FilteredGeneratedCandidate.lean`; the reviewer explicitly did not
+audit the imported definitions or establish their correctness. The
+[witness-constraint audit](source/WITNESS_AUDIT.md) responds to that critique.
+This is a reported review by another model family, not human expert validation.
 
 ### Coverage of AI contributions
 

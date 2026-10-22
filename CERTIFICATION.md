@@ -1,7 +1,8 @@
 # Formal specification and proof-admission contract
 
 This contract explains what the repository's verifier accepts and what that acceptance
-means. The specification is a **complete reviewed proposal**. **No existence proof is
+means. The specification is an **internally reviewed formal proposal**; its fidelity
+to the source problem has not been independently validated. **No existence proof is
 supplied, and external acceptance has not been assessed.** These are three independent
 states.
 
@@ -15,9 +16,13 @@ together with its action/QFT context and cited mathematical frameworks. The [sou
 records the exact repository PDF and its SHA-256 hash.
 
 The [final fidelity argument](source/FINAL_FIDELITY_ARGUMENT.md), [current clause crosswalk](source/CURRENT_JW4_READINESS_CROSSWALK.md) and [final adversarial review](source/FINAL_ADVERSARIAL_REVIEW.md) explain the interpretive choices,
-source-access qualifications and resolved findings. These documents justify a proposed
+source-access qualifications and resolved findings. These documents give an internal argument for a proposed
 sufficient presentation; they do not claim that the source determines a unique Lean
 encoding.
+
+The [witness audit](source/WITNESS_AUDIT.md) maps the constraints and open
+validation questions. `SPECIFICATION_READY` denotes internal admission under
+the configured checks, not an expert-reviewed equivalence to Jaffe–Witten.
 
 ## 2. The fixed mathematical target
 

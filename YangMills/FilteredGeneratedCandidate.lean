@@ -6,17 +6,21 @@ import YangMills.WightmanVacuumKernels
 # Closed proposed filtered generated-sector specification
 
 This assembly quantifies the required actual gauge groups and binds the
-complete physical QFT and Hamiltonian to the SAME generated action,
+specified physical QFT and Hamiltonian to the SAME generated action,
 renormalization, observables, UV/OPE and stress properties. Its complete
 source interpretation and necessary normalization/convention bridges are
-reviewed in source/FINAL_FIDELITY_ARGUMENT.md. The admitted fixed proposition
+assessed internally in source/FINAL_FIDELITY_ARGUMENT.md. Witness constraints
+and unresolved external-review questions are mapped in source/WITNESS_AUDIT.md.
+These assessments do not establish fidelity to the prose source. The admitted fixed proposition
 is defined separately in YangMillsSpecification. No existence proof is
 supplied or assumed; external acceptance remains a separate question.
 
 Nontriviality is not replaced by an extra Gaussianity test: the positive finite
 physical spectral mass excludes a vacuum-only theory, while generated actual-G
 short-distance correlations, same composite-only cyclicity and the generated
-stress/charge equations do the Yang--Mills identification work.
+stress/charge equations are intended to provide Yang--Mills identification.
+Their presence is not a theorem excluding every massive free or generalized-free
+model from this full candidate. No such general exclusion is claimed here.
 -/
 noncomputable section
 namespace YangMills
@@ -24,8 +28,9 @@ universe u
 open Perturbative PerturbativeFlow
 
 /-- All witnesses of the proposed simultaneous prescription for ONE actual G.
-Every relation is fixed by the imported concrete definitions. A witness cannot
-supply a substitute meaning of Yang--Mills, prescribed OPE or physical mass. -/
+Every relation is fixed by the imported concrete definitions. Witnesses still
+choose objects satisfying them; fixed constraints do not by themselves prove
+that the resulting proposition is neither too weak nor too strong. -/
 structure FilteredGeneratedCandidate (G : CompactSimpleGaugeGroup) where
   theory : QuantumTheory
   qft_and_gap : GappedWightmanTheory theory.State theory.fields

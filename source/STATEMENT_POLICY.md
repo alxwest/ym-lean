@@ -1,7 +1,8 @@
 # Current statement policy
 
 The fixed target is `YangMills.YangMillsExistenceAndMassGap.{u}`, which requires one `FilteredGeneratedCandidate` for every allowed
-[gauge group](GLOSSARY.md#gauge-fields-and-observables). The specification is a **complete reviewed proposal**. Existence of its
+[gauge group](GLOSSARY.md#gauge-fields-and-observables). The specification is an **internally reviewed formal proposal** whose source
+fidelity has not been independently validated. Existence of its
 witnesses and external acceptance remain separate questions.
 
 This policy explains how to describe that status without confusing a mathematical
@@ -12,6 +13,12 @@ definition, a proof and a review. The [glossary](GLOSSARY.md#reading-a-formaliza
 Use the [final fidelity argument](FINAL_FIDELITY_ARGUMENT.md), [current source crosswalk](CURRENT_JW4_READINESS_CROSSWALK.md) and [final adversarial review](FINAL_ADVERSARIAL_REVIEW.md). Earlier implementation reviews are
 historical snapshots; their open-work lists do not create new admission requirements.
 The [verification record](VERIFICATION_RECORD.md) reports the completed checks.
+
+Internal readiness does not close external scrutiny. Claims that no further
+gap was identified describe the internal review, not a theorem excluding
+under-constraint or over-constraint. The [witness audit](WITNESS_AUDIT.md) records
+concrete unresolved validation questions. Newly demonstrated defects require
+revisiting the interpretation or definitions regardless of earlier status.
 
 ## What is fixed, and what may a witness supply?
 

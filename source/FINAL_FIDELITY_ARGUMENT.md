@@ -1,4 +1,9 @@
-# Fidelity argument for the fixed all-group specification
+# Internal fidelity argument for the proposed specification
+
+> **Review status:** This is an internal AI-assisted assessment, not independent
+> human expert validation. Its historical conclusions remain revisable;
+> `FINAL` and `READINESS` in file names are workflow labels. See the
+> [witness audit and open validation questions](WITNESS_AUDIT.md).
 
 This document explains why the proposed Lean statement is intended to satisfy the source
 problem. The argument follows one candidate from its [gauge group](GLOSSARY.md#gauge-fields-and-observables) and physical fields

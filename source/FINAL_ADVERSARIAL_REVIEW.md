@@ -1,4 +1,9 @@
-# Independent finite-prescription review
+# Internal adversarial review of the finite prescription
+
+> **Review status:** This is an internal AI-assisted assessment, not independent
+> human expert validation. Its historical conclusions remain revisable;
+> `FINAL` and `READINESS` in file names are workflow labels. See the
+> [witness audit and open validation questions](WITNESS_AUDIT.md).
 
 > **Current disposition:** The concrete source/action, canonical reconstruction,
 > Fourier/Taylor, normalization, insertion/OPE uniqueness and stress-transport

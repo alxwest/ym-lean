@@ -13,7 +13,9 @@ the reviewed snapshots, not new objections to the current specification.
 
 ## Route 1: Understand the current claim
 
-Read these in order before interpreting the implementation history.
+Begin with the [witness audit and open validation questions](WITNESS_AUDIT.md),
+then read these in order before interpreting the implementation history.
+“Current” means current internal policy, not independently validated fidelity.
 
 | Document | Question it answers |
 | --- | --- |
