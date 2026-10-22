@@ -126,7 +126,10 @@ another analytic hypothesis or essential fidelity gap.
 
 Primary comparison actually consulted: Streater's coauthor exposition, https://www.scholarpedia.org/article/Wightman_quantum_field_theory ,
 axioms II--III and Theorem 4; Osterwalder--Schrader I, §4.2 pp.94--95, and II's
-correction of Euclidean reconstruction hypotheses. The full [45] book's axiom chapter
+correction of Euclidean reconstruction hypotheses. A supplied full OS II PDF was
+directly inspected on 22 October 2026; the [source reading record](SOURCE_ANALYSIS.md#direct-os-ii-reading-22-october-2026)
+lists the reviewed pages, the two corrected routes and the limits of that reading.
+The full [45] book's axiom chapter
 was NOT directly accessed: its publisher preview reaches front matter/contents only.
 This report does not claim otherwise. The explicit mathematical comparison above and the
 primary coauthor/OS sources support the chosen standard formulation; the access

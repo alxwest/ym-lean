@@ -90,7 +90,10 @@ of R. F. Streater and A. S. Wightman, *PCT, Spin and Statistics, and All That*
 The existing comparison uses [Streater's own exposition](https://www.scholarpedia.org/article/Wightman_quantum_field_theory)
 and the original Osterwalder–Schrader papers. Thus it is not based solely on
 unrelated secondary summaries, but the exact cited-book comparison remains
-unverified. A reviewer should check each domain, multiplet, distribution,
+unverified. The OS II access gap was closed on 22 October 2026 with a supplied
+full PDF; a [scoped direct reading](SOURCE_ANALYSIS.md#direct-os-ii-reading-22-october-2026)
+records its corrected reconstruction conditions. This does not replace the
+missing book chapter. A reviewer should check each domain, multiplet, distribution,
 spectral and locality condition against the actual chapter and record precise
 locations and deviations.
 

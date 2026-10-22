@@ -4,6 +4,11 @@
 > reviewed stage. For current status, read the [final fidelity argument](FINAL_FIDELITY_ARGUMENT.md)
 > and [verification record](VERIFICATION_RECORD.md).
 
+> **Source-access update, 22 October 2026.** The user has supplied the full OS II
+> PDF. The [direct reading below](#direct-os-ii-reading-22-october-2026) supersedes
+> the historical OS II access limitation, but not the missing Streater–Wightman
+> chapter or the remaining source-equivalence obligations.
+
 This early source analysis separates three tasks: defining the intended conditions,
 justifying their relation to the prose source, and eventually constructing a theory
 satisfying them. Its crosswalk records what the repository lacked at that stage.
@@ -58,6 +63,9 @@ https://projecteuclid.org/journals/communications-in-mathematical-physics/volume
 one-line response. This supports the warning above, not a complete line-by-line
 formalization audit of the paper.
 
+The preceding paragraph records the original retrieval attempt. Full local
+access and a scoped direct reading are now recorded below.
+
 Reference [27] is Itzykson–Zuber, *Quantum Field Theory* (1980). The primary agent
 subsequently downloaded the full [hosted textbook](https://www.maths.tcd.ie/~ngarron/doc/books/Quantum%20Field%20Theory%20%5BItzykson-Zuber%5D.pdf) and inspected printed pp657–659 and 671–680
 (PDF indices 677–679, 691–700). Relevant statements: §13-3-2, equations (13-89)–(13-92),
@@ -75,6 +83,56 @@ algorithm or a completed fidelity proof.
 Reference [45] publisher contents are available at https://www.jstor.org/stable/j.ctt1cx3vcq . Full axiom text was not
 obtained in this role. The QFT formalizer must independently audit domain/temperedness
 details against the actual text. A source crosswalk is not that audit.
+
+## Direct OS II reading (22 October 2026)
+
+The user supplied `osterwalder1975.pdf`, a 25-page copy of Konrad Osterwalder
+and Robert Schrader, *Axioms for Euclidean Green's Functions II*, with an
+appendix by Stephen Summers, *Communications in Mathematical Physics* **42**,
+281–305 (1975). The local source is
+`/Users/alx/physics/papers/osterwalder1975.pdf`; its SHA-256 is
+`36413586b83b491c8e0ef318e98d6e882619019826e62dc24daf898dc7f486ec`.
+The [publisher-hosted paper](https://projecteuclid.org/journals/communications-in-mathematical-physics/volume-42/issue-3/Axioms-for-Euclidean-Greens-functions-II-with-an-Appendix-by/cmp/1103899050.pdf)
+provides a portable bibliographic link; this reading used the supplied local copy.
+
+**Coverage:** direct reading of printed pp.281–289, 297 and 303–305, with
+rendered-page checks of the key conditions on pp.282, 285 and 287–288 and the
+appendix on pp.303–304. This is an AI-assisted source comparison, not a complete
+proof audit of Chapters V–VI or of the paper's dependencies. Printed p.281 is
+PDF page 1. The full document is accessible; the narrower review scope is no
+longer an access failure.
+
+| Location | What the paper establishes or states | Consequence for this repository |
+| --- | --- | --- |
+| p.282, introduction and Remark 1 | OS I Lemma 8.8 is incorrect. The authors state that sufficiency of the original E0–E4 was open at publication. Their example distinguishes separate from joint Laplace-transform behavior. | Do not present bare original E0–E4 as a reconstruction theorem established by these papers. This is a statement about the 1975 source, not a claim about all later literature. |
+| pp.284–286, Eq. (2.7), Chapter III | The corrected equivalence uses the strengthened condition labelled E-tilde-0, together with E1–E4. It requires continuity of the difference-variable functions in a topology defined through the Fourier–Laplace transform. | This is a precise additional continuity requirement, not ordinary temperedness with a new name. The theorem relates it to the Wightman distribution axioms R0–R5. |
+| p.287, Eq. (4.1) | The alternative E0-prime condition bounds the n-point functional by a Schwartz norm of order n times one fixed integer s. Its constants have factorial growth: sigma_n is bounded by alpha times (n!)^beta, for fixed constants. | This controls growth across the entire sequence of correlations; a separate continuity assertion for each n does not supply this bound. |
+| pp.287–288, Eq. (4.3) and Remark 3 | E0-prime plus E1–E4 reconstructs a unique Wightman theory. The resulting R0-prime bound has norm order n times a fixed w, with constants bounded by alpha times beta^(n²). The authors do not obtain factorial growth for those constants or a matching equivalence theorem for these growth classes. | Distinguish the sufficient reconstruction route from the corrected equivalence theorem. Do not claim identical quantitative growth on the Euclidean and Minkowski sides. |
+| pp.287 and 303–305, Eq. (4.2) and Summers appendix | The stronger E0-double-prime bounds tensor tests using a product of fixed-order single-variable norms. The appendix proves it implies E0-prime. | Tensor-test estimates require a justified extension to full test functions; that implication is supplied here under specific quantitative assumptions. |
+| pp.289 and 297, openings of Chapters V–VI | Analytic continuation uses original E0, E1 and E2. The linear growth assumption is used for the estimates establishing tempered boundary values. | Analytic continuation alone must not be treated as a proof of tempered Wightman distributions. |
+| p.283, Remark 5 | The exposition treats one real scalar field; the authors refer to OS I Chapter 6 for extension to countably many arbitrary-spin fields. | This is not a worked comparison with this repository's particular countable bosonic multiplets. That presentation still needs its own justification. |
+
+For orientation, **Schwinger functions** are Euclidean correlation functions;
+**reconstruction** recovers a relativistic quantum field theory from them.
+The [glossary](GLOSSARY.md#quantum-fields-and-distributions) explains tempered
+distributions and the Wightman framework. The paper defines its test spaces and
+norms on pp.283–285; the bounds above refer to those conventions.
+
+The current candidate supplies a Minkowski theory directly through
+[WightmanAxioms](../YangMills/QFT/Wightman.lean), and supplies full continuous
+Schwartz kernels tied to its actual vacuum words through
+[WightmanVacuumKernels](../YangMills/WightmanVacuumKernels.lean).
+It does not obtain those kernels by applying OS II. Consequently this reading
+does not justify adding E0-prime as a new compulsory field of the candidate.
+An eventual Euclidean construction using OS II would need to prove its chosen
+reconstruction hypotheses and connect the reconstructed objects to all the
+candidate's fields. Auxiliary perturbative analytic continuation alone does
+not perform that task.
+
+**Status:** the OS II access gap is closed and the earlier reconstruction
+warning is directly supported. No Lean definition or proof was changed. The
+exact Streater–Wightman chapter comparison, full source-equivalence arguments
+and independent human expert validation remain outstanding.
 
 ## Interpretive choices and scope
 
