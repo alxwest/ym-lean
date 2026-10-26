@@ -1,4 +1,7 @@
 import YangMills.ActionProbeSupport
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 set_option maxHeartbeats 4000000
 noncomputable section
 open scoped BigOperators
@@ -17,7 +20,7 @@ variable {G : CompactSimpleGaugeGroup}
   | cons a l ih => simp [ih]
 @[simp] private theorem sum_map_finRange' (n : ℕ) (f : Fin n → ℂ) :
     ((List.finRange n).map f).sum = ∑ i, f i := by
-  simpa [List.finRange, List.map_ofFn] using (List.sum_ofFn (f := f))
+  simpa [List.finRange, List.map_ofFn] using! (List.sum_ofFn (f := f))
 
 theorem ghostVertex_amplitude {B : InvariantForm G} (e : ColorFrame B) (a b c : Fin G.dimension)
     (q : Fin 3 → Spacetime) :
@@ -25,7 +28,7 @@ theorem ghostVertex_amplitude {B : InvariantForm G} (e : ColorFrame B) (a b c : 
       (structureConstant e a b c : ℂ) * (-Complex.I * (q 0 0 : ℂ)) := by
   unfold basisAmplitude basisVertices liftPhysical ghostMonomials localPolynomialAmplitude
 
-  simp [localVertexAmplitude, localMonomialDerivative, List.ofFn_succ,
+  simp (maxSteps := 1000000) [localVertexAmplitude, localMonomialDerivative, List.ofFn_succ,
     ExternalLeg.parity, BasicField.fermionic, Fin.sum_univ_succ]
 
 

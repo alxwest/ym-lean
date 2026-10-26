@@ -1,5 +1,8 @@
 import YangMills.PartialDiagonalContact
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Contact terms vanish on separated invariant-state tests
 

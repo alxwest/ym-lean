@@ -1,6 +1,9 @@
 import YangMills.PerturbativeFlow
 import Mathlib.RingTheory.PowerSeries.Basic
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed local tensor coordinates of the physical Yang--Mills action
 

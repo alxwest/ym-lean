@@ -1,5 +1,8 @@
 import YangMills.LocalVertexPolarization
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators
 namespace YangMills.IntegratedNormalization
@@ -16,7 +19,7 @@ theorem assignedVertexTerm_field_support {n : ℕ}
   classical
   have hn : ∃ i, fields (π i) ≠ (external i).1 := by
     by_contra hn
-    push_neg at hn
+    push Not at hn
     apply h
     funext j
     simpa only [π.apply_symm_apply] using hn (π.symm j)

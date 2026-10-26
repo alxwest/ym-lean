@@ -2,6 +2,9 @@ import YangMills.CompositeFields
 import YangMills.Ultraviolet
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Weak OPE of the same renormalized quantum fields
 

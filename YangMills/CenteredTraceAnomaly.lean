@@ -1,5 +1,8 @@
 import YangMills.VacuumCenteredTraceMeaning
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 The trace anomaly fixes the nonidentity operator content. Both fields are
 centered by their actual SAME-vacuum onepoints. No absolute local vacuum

@@ -3,6 +3,9 @@ import YangMills.ConservingNormalizationRegularity
 import YangMills.ConservingFlowRestriction
 import YangMills.ReducedLinearInsertionUniqueness
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped ContDiff

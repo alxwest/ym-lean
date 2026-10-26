@@ -1,5 +1,8 @@
 import YangMills.OperatorProductExpansion
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Explicit Euclidean-to-Minkowski coefficient boundary relation
 

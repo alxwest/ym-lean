@@ -1,6 +1,9 @@
 import YangMills.InsertionEquationDilation
 import YangMills.OversubtractionBoundaryDilation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 2000000
 set_option synthInstance.maxHeartbeats 200000

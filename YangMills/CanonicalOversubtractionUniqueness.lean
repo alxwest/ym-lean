@@ -1,6 +1,9 @@
 import YangMills.CanonicalLinearInsertionUniqueness
 import YangMills.InsertionExtractionCongruence
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped ContDiff
 open Filter
@@ -28,7 +31,7 @@ def InhomogeneousInsertionRegularity.changeSource
   smooth := h.smooth
   continuous := h.continuous
   flow loop Λ legs q hp hlt := by
-    simpa only [eq loop Λ legs q hp hlt] using h.flow loop Λ legs q hp hlt
+    simpa only [eq loop Λ legs q hp hlt] using! h.flow loop Λ legs q hp hlt
 
 /-- Original strict-low/nonstrict-high canonical rows determine the actual
 inhomogeneous response for its fixed SAME source and background. -/
@@ -81,13 +84,13 @@ theorem InhomogeneousInsertionRegularity.unique_of_canonical_projectors
           · have cf := hF.continuous loop ls [] p
             have ch := hH.continuous loop ls [] p
             have cf' : ContinuousOn (fun s => F loop s UV ls p) (Set.Ioc 0 UV) := by
-              simpa [momentumJet, iteratedFDeriv_zero_apply] using cf
+              simpa [momentumJet, iteratedFDeriv_zero_apply] using! cf
             have ch' : ContinuousOn (fun s => H loop s UV ls p) (Set.Ioc 0 UV) := by
-              simpa [momentumJet, iteratedFDeriv_zero_apply] using ch
+              simpa [momentumJet, iteratedFDeriv_zero_apply] using! ch
             exact cf'.sub ch'
           · intro s hs hsUV
             have hd := (hF.flow loop s ls p hs hsUV).sub (hH.flow loop s ls p hs hsUV)
-            simpa only [rhs ls hls s p hs hsUV, sub_self] using hd
+            simpa only [rhs ls hls s p hs hsUV, sub_self] using! hd
           all_goals first | assumption | exact le_rfl
         let A : OrderedAmplitude G := fun ls p => F loop UV UV ls p - H loop UV UV ls p
         have smooth : ∀ ls, ContDiff ℝ ∞ (A ls) :=
@@ -156,7 +159,7 @@ def InsertionFlowConditions.oversubtractionRegularity
     h.oversubtraction_boundary.scale_jet_continuous D input.atOrigin loop UV legs directions q
   flow loop Λ legs q hp hlt := by
     have hf := h.oversubtraction_flow D input.originCluster loop Λ UV legs q hp hlt
-    simpa only [InsertionCluster.originCluster_insertions, oversubtractionFlowRHS] using hf
+    simpa only [InsertionCluster.originCluster_insertions, oversubtractionFlowRHS] using! hf
 
 /-- Actual multiple-insertion oversubtractions are unique for the SAME
 single-insertion source and background, under precisely (4.4)'s <D/≥D rows. -/

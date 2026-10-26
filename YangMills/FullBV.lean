@@ -4,6 +4,9 @@ import Mathlib.RingTheory.TensorProduct.Basic
 import Mathlib.Algebra.MvPolynomial.PDeriv
 import Mathlib.Algebra.BigOperators.Finprod
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Concrete complex BV jets, same-action densities and local functionals.
 No master equation, Ward restoration or quotient bracket descent is assumed. -/
 noncomputable section

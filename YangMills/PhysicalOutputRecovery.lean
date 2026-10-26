@@ -2,6 +2,9 @@ import YangMills.CompositeFields
 import YangMills.FreeWardExtraction
 import YangMills.OversubtractedFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Physical output recovery from the generated full monomial expansion
 

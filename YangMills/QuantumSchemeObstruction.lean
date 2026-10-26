@@ -1,5 +1,8 @@
 import YangMills.RenormalizationGroup
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # A dimensionful identity shift is not homogeneous scale transport
 

@@ -3,6 +3,9 @@ import YangMills.StressTensor
 import YangMills.WickRotation
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Running coupling, operator transport, and all-order weak UV matching
 

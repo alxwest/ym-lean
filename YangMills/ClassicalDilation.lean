@@ -1,6 +1,9 @@
 import YangMills.InvariantJetPolynomials
 import Mathlib.Analysis.Normed.Module.FiniteDimension
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Engineering dilation of the same actual classical connection
 
@@ -51,7 +54,7 @@ variable {G : CompactSimpleGaugeGroup}
 scales are included algebraically; physical UV comparisons use positive scales. -/
 def dilate (A : Connection G) (scale : ℝ) : Connection G where
   potential x := scale • A.potential (scale • x)
-  smooth := (A.smooth.comp (contDiff_const.smul contDiff_id)).const_smul scale
+  smooth := (A.smooth.comp ((contDiff_id : ContDiff ℝ ∞ (id : Spacetime → Spacetime)).const_smul scale)).const_smul scale
 
 theorem partialDerivative_dilate_field (f : Spacetime → G.Algebra)
     (coefficient scale : ℝ) (mu : Fin 4) (x : Spacetime)
@@ -138,7 +141,8 @@ theorem CurvatureJet.evaluate_dilate {G : CompactSimpleGaugeGroup}
       rw [transformed]
       have identity := A.covariantDerivative_dilate_field (tail.evaluate A) tail.dimension
         scale rho x ((tail.smooth_evaluate A).differentiable (by norm_num) _)
-      simpa only [CurvatureJet.dimension, List.length_cons, Nat.add_assoc] using identity
+      simpa only [CurvatureJet.dimension, List.length_cons, Nat.add_assoc, tail,
+        CurvatureJet.evaluate, List.foldr_cons] using identity
 
 /-- Polynomial evaluation under dilation uses those same actual jet weights.
 This is the elementary bridge between classical labels and engineering

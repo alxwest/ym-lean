@@ -1,4 +1,7 @@
 import YangMills.FullBVShiftedNilpotency
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 1200000
 namespace YangMills.FullBV
@@ -63,11 +66,11 @@ theorem localST_mul_jet (S P : JetAlgebra G) (k : Jet G) :
     localST S (P * jet k) = localST S P * jet k +
       prolongedST S k * (if k.field.parity then parity P else P) := by
   by_cases hk : k.field.parity = true
-  · simpa only [jet, hk, dif_pos, if_pos, prolongedST, localST] using
+  · simpa only [jet, hk, dif_pos, if_pos, prolongedST, localST] using!
       coordinateDifferential_mul_oddJet
         (fun j => totalDerivatives j.val.derivative (stCharacteristic S j.val.field))
         (fun j => totalDerivatives j.val.derivative (stCharacteristic S j.val.field)) P ⟨k, hk⟩
-  · simpa only [jet, hk, dif_neg, if_neg, prolongedST, localST] using
+  · simpa only [jet, hk, dif_neg, if_neg, prolongedST, localST] using!
       coordinateDifferential_mul_evenJet
         (fun j => totalDerivatives j.val.derivative (stCharacteristic S j.val.field))
         (fun j => totalDerivatives j.val.derivative (stCharacteristic S j.val.field)) P

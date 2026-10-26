@@ -1,6 +1,9 @@
 import YangMills.MultiindexMomentumDirections
 import YangMills.CanonicalCornerCombinatorics
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 2400000
 open scoped ContDiff BigOperators

@@ -1,6 +1,9 @@
 import YangMills.CollisionScaling
 import YangMills.WardContinuum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Partial-collision power counting for the same insertion distributions
 

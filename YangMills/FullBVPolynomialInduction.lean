@@ -1,5 +1,8 @@
 import YangMills.FullBVOrdinaryJetDerivation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Arbitrary local superpolynomials from the actual jet generators
 

@@ -1,6 +1,9 @@
 import YangMills.QuantumCorrelations
 import Mathlib.LinearAlgebra.Multilinear.Basic
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual vacuum n-point multilinearity and separate continuity
 

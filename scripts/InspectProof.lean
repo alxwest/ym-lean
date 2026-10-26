@@ -62,8 +62,9 @@ private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
       unless info.type == mkConst ymTarget [.param u] do
         IO.eprintln "REJECTED: proof has wrong, fixed-universe or conditional target type"
         return 1
-    let (_, state) := ((CollectAxioms.collect theoremName).run env).run {}
-    let extra := state.axioms.filter (fun ax => !isAllowedAxiom ax)
+    let axioms ← (Lean.collectAxioms theoremName : CoreM (Array Name)).toIO'
+      { fileName := "<proof-inspector>", fileMap := default } { env := env }
+    let extra := axioms.filter (fun ax => !isAllowedAxiom ax)
     unless extra.isEmpty do
       IO.eprintln s!"REJECTED: unapproved transitive axioms {extra.toList}"
       return 1

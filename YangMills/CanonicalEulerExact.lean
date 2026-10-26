@@ -1,5 +1,8 @@
 import YangMills.FullBVLocalIntegration
 import YangMills.EssentialCouplingHomogeneity
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 600000
 open scoped BigOperators
@@ -21,10 +24,10 @@ theorem rightEuler_mul_zeroJet (field : ExternalLeg G) (P : JetAlgebra G) :
   apply congrArg (fun R : JetAlgebra G => ((-1 : ℂ)^derivativeOrder alpha) • R)
   by_cases hp : field.parity = true
   · simpa only [rightPartialJet, hp, if_true, LinearMap.comp_apply,
-      totalDerivatives_parity, jet, dif_pos] using
+      totalDerivatives_parity, jet, dif_pos] using!
       (oddJet_mul_polynomial ⟨⟨field, 0⟩, hp⟩
         (totalDerivatives alpha (leftPartialJet ⟨field, alpha⟩ P))).symm
-  · simpa only [rightPartialJet, hp, if_false, jet, dif_neg] using
+  · simpa only [rightPartialJet, hp, if_false, jet, dif_neg] using!
       (evenJet_commute ⟨⟨field, 0⟩, by cases h : field.parity <;> simp_all⟩
         (totalDerivatives alpha (leftPartialJet ⟨field, alpha⟩ P))).symm
 

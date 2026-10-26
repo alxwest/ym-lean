@@ -9,6 +9,31 @@ For the meaning of the statuses, see the [certification contract](../CERTIFICATI
 use the [glossary](GLOSSARY.md). The results below are historical run results; editing this document
 does not constitute rerunning those checks.
 
+## Lean 4.31 upgrade (26 October 2026)
+
+The current toolchain is Lean **4.31.0**, with Mathlib **v4.31.0** pinned to
+`fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` in the Lake manifest. The compatibility
+edits were adapted from the [Millennium repository's port at `7f4523a`](https://github.com/alxwest/LeanMillenniumPrizeProblems/commit/7f4523a9909aeaa9cdae172c75c4b2809f01f819),
+before its separate Physlib integration. This repository keeps its existing
+module layout and Mathlib-only direct dependency.
+
+Changes include renamed Mathlib APIs for distributions, derivatives and finite
+sums, tactic/elaboration adjustments, and the explicit compatibility option
+`backward.isDefEq.respectTransparency=false`. Warnings remain errors. The
+standalone inspector now calls Lean's public `collectAxioms` API because the
+old internal collector is private in 4.31; its target checks and three-axiom
+allowlist are unchanged.
+
+The full library build passed (3,519 jobs). `scripts/check_proofs.py` completed
+with exit 0: all 34 Python regressions, 15 proof-audit cases and 12 compiled
+inspector rejection cases passed, together with the real all-group target
+shape check. The public specification verifier
+returned `SPECIFICATION_READY` with exit 0; Yang–Mills verification without a
+proof returned `PROOF_NOT_SUBMITTED` with exit 2. Both reports retained
+`clay_certificate=false`. These are toolchain and formal-check results, not
+a new fidelity review or an existence proof. The older runs below retain their
+original toolchain versions.
+
 ## What was checked mathematically?
 
 The pinned Lean 4.25.0/mathlib environment compiled the central supporting bridges with

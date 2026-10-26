@@ -2,6 +2,9 @@ import YangMills.CompositeExtraction
 import YangMills.PerturbativeFlow
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed free BV Ward operator and finite insertion coordinates
 

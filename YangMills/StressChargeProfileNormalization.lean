@@ -2,6 +2,9 @@ import YangMills.StressTensor
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 import Mathlib.MeasureTheory.Integral.Prod
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 2400000
 set_option synthInstance.maxHeartbeats 200000

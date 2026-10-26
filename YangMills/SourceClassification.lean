@@ -12,6 +12,9 @@ import YangMills.InvariantJetPolynomials
 import YangMills.Ultraviolet
 import YangMills.YangMillsSpecification
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Provenance labels for the formal specification
 

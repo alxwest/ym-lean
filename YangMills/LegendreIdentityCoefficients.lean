@@ -1,5 +1,8 @@
 import YangMills.LegendreInsertionBridge
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped BigOperators
@@ -46,7 +49,7 @@ theorem substitutionSummand_zero_off_corner (A : FormalAmplitude G) (s : CutoffS
   split_ifs with h
   · have hex : ∃ b : Fin k, (go b.succ).val ≠ 0 ∨ (ho b.succ).val ≠ 0 := by
       by_contra hn
-      push_neg at hn
+      push Not at hn
       have hg := orders_eq_corner go h.2.1 (fun b => (hn b).1)
       have hh := orders_eq_corner ho h.2.2 (fun b => (hn b).2)
       exact hne.elim (fun h => h hg) (fun h => h hh)

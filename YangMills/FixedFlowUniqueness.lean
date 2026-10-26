@@ -1,6 +1,9 @@
 import YangMills.FlowBoundaryUniqueness
 import YangMills.FlowNormalizationDilation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative

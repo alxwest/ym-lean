@@ -1,5 +1,8 @@
 import YangMills.FullBVMasterEquations
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Nonlinear Hamiltonian characteristics of the same master action. -/
 noncomputable section
 set_option maxHeartbeats 1200000

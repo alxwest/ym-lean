@@ -2,6 +2,9 @@ import YangMills.PointwiseNormalizationJetComparison
 import YangMills.ConservingJetTransport
 import YangMills.CanonicalHighJetAdequacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped BigOperators ContDiff

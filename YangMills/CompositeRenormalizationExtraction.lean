@@ -3,6 +3,9 @@ import YangMills.FormalRenormalization
 import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
 import Mathlib.LinearAlgebra.Matrix.ConjTranspose
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual bare-boundary extraction of composite RG coordinates
 

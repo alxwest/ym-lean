@@ -3,6 +3,9 @@ import YangMills.LiftedCompositeExtraction
 import YangMills.QuantumOutputRecovery
 import YangMills.CollisionScaling
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Generated physical Euclidean OPE coefficients
 

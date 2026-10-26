@@ -1,5 +1,8 @@
 import YangMills.FlowScaleConstancy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative MeasureTheory
@@ -41,7 +44,6 @@ theorem quadraticSplit_congr_lower {A C : FlowFamily G} (loop l : ℕ) (Λ UV : 
   intro M _
   apply Finset.sum_congr rfl
   intro N _
-  dsimp only
   by_cases hl : l < loop ∨ (l = loop ∧ (.inl N :: selectedLegs legs s).length < legs.length)
   · by_cases hr : loop-l < loop ∨
         (loop-l = loop ∧ (.inl M :: selectedLegs legs (complementIndices legs s)).length < legs.length)

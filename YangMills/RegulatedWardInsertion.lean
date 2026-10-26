@@ -2,6 +2,9 @@ import YangMills.OversubtractedFlow
 import YangMills.FullBV
 import YangMills.RegulatedBVFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed bare single-insertion Ward defects
 

@@ -1,5 +1,8 @@
 import YangMills.RegulatedOPEDilation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative Filter
@@ -18,6 +21,6 @@ theorem IsUltravioletOPECoefficient.rescale (a : ℝ) (positive : 0 < a)
     (tendsto_const_mul_atTop_of_pos positive).mpr tendsto_id
   have limit := (h.2.comp cofinal).const_mul
     ((a : ℂ)^((output.dimension : ℤ)-positionedInsertionDegreeSum input.insertions))
-  simpa only [regulatedOPECoefficient_rescale a positive] using limit
+  simpa only [regulatedOPECoefficient_rescale a positive] using! limit
 
 end YangMills.PerturbativeFlow

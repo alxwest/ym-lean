@@ -2,6 +2,9 @@ import YangMills.FourierTaylorUniformEnumeration
 import YangMills.MomentumJetSymmetry
 import Mathlib.Analysis.Analytic.IteratedFDeriv
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators ContDiff
 namespace YangMills.IntegratedNormalization
@@ -15,7 +18,6 @@ theorem smooth_iteratedFDeriv_perm (f : E → ℂ) (smooth : ContDiff ℝ ∞ f)
     iteratedFDeriv ℝ n f x (fun i => v (π i)) = iteratedFDeriv ℝ n f x v := by
   have hp := directionalWord_perm (π.ofFn_comp_perm v) smooth
   have he := congrArg (fun h : E → ℂ => h x) hp
-  dsimp only at he
   rw [directionalWord_eq_iteratedFDeriv _ smooth x,
     directionalWord_eq_iteratedFDeriv _ smooth x] at he
   have ht (w : Fin n → E) :

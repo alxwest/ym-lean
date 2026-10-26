@@ -1,5 +1,8 @@
 import YangMills.MomentumJetIdeal
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped ContDiff
@@ -24,7 +27,7 @@ lemma unflattenMomentumCoordinates_single {n : ℕ} (p : Fin n × Fin 4) :
   ext j nu
   change (Pi.single (i,mu) (1 : ℝ) : (Fin n × Fin 4) → ℝ) (j,nu) = (Pi.single i (Pi.single mu (1 : ℝ)) : Fin n → Spacetime) j nu
   by_cases ji : j=i <;> by_cases same : nu=mu <;>
-    simp_all [Pi.single_apply,Prod.mk.injEq]
+    simp_all [Prod.mk.injEq]
 
 /-- Exact transport from the scalar-coordinate directional words of the
 analytic rectangle theorem to the SAME actual momentumJet. -/

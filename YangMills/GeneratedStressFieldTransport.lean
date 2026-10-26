@@ -1,6 +1,9 @@
 import YangMills.FilteredQuantumRGReduction
 import YangMills.GeneratedMixingMeaning
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators
 namespace YangMills.FilteredRG
@@ -38,7 +41,7 @@ theorem dictionary_field_binding (dict : PerturbativeFlow.StressSourceDictionary
   simp only [map_smul, map_sum] at eq
   have point := congrArg (fun A : TestFunction →ₗ[ℂ] Q.domain →ₗ[ℂ] Q.domain => A f v) eq
   simpa only [LinearMap.smul_apply, LinearMap.sum_apply, RCLike.real_smul_eq_coe_smul]
-    using point
+    using! point
 
 /-- The same physical stress at every running scale follows from the actual
 reference dictionary, actual SAME-C transport and transported numerator.

@@ -1,4 +1,7 @@
 import YangMills.ClassicalDilation
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 open scoped ContDiff
 namespace YangMills

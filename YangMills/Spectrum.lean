@@ -1,5 +1,8 @@
-import Mathlib.Data.Real.CompleteField
+import Mathlib.Algebra.Order.Archimedean.Real.Hom
 import Mathlib.Order.Bounds.Basic
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 
 /-!
 # The spectral clause in Jaffe–Witten, §4

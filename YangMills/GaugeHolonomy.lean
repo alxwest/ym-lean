@@ -2,6 +2,9 @@ import YangMills.GaugeGroup
 import Mathlib.Algebra.Group.Conj
 import Mathlib.Tactic.Group
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Genuine gauge-group dependence of finite holonomy data
 

@@ -1,5 +1,8 @@
 import YangMills.LegendreQuadraticGraded
 import YangMills.PerturbativeCoefficientLimits
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 400000
 open scoped BigOperators

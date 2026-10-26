@@ -2,6 +2,9 @@ import YangMills.GeneratedRenormalizedSector
 import YangMills.ClassicalDilation
 import YangMills.CenteredTraceAnomaly
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Filtered quantum RG with fixed generated scale-dependent mixing
 

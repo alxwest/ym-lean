@@ -2,6 +2,9 @@ import YangMills.MomentumJetSymmetry
 import YangMills.FiniteJetDeterminacy
 import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
 import Mathlib.Analysis.Calculus.Deriv.Comp
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 2400000
 open scoped ContDiff
@@ -30,14 +33,15 @@ theorem coordinateJet_smooth (directions : List ι) {f : (ι → ℝ) → ℂ}
     (smooth : ContDiff ℝ ∞ f) : ContDiff ℝ ∞ (coordinateJet directions f) :=
   directionalWord_smooth _ smooth
 
+omit [Fintype ι] in
 lemma coordinateLine_hasDerivAt (q : ι → ℝ) (i : ι) (t : ℝ) :
     HasDerivAt (fun r : ℝ => Function.update q i r) (Pi.single i 1) t := by
   apply hasDerivAt_pi.mpr
   intro j
   by_cases hji : j = i
   · subst j
-    simpa only [Function.update_self,Pi.single_eq_same] using hasDerivAt_id t
-  · simpa only [Function.update_of_ne hji,Pi.single_eq_of_ne hji] using hasDerivAt_const t (q j)
+    simpa only [Function.update_self,Pi.single_eq_same] using! hasDerivAt_id t
+  · simpa only [Function.update_of_ne hji,Pi.single_eq_of_ne hji] using! hasDerivAt_const t (q j)
 
 /-- Repeated scalar differentiation of an anchored coordinate line is
 exactly the corresponding extended actual coordinate jet. -/
@@ -55,7 +59,7 @@ theorem iteratedDeriv_coordinateLine (directions : List ι) {f : (ι → ℝ) �
     have hd := (hs.differentiable (by simp) (Function.update q i t)).hasFDerivAt.comp_hasDerivAt
       t (coordinateLine_hasDerivAt q i t)
     simpa only [Function.comp_def,coordinateJet,List.replicate_succ,List.cons_append,
-      List.map_cons,directionalWord] using hd.deriv
+      List.map_cons,directionalWord] using! hd.deriv
 
 /-- Rectangular corner condition on anchored coordinate faces. Coordinates
 whose derivative count has not reached L are anchored at0. -/
@@ -87,14 +91,14 @@ theorem AnchoredFaces.free_insert {L : ℕ} {f : (ι → ℝ) → ℂ}
       rw [counts]
       split_ifs with hji
       · subst j; omega
-      · simpa only [zero_add] using bounded j
+      · simpa only [zero_add] using! bounded j
     have hs : ContDiff ℝ ∞ (fun t : ℝ => coordinateJet directions f (Function.update q i t)) := by
       apply (coordinateJet_smooth directions smooth).comp
       apply contDiff_pi.mpr
       intro j
       by_cases hji : j = i
-      · subst j; simpa only [Function.update_self] using (contDiff_id : ContDiff ℝ ∞ (fun t : ℝ => t))
-      · simpa only [Function.update_of_ne hji] using (contDiff_const : ContDiff ℝ ∞ (fun _ : ℝ => q j))
+      · subst j; simpa only [Function.update_self] using! (contDiff_id : ContDiff ℝ ∞ (fun t : ℝ => t))
+      · simpa only [Function.update_of_ne hji] using! (contDiff_const : ContDiff ℝ ∞ (fun _ : ℝ => q j))
     have hz := scalar_finiteJet_zero hs (L-directions.count i) gap
       (by
         intro t
@@ -108,7 +112,7 @@ theorem AnchoredFaces.free_insert {L : ℕ} {f : (ι → ℝ) → ℂ}
           omega
         · rw [Function.update_of_ne hji]
           apply face j (by simp only [Finset.mem_insert,not_or]; exact ⟨hji,hj⟩)
-          simpa only [counts,if_neg hji,zero_add] using hlow)
+          simpa only [counts,if_neg hji,zero_add] using! hlow)
       (by
         intro k hk
         rw [iteratedDeriv_coordinateLine directions smooth]
@@ -118,9 +122,9 @@ theorem AnchoredFaces.free_insert {L : ℕ} {f : (ι → ℝ) → ℂ}
         · subst j; exact Function.update_self _ _ _
         · rw [Function.update_of_ne hji]
           apply face j (by simp only [Finset.mem_insert,not_or]; exact ⟨hji,hj⟩)
-          simpa only [counts,if_neg hji,zero_add] using hlow)
+          simpa only [counts,if_neg hji,zero_add] using! hlow)
     have hx := congrFun hz (q i)
-    simpa only [Function.update_eq_self,Pi.zero_apply] using hx
+    simpa only [Function.update_eq_self,Pi.zero_apply] using! hx
 
 /-- Exact anchored rectangular C∞ determinacy from its actual finite jets. -/
 theorem anchored_coordinate_determinacy {L : ℕ} {f : (ι → ℝ) → ℂ}

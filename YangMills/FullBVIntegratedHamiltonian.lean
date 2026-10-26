@@ -1,4 +1,7 @@
 import YangMills.FullBVLocalIntegration
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option linter.unusedSimpArgs false
 namespace YangMills.FullBV

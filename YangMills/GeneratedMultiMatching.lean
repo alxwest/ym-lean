@@ -1,6 +1,9 @@
 import YangMills.GeneratedEuclideanCoefficients
 import YangMills.MultiRenormalizationGroup
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-field matching to the generated Euclidean coefficients
 

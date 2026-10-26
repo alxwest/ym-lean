@@ -296,6 +296,9 @@ import YangMills.Nontriviality
 import YangMills.InvariantJetPolynomials
 import YangMills.Ultraviolet
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Dependency audit of the specification and its supporting lemmas
 

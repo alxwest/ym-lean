@@ -1,5 +1,8 @@
 import YangMills.PointwiseNormalizationJetComparison
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped BigOperators ContDiff
@@ -70,9 +73,9 @@ theorem pointwiseNormalizationResponse_jet_continuous
       ∑ m ∈ monomialsBelow G (D+1), ∑ r ∈ Finset.range (loop+1),
         normalizationCoefficient (L μ g) I D μ g UV r m *
           momentumJet d (L μ g [⟨m, 0⟩] (loop-r) Λ UV labels) q) (Set.Ioc 0 UV) := by
-    apply continuousOn_finset_sum _
+    apply continuousOn_finsetSum _
     intro m hm
-    apply continuousOn_finset_sum _
+    apply continuousOn_finsetSum _
     intro r hr
     exact continuousOn_const.mul (h.scale_jet_continuous _ _ _ _ d q)
   apply hc.congr

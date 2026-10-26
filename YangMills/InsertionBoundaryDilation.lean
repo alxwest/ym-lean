@@ -1,5 +1,8 @@
 import YangMills.InsertionProjectorWeights
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 200000
@@ -83,7 +86,7 @@ theorem SingleInsertionBoundaryConditions.rescale {L : InsertedFlowFamily G}
   · intro input loop Λ UV hΛ hΛUV legs
     have smooth := h.smooth (dilateInsertionPoints a input) loop (a*Λ) (a*UV)
       (mul_pos positive hΛ) (mul_le_mul_of_nonneg_left hΛUV positive.le) legs
-    simpa only [rescaleInsertedFlow,rescaleDegree,Function.comp_def,smul_eq_mul] using
+    simpa only [rescaleInsertedFlow,rescaleDegree,Function.comp_def,smul_eq_mul] using!
       (smooth.comp (contDiff_id.const_smul a)).const_smul
         (((a ^ ((totalDimension legs : ℤ)-inputEngineeringDegree input) : ℝ)) : ℂ)
   · intro input loop UV legs directions q
@@ -94,7 +97,7 @@ theorem SingleInsertionBoundaryConditions.rescale {L : InsertedFlowFamily G}
           ⟨mul_pos positive hx.1,mul_le_mul_of_nonneg_left hx.2 positive.le⟩))
     apply (composed.const_smul ((a : ℂ)^((totalDimension legs : ℤ)+directions.length-inputEngineeringDegree input))).congr
     intro x _
-    simpa only [rescaleInsertedFlow,Function.comp_def,id_eq,smul_eq_mul] using
+    simpa only [rescaleInsertedFlow,Function.comp_def,id_eq,smul_eq_mul] using!
       momentumJet_rescaleDegree a positive (inputEngineeringDegree input)
         (L (dilateInsertionPoints a input)) loop x UV legs directions q
   · intro A invalid x loop Λ UV legs q
@@ -106,7 +109,7 @@ theorem SingleInsertionBoundaryConditions.rescale {L : InsertedFlowFamily G}
       mul_inv_cancel_left₀ nonzero]
     have ordered : mu ≤ a*UV := by
       have := mul_le_mul_of_nonneg_left scale_le positive.le
-      simpa only [mul_inv_cancel_left₀ nonzero] using this
+      simpa only [mul_inv_cancel_left₀ nonzero] using! this
     rw [h.normalized A B ha hb bounded loop (a*UV) ordered]
     split_ifs with normalized
     · obtain ⟨equal,_⟩ := normalized
@@ -117,7 +120,7 @@ theorem SingleInsertionBoundaryConditions.rescale {L : InsertedFlowFamily G}
     rw [rescaleInsertedFlow_single,smul_zero,extractCoefficient_rescaleDegree a positive]
     have ordered : mu ≤ a*UV := by
       have := mul_le_mul_of_nonneg_left scale_le positive.le
-      simpa only [mul_inv_cancel_left₀ nonzero] using this
+      simpa only [mul_inv_cancel_left₀ nonzero] using! this
     rw [h.irrelevant A B ha hb bounded loop (a*UV) ordered,mul_zero]
 
 end YangMills.PerturbativeFlow

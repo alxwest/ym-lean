@@ -1,5 +1,8 @@
 import YangMills.FourierTaylorPermutationBlock
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped ContDiff
 namespace YangMills.IntegratedNormalization
@@ -28,7 +31,7 @@ theorem momentumIndexCast_basis (legs other : List (ExternalLeg G))
   · have hn : Fin.cast h i ≠ d.1 := by
       intro he
       apply hi
-      simpa only [Fin.cast_cast, Fin.cast_refl] using congrArg (Fin.cast h.symm) he
+      simpa only [Fin.cast_cast, Fin.cast_refl] using! congrArg (Fin.cast h.symm) he
     simp only [if_neg hi, if_neg hn, Pi.zero_apply]
 
 /-- Actual iterated coordinate derivatives commute with the literal arity
@@ -63,7 +66,7 @@ theorem directionBucket_index_cast (legs other : List (ExternalLeg G))
     · have hn : Fin.cast h d.1 ≠ Fin.cast h i := by
         intro he
         apply hd
-        simpa only [Fin.cast_cast, Fin.cast_refl] using congrArg (Fin.cast h.symm) he
+        simpa only [Fin.cast_cast, Fin.cast_refl] using! congrArg (Fin.cast h.symm) he
       simp only [List.map_cons, directionBucket, List.filterMap_cons, if_neg hd, if_neg hn]
       exact ih
 
@@ -76,11 +79,11 @@ theorem ReducedDirections_index_cast (legs other : List (ExternalLeg G))
   constructor
   · intro H d hd
     have hv := H (Fin.cast h d.1, d.2) (List.mem_map.mpr ⟨d, hd, rfl⟩)
-    simpa only [Fin.coe_cast, ← h] using hv
+    simpa only [Fin.val_cast, ← h] using! hv
   · intro H d hd
     obtain ⟨a, ha, rfl⟩ := List.mem_map.mp hd
     have hv := H a ha
-    simpa only [Fin.coe_cast, h] using hv
+    simpa only [Fin.val_cast, h] using! hv
 
 /-- Exact source-jet conversion for the SAME permuted OrderedAmplitude,
 with every derivative slot transported to its literal source arity. -/

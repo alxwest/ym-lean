@@ -1,5 +1,8 @@
 import YangMills.QuantumOutputRecovery
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Generated invariant-state tests for the physical Ward quotient
 

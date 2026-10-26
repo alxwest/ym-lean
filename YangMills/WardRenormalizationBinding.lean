@@ -1,6 +1,9 @@
 import YangMills.ActionProbeNorms
 import YangMills.FormalRenormalization
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual local-action coordinates and the formal bare-coupling formula
 

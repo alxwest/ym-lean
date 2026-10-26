@@ -1,5 +1,8 @@
 import YangMills.LocalVertexPermutation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped BigOperators
@@ -46,7 +49,7 @@ theorem localMonomialDerivative_permutation_sum (n : ℕ)
       (((external 0).1, (external 0).2) :: List.ofFn (fun i => external i.succ)) = _
     simp only [localMonomialDerivative, List.get_ofFn]
     rw [← Equiv.sum_comp ((finCongr (List.length_ofFn (f := source))).symm)]
-    simp only [finCongr_symm, finCongr_apply, Fin.cast_cast, Fin.cast_refl, Fin.coe_cast, id_eq]
+    simp only [finCongr_symm, finCongr_apply, Fin.cast_cast, Fin.cast_refl, Fin.val_cast, id_eq]
     rw [sum_stableInsertPermutation]
     apply Finset.sum_congr rfl
     intro j hj
@@ -89,7 +92,7 @@ theorem fieldKronecker_product (n : ℕ) (fields external : Fin n → ExternalLe
   · rw [if_neg he]
     have hn : ∃ i, fields (π i) ≠ external i := by
       by_contra hn
-      push_neg at hn
+      push Not at hn
       apply he
       funext j
       simpa only [π.apply_symm_apply] using hn (π.symm j)

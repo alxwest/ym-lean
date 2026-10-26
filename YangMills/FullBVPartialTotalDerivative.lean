@@ -1,5 +1,8 @@
 import YangMills.FullBVTotalDerivativeParity
 import YangMills.FullBVActionParity
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option linter.unusedSimpArgs false
 namespace YangMills.FullBV

@@ -1,5 +1,8 @@
 import YangMills.WardActionCoordinates
 import Mathlib.Data.List.Perm.Basic
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 open scoped BigOperators
 namespace YangMills.WardAction
@@ -115,7 +118,7 @@ color tensor nonzero; this excludes a free-color projector. -/
 theorem structureConstant_exists_ne_zero {B : InvariantForm G} (e : ColorFrame B) :
     ∃ a b c, structureConstant e a b c ≠ 0 := by
   by_contra h
-  push_neg at h
+  push Not at h
   apply LieAlgebra.IsSimple.non_abelian (R := ℝ) (L := G.Algebra)
   refine ⟨fun X Y => ?_⟩
   apply e.basis.repr.injective

@@ -171,9 +171,13 @@ python3 scripts/check_proofs.py
 python3 scripts/verify_submission.py --claim specification
 ```
 
+The current development uses **Lean 4.31.0** and **Mathlib v4.31.0**.
 `lake` is Lean's build tool. The pinned Lean version is in
 [lean-toolchain](lean-toolchain), and the pinned mathlib dependency (Lean's
 mathematical library) is recorded in [lake-manifest.json](lake-manifest.json).
+The Lean 4.31 port retains warnings-as-errors and uses
+`backward.isDefEq.respectTransparency=false` for compatibility with the earlier
+proof elaboration. This setting changes elaboration, not the allowed axioms.
 
 | Command | What it checks |
 | --- | --- |

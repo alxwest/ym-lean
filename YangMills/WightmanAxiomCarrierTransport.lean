@@ -1,5 +1,8 @@
 import YangMills.WightmanCarrierTransport
 import Mathlib.Analysis.Calculus.Deriv.Comp
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 2400000
 set_option linter.unnecessarySimpa false
@@ -19,7 +22,7 @@ theorem hasDerivAt_carrier (e : K ≃ₗᵢ[ℂ] H) (f : ℝ → K) (w : K) (t :
   · intro h
     have hh := (e.symm.toContinuousLinearEquiv.toContinuousLinearMap.restrictScalars ℝ).hasFDerivAt.comp_hasDerivAt t h
     change HasDerivAt (fun r => e.symm (e (f r))) (e.symm (e w)) t at hh
-    simpa only [LinearIsometryEquiv.symm_apply_apply] using hh
+    simpa only [LinearIsometryEquiv.symm_apply_apply] using! hh
   · intro h
     exact (e.toContinuousLinearEquiv.toContinuousLinearMap.restrictScalars ℝ).hasFDerivAt.comp_hasDerivAt t h
 
@@ -33,7 +36,7 @@ theorem wightman_axioms (e : K ≃ₗᵢ[ℂ] H) (Q : WightmanData H)
     complete := inferInstance
     separable := e.symm.surjective.denseRange.separableSpace e.symm.continuous
     dense_domain := h.dense_domain.preimage e.toHomeomorph.isOpenMap
-    vacuum_norm := by simpa only [wightman_vacuum,LinearIsometryEquiv.norm_map] using h.vacuum_norm
+    vacuum_norm := by simpa only [wightman_vacuum,LinearIsometryEquiv.norm_map] using! h.vacuum_norm
     unitary_identity := ?_
     unitary_comp := ?_
     strongly_continuous := ?_
@@ -77,13 +80,13 @@ theorem wightman_axioms (e : K ≃ₗᵢ[ℂ] H) (Q : WightmanData H)
     obtain ⟨c,hc⟩ := h.vacuum_unique (e x) (by
       intro a
       have hh := congrArg e (hx a)
-      simpa only [wightman_unitary,LinearIsometryEquiv.apply_symm_apply] using hh)
+      simpa only [wightman_unitary,LinearIsometryEquiv.apply_symm_apply] using! hh)
     refine ⟨c,?_⟩
     apply e.injective
-    simpa only [map_smul,wightman_vacuum,LinearIsometryEquiv.apply_symm_apply] using hc
+    simpa only [map_smul,wightman_vacuum,LinearIsometryEquiv.apply_symm_apply] using! hc
   · intro f x
     have hi := e.symm.toContinuousLinearEquiv.toContinuousLinearMap.integrable_comp (h.spectral_integrable f (e x))
-    simpa only [map_smul,wightman_unitary] using hi
+    simpa only [map_smul,wightman_unitary] using! hi
   · intro f hf x
     change (∫ a : Spacetime, WightmanData.spectralKernel f a • e.symm
       (Q.unitary (PoincareTransform.translate a) (e x))) = 0
@@ -113,11 +116,11 @@ theorem wightman_axioms (e : K ≃ₗᵢ[ℂ] H) (Q : WightmanData H)
         domainEquiv e Q.domain ((wightman e Q).domainAction g y) =
           Q.domainAction g (domainEquiv e Q.domain y) :=
       (domainEquiv e Q.domain).apply_symm_apply _
-    simpa only [action,map_sum,map_smul,wightman_field] using
+    simpa only [action,map_sum,map_smul,wightman_field] using!
       h.covariance g n i f (domainEquiv e Q.domain x)
   · intro i j f g hf x
     apply (domainEquiv e Q.domain).injective
-    simpa only [wightman_field] using h.locality i j f g hf (domainEquiv e Q.domain x)
+    simpa only [wightman_field] using! h.locality i j f g hf (domainEquiv e Q.domain x)
   · have hd := e.symm.surjective.denseRange.dense_image e.symm.continuous h.cyclic
     apply hd.mono
     rintro x ⟨y,hy,rfl⟩
@@ -127,37 +130,37 @@ theorem wightman_axioms (e : K ≃ₗᵢ[ℂ] H) (Q : WightmanData H)
       apply Submodule.subset_span
       refine ⟨word,?_⟩
       apply e.injective
-      simpa only [LinearIsometryEquiv.apply_symm_apply,domainEquiv_coe] using
+      simpa only [LinearIsometryEquiv.apply_symm_apply,domainEquiv_coe] using!
         congrArg (fun z : Q.domain => (z : H)) (wightman_word e Q word)
-    | zero => simpa only [map_zero] using (Submodule.zero_mem _)
-    | add x y _ _ hx hy => simpa only [map_add] using Submodule.add_mem _ hx hy
-    | smul c x _ hx => simpa only [map_smul] using Submodule.smul_mem _ c hx
+    | zero => simpa only [map_zero] using! (Submodule.zero_mem _)
+    | add x y _ _ hx hy => simpa only [map_add] using! Submodule.add_mem _ hx hy
+    | smul c x _ hx => simpa only [map_smul] using! Submodule.smul_mem _ c hx
   · intro x
     constructor
     · rintro ⟨w,hw⟩
       apply (h.generator_domain (e x)).mp
       refine ⟨e w,?_⟩
       have hh := (hasDerivAt_carrier e _ w 0).mpr hw
-      simpa only [WightmanData.timeTranslation,wightman_unitary,LinearIsometryEquiv.apply_symm_apply] using hh
+      simpa only [WightmanData.timeTranslation,wightman_unitary,LinearIsometryEquiv.apply_symm_apply] using! hh
     · intro hx
       obtain ⟨w,hw⟩ := (h.generator_domain (e x)).mpr hx
       refine ⟨e.symm w,?_⟩
       apply (hasDerivAt_carrier e _ _ 0).mp
-      simpa only [WightmanData.timeTranslation,wightman_unitary,LinearIsometryEquiv.apply_symm_apply] using hw
+      simpa only [WightmanData.timeTranslation,wightman_unitary,LinearIsometryEquiv.apply_symm_apply] using! hw
   · intro x
     apply (hasDerivAt_carrier e _ _ 0).mp
     change HasDerivAt (fun t => e (e.symm (Q.timeTranslation t (e x))))
       (e (Complex.I • e.symm (Q.hamiltonian.toLinearMap
         (domainEquiv e Q.hamiltonian.domain x)))) 0
-    simpa only [map_smul,LinearIsometryEquiv.apply_symm_apply,domainEquiv_coe] using
+    simpa only [map_smul,LinearIsometryEquiv.apply_symm_apply,domainEquiv_coe] using!
       h.generator_action (domainEquiv e Q.hamiltonian.domain x)
-  · simpa only [wightman,operator_spectrum] using h.spectrum_real
-  · simpa only [wightman,operator_realSpectrum] using h.positive_energy
+  · simpa only [wightman,operator_spectrum] using! h.spectrum_real
+  · simpa only [wightman,operator_realSpectrum] using! h.positive_energy
   · change e (e.symm (Q.vacuum : H)) ∈ Q.hamiltonian.domain
-    simpa only [LinearIsometryEquiv.apply_symm_apply] using h.vacuum_mem
+    simpa only [LinearIsometryEquiv.apply_symm_apply] using! h.vacuum_mem
   · apply e.injective
     change e (e.symm (Q.hamiltonian.toLinearMap
       ⟨e (e.symm (Q.vacuum : H)),_⟩)) = e 0
-    simpa only [LinearIsometryEquiv.apply_symm_apply,map_zero] using h.vacuum_zero
+    simpa only [LinearIsometryEquiv.apply_symm_apply,map_zero] using! h.vacuum_zero
 
 end YangMills.CarrierTransport

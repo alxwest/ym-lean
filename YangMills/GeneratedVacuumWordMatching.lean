@@ -2,6 +2,9 @@ import YangMills.VacuumWordContinuation
 import YangMills.LocalWardFlowFamily
 import YangMills.MultiRenormalizationGroup
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Generated physical words as UV germs of the same physical C-fields
 

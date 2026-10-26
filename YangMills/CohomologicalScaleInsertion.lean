@@ -2,6 +2,9 @@ import YangMills.AmputatedLegendre
 import YangMills.FiniteWardRestoration
 import YangMills.QuantumObservableLift
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-prescription cohomological Callan--Symanzik equations
 

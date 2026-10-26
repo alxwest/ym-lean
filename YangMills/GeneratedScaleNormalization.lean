@@ -3,6 +3,9 @@ import YangMills.LocalWardFlowFamily
 import YangMills.InvariantBasisCoordinates
 import YangMills.RenormalizationGroup
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-engine CS normalization and finite physical RG series
 

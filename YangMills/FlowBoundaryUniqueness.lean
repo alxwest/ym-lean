@@ -1,5 +1,8 @@
 import YangMills.FlowTriangularity
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative Filter
@@ -18,7 +21,7 @@ lemma momentumJet_difference_smooth {legs : List (ExternalLeg G)}
   have hha : ContDiffAt ℝ directions.length h q :=
     (hh.of_le (by exact_mod_cast (show (directions.length : ℕ∞) ≤ ⊤ from le_top))).contDiffAt
   simp only [sub_eq_add_neg]
-  rw [iteratedFDeriv_add_apply' hfa hha.neg]
+  rw [fun_iteratedFDeriv_add_apply hfa hha.neg]
   rw [show (fun p => -h p) = -h from rfl, iteratedFDeriv_neg_apply]
   simp only [ContinuousMultilinearMap.add_apply, ContinuousMultilinearMap.neg_apply]
 

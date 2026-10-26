@@ -2,6 +2,9 @@ import YangMills.LinearInsertionUniqueness
 import YangMills.CanonicalProjectorDeterminacy
 import YangMills.OversubtractedFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped ContDiff
 namespace YangMills.PerturbativeFlow
@@ -58,7 +61,7 @@ lemma extractCoefficient_arityRestricted (n : ℕ) (A : OrderedAmplitude G)
   split_ifs
   · rfl
   · change _ * (iteratedFDeriv ℝ _ (fun _ : Fin m.legs.length → Spacetime => (0:ℂ)) q) _ = 0
-    rw [iteratedFDeriv_zero_fun]
+    rw [iteratedFDeriv_fun_zero]
     simp
 
 lemma arityRestricted_graded (n : ℕ) (A : OrderedAmplitude G)
@@ -71,7 +74,7 @@ lemma arityRestricted_graded (n : ℕ) (A : OrderedAmplitude G)
   have hlen : (permutedLegs legs pi).length = legs.length := by
     simp [permutedLegs]
   by_cases h : legs.length = n
-  · simpa only [arityRestricted, hlen, if_pos h] using graded legs q pi
+  · simpa only [arityRestricted, hlen, if_pos h] using! graded legs q pi
   · simp only [arityRestricted, hlen, if_neg h, mul_zero]
 
 /-- The source's admissible canonical low/high rows determine the actual
@@ -125,13 +128,13 @@ theorem LinearInsertionRegularity.unique_of_canonical_projectors
           · have cf := hF.continuous loop ls [] p
             have ch := hH.continuous loop ls [] p
             have cf' : ContinuousOn (fun s => F loop s UV ls p) (Set.Ioc 0 UV) := by
-              simpa [momentumJet, iteratedFDeriv_zero_apply] using cf
+              simpa [momentumJet, iteratedFDeriv_zero_apply] using! cf
             have ch' : ContinuousOn (fun s => H loop s UV ls p) (Set.Ioc 0 UV) := by
-              simpa [momentumJet, iteratedFDeriv_zero_apply] using ch
+              simpa [momentumJet, iteratedFDeriv_zero_apply] using! ch
             exact cf'.sub ch'
           · intro s hs hsUV
             have hd := (hF.flow loop s ls p hs hsUV).sub (hH.flow loop s ls p hs hsUV)
-            simpa only [rhs ls hls s p hs hsUV, sub_self] using hd
+            simpa only [rhs ls hls s p hs hsUV, sub_self] using! hd
           all_goals first | assumption | exact le_rfl
         let A : OrderedAmplitude G := fun ls p => F loop UV UV ls p - H loop UV UV ls p
         have smooth : ∀ ls, ContDiff ℝ ∞ (A ls) :=

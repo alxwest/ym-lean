@@ -1,6 +1,9 @@
 import YangMills.MultiOperatorProductExpansion
 import YangMills.MultiWickRotation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Wick boundary values of the actual composite vacuum words
 

@@ -2,6 +2,9 @@ import YangMills.QFT.Spacetime
 import YangMills.QFT.Operator
 import Mathlib.Analysis.Complex.Exponential
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Concrete bosonic Wightman proof obligations
 

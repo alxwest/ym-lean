@@ -1,6 +1,9 @@
 import YangMills.ClassicalDilation
 import Mathlib.Algebra.Polynomial.Roots
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped BigOperators
@@ -51,7 +54,7 @@ lemma scalePolynomial_coeff (degree : ℕ) (p : CurvatureJetPolynomial G)
     (scalePolynomial p j).coeff degree = (engineeringPart degree p).evaluate j := by
   classical
   rw [engineeringPart_evaluate]
-  simp only [scalePolynomial, Polynomial.finset_sum_coeff, Polynomial.coeff_monomial]
+  simp only [scalePolynomial, Polynomial.finsetSum_coeff, Polynomial.coeff_monomial]
 
 def scaleJets (scale : ℝ) (j : CurvatureJetAssignment G) : CurvatureJetAssignment G :=
   fun k => scale ^ k.dimension • j k
@@ -60,7 +63,7 @@ lemma scalePolynomial_eval (p : CurvatureJetPolynomial G) (j : CurvatureJetAssig
     (scalePolynomial p j).eval scale = p.evaluate (scaleJets scale j) := by
   classical
   unfold scalePolynomial evaluate
-  simp only [Polynomial.eval_finset_sum, Polynomial.eval_monomial, MvPolynomial.eval_eq]
+  simp only [Polynomial.eval_finsetSum, Polynomial.eval_monomial, MvPolynomial.eval_eq]
   apply Finset.sum_congr rfl
   intro m _
   change _ = MvPolynomial.coeff m p *

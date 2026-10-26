@@ -1,5 +1,8 @@
 import YangMills.QuantumCorrelations
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Tempered kernels of all actual Wightman vacuum words
 

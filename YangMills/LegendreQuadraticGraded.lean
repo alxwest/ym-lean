@@ -1,4 +1,7 @@
 import YangMills.LegendreSplitTransport
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 400000
 open scoped BigOperators
@@ -150,6 +153,7 @@ theorem meanFieldRoot_empty_of_onePoint (F : FormalAmplitude G) (s : CutoffScale
     intro N _
     apply mul_eq_zero_of_right
     convert hF N using 1
+    rfl
   | inr M => simp [meanFieldRoot, identityRoot]
 
 /-- Full formal background fidelity has source-level sufficient conditions:

@@ -1,5 +1,8 @@
 import YangMills.LegendreBlockTransport
 import Mathlib.GroupTheory.Perm.Fin
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 /-!
 # Weighted Koszul signs as ordinary signs on odd-position subsequences
 
@@ -20,7 +23,7 @@ theorem complexPermutationSign_product {n : ℕ} (e : Equiv.Perm (Fin n)) :
     complexPermutationSign e = ∏ i, ∏ j ∈ Finset.Ioi i, (if e i<e j then 1 else (-1:ℂ)) := by
   have h := congrArg (fun u : ℤˣ => ((u : ℤ) : ℂ)) e.sign_eq_prod_prod_Ioi
   push_cast at h
-  simpa [complexPermutationSign, apply_ite] using h
+  simpa [complexPermutationSign, apply_ite] using! h
 
 def inversionSign {n : ℕ} (e : Equiv.Perm (Fin n)) : ℂ :=
   (-1:ℂ) ^ (∑ i, ∑ j, if i<j ∧ e j<e i then (1:ℕ) else 0)
@@ -50,7 +53,7 @@ theorem sum_orderEmb {n k : ℕ} (S : Finset (Fin n)) (h : S.card=k) (f : Fin n 
     (∑ i : Fin k, f (S.orderEmbOfFin h i)) = ∑ i ∈ S, f i := by
   have hh := (S.orderIsoOfFin h).toEquiv.sum_comp (fun i : S => f i.val)
   rw [Finset.univ_eq_attach, Finset.sum_attach] at hh
-  simpa only [Finset.coe_orderIsoOfFin_apply] using hh
+  simpa only [Finset.coe_orderIsoOfFin_apply] using! hh
 
 theorem blockInversionCount {n k : ℕ} (a : Fin n → Fin k) (e : Equiv.Perm (Fin n)) (b : Fin k) :
     (∑ i ∈ partitionBlock (a ∘ e) b, ∑ j ∈ partitionBlock (a ∘ e) b,

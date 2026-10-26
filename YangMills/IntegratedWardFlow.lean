@@ -1,6 +1,9 @@
 import YangMills.IntegratedMarginalFlow
 import YangMills.FullBVBridge
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Source355–359's integrated sB0 is dimension5, ghost1. Its
 normalization is independent of the pointwise insertion basis (source123). -/
 noncomputable section

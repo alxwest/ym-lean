@@ -1,6 +1,9 @@
 import YangMills.FourierTaylorBuckets
 import YangMills.FourierTaylorFieldSum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators
 namespace YangMills.IntegratedNormalization

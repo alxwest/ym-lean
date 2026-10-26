@@ -2,6 +2,9 @@ import Mathlib.Analysis.InnerProductSpace.LinearMap
 import Mathlib.Analysis.Calculus.Deriv.Basic
 import YangMills.Spectrum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Unbounded Hamiltonians: domains, self-adjointness, and spectrum
 

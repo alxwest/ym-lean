@@ -2,6 +2,9 @@ import YangMills.IntegratedPointwiseComparison
 import YangMills.IntegratedMarginalUniqueness
 import YangMills.PerturbativeCoefficientLimits
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped ContDiff
 namespace YangMills.IntegratedNormalization

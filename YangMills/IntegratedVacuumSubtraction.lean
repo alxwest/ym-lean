@@ -1,5 +1,8 @@
 import YangMills.IntegratedNormalizationProjectors
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.IntegratedNormalization
 open YangMills.Perturbative YangMills.PerturbativeFlow

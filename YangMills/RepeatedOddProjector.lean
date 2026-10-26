@@ -1,6 +1,9 @@
 import YangMills.OddTranspositionSign
 import YangMills.OriginAlternatingJet
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 2000000
 open scoped ContDiff
@@ -22,7 +25,7 @@ lemma LocalMonomial.nonadmissible_repeated_odd (m : LocalMonomial G) (invalid : 
     ∃ i j : Fin m.legs.length, i ≠ j ∧ m.jetAt i = m.jetAt j ∧ (m.legs.get i).parity = true := by
   classical
   unfold LocalMonomial.Admissible at invalid
-  push_neg at invalid
+  push Not at invalid
   obtain ⟨v,odd,count⟩ := invalid
   have cardinal : 1 < Fintype.card {i : Fin m.legs.length // m.jetAt i = v} := by
     rw [m.jetAt_fiber_card]

@@ -1,6 +1,9 @@
 import YangMills.QFT.Wightman
 import Mathlib.Topology.Algebra.Module.FiniteDimension
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Non-vacuum states in the existing QFT
 

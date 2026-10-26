@@ -1,6 +1,9 @@
 import YangMills.Statement
 import YangMills.PeriodicLattice4
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Group quantifier alone is NOT Yang–Mills identification
 

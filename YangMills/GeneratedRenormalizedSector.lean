@@ -2,6 +2,9 @@ import YangMills.LocalWardOPEStressBinding
 import YangMills.GeneratedScaleNormalization
 import YangMills.GeneratedVacuumWordMatching
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # One generated renormalized Yang--Mills sector: assembly fragment
 

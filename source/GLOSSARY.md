@@ -193,7 +193,7 @@ See the [smoothness correction](SMOOTH_ORDER_REVIEW.md),
 [canonical determinacy review](SMOOTH_CANONICAL_INSERTION_REVIEW.md), and
 [analysis needed for full kernels](KERNEL_BV_COHOMOLOGY_REVIEW.md).
 The smoothness convention can also be checked in the
-[pinned mathlib definition](https://github.com/leanprover-community/mathlib4/blob/1ccd71f89cbbd82ae7d097723ce1722ca7b01c33/Mathlib/Analysis/Calculus/ContDiff/Defs.lean).
+[pinned mathlib definition](https://github.com/leanprover-community/mathlib4/blob/v4.31.0/Mathlib/Analysis/Calculus/ContDiff/Defs.lean).
 
 ## Notation and source abbreviations
 

@@ -2,6 +2,9 @@ import YangMills.FourierTaylorBuckets
 import YangMills.LocalVertexPolarization
 import YangMills.ActionProbeSupport
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators
 attribute [local instance] Classical.propDecidable

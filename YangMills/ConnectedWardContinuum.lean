@@ -1,6 +1,9 @@
 import YangMills.ConnectedInsertionFlow
 import YangMills.WardContinuum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-flow connected Ward distributions
 

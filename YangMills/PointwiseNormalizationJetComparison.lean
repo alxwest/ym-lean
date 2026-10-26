@@ -3,6 +3,9 @@ import YangMills.IntegratedTaylorJetRecovery
 import YangMills.LocalVertexExternalCovariance
 import YangMills.LowProjectorAdequacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped BigOperators ContDiff
@@ -80,7 +83,6 @@ theorem pointwiseNormalizationResponse_raw_jets
   have hzero := lowProjectorAdequacy (fun labels p => R labels p - V labels p)
     (fun labels => (hR labels).sub (hV labels)) (by
       intro legs q e
-      dsimp only
       have hr := pointwiseNormalizationResponse_graded L I D μ g μ UV loop symmetry legs q e
       change R (permutedLegs legs e) (permutedMomenta legs e q) =
         permutationSign legs e * R legs q at hr

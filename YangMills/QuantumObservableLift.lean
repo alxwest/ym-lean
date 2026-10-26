@@ -1,6 +1,9 @@
 import YangMills.CompositeFields
 import YangMills.InsertionWardTransport
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-prescription quantum cocycle lifts of classical invariant labels
 

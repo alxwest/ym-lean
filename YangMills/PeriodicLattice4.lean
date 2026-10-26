@@ -2,6 +2,9 @@ import YangMills.LatticeGaugeAction
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Tactic.Abel
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Four-dimensional periodic lattice gauge testbed
 

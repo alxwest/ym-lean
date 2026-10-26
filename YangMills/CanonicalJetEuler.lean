@@ -1,5 +1,8 @@
 import YangMills.CanonicalEulerExact
 import YangMills.FullBVIntegratedHamiltonian
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 600000
 open scoped BigOperators
@@ -20,7 +23,7 @@ theorem coordinateDifferential_finsum_jet (F : Jet G → JetAlgebra G) (P : JetA
         intro j
         simp [leftPartialJet, j.property]
       _ = _ := by
-        simpa only [finsum_eq_if] using
+        simpa only [finsum_eq_if] using!
           (finsum_subtype_eq_finsum_cond
             (f := fun j : Jet G => F j * leftPartialJet j P)
             (fun j => j.field.parity = false))
@@ -32,7 +35,7 @@ theorem coordinateDifferential_finsum_jet (F : Jet G → JetAlgebra G) (P : JetA
         intro j
         simp [leftPartialJet, j.property]
       _ = _ := by
-        simpa only [finsum_eq_if] using
+        simpa only [finsum_eq_if] using!
           (finsum_subtype_eq_finsum_cond
             (f := fun j : Jet G => F j * leftPartialJet j P)
             (fun j => j.field.parity = true))
@@ -60,18 +63,18 @@ theorem jetEuler_add (weights : BasicScales) (P Q : JetAlgebra G) :
 
 theorem jetEuler_one (weights : BasicScales) : jetEuler weights (1 : JetAlgebra G) = 0 := by
   have he (j : EvenJet G) : evenPartial j (1 : JetAlgebra G) = 0 := by
-    simpa [leftPartialJet, j.property] using leftPartialJet_one j.val
+    simpa [leftPartialJet, j.property] using! leftPartialJet_one j.val
   have ho (j : OddJet G) : oddPartial j (1 : JetAlgebra G) = 0 := by
-    simpa [leftPartialJet, j.property] using leftPartialJet_one j.val
+    simpa [leftPartialJet, j.property] using! leftPartialJet_one j.val
   simp [jetEuler, coordinateDifferential, he, ho]
 
 theorem jetEuler_jet (weights : BasicScales) (j : Jet G) :
     jetEuler weights (jet j) = (ScaleInsertion.eulerWeight weights j.field : ℂ) • jet j := by
   by_cases hj : j.field.parity = true
-  · simpa only [jetEuler, jet, hj, dif_pos] using coordinateDifferential_oddJet
+  · simpa only [jetEuler, jet, hj, dif_pos] using! coordinateDifferential_oddJet
       (fun j => (ScaleInsertion.eulerWeight weights j.val.field : ℂ) • evenJet j)
       (fun j => (ScaleInsertion.eulerWeight weights j.val.field : ℂ) • oddJet j) ⟨j,hj⟩
-  · simpa only [jetEuler, jet, hj, dif_neg] using coordinateDifferential_evenJet
+  · simpa only [jetEuler, jet, hj, dif_neg] using! coordinateDifferential_evenJet
       (fun j => (ScaleInsertion.eulerWeight weights j.val.field : ℂ) • evenJet j)
       (fun j => (ScaleInsertion.eulerWeight weights j.val.field : ℂ) • oddJet j)
       ⟨j, by cases h : j.field.parity <;> simp_all⟩

@@ -1,5 +1,8 @@
 import YangMills.CohomologicalScaleInsertion
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped BigOperators
@@ -174,7 +177,7 @@ theorem substitutionSummand_free_lower (A : FormalAmplitude G) (s : CutoffScales
   split_ifs with h
   · have hex : ∃ b : Fin k, (go b.succ).val ≠ 0 := by
       by_contra hn
-      push_neg at hn
+      push Not at hn
       have hh := h.2.1
       rw [Fin.sum_univ_succ] at hh
       simp only [hn, Finset.sum_const_zero, add_zero] at hh

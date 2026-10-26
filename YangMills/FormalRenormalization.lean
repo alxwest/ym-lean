@@ -2,6 +2,9 @@ import YangMills.RenormalizationGroup
 import Mathlib.RingTheory.PowerSeries.Inverse
 import Mathlib.RingTheory.PowerSeries.Derivative
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed extraction of RG jets from bare normalization coordinates
 
@@ -43,7 +46,7 @@ theorem unitSqrtCoeff_square (z : ℕ → ℝ) (hz : z 0 = 1) (n : ℕ) :
     rw [Fin.sum_univ_succ]
     simp only [Fin.val_zero, Nat.sub_zero, unitSqrtCoeff.eq_1, one_mul]
     rw [Fin.sum_univ_castSucc]
-    simp only [Fin.val_succ, Fin.coe_castSucc, Fin.val_last, Nat.add_sub_add_right,
+    simp only [Fin.val_succ, Fin.val_castSucc, Fin.val_last, Nat.add_sub_add_right,
       Nat.sub_self, unitSqrtCoeff.eq_1, mul_one]
     have hr := unitSqrtCoeff.eq_2 z n
     rw [hr]

@@ -1,5 +1,8 @@
 import YangMills.PerturbativeFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Ordered composite projectors and regulated OPE extraction
 

@@ -1,6 +1,9 @@
 import YangMills.Renormalization
 import YangMills.StressTensor
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed perturbative stress symbols
 The canonical stress symbol uses the same curvature polynomials as the action.

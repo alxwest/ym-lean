@@ -1,4 +1,7 @@
 import YangMills.LegendreInsertionBridge
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 /-!
 # Exact two-leg graded identity-root normalization
 
@@ -50,7 +53,7 @@ theorem roots_pair_momenta (K H : ExternalLeg G)
 theorem roots_swap_momenta (K H : ExternalLeg G)
     (q : Fin ([K,H] : List (ExternalLeg G)).length → Spacetime) :
     rootMomenta [K,H] q ![1,0] ![H,K] =
-      (fun i => q ⟨1-i.val, by have hi := i.isLt; simp [rootLegs] at hi ⊢; omega⟩) := by
+      (fun i => q ⟨1-i.val, by have hi := i.isLt; simp [rootLegs] at hi ⊢⟩) := by
   funext i
   fin_cases i <;> simp [rootMomenta, block_two, selectedMomentum]
 
@@ -60,7 +63,7 @@ theorem meanFieldCompose_zero_pair (F A : FormalAmplitude G) (s : CutoffScales)
     meanFieldCompose A F s 0 0 [K,H] q =
       (1/2 : ℂ) * (A 0 0 [K,H] q +
         (-1 : ℂ) ^ (if K.parity = true ∧ H.parity = true then 1 else 0) *
-          A 0 0 [H,K] (fun i => q ⟨1-i.val, by have hi := i.isLt; simp at hi ⊢; omega⟩)) := by
+          A 0 0 [H,K] (fun i => q ⟨1-i.val, by have hi := i.isLt; simp at hi ⊢⟩)) := by
   simp only [meanFieldCompose, List.length_cons, List.length_nil,
     Fin.sum_univ_succ, Fin.sum_univ_zero, add_zero]
   have hu : (Finset.univ : Finset (Fin 2)) = {0,1} := by decide
@@ -84,7 +87,7 @@ theorem insertion_inverse_leading_pair (F I : FormalAmplitude G) (s : CutoffScal
     (hF : ∀ loop legs q, F 0 loop legs q = 0)
     (K H : ExternalLeg G) (q : Fin ([K,H] : List (ExternalLeg G)).length → Spacetime)
     (graded : I 0 0 [H,K]
-      (fun i => q ⟨1-i.val, by have hi := i.isLt; simp at hi ⊢; omega⟩) =
+      (fun i => q ⟨1-i.val, by have hi := i.isLt; simp at hi ⊢⟩) =
       (-1 : ℂ) ^ (if K.parity=true ∧ H.parity=true then 1 else 0) * I 0 0 [K,H] q) :
     meanFieldCompose (insertionGammaCoeff F I s) F s 0 0 [K,H] q = I 0 0 [K,H] q := by
   rw [meanFieldCompose_zero_pair _ _ _ hF]

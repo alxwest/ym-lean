@@ -1,5 +1,8 @@
-import Mathlib.Analysis.Distribution.SchwartzSpace
+import Mathlib.Analysis.Distribution.SchwartzSpace.Deriv
 import Mathlib.LinearAlgebra.Determinant
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 
 /-!
 # Spacetime and the proper, orthochronous Poincaré transformations

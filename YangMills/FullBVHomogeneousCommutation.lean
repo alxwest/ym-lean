@@ -1,5 +1,8 @@
 import YangMills.FullBVTotalDerivativeAlgebra
 import YangMills.FullBVActionParity
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 namespace YangMills.FullBV
 variable {G : CompactSimpleGaugeGroup}
@@ -16,10 +19,10 @@ theorem evenPolynomial_commute (C P : JetAlgebra G) (hc : parity C = C) :
       have hj : C * jet j = jet j * C := by
         by_cases hj : j.field.parity = true
         · have h := (oddJet_mul_polynomial (G := G) ⟨j,hj⟩ C).symm
-          simpa only [hc, jet, hj, dif_pos] using h
+          simpa only [hc, jet, hj, dif_pos] using! h
         · have h := evenJet_commute (G := G)
             ⟨j, by cases h : j.field.parity <;> simp_all⟩ C
-          simpa only [jet, hj, dif_neg] using h.symm
+          simpa only [jet, hj, dif_neg] using! h.symm
       rw [← mul_assoc, hP, mul_assoc, hj, ← mul_assoc]
 
 /-- An actually odd local superpolynomial commutes with the parity of the
@@ -36,7 +39,7 @@ theorem oddPolynomial_commute (C P : JetAlgebra G) (hc : parity C = -C) :
       · have commute : C * jet j = -(jet j * C) := by
           have h := oddJet_mul_polynomial (G := G) ⟨j,hj⟩ C
           have h' : jet j * C = (-C) * jet j := by
-            simpa only [hc, jet, hj, dif_pos] using h
+            simpa only [hc, jet, hj, dif_pos] using! h
           calc
             C * jet j = -((-C) * jet j) := by rw [neg_mul C (jet j), neg_neg]
             _ = -(jet j * C) := congrArg Neg.neg h'.symm
@@ -46,7 +49,7 @@ theorem oddPolynomial_commute (C P : JetAlgebra G) (hc : parity C = -C) :
       · have commute : C * jet j = jet j * C := by
           have h := evenJet_commute (G := G)
             ⟨j, by cases h : j.field.parity <;> simp_all⟩ C
-          simpa only [jet, hj, dif_neg] using h.symm
+          simpa only [jet, hj, dif_neg] using! h.symm
         rw [← mul_assoc, hP, mul_assoc, commute, parity_mul, parity_jet]
         simp [hj, mul_assoc]
 

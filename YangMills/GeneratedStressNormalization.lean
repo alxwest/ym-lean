@@ -2,6 +2,9 @@ import YangMills.QuantumOutputRecovery
 import YangMills.RegulatedWardInsertion
 import YangMills.StressSymbols
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-dictionary quantum stress normalization
 

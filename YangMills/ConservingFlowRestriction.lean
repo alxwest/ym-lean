@@ -2,6 +2,9 @@ import YangMills.MomentumConservationProjection
 import YangMills.LegendreSplitTransport
 import YangMills.IntegratedVacuumSubtraction
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators
 namespace YangMills.IntegratedNormalization

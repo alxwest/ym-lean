@@ -1,6 +1,9 @@
 import YangMills.RenormalizationGroup
 import YangMills.MultiWickRotation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Shared RG and stress matching for every insertion arity
 

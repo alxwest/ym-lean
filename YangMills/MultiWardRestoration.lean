@@ -3,6 +3,9 @@ import YangMills.QuantumOutputRecovery
 import YangMills.ContactAnomalyTransport
 import YangMills.PartialDiagonalContact
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Full connected multi-insertion quantum Ward/contact restoration
 

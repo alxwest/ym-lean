@@ -2,6 +2,9 @@ import YangMills.PerturbativeFlow
 import Mathlib.Analysis.Calculus.MeanValue
 import Mathlib.LinearAlgebra.Multilinear.Pi
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Finite Taylor determinacy for the actual flow boundary problem
 

@@ -1,4 +1,7 @@
 import YangMills.QFT.Wightman
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 namespace YangMills
 open MeasureTheory

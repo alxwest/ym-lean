@@ -1,6 +1,9 @@
 import Mathlib.Geometry.Manifold.GroupLieAlgebra
 import Mathlib.Algebra.Lie.Semisimple.Defs
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # The gauge-group quantifier in §4
 

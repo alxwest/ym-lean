@@ -1,5 +1,8 @@
 import YangMills.ConnectedWardContinuum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Canonical distributional cumulants on compact tests
 

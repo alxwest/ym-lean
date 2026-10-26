@@ -1,6 +1,9 @@
 import YangMills.QuantumLabelCohomology
 import YangMills.GeneratedMixingMeaning
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Computed gamma columns are classes of the same local mixing insertions
 
@@ -39,6 +42,6 @@ theorem GeneratedScaleNormalization.gammaColumn_class
             ((basis.classicalCoordinates_degree _ i.val i.property).trans bound) := by
   have meaning := liftClass_coordinates (family.full_ward mu).same_dictionary basis
     (N.mixingLabel mu order loop (basis.label input)) g d bound
-  simpa only [N.gammaLoop_coordinates] using meaning
+  simpa only [N.gammaLoop_coordinates] using! meaning
 
 end YangMills.PerturbativeFlow

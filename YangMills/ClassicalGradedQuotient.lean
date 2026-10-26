@@ -1,6 +1,9 @@
 import YangMills.ClassicalFiniteSlices
 import Mathlib.Algebra.DirectSum.Module
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 set_option synthInstance.maxHeartbeats 200000
@@ -101,7 +104,7 @@ instance classicalGrade_finiteDimensional (d : ℕ) :
 
 theorem classicalGrades_independent : iSupIndep (classicalGrade (G := G)) := by
   classical
-  rw [iSupIndep_iff_finset_sum_eq_zero_imp_eq_zero]
+  rw [iSupIndep_iff_finsetSum_eq_zero_imp_eq_zero]
   intro s v belongs zero i hi
   have projected := congrArg (classicalProjection (G := G) i) zero
   simp only [map_sum,map_zero] at projected

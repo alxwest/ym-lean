@@ -2,6 +2,9 @@ import YangMills.InvariantJetPolynomials
 import YangMills.QFT.Wightman
 import Mathlib.LinearAlgebra.Finsupp.LinearCombination
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Renormalized composite fields in the given Wightman theory
 
@@ -40,7 +43,8 @@ def poincarePullback {G : CompactSimpleGaugeGroup} (A : Connection G)
     intro μ
     apply ContDiff.sum
     intro ν _
-    exact contDiff_const.smul ((contDiff_apply ℝ G.Algebra ν).comp (A.smooth.comp hact))
+    exact (contDiff_const : ContDiff ℝ ∞ (fun _ : Spacetime => g.lorentz.linear (Pi.single μ 1) ν)).smul
+      ((contDiff_apply ℝ G.Algebra ν).comp (A.smooth.comp hact))
 end Connection
 
 abbrev FiniteFieldCombination (Q : WightmanData H) := Q.FieldIndex →₀ ℂ
@@ -76,7 +80,7 @@ theorem continuous_field {Q : WightmanData H} (hQ : WightmanAxioms H Q)
     simp [field, Finsupp.linearCombination_apply, Finsupp.sum,
       LinearMap.sum_apply, LinearMap.smul_apply]
   rw [heq]
-  exact continuous_finset_sum _ (fun i _ => (hQ.field_continuous i v).const_smul (c i))
+  exact continuous_finsetSum _ (fun i _ => (hQ.field_continuous i v).const_smul (c i))
 
 /-- Locality is inherited from the same Q fields, on their same domain. -/
 theorem locality {Q : WightmanData H} (hQ : WightmanAxioms H Q)
@@ -189,7 +193,7 @@ structure Compatible (C : RenormalizedCompositeMap Q G) : Prop where
   them as independent operators. -/
   descendant : ∀ μ p q direction, IsClassicalDerivative p q direction → ∀ f v,
     C.field μ q f v =
-      -C.field μ p (SchwartzMap.pderivCLM ℂ (Pi.single direction 1) f) v
+      -C.field μ p (LineDeriv.lineDerivOpCLM (V := Spacetime) ℂ TestFunction (Pi.single direction 1) f) v
   /-- The correspondence intertwines the actual classical action on
   curvature labels with the same QFT's spacetime symmetries. -/
   covariance : ∀ μ g p, ∃ q, IsClassicalPoincareTransform g p q ∧ ∀ f v,

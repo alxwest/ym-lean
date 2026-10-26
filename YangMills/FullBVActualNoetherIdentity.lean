@@ -1,4 +1,7 @@
 import YangMills.FullBVColorEvolution
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 2200000
 set_option linter.unusedSimpArgs false
@@ -40,7 +43,7 @@ theorem curvatureEulerFamily_eq {B : InvariantForm G} (e : ColorFrame B) (g : �
       -(∑ mu : Fin 4, covariantColorDerivative e g mu (curvatureColorFamily e g mu rho)) := by
   funext d
   simpa only [curvatureEulerFamily, Pi.neg_apply, Finset.sum_apply, covariantColorDerivative,
-    curvatureColorFamily] using rightEuler_curvature_gauge e g rho d
+    curvatureColorFamily] using! rightEuler_curvature_gauge e g rho d
 
 private theorem colorFamily_eq_neg_implies_zero (X : ColorPolynomial G) (h : X = -X) : X = 0 := by
   have ht : (2 : ℂ) • X = 0 := by
@@ -87,7 +90,7 @@ theorem curvature_covariant_double_divergence {B : InvariantForm G} (e : ColorFr
     change _ - _ = (g : ℂ) • colorPolynomialBracket e (curvatureColorFamily e g mu nu)
       (curvatureColorFamily e g nu mu) a at h
     rw [hz] at h
-    simpa only [Pi.zero_apply, smul_zero, sub_eq_zero] using h
+    simpa only [Pi.zero_apply, smul_zero, sub_eq_zero] using! h
   apply colorFamily_eq_neg_implies_zero
   calc
     _ = ∑ mu : Fin 4, ∑ nu : Fin 4, covariantColorDerivative e g nu

@@ -1,6 +1,9 @@
 import YangMills.FreeWardExtraction
 import YangMills.OversubtractedFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-flow joint weak UV/IR limits for quantum Ward identities
 

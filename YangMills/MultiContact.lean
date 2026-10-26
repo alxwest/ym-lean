@@ -1,6 +1,9 @@
 import YangMills.MultiOperatorProductExpansion
 import YangMills.StressTensor
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Explicit coincidence counterterms
 
@@ -32,7 +35,7 @@ def diagonalRestriction (n : ℕ) : ClusterTest n →L[ℂ] TestFunction :=
 /-- Relative derivative direction; the center coordinate is held fixed. -/
 def relativeDerivative {n : ℕ} (i : Fin n) (μ : Fin 4) :
     ClusterTest n →L[ℂ] ClusterTest n :=
-  SchwartzMap.pderivCLM ℂ (Pi.single i (Pi.single μ 1), 0)
+  LineDeriv.lineDerivOpCLM (V := RelativeSpace n × Spacetime) ℂ (ClusterTest n) (Pi.single i (Pi.single μ 1), 0)
 
 def orderedRelativeDerivative {n : ℕ} : List (Fin n × Fin 4) →
     ClusterTest n →L[ℂ] ClusterTest n

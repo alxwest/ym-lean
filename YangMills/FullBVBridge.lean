@@ -1,5 +1,8 @@
 import YangMills.FullBV
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Algebraic presentation bridges for fixed BV density amplitudes. -/
 noncomputable section
 namespace YangMills.FullBV
@@ -48,13 +51,13 @@ theorem jetPartials_commute (i j : Jet G) (P : JetAlgebra G) :
       else leftPartialJet j (leftPartialJet i P) := by
   classical
   by_cases hi : i.field.parity = true <;> by_cases hj : j.field.parity = true
-  · simpa only [leftPartialJet, hi, hj, dite_true, and_self, if_true] using
+  · simpa only [leftPartialJet, hi, hj, Bool.false_eq_true, dite_true, and_self, if_true] using
       oddPartials_anticommute ⟨i, hi⟩ ⟨j, hj⟩ P
-  · simpa only [leftPartialJet, hi, hj, dite_true, dite_false, and_false, if_false] using
+  · simpa only [leftPartialJet, hi, hj, Bool.false_eq_true, dite_true, dite_false, and_false, if_false] using
       (evenOddPartials_commute ⟨j, by cases hp : j.field.parity <;> simp_all⟩ ⟨i, hi⟩ P).symm
-  · simpa only [leftPartialJet, hi, hj, dite_true, dite_false, false_and, if_false] using
+  · simpa only [leftPartialJet, hi, hj, Bool.false_eq_true, dite_true, dite_false, false_and, if_false] using
       evenOddPartials_commute ⟨i, by cases hp : i.field.parity <;> simp_all⟩ ⟨j, hj⟩ P
-  · simpa only [leftPartialJet, hi, hj, dite_false, false_and, if_false] using
+  · simpa only [leftPartialJet, hi, hj, Bool.false_eq_true, dite_false, false_and, if_false] using
       evenPartials_commute ⟨i, by cases hp : i.field.parity <;> simp_all⟩
         ⟨j, by cases hp : j.field.parity <;> simp_all⟩ P
 
@@ -132,7 +135,7 @@ theorem amplitudeOn_mono (S T : Finset (Jet G)) (hST : S ⊆ T)
   · intro a hnot
     have hex : ∃ i, (a i).val ∉ S := by
       by_contra hn
-      push_neg at hn
+      push Not at hn
       apply hnot
       exact ⟨fun i => ⟨(a i).val, hn i⟩, by funext i; rfl⟩
     obtain ⟨i, hi⟩ := hex

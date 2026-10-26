@@ -2,6 +2,9 @@ import YangMills.FullBV
 import YangMills.ActionProbeSupport
 import YangMills.WardRenormalizationBinding
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual field/parameter changes behind multiplicative normalization
 
@@ -129,19 +132,19 @@ theorem vertexCoupling_hasDerivAt (v : LocalVertex G) (legs : List (ExternalLeg 
     HasDerivAt (fun x : ℝ => localVertexAmplitude v x legs q)
       (localVertexAmplitude (differentiateCouplingVertex v) g legs q) g := by
   have hc : HasDerivAt (fun x : ℝ => (x : ℂ)) (1 : ℂ) g := by
-    simpa using (Complex.ofRealCLM.hasFDerivAt (x := g)).hasDerivAt
+    simpa using! (Complex.ofRealCLM.hasFDerivAt (x := g)).hasDerivAt
   have hh := (HasDerivAt.const_mul v.coefficient (hc.pow v.couplingOrder)).mul_const
     (localMonomialDerivative v.legs (List.ofFn (fun i => (legs.get i, q i))))
-  simpa [localVertexAmplitude, differentiateCouplingVertex, mul_assoc] using hh
+  simpa [localVertexAmplitude, differentiateCouplingVertex, mul_assoc] using! hh
 
 theorem polynomialCoupling_hasDerivAt (terms : List (LocalVertex G))
     (legs : List (ExternalLeg G)) (q : Fin legs.length → Spacetime) (g : ℝ) :
     HasDerivAt (fun x : ℝ => localPolynomialAmplitude terms x legs q)
       (localPolynomialAmplitude (terms.map differentiateCouplingVertex) g legs q) g := by
   induction terms with
-  | nil => simpa [localPolynomialAmplitude] using (hasDerivAt_const g (0 : ℂ))
+  | nil => simpa [localPolynomialAmplitude] using! (hasDerivAt_const g (0 : ℂ))
   | cons v terms ih =>
-    simpa [localPolynomialAmplitude] using (vertexCoupling_hasDerivAt v legs q g).add ih
+    simpa [localPolynomialAmplitude] using! (vertexCoupling_hasDerivAt v legs q g).add ih
 
 /-- Actual derivative of the finite polynomial coupling powers in S.
 This does not ask for a norm/topology on the infinite superjet algebra. -/

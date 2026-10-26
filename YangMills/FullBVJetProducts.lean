@@ -1,4 +1,7 @@
 import YangMills.FullBVActualGhostNilpotency
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 1200000
 namespace YangMills.FullBV
@@ -44,10 +47,10 @@ theorem totalDerivative_mul_jet (mu : Fin 4) (P : JetAlgebra G) (j : Jet G) :
     totalDerivative mu (P * jet j) = totalDerivative mu P * jet j +
       jet (j.shift mu) * (if j.field.parity then parity P else P) := by
   by_cases hj : j.field.parity = true
-  · simpa only [totalDerivative, jet, hj, dif_pos, if_pos, oddShift, Jet.shift] using
+  · simpa only [totalDerivative, jet, hj, dif_pos, if_pos, oddShift, Jet.shift] using!
       coordinateDifferential_mul_oddJet
         (fun j => evenJet (evenShift mu j)) (fun j => oddJet (oddShift mu j)) P ⟨j, hj⟩
-  · simpa only [totalDerivative, jet, hj, dif_neg, if_neg, evenShift, Jet.shift] using
+  · simpa only [totalDerivative, jet, hj, dif_neg, if_neg, evenShift, Jet.shift] using!
       coordinateDifferential_mul_evenJet
         (fun j => evenJet (evenShift mu j)) (fun j => oddJet (oddShift mu j)) P
           ⟨j, by cases h : j.field.parity <;> simp_all⟩

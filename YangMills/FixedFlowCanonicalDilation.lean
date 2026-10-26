@@ -2,6 +2,9 @@ import YangMills.FixedFlowUniqueness
 import Mathlib.Analysis.Calculus.Deriv.ZPow
 import Mathlib.Analysis.Complex.RealDeriv
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative Filter

@@ -1,5 +1,8 @@
 import YangMills.QFT.Wightman
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Genuine (smeared) vacuum correlation functions
 

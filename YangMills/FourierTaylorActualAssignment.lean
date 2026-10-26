@@ -1,6 +1,9 @@
 import YangMills.FourierTaylorIndexCast
 import YangMills.LocalVertexAmplitudePolarization
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped ContDiff BigOperators
 attribute [local instance] Classical.propDecidable
@@ -22,7 +25,7 @@ theorem actualSourceDirections_bucket (legs : List (ExternalLeg G))
     directionBucket (actualSourceDirections legs π k p)
         (Fin.cast (by simp only [permutedLegs, List.length_ofFn]) j) =
       directionBucket (List.ofFn p) j := by
-  simpa only [actualSourceDirections, List.map_ofFn, Function.comp_apply] using
+  simpa only [actualSourceDirections, List.map_ofFn, Function.comp_apply] using!
     directionBucket_index_cast (permutedLegs legs π.symm) legs
       (by simp only [permutedLegs, List.length_ofFn]) (List.ofFn p) j
 
@@ -40,7 +43,6 @@ theorem actualTaylorVertex_source (F : OrderedAmplitude G)
         permutedLegs, List.length_ofFn]) j)) =
       fun j => ⟨legs.get (π.symm j), directionBucket (List.ofFn p) j⟩ := by
   funext j
-  dsimp only
   simp only [reducedTaylorVertex, reducedTaylorSource, List.get_ofFn, Fin.cast_cast]
   have hb := actualSourceDirections_bucket legs π k p j
   rw [hb]

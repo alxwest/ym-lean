@@ -1,5 +1,8 @@
 import YangMills.FourierTaylorUniformSource
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators ContDiff
 attribute [local instance] Classical.propDecidable
@@ -38,7 +41,7 @@ theorem uniform_direction_sum (D : ℕ) (F : OrderedAmplitude G)
   have hr : ReducedDirections (List.ofFn fields)
       (List.ofFn fun i => (Fin.cast List.length_ofFn.symm (p i).1, (p i).2)) ↔
       ReducedDirections legs (List.ofFn p) := by
-    simpa only [List.map_ofFn, Function.comp_apply] using
+    simpa only [List.map_ofFn, Function.comp_apply] using!
       ReducedDirections_index_cast (List.ofFn fields) legs List.length_ofFn.symm (List.ofFn p)
   rw [hr]
   rfl

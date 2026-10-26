@@ -1,6 +1,9 @@
 import YangMills.LinearInsertionUniqueness
 import YangMills.FlowBoundaryUniqueness
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative Filter
@@ -40,14 +43,14 @@ theorem ReducedLinearInsertionRegularity.scaleConstant_all {background F H : Flo
   · have cf := hF.continuous loop legs [] p
     have ch := hH.continuous loop legs [] p
     have cf' : ContinuousOn (fun Λ => F loop Λ UV legs p) (Set.Ioc 0 UV) := by
-      simpa [momentumJet, iteratedFDeriv_zero_apply] using cf
+      simpa [momentumJet, iteratedFDeriv_zero_apply] using! cf
     have ch' : ContinuousOn (fun Λ => H loop Λ UV legs p) (Set.Ioc 0 UV) := by
-      simpa [momentumJet, iteratedFDeriv_zero_apply] using ch
+      simpa [momentumJet, iteratedFDeriv_zero_apply] using! ch
     exact cf'.sub ch'
   · intro Λ hp hl
     have hd := (hF.flow loop Λ legs p hp hl nonempty (conservingMomenta_balanced G legs q)).sub
       (hH.flow loop Λ legs p hp hl nonempty (conservingMomenta_balanced G legs q))
-    simpa only [rhs Λ p hp hl (conservingMomenta_balanced G legs q), sub_self] using hd
+    simpa only [rhs Λ p hp hl (conservingMomenta_balanced G legs q), sub_self] using! hd
   all_goals assumption
 
 /-- Equality of the actual reduced coordinate normalization jets at mu and of all
@@ -87,7 +90,7 @@ theorem reducedLinearDifference_zero_of_normalization {background F H : FlowFami
   by_cases highDim : degree < totalDimension legs
   · funext q
     simpa only [momentumJet, List.length_nil, iteratedFDeriv_zero_apply, Pi.zero_apply]
-      using irrelevant [] (by intro d hd; simp at hd) (by simpa using highDim) q
+      using! irrelevant [] (by intro d hd; simp at hd) (by simpa using! highDim) q
   · apply reducedJet_determinacy smooth extension (degree-totalDimension legs)
     · intro d reduced hd q
       exact irrelevant d reduced (by omega) q
@@ -148,14 +151,14 @@ theorem ReducedLinearInsertionRegularity.unique_of_reduced_jets {background F H 
             · have cf := hF.continuous loop legs [] p
               have ch := hH.continuous loop legs [] p
               have cf' : ContinuousOn (fun s => F loop s UV legs p) (Set.Ioc 0 UV) := by
-                simpa [momentumJet, iteratedFDeriv_zero_apply] using cf
+                simpa [momentumJet, iteratedFDeriv_zero_apply] using! cf
               have ch' : ContinuousOn (fun s => H loop s UV legs p) (Set.Ioc 0 UV) := by
-                simpa [momentumJet, iteratedFDeriv_zero_apply] using ch
+                simpa [momentumJet, iteratedFDeriv_zero_apply] using! ch
               exact cf'.sub ch'
             · intro s hs hsUV
               have hd := (hF.flow loop s legs p hs hsUV empty (conservingMomenta_balanced G legs q')).sub
                 (hH.flow loop s legs p hs hsUV empty (conservingMomenta_balanced G legs q'))
-              simpa only [rhs s p hs hsUV, sub_self] using hd
+              simpa only [rhs s p hs hsUV, sub_self] using! hd
             all_goals first | assumption | exact le_rfl
           have hz := reducedLinearDifference_zero_of_normalization hF hH hμ hUV degree loop legs
             constant (low loop legs) (high loop legs)

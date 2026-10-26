@@ -1,4 +1,7 @@
 import YangMills.GraphRescalingDifferential
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 600000
 namespace YangMills.FullBV
@@ -127,6 +130,6 @@ theorem graphPrimitive_integrated_exact_all {B : InvariantForm G} (frame : Color
   rw [← graphRescale_masterLocalST_all frame g P] at ht
   have hs := congrArg (fun x : LocalFunctional G => (g : ℂ)^(2*loop-2) • x) ht
   simpa only [graphPrimitive, localClass, map_smul, localSTFunctional_localClass,
-    localST_smul] using hs
+    localST_smul] using! hs
 
 end YangMills.FullBV

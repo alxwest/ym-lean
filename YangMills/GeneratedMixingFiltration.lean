@@ -1,5 +1,8 @@
 import YangMills.IntrinsicFiltration
 import YangMills.GeneratedGammaCohomology
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative

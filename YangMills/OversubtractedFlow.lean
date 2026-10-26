@@ -1,6 +1,9 @@
 import YangMills.CompositeExtraction
 import YangMills.PerturbativeFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed multiple-insertion oversubtraction flow
 

@@ -1,3 +1,4 @@
+import Mathlib.Analysis.Distribution.TemperedDistribution
 import YangMills.PerturbativeYangMills
 import YangMills.InvariantJetPolynomials
 import Mathlib.Analysis.Calculus.IteratedDeriv.Defs
@@ -7,6 +8,9 @@ import Mathlib.Algebra.Polynomial.Coeff
 import Mathlib.MeasureTheory.Measure.Lebesgue.Basic
 import Mathlib.Algebra.MvPolynomial.Derivation
 import Mathlib.Algebra.MvPolynomial.Monad
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 
 /-!
 # Fixed finite-cutoff kernels and subtraction operations
@@ -381,15 +385,15 @@ def bareCoefficient {B : InvariantForm G} (s : CutoffScales) (e : ColorFrame B)
 linearity rather than an arbitrary operation called a distribution derivative. -/
 def orderedTestDerivative : List (Fin 4) → TestFunction →L[ℂ] TestFunction
   | [] => ContinuousLinearMap.id ℂ TestFunction
-  | μ :: rest => (SchwartzMap.pderivCLM ℂ (Pi.single μ 1)).comp (orderedTestDerivative rest)
+  | μ :: rest => (LineDeriv.lineDerivOpCLM (V := Spacetime) ℂ TestFunction (Pi.single μ 1)).comp (orderedTestDerivative rest)
 
 /-- A derivative of delta at the origin, including the distributional sign. -/
 def contactDerivative (directions : List (Fin 4)) : TestFunction →L[ℂ] ℂ :=
   ((-1 : ℂ) ^ directions.length) •
-    ((SchwartzMap.delta ℂ ℂ (0 : Spacetime)).comp (orderedTestDerivative directions))
+    ((TemperedDistribution.delta (0 : Spacetime)).comp (orderedTestDerivative directions))
 
 @[simp] theorem contactDerivative_nil :
-    contactDerivative [] = SchwartzMap.delta ℂ ℂ (0 : Spacetime) := by
+    contactDerivative [] = TemperedDistribution.delta (0 : Spacetime) := by
   simp [contactDerivative, orderedTestDerivative]
 
 /-- Finite, explicitly local renormalization ambiguity of bounded derivative
@@ -408,7 +412,7 @@ theorem LocalCounterterm.distribution_apply {degree : ℕ} (c : LocalCounterterm
     (f : TestFunction) :
     c.distribution f = c.coefficient.sum (fun directions a => a * contactDerivative directions f) := by
   classical
-  simp [LocalCounterterm.distribution, Finsupp.sum, ContinuousLinearMap.sum_apply]
+  simp [LocalCounterterm.distribution, Finsupp.sum]
 
 /-- Commuting partial-derivative multiindices for canonical gauge potentials.
 The distinguished left variable is the coupling g, which has zero derivative. -/

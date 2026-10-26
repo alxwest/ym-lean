@@ -1,6 +1,9 @@
 import YangMills.ClassicalHomogeneousProjection
 import YangMills.ClassicalRecenter
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.CurvatureJetPolynomial
 variable {G : CompactSimpleGaugeGroup}

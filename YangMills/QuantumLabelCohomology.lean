@@ -1,6 +1,9 @@
 import YangMills.FilteredQuantumCohomology
 import YangMills.GeneratedMixingMeaning
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Existing quantum label relations descend to the actual generated H0
 
@@ -166,7 +169,7 @@ theorem liftVector_reconstructed {B : InvariantForm G} {e : ColorFrame B}
   intro loop
   have equality := congrArg (fun v : LocalMonomial G →₀ ℂ => v A.val)
     (compatible.reconstructedLabel_coefficient basis p g loop)
-  simp only [Finsupp.sum, Finsupp.finset_sum_apply, Finsupp.smul_apply, smul_eq_mul] at equality
+  simp only [Finsupp.sum, Finsupp.finsetSum_apply, Finsupp.smul_apply, smul_eq_mul] at equality
   simpa only [liftVector, Finsupp.sum, Finset.sum_apply, Pi.smul_apply, smul_eq_mul,
     map_sum, PowerSeries.coeff_C_mul, PowerSeries.coeff_mk] using equality
 

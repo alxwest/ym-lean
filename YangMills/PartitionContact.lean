@@ -1,6 +1,9 @@
 import YangMills.ConnectedInsertionFlow
 import YangMills.PartialDiagonalContact
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Proper test collapse for arbitrary insertion partitions
 

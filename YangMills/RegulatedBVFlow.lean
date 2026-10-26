@@ -1,5 +1,8 @@
 import YangMills.FreeWardExtraction
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Explicit regulated BV defects of the same coefficient family
 

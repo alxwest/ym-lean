@@ -1,5 +1,8 @@
 import YangMills.FiniteWardRestoration
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 FHH1511.09425 (84),(94), TableII and (123): an integrated dimension-four
 insertion is an independent conserving-momentum linear response with zero
@@ -86,7 +89,7 @@ theorem momentumJet_sub_regular {legs : List (ExternalLeg G)}
     momentumJet d (fun p => F p - H p) q = momentumJet d F q - momentumJet d H q := by
   unfold momentumJet
   simp only [sub_eq_add_neg]
-  rw [iteratedFDeriv_add_apply' hF hH.neg]
+  rw [fun_iteratedFDeriv_add_apply hF hH.neg]
   rw [show (fun p => -H p) = -H from rfl, iteratedFDeriv_neg_apply]
   simp only [ContinuousMultilinearMap.add_apply, ContinuousMultilinearMap.neg_apply]
 
@@ -116,7 +119,7 @@ theorem LeadingIntegratedShift.relevant_ir {B : InvariantForm G} {e : ColorFrame
       (hI.relevant_ir_regularity μ g 0 UV legs d hμ hUV hd hdeg),
       hA.relevant_ir μ g order UV legs d hμ hUV hd hdeg,
       hI.relevant_ir μ g 0 UV legs d hμ hUV hd hdeg, sub_self]
-  · simpa only [hl, if_false, sub_zero] using
+  · simpa only [hl, if_false, sub_zero] using!
       hA.relevant_ir μ g loop UV legs d hμ hUV hd hdeg
 
 /-- The finite leading change is entirely in the dimension-four marginal
@@ -138,7 +141,7 @@ theorem LeadingIntegratedShift.marginal {B : InvariantForm G} {e : ColorFrame B}
   have hf : after μ g order μ UV legs = fun q => before μ g order μ UV legs q -
       response μ g 0 μ UV legs q := by
     funext q
-    simpa only [if_pos rfl] using hshift μ g order (le_refl order) μ UV legs q
+    simpa only [if_pos rfl] using! hshift μ g order (le_refl order) μ UV legs q
   change momentumJet d (after μ g order μ UV legs) 0 = _
   rw [hf, momentumJet_sub_regular d _ _ 0
     ((hA.momentum_smooth μ g order μ UV legs hμ hUV hμ hUV).contDiffAt.of_le (by exact_mod_cast (le_top : (d.length : ℕ∞) ≤ ⊤)))
@@ -156,7 +159,7 @@ theorem LeadingIntegratedShift.ultraviolet {before after response : ScaleCouplin
     (μ g UV : ℝ) (legs : List (ExternalLeg G)) (q : Fin legs.length → Spacetime) :
     after μ g order UV UV legs q = before μ g order UV UV legs q -
       response μ g 0 UV UV legs q := by
-  simpa only [if_pos rfl] using h μ g order (le_refl order) UV UV legs q
+  simpa only [if_pos rfl] using! h μ g order (le_refl order) UV UV legs q
 
 /-- The shifted Ward seed is the defect of the SAME actual regulated
 background, with the actual integrated-response UV counterterms. -/

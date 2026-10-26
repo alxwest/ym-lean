@@ -2,6 +2,9 @@ import YangMills.ContactTaylorProjection
 import YangMills.ClassicalPointContact
 import YangMills.WardContinuum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-flow local pair anomaly and its UV boundary transport
 

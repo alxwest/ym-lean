@@ -1,4 +1,7 @@
 import YangMills.LegendreOddSign
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 /-!
 # Universal Koszul factorization for sorted Legendre blocks
 

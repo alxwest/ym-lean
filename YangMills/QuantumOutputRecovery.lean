@@ -1,5 +1,8 @@
 import YangMills.QuantumObservableLift
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Output recovery through the same quantum observable dictionary
 

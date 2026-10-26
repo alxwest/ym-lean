@@ -1,6 +1,9 @@
 import YangMills.GaugeGroup
 import YangMills.QFT.Wightman
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Precisely checked QFT-and-gap target — not yet the full Yang–Mills target
 

@@ -1,6 +1,9 @@
 import YangMills.Statement
 import YangMills.Spectrum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Jaffe--Witten Section 4: directly translatable mathematics
 

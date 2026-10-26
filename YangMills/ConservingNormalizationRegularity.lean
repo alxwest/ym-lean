@@ -2,6 +2,9 @@ import YangMills.PointwiseNormalizationRegularity
 import YangMills.ConservingJetTransport
 import YangMills.IntegratedVacuumSubtraction
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped BigOperators ContDiff
@@ -86,7 +89,7 @@ theorem conservingPointwiseNormalizationResponse_jet_continuous
             momentumJet (List.ofFn p)
               (pointwiseNormalizationResponse L I D μ g loop Λ UV labels)
               (conservingMomentumMap labels q)) (Set.Ioc 0 UV) := by
-      apply continuousOn_finset_sum _
+      apply continuousOn_finsetSum _
       intro p hp
       exact (pointwiseNormalizationResponse_jet_continuous L I D μ g UV loop h labels
         (List.ofFn p) (conservingMomentumMap labels q)).const_smul _

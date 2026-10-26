@@ -1,5 +1,8 @@
 import YangMills.MultiOperatorProductExpansion
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Transverse scaling at every partial coincidence diagonal
 

@@ -4,6 +4,9 @@ import YangMills.ActionProbeSupport
 import YangMills.ProbeCalculus
 import YangMills.CubicProbeValues
 import YangMills.QuarticProbeValues
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 set_option synthInstance.maxHeartbeats 200000
 set_option maxRecDepth 2048
 set_option maxHeartbeats 2000000

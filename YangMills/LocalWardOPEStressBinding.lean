@@ -2,6 +2,9 @@ import YangMills.LocalWardFlowFamily
 import YangMills.GeneratedMultiMatching
 import YangMills.StressRenormalizationGroup
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # All-arity same-field OPE and stress binding for the local Ward family
 

@@ -2,6 +2,9 @@ import YangMills.Classical
 import Mathlib.GroupTheory.Perm.Fin
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed pure Yang--Mills interaction vertices
 
@@ -141,7 +144,7 @@ does not prove that any quantum theory realizes that interaction. -/
 theorem threeColor_nonzero (B : InvariantForm G) :
     ∃ X Y Z : G.Algebra, threeColor B X Y Z ≠ 0 := by
   by_contra h
-  push_neg at h
+  push Not at h
   apply LieAlgebra.IsSimple.non_abelian (R := ℝ) (L := G.Algebra)
   refine ⟨fun Y Z => ?_⟩
   by_contra hz

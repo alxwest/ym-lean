@@ -3,6 +3,9 @@ import Mathlib.Data.Set.Finite.List
 import Mathlib.LinearAlgebra.Finsupp.Supported
 import Mathlib.LinearAlgebra.FiniteDimensional.Basic
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 set_option synthInstance.maxHeartbeats 200000
 set_option maxHeartbeats 800000
 

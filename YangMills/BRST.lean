@@ -5,6 +5,9 @@ import Mathlib.LinearAlgebra.CliffordAlgebra.Contraction
 import Mathlib.Algebra.BigOperators.Finprod
 import Mathlib.Algebra.MvPolynomial.PDeriv
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed classical ghost algebra and BRST signs
 

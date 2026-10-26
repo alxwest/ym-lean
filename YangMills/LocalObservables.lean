@@ -1,5 +1,8 @@
 import YangMills.Classical
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Concrete local curvature expressions, Jaffe–Witten §4 and footnote 1
 

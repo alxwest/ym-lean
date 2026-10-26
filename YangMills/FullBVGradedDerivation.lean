@@ -1,5 +1,8 @@
 import YangMills.FullBVHomogeneousCommutation
 import YangMills.FullBVEvolutionaryDerivation
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 namespace YangMills.FullBV
 variable {G : CompactSimpleGaugeGroup}
@@ -16,11 +19,11 @@ theorem localST_mul_jet_graded (S P : JetAlgebra G) (hS : OddCharacteristics S) 
   change _ + _ = _ + parity P * prolongedST S j
   congr 1
   by_cases hj : j.field.parity = true
-  · have hc : parity (prolongedST S j) = prolongedST S j := by simpa only [hj, if_true] using hS j
-    simpa only [hj, if_true] using evenPolynomial_commute (prolongedST S j) (parity P) hc
+  · have hc : parity (prolongedST S j) = prolongedST S j := by simpa only [hj, if_true] using! hS j
+    simpa only [hj, if_true] using! evenPolynomial_commute (prolongedST S j) (parity P) hc
   · have hc : parity (prolongedST S j) = -prolongedST S j := by
-      simpa only [hj, if_false] using hS j
-    simpa only [hj, if_false] using oddPolynomial_commute (prolongedST S j) P hc
+      simpa only [hj, if_false] using! hS j
+    simpa only [hj, if_false] using! oddPolynomial_commute (prolongedST S j) P hc
 
 /-- Full graded Leibniz on every local polynomial, derived from the actual
 jet images and the actual exterior-algebra parity. -/

@@ -1,5 +1,8 @@
 import YangMills.FiniteFlowDilation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 200000
@@ -138,7 +141,7 @@ lemma tendsto_positive_scale (a : ℝ) (positive : 0 < a) :
     Filter.Tendsto (fun x : ℝ => a*x) (nhdsWithin 0 (Set.Ioi 0)) (nhdsWithin 0 (Set.Ioi 0)) := by
   apply tendsto_nhdsWithin_iff.mpr
   constructor
-  · simpa using ((continuous_const.mul continuous_id).tendsto (0 : ℝ)).mono_left inf_le_left
+  · simpa using! ((continuous_const.mul continuous_id).tendsto (0 : ℝ)).mono_left inf_le_left
   · filter_upwards [self_mem_nhdsWithin] with x hx
     exact mul_pos positive hx
 
@@ -171,16 +174,16 @@ theorem CoefficientFlowConditions.rescale {B : InvariantForm G} {e : ColorFrame 
     relevant_ir_limit := ?_
     marginal := h.rescaled_marginal a positive }
   · intro mu g loop Λ UV legs hmu hmuUV hΛ hΛUV
-    simpa only [rescaleScaleCoupling,rescaleFlow,Function.comp_def,smul_eq_mul] using
+    simpa only [rescaleScaleCoupling,rescaleFlow,Function.comp_def,smul_eq_mul] using!
       ((h.momentum_smooth (a*mu) g loop (a*Λ) (a*UV) legs
       (positive_mu mu hmu) (ordered mu UV hmuUV) (positive_mu Λ hΛ) (ordered Λ UV hΛUV)).comp
       (contDiff_id.const_smul a)).const_smul ((((a ^ ((totalDimension legs : ℤ)-4) : ℝ)) : ℂ))
   · intro mu loop Λ UV legs q hmu hmuUV hΛ hΛUV
-    simpa only [rescaleScaleCoupling,rescaleFlow,Function.comp_def,smul_eq_mul] using
+    simpa only [rescaleScaleCoupling,rescaleFlow,Function.comp_def,smul_eq_mul] using!
       (h.coupling_smooth (a*mu) loop (a*Λ) (a*UV) legs (a • q)
       (positive_mu mu hmu) (ordered mu UV hmuUV) (positive_mu Λ hΛ) (ordered Λ UV hΛUV)).const_smul ((((a ^ ((totalDimension legs : ℤ)-4) : ℝ)) : ℂ))
   · intro mu loop Λ UV legs hmu hmuUV hΛ hΛUV
-    simpa only [rescaleScaleCoupling,rescaleFlow,Function.comp_def,smul_eq_mul] using
+    simpa only [rescaleScaleCoupling,rescaleFlow,Function.comp_def,smul_eq_mul] using!
       ((h.joint_coupling_momentum_smooth (a*mu) loop (a*Λ) (a*UV) legs
       (positive_mu mu hmu) (ordered mu UV hmuUV) (positive_mu Λ hΛ) (ordered Λ UV hΛUV)).comp
       (contDiff_fst.prodMk (contDiff_snd.const_smul a))).const_smul ((((a ^ ((totalDimension legs : ℤ)-4) : ℝ)) : ℂ))
@@ -192,7 +195,7 @@ theorem CoefficientFlowConditions.rescale {B : InvariantForm G} {e : ColorFrame 
         (show a*x ∈ Set.Ioc 0 (a*UV) from ⟨positive_mu x hx.1,ordered x UV hx.2⟩))
     apply (hc.const_smul ((a : ℂ)^((totalDimension legs : ℤ)+directions.length-4))).congr
     intro x _
-    simpa only [rescaleScaleCoupling,Function.comp_def,id_eq,smul_eq_mul] using
+    simpa only [rescaleScaleCoupling,Function.comp_def,id_eq,smul_eq_mul] using!
       momentumJet_rescaleFlow a positive (A (a*mu) g) loop x UV legs directions q
   · intro mu g loop Λ UV legs q
     unfold rescaleScaleCoupling rescaleFlow
@@ -224,17 +227,17 @@ theorem CoefficientFlowConditions.rescale {B : InvariantForm G} {e : ColorFrame 
     have regular := h.relevant_ir_regularity (a*mu) g loop (a*UV) legs directions
       (positive_mu mu hmu) (ordered mu UV hmuUV) reduced relevant
     have regular_scaled : ContDiffAt ℝ directions.length (A (a*mu) g loop 0 (a*UV) legs)
-        (a • (0 : Fin legs.length → Spacetime)) := by simpa only [smul_zero] using regular
+        (a • (0 : Fin legs.length → Spacetime)) := by simpa only [smul_zero] using! regular
     have composed := regular_scaled.comp (0 : Fin legs.length → Spacetime)
       (contDiff_id.const_smul a).contDiffAt
     unfold rescaleScaleCoupling rescaleFlow
-    simpa only [mul_zero,Function.comp_def,smul_eq_mul] using composed.const_smul
+    simpa only [mul_zero,Function.comp_def,smul_eq_mul] using! composed.const_smul
       (((a ^ ((totalDimension legs : ℤ)-4) : ℝ)) : ℂ)
   · intro mu g loop UV legs directions hmu hmuUV reduced relevant
     have limit := (h.relevant_ir_limit (a*mu) g loop (a*UV) legs directions
       (positive_mu mu hmu) (ordered mu UV hmuUV) reduced relevant).comp (tendsto_positive_scale a positive)
     have multiplied := limit.const_mul ((a : ℂ)^((totalDimension legs : ℤ)+directions.length-4))
-    simpa only [rescaleScaleCoupling,momentumJet_rescaleFlow a positive,smul_zero,mul_zero] using multiplied
+    simpa only [rescaleScaleCoupling,momentumJet_rescaleFlow a positive,smul_zero,mul_zero] using! multiplied
 
 theorem rescaleScaleCoupling_inverse (a : ℝ) (nonzero : a ≠ 0) (A : ScaleCouplingFamily G) :
     rescaleScaleCoupling a⁻¹ (rescaleScaleCoupling a A) = A := by

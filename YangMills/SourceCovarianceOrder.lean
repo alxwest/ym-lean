@@ -1,6 +1,9 @@
 import YangMills.PerturbativeFlow
 import YangMills.FullBV
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 The printed FHH (67) matrix is indexed (A,c,cbar,B). This module states
 its entries without conflating that matrix index order with the order of

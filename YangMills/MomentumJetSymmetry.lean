@@ -1,6 +1,9 @@
 import YangMills.InsertionProjectorWeights
 import Mathlib.Analysis.Calculus.FDeriv.Symmetric
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1200000
 open scoped ContDiff
@@ -30,8 +33,8 @@ lemma directionalWord_swap (v w : E) (rest : List E) {f : E → ℂ}
   simp only [directionalWord]
   rw [fderiv_clm_apply (hd.differentiable (by simp) x) (differentiableAt_const w),
     fderiv_clm_apply (hd.differentiable (by simp) x) (differentiableAt_const v)]
-  simp only [ContinuousLinearMap.add_apply,fderiv_const_apply,ContinuousLinearMap.comp_apply,
-    ContinuousLinearMap.zero_apply,map_zero,zero_add,ContinuousLinearMap.flip_apply]
+  simp only [add_apply,fderiv_const_apply,ContinuousLinearMap.comp_apply,
+    zero_apply,map_zero,zero_add,ContinuousLinearMap.flip_apply]
   exact second_derivative_symmetric
     (fun y => (h.differentiable (by simp) y).hasFDerivAt)
     (hd.differentiable (by simp) x).hasFDerivAt v w

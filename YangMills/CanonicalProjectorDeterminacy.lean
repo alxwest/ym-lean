@@ -2,6 +2,9 @@ import YangMills.CanonicalCornerApplication
 import YangMills.FlatMomentumCoordinates
 import YangMills.AnchoredCoordinateDeterminacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 3200000
 open scoped ContDiff BigOperators

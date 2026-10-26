@@ -1,6 +1,9 @@
 import YangMills.MultiWardRestoration
 import YangMills.PartialDiagonalSupport
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Separated-support consequence of the full contact Ward identity
 

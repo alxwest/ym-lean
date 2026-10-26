@@ -1,5 +1,8 @@
 import YangMills.LowProjectorAdequacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped ContDiff
@@ -18,7 +21,7 @@ lemma directionalWord_zero (directions : List E) : directionalWord directions (0
   | cons v rest ih =>
     simp only [directionalWord,ih]
     funext x
-    simp only [fderiv_zero,Pi.zero_apply,ContinuousLinearMap.zero_apply]
+    simp only [fderiv_zero,Pi.zero_apply,zero_apply]
 
 variable {G : CompactSimpleGaugeGroup}
 

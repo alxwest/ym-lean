@@ -1,5 +1,8 @@
 import YangMills.FullBVActualMasterEulerConsequences
 import YangMills.FullBVGhostAntifield
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 1800000
 set_option linter.unusedSimpArgs false

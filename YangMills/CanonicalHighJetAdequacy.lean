@@ -1,5 +1,8 @@
 import YangMills.CanonicalProjectorDeterminacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 Canonical high-projector equations imply ALL high coordinate equations.
 The proof applies smooth anchored determinacy to the actual high derivative,

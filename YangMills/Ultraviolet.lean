@@ -1,5 +1,8 @@
 import YangMills.QuantumCorrelations
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Short-distance quantities on the actual quantum fields
 

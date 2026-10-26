@@ -1,6 +1,9 @@
 import YangMills.InsertionFlowDilation
 import YangMills.PerturbativeCoefficientLimits
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped ContDiff
@@ -22,13 +25,13 @@ theorem CoupledInsertionFlowConditions.rescale {background : ℝ → FlowFamily 
   · intro input loop Λ UV legs ir_positive ordered
     have smooth := h.single_joint_smooth (dilateInsertionPoints a input) loop (a*Λ) (a*UV) legs
       (mul_pos positive ir_positive) (mul_le_mul_of_nonneg_left ordered positive.le)
-    simpa only [rescaleInsertedFlow,rescaleDegree,Function.comp_def,smul_eq_mul] using
+    simpa only [rescaleInsertedFlow,rescaleDegree,Function.comp_def,smul_eq_mul] using!
       (smooth.comp (contDiff_fst.prodMk (contDiff_snd.const_smul a))).const_smul
         (((a ^ ((totalDimension legs : ℤ)-inputEngineeringDegree input) : ℝ)) : ℂ)
   · intro D input loop Λ UV legs ir_positive ordered
     have smooth := h.oversubtraction_joint_smooth D (dilateInsertionPoints a input) loop (a*Λ) (a*UV) legs
       (mul_pos positive ir_positive) (mul_le_mul_of_nonneg_left ordered positive.le)
-    simpa only [rescaleOversubtractions,rescaleDegree,Function.comp_def,smul_eq_mul] using
+    simpa only [rescaleOversubtractions,rescaleDegree,Function.comp_def,smul_eq_mul] using!
       (smooth.comp (contDiff_fst.prodMk (contDiff_snd.const_smul a))).const_smul
         (((a ^ ((totalDimension legs : ℤ)-positionedInsertionDegreeSum input) : ℝ)) : ℂ)
 
@@ -47,7 +50,7 @@ def FixedFlowSystem.dilate {B : InvariantForm G} {e : ColorFrame B}
   insertion_equations := by
     intro mu mu_positive
     have transformed := (S.insertion_equations (a*mu) (mul_pos positive mu_positive)).rescale a positive
-    simpa only [rescaleScaleCoupling,inv_mul_cancel_left₀ (ne_of_gt positive)] using transformed
+    simpa only [rescaleScaleCoupling,inv_mul_cancel_left₀ (ne_of_gt positive)] using! transformed
 
 @[simp] theorem FixedFlowSystem.dilate_same_scheme {B : InvariantForm G} {e : ColorFrame B}
     (S : FixedFlowSystem e) (a : ℝ) (positive : 0 < a) :

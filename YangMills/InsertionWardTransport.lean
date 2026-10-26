@@ -1,6 +1,9 @@
 import YangMills.WardContinuum
 import YangMills.RegulatedWardInsertion
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Insertion-anomaly flow and local anomaly transport
 

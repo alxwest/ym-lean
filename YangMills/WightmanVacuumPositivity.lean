@@ -1,5 +1,8 @@
 import YangMills.WightmanVacuumKernels
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Positivity of the actual full Wightman kernels
 

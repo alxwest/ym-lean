@@ -1,5 +1,8 @@
 import YangMills.GeneratedMixingMeaning
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Intrinsic filtration of actual finite renormalization mixtures
 

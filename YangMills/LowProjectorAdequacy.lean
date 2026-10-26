@@ -1,5 +1,8 @@
 import YangMills.RepeatedOddProjector
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped ContDiff

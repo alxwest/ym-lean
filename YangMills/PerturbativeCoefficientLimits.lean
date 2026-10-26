@@ -1,6 +1,9 @@
 import YangMills.OversubtractedFlow
 import YangMills.MultiOperatorProductExpansion
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed group-specific Euclidean coefficient limits
 

@@ -1,4 +1,7 @@
 import YangMills.QFT.Wightman
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 1200000
 set_option linter.unnecessarySimpa false
@@ -19,6 +22,10 @@ def domainEquiv (e : K ≃ₗᵢ[ℂ] H) (D : Submodule ℂ H) :
   map_add' _ _ := by apply Subtype.ext; exact map_add e _ _
   map_smul' _ _ := by apply Subtype.ext; exact map_smul e _ _
   norm_map' x := e.norm_map x
+
+@[simp] theorem domainEquiv_apply (e : K ≃ₗᵢ[ℂ] H) (D : Submodule ℂ H)
+    (x : D.comap e.toLinearEquiv.toLinearMap) :
+    domainEquiv e D x = ⟨e x, x.property⟩ := rfl
 
 @[simp] theorem domainEquiv_coe (e : K ≃ₗᵢ[ℂ] H) (D : Submodule ℂ H)
     (x : D.comap e.toLinearEquiv.toLinearMap) : (domainEquiv e D x : H) = e x := rfl
@@ -52,11 +59,11 @@ theorem operator_selfAdjoint (e : K ≃ₗᵢ[ℂ] H) (A : DenselyDefinedOperato
     obtain ⟨hm,he⟩ := (h (e x) (e y)).mp hz
     refine ⟨hm,?_⟩
     apply e.injective
-    simpa only [operator_apply,LinearIsometryEquiv.apply_symm_apply] using he
+    simpa only [operator_apply,domainEquiv_apply,LinearIsometryEquiv.apply_symm_apply] using he
   · rintro ⟨hm,he⟩ u
     have hz := (h (e x) (e y)).mpr ⟨hm,by
       have hh := congrArg e he
-      simpa only [operator_apply,LinearIsometryEquiv.apply_symm_apply] using hh⟩ (domainEquiv e A.domain u)
+      simpa only [operator_apply,domainEquiv_apply,LinearIsometryEquiv.apply_symm_apply] using hh⟩ (domainEquiv e A.domain u)
     have hi := e.inner_map_map (e.symm (A.toLinearMap (domainEquiv e A.domain u))) x
     rw [LinearIsometryEquiv.apply_symm_apply] at hi
     exact hi.symm.trans (hz.trans (e.inner_map_map u y))
@@ -96,7 +103,7 @@ theorem operator_resolvent_iff (e : K ≃ₗᵢ[ℂ] H) (A : DenselyDefinedOpera
       have hh := congrArg e (hr (e.symm x))
       simpa only [R',ContinuousLinearMap.comp_apply,
         LinearIsometryEquiv.coe_toContinuousLinearEquiv,ContinuousLinearEquiv.coe_coe,
-        operator_apply,map_sub,map_smul,domainEquiv,LinearIsometryEquiv.apply_symm_apply] using hh
+        operator_apply,map_sub,map_smul,domainEquiv_apply,LinearIsometryEquiv.apply_symm_apply] using hh
     · intro x
       have hh := congrArg e (hl ((domainEquiv e A.domain).symm x))
       simpa only [R',ContinuousLinearMap.comp_apply,

@@ -1,6 +1,9 @@
 import YangMills.GeneratedStressNormalization
 import YangMills.RenormalizationGroup
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Zero anomalous dimension of the same physical stress tensor
 

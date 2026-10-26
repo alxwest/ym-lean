@@ -1,6 +1,9 @@
 import YangMills.GaugeGroup
 import YangMills.QFT.Spacetime
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Classical data from Jaffe–Witten §1
 

@@ -1,6 +1,9 @@
 import YangMills.AmputatedLegendre
 import YangMills.WardContinuum
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Concrete connected-source / 1PI endpoint scheme transport
 

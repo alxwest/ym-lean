@@ -1,6 +1,9 @@
 import YangMills.MultiOperatorProductExpansion
 import YangMills.WickRotation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Ordered multi-insertion coefficient continuation
 

@@ -1,5 +1,8 @@
 import YangMills.QFT.Wightman
-import Mathlib.Analysis.Distribution.FourierSchwartz
+import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 
 /-!
 # The actual Wightman spectral kernel is a Schwartz Fourier transform
@@ -59,7 +62,7 @@ lemma spectralKernel_eq_fourier (f : TestFunction) (a : Spacetime) :
     WightmanData.spectralKernel f a =
       SchwartzMap.fourierTransformCLM ℂ (euclideanMomentumTest f) (spectralFourierCoordinates a) := by
   change _ = 𝓕 (euclideanMomentumTest f : EuclideanSpacetime → ℂ) (spectralFourierCoordinates a)
-  rw [Real.fourierIntegral_eq']
+  rw [Real.fourier_eq']
   rw [← (PiLp.volume_preserving_toLp (Fin 4)).integral_comp
     (MeasurableEquiv.toLp 2 _).measurableEmbedding]
   unfold WightmanData.spectralKernel

@@ -1,5 +1,8 @@
 import YangMills.QuantumObservableLift
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Corrected incoming observables in the fixed OPE extractor
 

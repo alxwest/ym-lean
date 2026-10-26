@@ -1,5 +1,8 @@
 import YangMills.FilteredGeneratedCandidate
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed Yang–Mills existence and mass-gap specification
 

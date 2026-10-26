@@ -1,5 +1,8 @@
 import YangMills.InsertionEquationDilation
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 2400000
 open scoped BigOperators
@@ -133,7 +136,7 @@ theorem linearFlowIntegrand_scalarConvolution_integrable (c : ℕ → ℂ) (F : 
     funext p
     exact linearFlowIntegrand_scalarConvolution c F loop Λ UV legs q p
   rw [eq]
-  apply integrable_finset_sum
+  apply integrable_finsetSum
   intro r _
   exact (integrable (loop-r) (Nat.sub_le _ _)).const_mul (c r)
 
@@ -144,7 +147,7 @@ lemma linearFlowRHS_scalarConvolution (c : ℕ → ℂ) (F : FlowFamily G)
       ∑ r ∈ Finset.range (loop+1), c r * linearFlowRHS F (loop-r) Λ UV legs q := by
   unfold linearFlowRHS
   simp_rw [linearFlowIntegrand_scalarConvolution]
-  rw [integral_finset_sum]
+  rw [integral_finsetSum]
   · simp_rw [integral_const_mul]
   · intro r _
     exact (integrable (loop-r) (Nat.sub_le _ _)).const_mul (c r)
@@ -188,7 +191,7 @@ theorem linearFlowIntegrand_finiteFlowSum_integrable {ι : Type*}
     funext p
     exact linearFlowIntegrand_finiteFlowSum s F loop Λ UV legs q p
   rw [eq]
-  exact integrable_finset_sum s integrable
+  exact integrable_finsetSum s integrable
 
 lemma linearFlowRHS_finiteFlowSum {ι : Type*} (s : Finset ι) (F : ι → FlowFamily G)
     (loop : ℕ) (Λ UV : ℝ) (legs : List (ExternalLeg G)) (q : Fin legs.length → Spacetime)
@@ -197,7 +200,7 @@ lemma linearFlowRHS_finiteFlowSum {ι : Type*} (s : Finset ι) (F : ι → FlowF
       ∑ i ∈ s, linearFlowRHS (F i) loop Λ UV legs q := by
   unfold linearFlowRHS
   simp_rw [linearFlowIntegrand_finiteFlowSum]
-  exact integral_finset_sum s integrable
+  exact integral_finsetSum s integrable
 
 lemma quadraticSplit_finiteFlowSum_right {ι : Type*} (s : Finset ι) (F : ι → FlowFamily G)
     (L : FlowFamily G) (loop leftLoop : ℕ) (Λ UV : ℝ) (legs : List (ExternalLeg G))

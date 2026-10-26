@@ -1,5 +1,8 @@
 import YangMills.FullBVBridge
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Pointwise ST action on actual polynomial words. No divergence quotient is
 used: all jet descendants occur through the Hamiltonian characteristic. -/
 noncomputable section

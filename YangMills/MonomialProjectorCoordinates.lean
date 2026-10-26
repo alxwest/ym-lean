@@ -1,6 +1,9 @@
 import YangMills.MomentumJetSymmetry
 import Mathlib.Data.Finsupp.Multiset
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 namespace YangMills.PerturbativeFlow

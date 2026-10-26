@@ -1,5 +1,8 @@
 import YangMills.LegendreIdentityNormalization
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped BigOperators
@@ -37,7 +40,7 @@ theorem sum_permutedMomenta (legs : List (ExternalLeg G))
     (e : Equiv.Perm (Fin legs.length)) (q : Fin legs.length → Spacetime) :
     (∑ i : Fin (permutedLegs legs e).length, permutedMomenta legs e q i) = ∑ i, q i := by
   have hl : (permutedLegs legs e).length = legs.length := by simp [permutedLegs]
-  simpa [permutedMomenta] using ((finCongr hl).trans e).sum_comp q
+  simpa [permutedMomenta] using! ((finCongr hl).trans e).sum_comp q
 
 
 theorem balancedMomenta_prepend (root : ExternalLeg G) (legs : List (ExternalLeg G))
@@ -66,7 +69,7 @@ theorem identityRoot_graded (root : ExternalLeg G) (legs : List (ExternalLeg G))
     have hpermuted : permutedLegs legs e ≠ [root] := by
       intro h
       have hl := congrArg List.length h
-      exact hn (by simpa [permutedLegs] using hl)
+      exact hn (by simpa [permutedLegs] using! hl)
     simp [identityRoot, hbase, hpermuted]
 
 

@@ -1,6 +1,9 @@
 import YangMills.GaugeHolonomy
 import Mathlib.Analysis.SpecialFunctions.Exp
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Gauge-invariant finite link actions (not a continuum Yang--Mills measure)
 

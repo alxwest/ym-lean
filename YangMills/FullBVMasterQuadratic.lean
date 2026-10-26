@@ -1,5 +1,8 @@
 import YangMills.FullBVLocalST
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Same-action BV master-equation proof work. No CME or nilpotency axiom. -/
 noncomputable section
 set_option maxHeartbeats 1200000
@@ -176,14 +179,14 @@ theorem sum_list_flatMap {I M : Type*} [AddMonoid M] (f : I → List M) (is : Li
   refine Jet.eq_of_coordinates ?_ ?_
   · rfl
   · funext nu
-    by_cases h : mu = nu <;> simp [vertexJet, Pi.single_apply, h, eq_comm]
+    by_cases h : mu = nu <;> simp [vertexJet, h, eq_comm]
 
 @[simp] theorem vertexJet_double (K : ExternalLeg G) (mu : Fin 4) :
     vertexJet (⟨K, [mu, mu]⟩ : LocalVertexLeg G) = ⟨K, Pi.single mu 2⟩ := by
   refine Jet.eq_of_coordinates ?_ ?_
   · rfl
   · funext nu
-    by_cases h : mu = nu <;> simp [vertexJet, Pi.single_apply, h, eq_comm]
+    by_cases h : mu = nu <;> simp [vertexJet, h, eq_comm]
 
 theorem densityOfVertex_pair (c : ℂ) (j k : LocalVertexLeg G) :
     densityOfVertex 0 (⟨c, 0, [j,k]⟩ : LocalVertex G) =

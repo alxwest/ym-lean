@@ -1,4 +1,7 @@
 import YangMills.LegendreBackgroundBridge
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 300000
 open scoped BigOperators
@@ -27,7 +30,7 @@ theorem splitSign_eq_partitionSign (legs : List (ExternalLeg G))
   have to_univ (T : Finset (Fin legs.length)) (f : Fin legs.length → ℕ) :
       (∑ i ∈ T, f i) = ∑ i, if i ∈ T then f i else 0 := by
     symm
-    simpa only [Finset.univ_inter] using Finset.sum_ite_mem Finset.univ T f
+    simpa only [Finset.univ_inter] using! Finset.sum_ite_mem Finset.univ T f
   conv_rhs => rw [Finset.sum_comm]
   rw [to_univ S]
   apply Finset.sum_congr rfl
@@ -160,7 +163,7 @@ theorem sum_selectedMomenta (legs : List (ExternalLeg G)) (S : Finset (Fin legs.
   have h := (S.orderIsoOfFin (selectedLegs_length legs S).symm).toEquiv.sum_comp
     (fun i : {i // i ∈ S} => q i.val)
   rw [← Finset.sum_subtype S (fun _ => Iff.rfl) q] at h
-  simpa only [selectedMomenta_orderEmb, selectedMomentum] using h
+  simpa only [selectedMomenta_orderEmb, selectedMomentum] using! h
 
 theorem selectedMomentum_complement (legs : List (ExternalLeg G)) (S : Finset (Fin legs.length))
     (q : Fin legs.length → Spacetime) (balanced : BalancedMomenta legs q) :

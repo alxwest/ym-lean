@@ -1,6 +1,9 @@
 import YangMills.PerturbativeFlow
 import Mathlib.MeasureTheory.Measure.Haar.NormedSpace
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 200000
@@ -88,7 +91,7 @@ lemma totalDimension_selected (legs : List (ExternalLeg G)) (s : Finset (Fin leg
   classical
   unfold totalDimension selectedLegs selectedIndices
   rw [List.map_map]
-  simpa only [Finset.sort_toFinset] using
+  simpa only [Finset.sort_toFinset, Function.comp_def] using
     (List.sum_toFinset (fun i => (legs.get i).dimension) (s.sort_nodup (· ≤ ·))).symm
 
 lemma totalDimension_partition (legs : List (ExternalLeg G)) (s : Finset (Fin legs.length)) :

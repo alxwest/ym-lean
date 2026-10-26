@@ -1,6 +1,9 @@
 import YangMills.FieldParameterTransport
 import YangMills.RegulatedBVFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Graded amputated Legendre transform of the actual connected flow
 

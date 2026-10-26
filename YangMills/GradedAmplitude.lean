@@ -1,6 +1,9 @@
 import YangMills.Renormalization
 import Mathlib.Tactic.DeriveFintype
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Ordered graded coefficient conventions
 

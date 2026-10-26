@@ -5,6 +5,9 @@ import YangMills.LocalContactRenormalization
 import YangMills.JointCollisionScaling
 import YangMills.InvariantPhysicalWords
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # One coherent scale family of generated Ward/contact distributions
 

@@ -1,6 +1,9 @@
 import YangMills.FullBVCurvatureActionInvariance
 import YangMills.FullBVGaugeFermionNilpotency
 import YangMills.FullBVLocalIntegration
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 1600000
 set_option linter.unusedSimpArgs false

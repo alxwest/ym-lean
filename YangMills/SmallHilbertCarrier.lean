@@ -1,6 +1,9 @@
 import YangMills.QFT.Wightman
 import Mathlib.Logic.Small.Basic
 import Mathlib.Algebra.Module.Shrink
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 namespace YangMills
 universe u

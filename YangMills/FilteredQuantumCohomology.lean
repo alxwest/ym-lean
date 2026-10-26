@@ -3,6 +3,9 @@ import Mathlib.RingTheory.PowerSeries.Basic
 import Mathlib.LinearAlgebra.Matrix.ToLin
 import Mathlib.LinearAlgebra.Quotient.Defs
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual generated-Q formal quantum cohomology in engineering filtration
 

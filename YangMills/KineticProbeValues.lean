@@ -1,4 +1,7 @@
 import YangMills.WardActionCoordinates
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 set_option maxHeartbeats 4000000
 noncomputable section
 open scoped BigOperators
@@ -17,7 +20,7 @@ variable {G : CompactSimpleGaugeGroup}
   | cons a l ih => simp [ih]
 @[simp] private theorem sum_map_finRange' (n : ℕ) (f : Fin n → ℂ) :
     ((List.finRange n).map f).sum = ∑ i, f i := by
-  simpa [List.finRange, List.map_ofFn] using (List.sum_ofFn (f := f))
+  simpa [List.finRange, List.map_ofFn] using! (List.sum_ofFn (f := f))
 
 theorem ghostKinetic_amplitude {B : InvariantForm G} (e : ColorFrame B)
     (a : Fin G.dimension) (q : Fin 2 → Spacetime) :

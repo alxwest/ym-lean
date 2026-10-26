@@ -1,5 +1,8 @@
 import YangMills.OperatorProductExpansion
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual classical coordinates for physical mixing coefficients
 

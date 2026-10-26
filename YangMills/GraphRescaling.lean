@@ -1,4 +1,7 @@
 import YangMills.EssentialCouplingClass
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 600000
 open scoped BigOperators TensorProduct

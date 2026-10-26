@@ -1,6 +1,9 @@
 import YangMills.InsertionWardTransport
 import YangMills.WardRenormalizationBinding
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Finite cohomological Ward-restoration steps of the same flow
 

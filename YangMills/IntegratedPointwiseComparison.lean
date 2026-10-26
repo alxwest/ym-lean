@@ -2,6 +2,9 @@ import YangMills.ConservingNormalizationFlow
 import YangMills.IntegratedPointwiseMuJets
 import YangMills.PointwiseNormalizationUVJets
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 open scoped ContDiff
@@ -62,7 +65,7 @@ theorem integrated_eq_computed_pointwise_normalization
       have hr : R l UV UV [] = (fun _ => 0) := funext (hR.vacuum l UV)
       rw [hr]
       unfold momentumJet
-      rw [iteratedFDeriv_zero_fun]
+      rw [iteratedFDeriv_fun_zero]
       rfl
     · change 0 = momentumJet d
         (conservingPointwiseNormalizationResponse L I D μ g l UV UV ls) p

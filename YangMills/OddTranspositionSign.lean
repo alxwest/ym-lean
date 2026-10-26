@@ -1,5 +1,8 @@
 import YangMills.LegendreOddSign
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 namespace YangMills.LegendreInsertionBridge

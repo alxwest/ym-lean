@@ -1,6 +1,9 @@
 import YangMills.FourierTaylorCoordinates
 import YangMills.ReducedMomentumDeterminacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators ContDiff
 attribute [local instance] Classical.propDecidable
@@ -28,7 +31,7 @@ theorem momentumJet_nonreduced_zero {legs : List (ExternalLeg G)}
   simp only [ContinuousMultilinearMap.compContinuousLinearMap_apply]
   have hn : ∃ i, ¬ (p i).1.val + 1 < legs.length := by
     by_contra hn
-    push_neg at hn
+    push Not at hn
     apply hp
     intro d hd
     obtain ⟨i, rfl⟩ := List.mem_ofFn.mp hd

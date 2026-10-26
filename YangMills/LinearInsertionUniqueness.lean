@@ -1,6 +1,9 @@
 import YangMills.LinearInsertionTriangularity
 import YangMills.FlowBoundaryUniqueness
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative Filter
@@ -52,7 +55,7 @@ theorem linearDifference_zero_of_coordinate_normalization {background F H : Flow
   by_cases highDim : degree < totalDimension legs
   · funext q
     simpa only [momentumJet, List.length_nil, iteratedFDeriv_zero_apply, Pi.zero_apply]
-      using irrelevant [] (by simpa using highDim) q
+      using! irrelevant [] (by simpa using! highDim) q
   · apply coordinateJet_determinacy smooth (degree-totalDimension legs)
     · intro d hd q
       exact irrelevant d (by omega) q
@@ -107,13 +110,13 @@ theorem LinearInsertionRegularity.unique_of_coordinate_jets {background F H : Fl
           · have cf := hF.continuous loop legs [] p
             have ch := hH.continuous loop legs [] p
             have cf' : ContinuousOn (fun s => F loop s UV legs p) (Set.Ioc 0 UV) := by
-              simpa [momentumJet, iteratedFDeriv_zero_apply] using cf
+              simpa [momentumJet, iteratedFDeriv_zero_apply] using! cf
             have ch' : ContinuousOn (fun s => H loop s UV legs p) (Set.Ioc 0 UV) := by
-              simpa [momentumJet, iteratedFDeriv_zero_apply] using ch
+              simpa [momentumJet, iteratedFDeriv_zero_apply] using! ch
             exact cf'.sub ch'
           · intro s hs hsUV
             have hd := (hF.flow loop s legs p hs hsUV).sub (hH.flow loop s legs p hs hsUV)
-            simpa only [rhs s p hs hsUV, sub_self] using hd
+            simpa only [rhs s p hs hsUV, sub_self] using! hd
           all_goals first | assumption | exact le_rfl
         have hz := linearDifference_zero_of_coordinate_normalization hF hH hμ hUV degree loop legs
           constant (low loop legs) (high loop legs)

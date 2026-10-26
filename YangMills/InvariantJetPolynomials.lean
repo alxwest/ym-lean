@@ -1,6 +1,9 @@
 import YangMills.LocalObservables
 import Mathlib.Algebra.MvPolynomial.Eval
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Group-specific invariant polynomials in curvature jets
 

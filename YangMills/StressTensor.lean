@@ -1,6 +1,9 @@
 import YangMills.CompositeFields
 import YangMills.Nontriviality
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Same-theory conserved stress tensor and physical translation charges
 
@@ -24,7 +27,7 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
 
 /-- Coordinate derivative as an actual continuous map of Schwartz spaces. -/
 def partialTest (μ : Fin 4) : TestFunction →L[ℂ] TestFunction :=
-  SchwartzMap.pderivCLM ℂ (Pi.single μ 1)
+  LineDeriv.lineDerivOpCLM (V := Spacetime) ℂ TestFunction (Pi.single μ 1)
 
 @[simp] theorem partialTest_apply (μ : Fin 4) (f : TestFunction) (x : Spacetime) :
     partialTest μ f x = fderiv ℝ f x (Pi.single μ 1) := rfl

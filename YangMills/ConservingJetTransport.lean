@@ -1,6 +1,9 @@
 import YangMills.FourierTaylorCoordinates
 import YangMills.ReducedMomentumDeterminacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators ContDiff
 namespace YangMills.IntegratedNormalization

@@ -1,5 +1,8 @@
 import YangMills.FullBVFreeCoordinates
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! Same-action free nilpotency; the interacting master identity remains work. -/
 noncomputable section
 set_option maxHeartbeats 1200000

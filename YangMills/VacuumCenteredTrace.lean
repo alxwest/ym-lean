@@ -1,5 +1,8 @@
 import YangMills.StressTensor
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual vacuum centering of the trace-anomaly composite
 

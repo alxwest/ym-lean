@@ -1,6 +1,9 @@
 import YangMills.GeneratedScaleNormalization
 import YangMills.QuantumMixingCoordinates
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # The generated gamma column has the same quantum-label meaning
 
@@ -64,7 +67,7 @@ theorem GeneratedScaleNormalization.gammaLoop_coordinates
   classical
   change (basis.coordinatesLinearMap
     ((N.mixing.coefficient mu.val order loop (basis.label input)).sum fun q c => c • q)) output = _
-  simp only [Finsupp.sum, map_sum, map_smul, Finsupp.finset_sum_apply, Finsupp.smul_apply,
+  simp only [Finsupp.sum, map_sum, map_smul, Finsupp.finsetSum_apply, Finsupp.smul_apply,
     smul_eq_mul, OPE.FilteredBasis.coordinatesLinearMap,
     GeneratedScaleNormalization.euclideanGammaLoop]
   rfl

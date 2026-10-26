@@ -1,4 +1,7 @@
 import YangMills.LegendreIdentityCoefficients
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 /-!
 # Arbitrary-arity identity-root normalization
 
@@ -47,7 +50,7 @@ theorem root_sum_permutation (A : FormalAmplitude G) (order loop : ℕ)
   · intro roots _ hne
     have hex : ∃ b, roots b ≠ canonicalRoots legs e b := by
       by_contra hn
-      push_neg at hn
+      push Not at hn
       exact hne (funext hn)
     obtain ⟨b, hb⟩ := hex
     have hf : identityRoot (roots b) (selectedLegs legs (partitionBlock e b)) = 0 := by

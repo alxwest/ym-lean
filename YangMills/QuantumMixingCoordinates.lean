@@ -1,6 +1,9 @@
 import YangMills.InvariantBasisCoordinates
 import YangMills.QuantumObservableLift
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Classical mixing coordinates represent the same generated quantum class
 

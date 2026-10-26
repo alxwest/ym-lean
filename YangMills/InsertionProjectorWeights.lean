@@ -1,6 +1,9 @@
 import YangMills.FlowNormalizationDilation
 import YangMills.CompositeExtraction
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 set_option maxHeartbeats 1600000
 set_option synthInstance.maxHeartbeats 200000
@@ -54,7 +57,7 @@ theorem LocalMonomial.projector_dimension (m : LocalMonomial G) :
     simp only [List.length_flatMap,List.length_map,orderedMultiindex_length]
     rw [← List.ofFn_eq_map]
     have actualJets : List.ofFn (fun i : Fin m.legs.length => m.jetAt i) = m.orderedJets := by
-      simpa only [LocalMonomial.jetAt,LocalMonomial.legs,List.length_map] using List.ofFn_get m.orderedJets
+      simpa only [LocalMonomial.jetAt,LocalMonomial.legs,List.length_map] using! List.ofFn_get m.orderedJets
     change (List.ofFn ((fun v : JetVariable G => ∑ mu : Fin 4, v.2 mu) ∘ m.jetAt)).sum = _
     rw [← List.map_ofFn,actualJets]
   rw [legs_sum,directions_sum,← List.sum_map_add]

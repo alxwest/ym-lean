@@ -1,5 +1,8 @@
 import YangMills.ReducedMomentumDeterminacy
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 namespace YangMills.PerturbativeFlow
 open YangMills.Perturbative
@@ -32,14 +35,14 @@ theorem conservingMomenta_balanced (G : CompactSimpleGaugeGroup)
         (fun j => j.val+1 < rest.length+1), q j) =
         ∑ i : Fin rest.length, q i.castSucc := by
       rw [Finset.sum_filter, Fin.sum_univ_castSucc]
-      simp only [Fin.coe_castSucc, Fin.val_last, lt_self_iff_false, if_false, add_zero]
+      simp only [Fin.val_castSucc, Fin.val_last, lt_self_iff_false, if_false, add_zero]
       apply Finset.sum_congr rfl
       intro i _
       rw [if_pos (first i)]
     unfold BalancedMomenta conservingMomenta
     simp only [List.length_cons]
     rw [Fin.sum_univ_castSucc]
-    simp only [Fin.coe_castSucc, Fin.val_last]
+    simp only [Fin.val_castSucc, Fin.val_last]
     rw [filtered]
     have hsum : (∑ i : Fin rest.length, if i.val+1 = rest.length+1 then
         -(∑ i : Fin rest.length, q i.castSucc) else q i.castSucc) =
@@ -69,14 +72,14 @@ theorem flowDifference_scaleConstant {G : CompactSimpleGaugeGroup}
   · have ca := hA.positive_scale_jet_continuity μ g loop UV legs [] q hμ hUV
     have cc := hC.positive_scale_jet_continuity μ g loop UV legs [] q hμ hUV
     have ha : ContinuousOn (fun Λ => A μ g loop Λ UV legs q) (Set.Ioc 0 UV) := by
-      simpa [momentumJet, iteratedFDeriv_zero_apply] using ca
+      simpa [momentumJet, iteratedFDeriv_zero_apply] using! ca
     have hc : ContinuousOn (fun Λ => C μ g loop Λ UV legs q) (Set.Ioc 0 UV) := by
-      simpa [momentumJet, iteratedFDeriv_zero_apply] using cc
+      simpa [momentumJet, iteratedFDeriv_zero_apply] using! cc
     exact ha.sub hc
   · intro Λ hp hlt
     have d := (hA.flow μ g loop Λ UV legs q hμ hUV hp hlt nonempty balanced).sub
       (hC.flow μ g loop Λ UV legs q hμ hUV hp hlt nonempty balanced)
-    simpa only [rhs Λ hp hlt, sub_self] using d
+    simpa only [rhs Λ hp hlt, sub_self] using! d
   all_goals assumption
 
 /-- Conserving extension transports the actual scale constancy to all

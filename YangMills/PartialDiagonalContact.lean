@@ -1,6 +1,9 @@
 import YangMills.WardContinuum
 import YangMills.ContactTaylorProjection
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Actual partial-diagonal test maps for insertion Ward contacts
 
@@ -70,7 +73,7 @@ def pairDiagonalRestriction {n : ℕ} (i j : Fin (n + 2)) (legs : List (External
 /-- Position derivatives hold all other positions and momenta fixed. -/
 def jointPositionDerivative {n : ℕ} (j : Fin n) (mu : Fin 4)
     (legs : List (ExternalLeg G)) : JointMomentumTest n legs →L[ℂ] JointMomentumTest n legs :=
-  SchwartzMap.pderivCLM ℂ (Pi.single j (Pi.single mu 1), 0)
+  LineDeriv.lineDerivOpCLM (V := (Fin n → Spacetime) × (Fin legs.length → Spacetime)) ℂ (JointMomentumTest n legs) (Pi.single j (Pi.single mu 1), 0)
 
 def jointPositionDerivatives {n : ℕ} (j : Fin n) (legs : List (ExternalLeg G)) :
     List (Fin 4) → JointMomentumTest n legs →L[ℂ] JointMomentumTest n legs

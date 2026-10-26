@@ -1,4 +1,7 @@
 import YangMills.FullBVActualGaugeNilpotency
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 1200000
 set_option linter.unusedSimpArgs false
@@ -37,7 +40,7 @@ theorem oddJet_mul_polynomial (j : OddJet G) (P : JetAlgebra G) :
 
 theorem oddJet_mul_parity (j : OddJet G) (P : JetAlgebra G) :
     oddJet j * parity P = P * oddJet j := by
-  simpa only [parity_parity] using oddJet_mul_polynomial j (parity P)
+  simpa only [parity_parity] using! oddJet_mul_polynomial j (parity P)
 
 /-- The actual ordinary total derivative obeys the ordinary product rule
 against any generator, even when the preceding polynomial is inhomogeneous. -/
@@ -46,9 +49,9 @@ theorem totalDerivative_mul_jet_ordinary (mu : Fin 4) (P : JetAlgebra G) (j : Je
   rw [totalDerivative_mul_jet, totalDerivative_jet]
   congr 1
   by_cases hj : j.field.parity = true
-  · simpa only [jet, Jet.shift, hj, dif_pos, if_true] using
+  · simpa only [jet, Jet.shift, hj, dif_pos, if_true] using!
       oddJet_mul_parity (G := G) (oddShift mu ⟨j, hj⟩) P
-  · simpa only [jet, Jet.shift, hj, dif_neg, if_false] using
+  · simpa only [jet, Jet.shift, hj, dif_neg, if_false] using!
       evenJet_commute (G := G)
         (evenShift mu ⟨j, by cases h : j.field.parity <;> simp_all⟩) P
 

@@ -1,5 +1,8 @@
 import YangMills.LegendreBlockTransport
 import YangMills.LegendreSignFactorization
+
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
 noncomputable section
 set_option maxHeartbeats 200000
 open scoped BigOperators

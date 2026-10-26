@@ -2,6 +2,9 @@ import YangMills.FourierTaylorAssignedPhase
 import YangMills.FourierTaylorReducedCoordinates
 import YangMills.FourierTaylorSigns
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators ContDiff
 attribute [local instance] Classical.propDecidable
@@ -102,7 +105,7 @@ theorem conservingMomenta_cast (legs other : List (ExternalLeg G))
       conservingMomenta other (fun i => q (Fin.cast h i)) := by
   classical
   funext i
-  simp only [conservingMomenta, Fin.coe_cast]
+  simp only [conservingMomenta, Fin.val_cast]
   by_cases hi : i.val + 1 = legs.length
   · rw [if_pos hi, if_pos (show i.val + 1 = other.length by omega)]
     congr 1
@@ -111,7 +114,7 @@ theorem conservingMomenta_cast (legs other : List (ExternalLeg G))
       (∑ j : Fin legs.length, if j.val + 1 < legs.length then q j else 0) =
           ∑ j : Fin other.length,
             if j.val + 1 < legs.length then q (Fin.cast h j) else 0 := by
-        simpa only [finCongr_apply, Fin.coe_cast] using
+        simpa only [finCongr_apply, Fin.val_cast] using
           (Equiv.sum_comp (finCongr h) (fun j =>
             if j.val + 1 < legs.length then q j else 0)).symm
       _ = _ := by

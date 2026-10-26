@@ -1,5 +1,8 @@
 import YangMills.ReducedTaylorDensity
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-! A finite triangular normalization algorithm with coefficients computed
 from actual integrated Taylor jets and the actual pointwise insertion
 matrix. It does not replace source123 by a false Kronecker identity. -/

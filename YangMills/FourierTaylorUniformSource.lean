@@ -1,5 +1,8 @@
 import YangMills.FourierTaylorActualAssignment
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 noncomputable section
 open scoped BigOperators ContDiff
 namespace YangMills.IntegratedNormalization
@@ -28,7 +31,7 @@ theorem uniformSourceDirections_bucket (legs : List (ExternalLeg G))
     (p : Fin k → Fin legs.length × Fin 4) (j : Fin legs.length) :
     directionBucket (uniformSourceDirections legs fields k p)
         (Fin.cast List.length_ofFn.symm j) = directionBucket (List.ofFn p) j := by
-  simpa only [uniformSourceDirections, List.map_ofFn, Function.comp_apply] using
+  simpa only [uniformSourceDirections, List.map_ofFn, Function.comp_apply] using!
     directionBucket_index_cast (List.ofFn fields) legs List.length_ofFn.symm (List.ofFn p) j
 
 theorem uniformTaylorVertex_source (F : OrderedAmplitude G)
@@ -96,7 +99,7 @@ theorem totalDimension_permuted_source (legs : List (ExternalLeg G))
   rw [Equiv.sum_comp π.symm (fun j => (legs.get j).dimension)]
   have ht := congrArg (fun labels : List (ExternalLeg G) =>
     (labels.map ExternalLeg.dimension).sum) (List.ofFn_get legs)
-  simpa only [List.map_ofFn, List.sum_ofFn, Function.comp_apply] using ht
+  simpa only [List.map_ofFn, List.sum_ofFn, Function.comp_apply] using! ht
 
 /-- The engineering-degree filter is transported through the ACTUAL source
 sum; matching field words have the same total dimension. -/

@@ -1,5 +1,8 @@
 import YangMills.OversubtractedFlow
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Connected multi-insertion flow and exact cumulant link
 

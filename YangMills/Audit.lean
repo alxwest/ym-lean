@@ -2,6 +2,9 @@ import Lean
 import YangMills.Statement
 import YangMills.YangMillsSpecification
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Audit submitted proofs
 

@@ -1,5 +1,8 @@
 import YangMills.CompositeExtraction
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # Fixed transverse Taylor projection for pair Ward contact anomalies
 

@@ -1,6 +1,9 @@
 import YangMills.RegulatedWardInsertion
 import YangMills.MultiContact
 
+set_option backward.isDefEq.respectTransparency false
+set_option warningAsError true
+
 /-!
 # The fixed classical point-insertion BV contact term
 
@@ -71,7 +74,7 @@ def firstContactTest (directions : List (Fin 4)) : OPE.PairTestFunction →L[ℂ
       ⟨1, 1, by intro x; simp [diagonal, Prod.norm_def]⟩
   let rec derivative : List (Fin 4) → OPE.PairTestFunction →L[ℂ] OPE.PairTestFunction
     | [] => ContinuousLinearMap.id ℂ _
-    | mu :: rest => (SchwartzMap.pderivCLM ℂ (0, Pi.single mu 1)).comp (derivative rest)
+    | mu :: rest => (LineDeriv.lineDerivOpCLM (V := Spacetime × Spacetime) ℂ OPE.PairTestFunction (0, Pi.single mu 1)).comp (derivative rest)
   restrict.comp (derivative directions)
 
 /-- Apply the same renormalized local insertion amplitudes to every density
