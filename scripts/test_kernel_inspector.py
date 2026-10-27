@@ -54,13 +54,24 @@ def main():
             'theorem FakeYmConditional.{u} (h : YangMills.YangMillsExistenceAndMassGap.{u}) :\n'
             '  YangMills.YangMillsExistenceAndMassGap.{u} := h\n'
             'theorem FakeYmFalse.{u} (h : False) : YangMills.YangMillsExistenceAndMassGap.{u} := h.elim\n'
-            'def FakeYmDefinition.{u} : YangMills.YangMillsExistenceAndMassGap.{u} := ymOracle\n',encoding='utf-8')
+            'def FakeYmDefinition.{u} : YangMills.YangMillsExistenceAndMassGap.{u} := ymOracle\n'
+            'theorem FakeExistenceSorry.{u} : YangMills.YangMillsExistenceOnly.{u} := by sorry\n'
+            'theorem FakeExistenceFixed : YangMills.YangMillsExistenceOnly.{0} := by sorry\n'
+            'axiom existenceOracle.{u} : YangMills.YangMillsExistenceOnly.{u}\n'
+            'theorem FakeExistenceAxiom.{u} : YangMills.YangMillsExistenceOnly.{u} := existenceOracle\n'
+            'theorem FakeExistenceConditional.{u} (h : YangMills.YangMillsExistenceOnly.{u}) : YangMills.YangMillsExistenceOnly.{u} := h\n'
+            'theorem FakeExistenceFalse.{u} (h : False) : YangMills.YangMillsExistenceOnly.{u} := h.elim\n'
+            'def FakeExistenceDefinition.{u} : YangMills.YangMillsExistenceOnly.{u} := existenceOracle\n',encoding='utf-8')
         compiled=run('--root='+str(directory),'-o',directory/(module+'.olean'),source)
         if compiled.returncode:raise RuntimeError('Fixture compile failed:\n'+compiled.stdout+compiled.stderr)
         shape=inspect('specification',module)
         if shape.returncode or 'YM_SPECIFICATION_SHAPE_PASSED:' not in shape.stdout:
             raise RuntimeError('Actual all-group target shape rejected:\n'+shape.stdout+shape.stderr)
         print('PASS_REAL_ALL_GROUP_TARGET_DEFINITION_SHAPE',flush=True)
+        exists_shape=inspect('existence-shape',module)
+        if exists_shape.returncode or 'YM_EXISTENCE_SHAPE_PASSED:' not in exists_shape.stdout:
+            raise RuntimeError('Actual existence-only target shape rejected:\n'+exists_shape.stdout+exists_shape.stderr)
+        print('PASS_EXISTENCE_ONLY_TARGET_DEFINITION_SHAPE',flush=True)
         cases=[('qft','FakeClaim','wrong or conditional'),
                ('qft','FakeQftSorry','sorryAx'),
                ('yangmills','FakeClaim','ONE universe'),
@@ -72,7 +83,16 @@ def main():
                ('yangmills','ymOracle','not a theorem'),
                ('yangmills','FakeYmConditional','conditional'),
                ('yangmills','FakeYmFalse','conditional'),
-               ('yangmills','FakeYmDefinition','not a theorem')]
+               ('yangmills','FakeYmDefinition','not a theorem'),
+               ('existence','FakeClaim','ONE universe'),
+               ('existence','FakeExistenceSorry','sorryAx'),
+               ('existence','FakeExistenceFixed','ONE universe'),
+               ('existence','FakeExistenceAxiom','existenceOracle'),
+               ('existence','existenceOracle','not a theorem'),
+               ('existence','FakeExistenceConditional','conditional'),
+               ('existence','FakeExistenceFalse','conditional'),
+               ('existence','FakeExistenceDefinition','not a theorem'),
+               ('existence','FakeYmSorry','wrong, fixed-universe or conditional')]
         for mode,theorem,marker in cases:
             result=inspect(mode,module,theorem);output=result.stdout+result.stderr
             if result.returncode==0 or marker not in output:

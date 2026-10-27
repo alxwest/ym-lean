@@ -53,6 +53,7 @@ completions.
 | `--claim specification` | Needs no existence proof. After trusted review activation, source validation, a successful build and inspection of the compiled all-group target, it reports `SPECIFICATION_READY`. |
 | `--claim yangmills` without a submission | Reports `PROOF_NOT_SUBMITTED`. |
 | `--claim yangmills` with a submission | Requires a checked theorem of the exact target and passes it through the independent declaration and axiom checks below. |
+| `--claim existence` | Checks the all-group, **gap-free** existence-only proposition and any submitted exact-target theorem; it does not check a mass gap, confer external endorsement or use the full mass-gap admission gate. |
 | `--claim qft` | Checks the separate QFT-only proposition; it cannot certify the group-specific Yang–Mills specification. |
 | `--claim clay` | A legacy spelling for mathematical proof checking; it does not change the meaning of acceptance. |
 
@@ -71,6 +72,24 @@ explicit review activation and inspects the compiled definition, rather than acc
 declaration name or editable status label. Reports include source, model and verifier
 fingerprints, and distinguish readiness, proof submission, [kernel verification](source/GLOSSARY.md#reading-a-formalization), semantic review
 and external acceptance.
+
+
+### Separate existence-only mode
+
+`--claim existence` checks the distinct, weaker
+`YangMills.YangMillsExistenceOnly.{u}` proposition in
+`YangMills/ExistenceOnly.lean`, not the full mass-gap target.
+It requires actual-group physical QFT axioms and same-theory
+Yang–Mills identification, plus an explicit non-vacuum field excitation;
+it contains **no positive spectral gap requirement**.
+
+Successful checking produces `EXISTENCE_ONLY_KERNEL_PROOF_ACCEPTED`
+and `existence_only_kernel_certificate=true`, **not**
+`yang_mills_kernel_certificate=true` or a Clay certificate.
+The existence-only target's shape and axioms are checked mechanically,
+but semantic fidelity to the intended physics has not been independently
+reviewed; no proof is presently supplied. The complete mass-gap mode and
+its existing contract remain unchanged.
 
 ## 4. What local acceptance does not establish
 

@@ -33,7 +33,9 @@ class SourceContractTests(unittest.TestCase):
         return subprocess.CompletedProcess(['fixture'], code, text, '')
 
     def run_ready(self, claim, proof_file=None, theorem=None, outputs=None, root=ROOT):
-        responses = outputs or [self.cp(), self.cp(text='YM_SPECIFICATION_SHAPE_PASSED: fixture')]
+        shape_marker = ('YM_EXISTENCE_SHAPE_PASSED:' if claim == 'existence'
+                        else 'YM_SPECIFICATION_SHAPE_PASSED:')
+        responses = outputs or [self.cp(), self.cp(text=shape_marker+' fixture')]
         with patch.object(v, 'YM_ADMISSION_REVIEWED', True), \
              patch.object(v, 'load_inventory', return_value=self.ready_inventory()), \
              patch.object(v, 'provenance', return_value={}), \
@@ -201,8 +203,71 @@ class SourceContractTests(unittest.TestCase):
                 with patch.object(v,'provenance',return_value={}),patch.object(v,'_run',side_effect=[self.cp(),self.cp(),inspection],root=fixture) as calls:
                     report,rc=v.verify(fixture,mode,proof,'Foo')
             else:
-                report,rc,calls=self.run_ready(mode,proof,'Foo',[self.cp(),self.cp(text='YM_SPECIFICATION_SHAPE_PASSED:'),self.cp(),inspection],root=fixture)
+                shape_marker=('YM_EXISTENCE_SHAPE_PASSED:' if mode=='existence'
+                              else 'YM_SPECIFICATION_SHAPE_PASSED:')
+                report,rc,calls=self.run_ready(mode,proof,'Foo',[self.cp(),self.cp(text=shape_marker),self.cp(),inspection],root=fixture)
         return report,rc,calls
+
+    def test_existence_target_without_proof(self):
+        report,rc,calls=self.run_ready('existence')
+        self.assertEqual(rc,2)
+        self.assertEqual(report['status'],'PROOF_NOT_SUBMITTED')
+        self.assertEqual(report['admitted_target'],v.EXISTENCE_TARGET)
+        self.assertEqual(report['existence_only_shape_status'],'passed')
+        self.assertEqual(report['specification_shape_status'],'not_run')
+        self.assertEqual(report['specification_readiness'],'not_assessed_in_existence_mode')
+        self.assertEqual(report['semantic_review_status'],'not_assessed_for_existence_only')
+        self.assertIsNone(report['full_target_defined'])
+        self.assertFalse(report['existence_only_kernel_certificate'])
+        self.assertFalse(report['yang_mills_kernel_certificate'])
+        self.assertFalse(report['clay_certificate'])
+        self.assertEqual(calls.call_count,2)
+        self.assertIn('existence-shape',calls.call_args_list[1].args[0])
+
+    def test_existence_only_bypasses_mass_gap_review_activation(self):
+        with patch.object(v,'YM_ADMISSION_REVIEWED',False), \
+             patch.object(v,'load_inventory',return_value=self.ready_inventory()), \
+             patch.object(v,'provenance',return_value={}), \
+             patch.object(v,'_run',side_effect=[self.cp(),self.cp(text='YM_EXISTENCE_SHAPE_PASSED:')]):
+            report,rc=v.verify(ROOT,'existence')
+        self.assertEqual(rc,2)
+        self.assertEqual(report['existence_only_shape_status'],'passed')
+        self.assertFalse(report['yang_mills_kernel_certificate'])
+
+    def test_existence_shape_requires_independent_marker_and_exit_zero(self):
+        report,rc,_=self.run_ready('existence',outputs=[self.cp(),self.cp(text='YM_SPECIFICATION_SHAPE_PASSED: wrong mode')])
+        self.assertEqual(rc,1)
+        self.assertEqual(report['existence_only_shape_status'],'rejected')
+        report,rc,_=self.run_ready('existence',outputs=[self.cp(),self.cp(1,'YM_EXISTENCE_SHAPE_PASSED: spoof')])
+        self.assertEqual(rc,1)
+
+    def test_existence_invalid_submission(self):
+        report,rc,_=self.run_ready('existence',theorem='Foo')
+        self.assertEqual(rc,1)
+        self.assertEqual(report['status'],'INVALID_PROOF_SUBMISSION')
+        self.assertEqual(report['existence_only_shape_status'],'passed')
+        self.assertFalse(report['existence_only_kernel_certificate'])
+
+    def test_existence_only_compiled_proof_reporting(self):
+        report,rc,calls=self.proof_case('existence',self.cp(text='YM_EXISTENCE_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,0)
+        self.assertEqual(report['status'],'EXISTENCE_ONLY_KERNEL_PROOF_ACCEPTED')
+        self.assertEqual(report['admitted_target'],v.EXISTENCE_TARGET)
+        self.assertTrue(report['existence_only_kernel_certificate'])
+        self.assertFalse(report['yang_mills_kernel_certificate'])
+        self.assertFalse(report['qft_only_certificate'])
+        self.assertFalse(report['clay_certificate'])
+        self.assertEqual(calls.call_count,4)
+        self.assertIn('existence',calls.call_args_list[-1].args[0])
+
+    def test_existence_only_rejects_wrong_or_failed_inspector(self):
+        report,rc,_=self.proof_case('existence',self.cp(text='YM_KERNEL_CHECK_PASSED: Foo'))
+        self.assertEqual(rc,1)
+        self.assertEqual(report['status'],'PROOF_REJECTED')
+        self.assertFalse(report['existence_only_kernel_certificate'])
+        report,rc,_=self.proof_case('existence',self.cp(1,'YM_EXISTENCE_KERNEL_CHECK_PASSED: spoof'))
+        self.assertEqual(rc,1)
+        self.assertFalse(report['existence_only_kernel_certificate'])
 
     def test_qft_certificate_never_clay(self):
         report,rc,calls=self.proof_case('qft',self.cp(text='QFT_KERNEL_CHECK_PASSED: Foo'))

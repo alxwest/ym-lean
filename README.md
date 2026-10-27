@@ -191,6 +191,37 @@ It does not certify semantic fidelity, independent expert approval or an existen
 Running the verifier with `--claim yangmills` and no submission reports
 `PROOF_NOT_SUBMITTED`.
 
+### Verify Yang–Mills existence without asserting a mass gap
+
+The verifier also accepts an **existence-only** claim:
+
+```sh
+python3 scripts/verify_submission.py --claim existence --proof-file proof.lean --theorem MyProof.existence
+```
+
+The theorem must have the exact unconditional, all-gauge-group,
+universe-polymorphic type `YangMills.YangMillsExistenceOnly.{u}`.
+`YangMills/ExistenceOnly.lean` defines this proposed target using
+`FilteredExistenceCandidate`. It retains the same physical Wightman axioms,
+gauge-dependent generated observables, renormalization and UV/OPE
+constraints, and stress/translation identification as the existing full
+candidate. It **removes** the positive finite mass-gap assumption and
+**requires an actual non-vacuum field excitation** in its place.
+
+The Lean inspector checks the compiled target's exact shape, the theorem
+type and transitive axioms, rejecting `sorry`, extra assumptions, a
+fixed-universe theorem, or a different target. This mode does not require
+the reviewed *mass-gap* admission gate to be enabled. The JSON result uses
+`EXISTENCE_ONLY_KERNEL_PROOF_ACCEPTED` and
+`existence_only_kernel_certificate`, leaving the mass-gap and Clay
+certificates false.
+
+A Lean proof would validate this **specified** existence-only statement,
+not independently certify its semantic equivalence to every formulation
+of four-dimensional Yang–Mills existence, nor a physical mass gap.
+No such proof is supplied. Without a proof, the mode reports
+`PROOF_NOT_SUBMITTED` after checking the target shape.
+
 ### Submitting a future proof
 
 ```sh

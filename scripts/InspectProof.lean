@@ -1,7 +1,9 @@
 import Lean
 
 /-! Trusted checked-environment inspector. Never evaluate submitted audit syntax.
-Modes: qft Module Theorem; yangmills Module Theorem; specification Module.
+Modes: qft Module Theorem; yangmills Module Theorem; existence Module Theorem;
+specification Module; existence-shape Module. Existence mode is gap-free
+and is NOT a Clay certificate.
 Legacy two-argument invocation is QFT-only. Kernel verification is distinct
 from external acceptance and never supplies a Clay certificate. -/
 open Lean
@@ -15,6 +17,7 @@ private def isAllowedAxiom (n : Name) : Bool :=
 
 private def ymTarget := dottedName "YangMills.YangMillsExistenceAndMassGap"
 private def qftTarget := dottedName "YangMills.QFTExistenceAndMassGap"
+private def existenceTarget := dottedName "YangMills.YangMillsExistenceOnly"
 
 /-- Check the compiled definition, not editable coverage labels. -/
 private def checkYMDefinition (env : Environment) : Except String Unit := do
@@ -33,6 +36,25 @@ private def checkYMDefinition (env : Environment) : Except String Unit := do
       (mkConst (dottedName "YangMills.FilteredGeneratedCandidate") [.param u]) (.bvar 0) do
     throw "Yang--Mills target uses a different/conditional candidate or fixed universe"
 
+/-- Check an exact all-group *existence-only* proposition with no gap field.
+The separately declared candidate carries the physical QFT and YM sector. -/
+private def checkExistenceDefinition (env : Environment) : Except String Unit := do
+  let some (.defnInfo info) := env.checked.get.find? existenceTarget
+    | throw "existence-only target is absent or not a definition"
+  let [u] := info.levelParams
+    | throw "existence-only target must have ONE universe parameter"
+  unless info.type == mkSort .zero do throw "existence-only target is not a closed Prop"
+  let .forallE _ group body _ := info.value.consumeMData
+    | throw "existence-only target does not quantify the actual group"
+  unless group == mkConst (dottedName "YangMills.CompactSimpleGaugeGroup") [.param u] do
+    throw "existence-only target uses wrong group type/universe"
+  let .app (.const nonempty [_]) candidate := body.consumeMData
+    | throw "existence-only target must be Nonempty of the fixed candidate"
+  unless nonempty == dottedName "Nonempty" do throw "wrong existence wrapper"
+  unless candidate == mkApp
+      (mkConst (dottedName "YangMills.FilteredExistenceCandidate") [.param u]) (.bvar 0) do
+    throw "existence-only target uses a wrong, conditional or fixed-universe candidate"
+
 private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
   let env ← importModules #[{ module := dottedName moduleText }] {} 0
   if mode == "specification" then
@@ -41,11 +63,21 @@ private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
     | .ok () =>
       IO.println "YM_SPECIFICATION_SHAPE_PASSED: exact one-universe all-group candidate definition"
       return 0
-  unless mode == "qft" || mode == "yangmills" do
+  if mode == "existence-shape" then
+    match checkExistenceDefinition env with
+    | .error error => IO.eprintln s!"REJECTED: {error}"; return 1
+    | .ok () =>
+      IO.println "YM_EXISTENCE_SHAPE_PASSED: exact one-universe all-group existence-only candidate"
+      return 0
+  unless mode == "qft" || mode == "yangmills" || mode == "existence" do
     IO.eprintln "REJECTED: unknown kernel inspection mode"
     return 1
   if mode == "yangmills" then
     match checkYMDefinition env with
+    | .error error => IO.eprintln s!"REJECTED: {error}"; return 1
+    | .ok () => pure ()
+  if mode == "existence" then
+    match checkExistenceDefinition env with
     | .error error => IO.eprintln s!"REJECTED: {error}"; return 1
     | .ok () => pure ()
   let theoremName := dottedName theoremText
@@ -55,6 +87,12 @@ private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
     if mode == "qft" then
       unless info.type == mkConst qftTarget do
         IO.eprintln "REJECTED: proof has wrong or conditional target type"
+        return 1
+    else if mode == "existence" then
+      let [u] := info.levelParams
+        | IO.eprintln "REJECTED: existence-only proof must have ONE universe parameter"; return 1
+      unless info.type == mkConst existenceTarget [.param u] do
+        IO.eprintln "REJECTED: proof has wrong, fixed-universe or conditional existence-only type"
         return 1
     else
       let [u] := info.levelParams
@@ -70,6 +108,8 @@ private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
       return 1
     if mode == "qft" then
       IO.println s!"QFT_KERNEL_CHECK_PASSED: {theoremText} has exact QFT-only type and no unapproved axioms"
+    else if mode == "existence" then
+      IO.println s!"YM_EXISTENCE_KERNEL_CHECK_PASSED: {theoremText} has exact all-group existence-only type and no unapproved axioms; no mass-gap or semantic certificate"
     else
       IO.println s!"YM_KERNEL_CHECK_PASSED: {theoremText} has exact universe-polymorphic Yang--Mills type and no unapproved axioms; external acceptance not assessed"
     return 0
@@ -78,8 +118,9 @@ private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
 def main (args : List String) : IO UInt32 := do
   match args with
   | ["specification", moduleText] => inspect "specification" moduleText ""
+  | ["existence-shape", moduleText] => inspect "existence-shape" moduleText ""
   | [mode, moduleText, theoremText] => inspect mode moduleText theoremText
   | [moduleText, theoremText] => inspect "qft" moduleText theoremText
   | _ =>
-    IO.eprintln "Usage: InspectProof.lean (qft|yangmills) Module Theorem | specification Module"
+    IO.eprintln "Usage: InspectProof.lean (qft|yangmills|existence) Module Theorem | (specification|existence-shape) Module"
     return 1

@@ -74,6 +74,8 @@ FORMALIZATION_LAYER = {
 # Coverage metadata, proof text, and CLI arguments cannot enable this switch.
 YM_ADMISSION_REVIEWED = True
 YM_TARGET = "YangMills.YangMillsExistenceAndMassGap"
+# Distinct weaker candidate, no positive mass gap and no gap-based certificate.
+EXISTENCE_TARGET = "YangMills.YangMillsExistenceOnly"
 
 VALID_STATES = {"formalized", "partial", "missing"}
 THEOREM_NAME = re.compile(r"[A-Za-z_][A-Za-z_0-9']*(?:\.[A-Za-z_][A-Za-z_0-9']*)*\Z")
@@ -158,6 +160,7 @@ def _run(args: list[str], root: Path, timeout: int = 1200) -> subprocess.Complet
 
 FINGERPRINTED_FILES = (
     "YangMills/Statement.lean",
+    "YangMills/ExistenceOnly.lean",
     "YangMills/GaugeGroup.lean",
     "YangMills/PDFLiteral.lean",
     "YangMills/SourceClassification.lean",
@@ -239,6 +242,8 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
         "clay_certificate": False,
         "qft_only_certificate": False,
         "yang_mills_kernel_certificate": False,
+        "existence_only_kernel_certificate": False,
+        "existence_only_shape_status": "not_run",
         "specification_shape_status": "not_run",
         # These are fixed verifier judgments, never inferred from coverage labels.
         "specification_readiness": "incomplete",
@@ -282,12 +287,15 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                       full_target_defined=None,
                       semantic_review_status="not_assessed_in_qft_mode")
     ym_claim = claim in {"clay", "yangmills"}
-    if claim not in {"clay", "yangmills", "specification", "qft"}:
+    existence_claim = claim == "existence"
+    if claim not in {"clay", "yangmills", "specification", "qft", "existence"}:
         report["error"] = f"Unknown claim: {claim}"
         return report, 1
     built_already = False
-    if ym_claim or claim == "specification":
-        if not YM_ADMISSION_REVIEWED or report["incomplete_clauses"]:
+    if ym_claim or claim == "specification" or existence_claim:
+        # The existing gap admission gate belongs only to the full target.
+        # An existence-only claim is checked independently, including shape.
+        if not existence_claim and (not YM_ADMISSION_REVIEWED or report["incomplete_clauses"]):
             report["status"] = ("SPECIFICATION_INCOMPLETE" if claim == "specification"
                                 else "CLAY_CERTIFICATION_BLOCKED")
             if proof_file is not None:
@@ -305,22 +313,36 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                 report["error"] = (built.stdout + built.stderr)[-4000:]
                 return report, 1
             built_already = True
+            shape_mode = "existence-shape" if existence_claim else "specification"
+            shape_marker = ("YM_EXISTENCE_SHAPE_PASSED:" if existence_claim
+                            else "YM_SPECIFICATION_SHAPE_PASSED:")
             shape = _run(["lake", "env", "lean", "--run",
                           str(root / "scripts" / "InspectProof.lean"),
-                          "specification", "YangMills"], root)
+                          shape_mode, "YangMills"], root)
             report["specification_shape_output_tail"] = (shape.stdout + shape.stderr)[-3000:]
-            if shape.returncode or "YM_SPECIFICATION_SHAPE_PASSED:" not in shape.stdout:
+            if shape.returncode or shape_marker not in shape.stdout:
                 report["status"] = "INVALID_SPECIFICATION"
-                report["specification_shape_status"] = "rejected"
-                report["error"] = "Compiled exact all-group universe-polymorphic target check failed"
+                if existence_claim:
+                    report["existence_only_shape_status"] = "rejected"
+                else:
+                    report["specification_shape_status"] = "rejected"
+                report["error"] = "Compiled exact all-group target shape check failed"
                 return report, 1
         except (OSError, subprocess.TimeoutExpired) as exc:
             report["status"] = "VERIFIER_ERROR"
             report["error"] = f"{type(exc).__name__}: {exc}"
             return report, 1
-        report.update(specification_readiness="ready", full_target_defined=True,
-                      semantic_review_status="reviewed_fixed_specification",
-                      specification_shape_status="passed", admitted_target=YM_TARGET)
+        if existence_claim:
+            # Shape matching is NOT semantic equivalence to the physics problem.
+            report.update(specification_readiness="not_assessed_in_existence_mode",
+                          full_target_defined=None,
+                          semantic_review_status="not_assessed_for_existence_only",
+                          existence_only_shape_status="passed",
+                          admitted_target=EXISTENCE_TARGET)
+        else:
+            report.update(specification_readiness="ready", full_target_defined=True,
+                          semantic_review_status="reviewed_fixed_specification",
+                          specification_shape_status="passed", admitted_target=YM_TARGET)
         if claim == "specification":
             if proof_file is not None:
                 report["proof_submission_status"] = "not_evaluated_specification_only"
@@ -329,7 +351,11 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
             return report, 0
         if proof_file is None and theorem is None:
             report["status"] = "PROOF_NOT_SUBMITTED"
-            report["reason"] = "Specification ready; no existence proof submitted; kernel verification not run"
+            report["reason"] = (
+                "Existence-only target shape checked; no existence proof submitted; "
+                "mass gap, semantic fidelity and external acceptance not assessed"
+                if existence_claim else
+                "Specification ready; no existence proof submitted; kernel verification not run")
             return report, 2
     if proof_file is None or theorem is None or not THEOREM_NAME.fullmatch(theorem):
         report.update(status="INVALID_PROOF_SUBMISSION",
@@ -388,15 +414,17 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                 inspected = _run([
                     "lake", "env", "lean", "--run",
                     str(root / "scripts" / "InspectProof.lean"),
-                    "yangmills" if ym_claim else "qft", name, theorem,
+                    "yangmills" if ym_claim else ("existence" if existence_claim else "qft"),
+                    name, theorem,
                 ], root)
                 report["kernel_audit_exit_code"] = inspected.returncode
                 report["kernel_verification_status"] = "rejected"
                 report["kernel_audit_output_tail"] = (
                     inspected.stdout + inspected.stderr)[-3000:]
-                if (inspected.returncode == 0 and
-                        ("YM_KERNEL_CHECK_PASSED:" if ym_claim else "QFT_KERNEL_CHECK_PASSED:")
-                        in inspected.stdout):
+                expected_marker = ("YM_KERNEL_CHECK_PASSED:" if ym_claim else
+                                   "YM_EXISTENCE_KERNEL_CHECK_PASSED:" if existence_claim
+                                   else "QFT_KERNEL_CHECK_PASSED:")
+                if inspected.returncode == 0 and expected_marker in inspected.stdout:
                     if ym_claim:
                         report.update(status="YANG_MILLS_KERNEL_PROOF_ACCEPTED",
                                       admitted_target=YM_TARGET, yang_mills_kernel_certificate=True,
@@ -406,6 +434,18 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                         report["reason"] = ("Exact reviewed universe-polymorphic target and approved "
                                             "transitive axioms; external acceptance not assessed; "
                                             "this report is not a Clay certificate")
+                        return report, 0
+                    if existence_claim:
+                        report.update(
+                            status="EXISTENCE_ONLY_KERNEL_PROOF_ACCEPTED",
+                            admitted_target=EXISTENCE_TARGET,
+                            existence_only_kernel_certificate=True,
+                            kernel_verification_status="passed_declared_existence_only_target",
+                            proof_submission_status="accepted_declared_existence_only_target",
+                            verified_theorem=theorem)
+                        report["reason"] = (
+                            "Unconditional exact existence-only target with allowed transitive "
+                            "axioms; no mass gap, semantic equivalence or Clay certificate")
                         return report, 0
                     report["status"] = "QFT_ONLY_PROOF_ACCEPTED"
                     report["admitted_target"] = "YangMills.QFTExistenceAndMassGap"
@@ -431,7 +471,7 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--claim", choices=["clay", "yangmills", "qft", "specification"], default="clay")
+    parser.add_argument("--claim", choices=["clay", "yangmills", "existence", "qft", "specification"], default="clay")
     parser.add_argument("--proof-file", type=Path,
                         help="Lean source file (necessary for kernel proof verification)")
     parser.add_argument("--theorem", type=str,
