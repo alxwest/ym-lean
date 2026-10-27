@@ -81,7 +81,7 @@ def FilteredGeneratedCandidate.toExistenceOnly {G : CompactSimpleGaugeGroup}
 
 /-- The full (existence-and-gap) target implies the weaker existence-only
 target, without asserting that either has a proof. -/
-theorem existenceOnly_of_existenceAndMassGap.{u}
+theorem existenceOnly_of_existenceAndMassGap
     (h : YangMillsExistenceAndMassGap.{u}) : YangMillsExistenceOnly.{u} := by
   intro G
   obtain ⟨candidate⟩ := h G
