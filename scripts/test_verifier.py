@@ -223,6 +223,8 @@ class SourceContractTests(unittest.TestCase):
         self.assertFalse(report['clay_certificate'])
         self.assertEqual(calls.call_count,2)
         self.assertIn('existence-shape',calls.call_args_list[1].args[0])
+        self.assertEqual(calls.call_args_list[0].args[0],['lake','build','YangMills.ExistenceOnly'])
+        self.assertIn('YangMills.ExistenceOnly',calls.call_args_list[1].args[0])
 
     def test_existence_only_bypasses_mass_gap_review_activation(self):
         with patch.object(v,'YM_ADMISSION_REVIEWED',False), \
@@ -259,6 +261,8 @@ class SourceContractTests(unittest.TestCase):
         self.assertFalse(report['clay_certificate'])
         self.assertEqual(calls.call_count,4)
         self.assertIn('existence',calls.call_args_list[-1].args[0])
+        candidate_source=calls.call_args_list[2].args[0]
+        self.assertEqual(candidate_source[0:3],['lake','env','lean'])
 
     def test_existence_only_rejects_wrong_or_failed_inspector(self):
         report,rc,_=self.proof_case('existence',self.cp(text='YM_KERNEL_CHECK_PASSED: Foo'))

@@ -306,7 +306,9 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                 "Existence proofs are not specification-readiness requirements.")
             return report, 2
         try:
-            built = _run(["lake", "build"], root)
+            build_command = (["lake", "build", "YangMills.ExistenceOnly"]
+                             if existence_claim else ["lake", "build"])
+            built = _run(build_command, root)
             report["build_exit_code"] = built.returncode
             if built.returncode:
                 report["status"] = "BUILD_FAILED"
@@ -318,7 +320,8 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                             else "YM_SPECIFICATION_SHAPE_PASSED:")
             shape = _run(["lake", "env", "lean", "--run",
                           str(root / "scripts" / "InspectProof.lean"),
-                          shape_mode, "YangMills"], root)
+                          shape_mode,
+                          "YangMills.ExistenceOnly" if existence_claim else "YangMills"], root)
             report["specification_shape_output_tail"] = (shape.stdout + shape.stderr)[-3000:]
             if shape.returncode or shape_marker not in shape.stdout:
                 report["status"] = "INVALID_SPECIFICATION"
@@ -392,7 +395,9 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
             # command: the submission could redefine its syntax and spoof output.
             name = "KernelCandidate_" + secrets.token_hex(12)
             source_path = Path(temp) / (name + ".lean")
-            source_path.write_text("import YangMills\n" + program + "\n", encoding="utf-8")
+            import_line = ("import YangMills.ExistenceOnly\n"
+                           if existence_claim else "import YangMills\n")
+            source_path.write_text(import_line + program + "\n", encoding="utf-8")
             olean = root / ".lake" / "build" / "lib" / "lean" / (name + ".olean")
             olean.parent.mkdir(parents=True, exist_ok=True)
             try:

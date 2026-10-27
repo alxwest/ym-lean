@@ -28,7 +28,7 @@ def main():
             if theorem is not None:args.append(theorem)
             return run(*args)
         # A correct definition may already be activated in the trusted root.
-        probe=inspect('specification','YangMills')
+        probe=inspect('specification','YangMills.ExistenceOnly')
         existing=probe.returncode==0
         module='AdversarialExact_'+uuid.uuid4().hex
         target=('' if existing else
@@ -38,7 +38,7 @@ def main():
             'end YangMills\n')
         source=directory/(module+'.lean')
         source.write_text(
-            ('import YangMills\n' if existing else
+            ('import YangMills.ExistenceOnly\n' if existing else
              'import YangMills.FilteredGeneratedCandidate\n')+target+
             'open Lean Elab Command\n'
             'elab "#check_qft_proof " _id:ident : command => do\n'
