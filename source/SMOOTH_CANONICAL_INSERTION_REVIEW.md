@@ -69,12 +69,8 @@ are open.
 
 ## Stress dictionary filtration correction
 
-The physical stress dictionary now uses the same active dimension-four sector and its
-frame. Previously it enumerated every active dimension-five label while demanding that
-every enumerated label have dimension at most four, even when its coefficient was zero.
-This imposed an unjustified restriction on the full composite basis. Dimension-five
-descendants are allowed in that basis. The BRST stress-response cutoff remains five:
-that is a distinct bound on the variation, not the stress dictionary itself.
-
-Both the current filtered assembly and the earlier homogeneous comparison assembly use
-the corrected dictionary sector.
+The current filtered assembly and the earlier homogeneous comparison assembly
+use the stress dictionary and RG frame with exclusive cutoff five. This
+includes the dimension-four stress labels and leaves dimension-five
+descendants available in the full composite basis. The separate BRST stress
+response allows dimension five.

@@ -247,12 +247,13 @@ structure GeneratedSector {form : InvariantForm G} {e : ColorFrame form}
   same_stress : T.Compatible ∧ T.traceForm = form ∧ T.scale = S.referenceScale ∧
     T.coupling.val = matching.running.coupling 0 ∧
     T.HasCenteredTraceAnomaly (matching.running.beta (matching.running.coupling 0)) curvatureSquare
-  stressFamily : GeneratedStressFamily family (fun i => basis.label (matching.index 4 i))
+  /-- The cutoff is exclusive, so 5 includes all labels of dimension at most four. -/
+  stressFamily : GeneratedStressFamily family (fun i => basis.label (matching.index 5 i))
   generated_stress_reference : GeneratedStressNormalization e (S.insertions S.referenceScale.val)
     (S.oversubtractions S.referenceScale.val) (family.continuum S.referenceScale)
     (family.ward S.referenceScale) (family.singleTransport S.referenceScale)
     (family.lift S.referenceScale) (stressFamily.representative S.referenceScale)
     (stressFamily.dictionary S.referenceScale) T
-  same_stress_rg : stressFamily.SameStressRG (matching.frame 4) T
+  same_stress_rg : stressFamily.SameStressRG (matching.frame 5) T
 
 end YangMills.FilteredRG

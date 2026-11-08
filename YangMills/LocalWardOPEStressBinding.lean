@@ -30,9 +30,9 @@ def stressDictionaryFromSector {basis : OPE.FilteredBasis G} {mu : Renormalizati
     {coeff : OPE.MultiCoefficients basis} {physical : ℕ → OPE.MultiCoefficients basis}
     (X : RG.ExhaustiveMatching basis C mu betaSeries gammaSeries
       (RG.pairFromMulti coeff) (fun k => RG.pairFromMulti (physical k)))
-    (regular : ℝ → Fin 4 → Fin 4 → ℕ → Fin (X.count 4) → ℝ)
-    (exactRegular : ℝ → Fin 4 → Fin 4 → Fin (X.count 4) → ℝ) : StressSourceDictionary G :=
-  ⟨X.count 4, fun i => basis.label (X.index 4 i), regular, exactRegular⟩
+    (regular : ℝ → Fin 4 → Fin 4 → ℕ → Fin (X.count 5) → ℝ)
+    (exactRegular : ℝ → Fin 4 → Fin 4 → Fin (X.count 5) → ℝ) : StressSourceDictionary G :=
+  ⟨X.count 5, fun i => basis.label (X.index 5 i), regular, exactRegular⟩
 
 def LocalWardOPEStressConditions {form : InvariantForm G} {e : ColorFrame form}
     {S : FixedFlowSystem e} (family : LocalWardFlowFamily S) (basis : OPE.FilteredBasis G)
@@ -52,14 +52,14 @@ def LocalWardOPEStressConditions {form : InvariantForm G} {e : ColorFrame form}
       (fun k n inputs last output => physical k n (fun r => X.index D (inputs r))
         (X.index D last) (X.index D output))) ∧
     ∃ stress : QuantumStressRepresentative G,
-    ∃ regular : ℝ → Fin 4 → Fin 4 → ℕ → Fin (X.count 4) → ℝ,
-    ∃ exactRegular : ℝ → Fin 4 → Fin 4 → Fin (X.count 4) → ℝ,
+    ∃ regular : ℝ → Fin 4 → Fin 4 → ℕ → Fin (X.count 5) → ℝ,
+    ∃ exactRegular : ℝ → Fin 4 → Fin 4 → Fin (X.count 5) → ℝ,
       let dict := stressDictionaryFromSector X regular exactRegular
       GeneratedStressNormalization e (S.insertions S.referenceScale.val)
         (S.oversubtractions S.referenceScale.val) (family.continuum S.referenceScale)
         (family.ward S.referenceScale) (family.singleTransport S.referenceScale)
         (family.lift S.referenceScale) stress dict T ∧
-      dict.SameStressRG (X.frame 4) T
+      dict.SameStressRG (X.frame 5) T
 
 /-- The concrete local-Ward assembly retains the earlier same-field
 matching relation with exactly the generated Euclidean series. -/

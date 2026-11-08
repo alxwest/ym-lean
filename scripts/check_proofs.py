@@ -284,6 +284,23 @@ def main() -> None:
             "#audit_axioms YangMills.PoincareTransform.act_compose",
             "#audit_axioms YangMills.QFTExistenceAndMassGap",
         ]), True, "Axiom audit passed"),
+        ("stress_label_filtration", """
+theorem stressLabelFiltration {G : YangMills.CompactSimpleGaugeGroup}
+    (w : YangMills.FilteredGeneratedCandidate G) (p : w.basis.Index) :
+    (∃ i : Fin (w.sector.stressFamily.dictionary w.engine.referenceScale).count,
+      (w.sector.stressFamily.dictionary w.engine.referenceScale).label i = w.basis.label p) ↔
+        YangMills.OPE.dimension (w.basis.label p) ≤ 4 := by
+  constructor
+  · rintro ⟨i, hi⟩
+    rw [← hi]
+    exact Nat.le_of_lt_succ ((w.basis.active_iff _ 5).mp (w.sector.matching.index_active 5 i))
+  · intro hp
+    have active := (w.basis.active_iff p 5).mpr (Nat.lt_succ_of_le hp)
+    obtain ⟨i, hi⟩ := w.sector.matching.index_surjective 5 p active
+    exact ⟨i, congrArg w.basis.label hi⟩
+
+#audit_axioms stressLabelFiltration
+""", True, "Axiom audit passed"),
         ("direct_sorry", "theorem bad : True := by sorry\n#audit_axioms bad", False, "sorryAx"),
         ("hidden_sorry", "theorem hidden : True := by sorry\ntheorem bad : True := hidden\n#audit_axioms bad", False, "sorryAx"),
         ("custom_axiom", "axiom oracle : True\ntheorem bad : True := oracle\n#audit_axioms bad", False, "oracle"),

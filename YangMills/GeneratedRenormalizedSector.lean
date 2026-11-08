@@ -82,15 +82,15 @@ structure GeneratedRenormalizedSector {form : InvariantForm G} {e : ColorFrame f
     vacuumContinuation matching rotation
   same_stress : RG.FamilyStressMatched matching form T curvatureSquare
   stressRepresentative : QuantumStressRepresentative G
-  stressRegular : ℝ → Fin 4 → Fin 4 → ℕ → Fin (matching.count 4) → ℝ
-  stressExactRegular : ℝ → Fin 4 → Fin 4 → Fin (matching.count 4) → ℝ
+  stressRegular : ℝ → Fin 4 → Fin 4 → ℕ → Fin (matching.count 5) → ℝ
+  stressExactRegular : ℝ → Fin 4 → Fin 4 → Fin (matching.count 5) → ℝ
   generated_stress : GeneratedStressNormalization e (S.insertions S.referenceScale.val)
     (S.oversubtractions S.referenceScale.val) (family.continuum S.referenceScale)
     (family.ward S.referenceScale) (family.singleTransport S.referenceScale)
     (family.lift S.referenceScale) stressRepresentative
     (stressDictionaryFromSector matching stressRegular stressExactRegular) T
   same_stress_rg : (stressDictionaryFromSector matching stressRegular stressExactRegular).SameStressRG
-    (matching.frame 4) T
+    (matching.frame 5) T
 
 /-- Forgetting the added CS/word/rotation constraints recovers the previous
 same-field OPE/stress fragment with exactly the same objects and coefficients. -/

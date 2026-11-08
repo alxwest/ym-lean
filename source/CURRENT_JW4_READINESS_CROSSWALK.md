@@ -225,16 +225,13 @@ dictionary suffice for this fixed prescription.
 
 ### Stress filtration correction
 
-`StressSourceDictionary.Compatible.degree` requires every dictionary label to have [engineering dimension](GLOSSARY.md#gauge-fields-and-observables) at most four. Using the
-entire active5 basis there would instead force genuine dimension-five descendants to
-have degree at most four, even when their stress coefficients vanish. The corrected
-current and older homogeneous assemblies use active4/frame4 for the stress source
-dictionary and its RG frame. The degree-five BRST response/possible Ward anomaly target
-is different: s raises FHH engineering dimension by one, so that target correctly stays
-at five.
-
-No extra restriction on the physical stress is introduced by fixing this accidental
-dictionary contradiction.
+`StressSourceDictionary.Compatible.degree` requires every dictionary label to have
+[engineering dimension](GLOSSARY.md#gauge-fields-and-observables) at most four.
+`FilteredBasis.active` uses an exclusive bound, so the current and earlier
+homogeneous assemblies use cutoff five for the stress dictionary and its RG
+frame. Cutoff four excluded the degree-four labels needed for the nonzero
+canonical stress tree. The separate BRST response allows degree five because
+the differential raises engineering dimension by one.
 
 ### Final scope verdict
 
