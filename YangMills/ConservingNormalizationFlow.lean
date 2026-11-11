@@ -16,7 +16,7 @@ variable {G : CompactSimpleGaugeGroup}
 /-- The computed comparison response has all actual analytic hypotheses of
 the balanced integrated linear insertion problem, including vacuum
 subtraction and genuine positive-scale jet continuity. -/
-def conservingPointwiseNormalizationResponse_reducedRegularity
+theorem conservingPointwiseNormalizationResponse_reducedRegularity
     (L : ℝ → ℝ → InsertedFlowFamily G) (I : ScaleCouplingFamily G)
     {background : FlowFamily G} {F : OversubtractedFamily G}
     (D : ℕ) (μ g UV : ℝ)

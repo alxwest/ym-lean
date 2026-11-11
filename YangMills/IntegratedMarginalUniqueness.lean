@@ -10,7 +10,7 @@ open YangMills.Perturbative YangMills.PerturbativeFlow Filter
 open scoped ContDiff Topology
 variable {G : CompactSimpleGaugeGroup}
 
-def IntegratedMarginalConditions.reducedRegularity
+theorem IntegratedMarginalConditions.reducedRegularity
     {A F : ScaleCouplingFamily G} {terms : ℝ → List (LocalVertex G)}
     (hF : IntegratedMarginalConditions A F terms) (μ g UV : ℝ) (hμ : 0 < μ) (hUV : μ ≤ UV) :
     ReducedLinearInsertionRegularity (A μ g) (F μ g) UV := {

@@ -17,7 +17,7 @@ theorem momentumJet_sum_regular {J : Type*} (S : Finset J)
     momentumJet d (fun p => ∑ j ∈ S, F j p) q = ∑ j ∈ S, momentumJet d (F j) q := by
   unfold momentumJet
   rw [congrFun (iteratedFDeriv_sum smooth) q]
-  simp only [Finset.sum_apply, ContinuousMultilinearMap.sum_apply]
+  simp only [Finset.sum_apply, sum_apply]
 
 theorem momentumJet_const_mul_regular {legs : List (ExternalLeg G)}
     (d : List (Fin legs.length × Fin 4)) (c : ℂ)
@@ -29,7 +29,7 @@ theorem momentumJet_const_mul_regular {legs : List (ExternalLeg G)}
   change iteratedFDeriv ℝ d.length (fun p => c * F p) q =
     c • iteratedFDeriv ℝ d.length F q at hs
   rw [hs]
-  simp only [ContinuousMultilinearMap.smul_apply, smul_eq_mul]
+  simp only [smul_apply, smul_eq_mul]
 
 theorem pointwiseNormalizationResponse_jet_formula
     (L : ℝ → ℝ → InsertedFlowFamily G) (I : ScaleCouplingFamily G)

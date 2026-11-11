@@ -41,7 +41,7 @@ theorem finiteJet_determinacy {f : E → ℂ} (smooth : ContDiff ℝ ∞ f) (deg
       have h := iteratedJet_zero_step smooth 0 highest (lower 0 (by omega))
       funext x
       have hx := congrArg (fun A => A (0 : Fin 0 → E)) (h x)
-      simpa only [iteratedFDeriv_zero_apply, ContinuousMultilinearMap.zero_apply,
+      simpa only [iteratedFDeriv_zero_apply, zero_apply,
         Pi.zero_apply] using hx
   | succ degree ih =>
       apply ih

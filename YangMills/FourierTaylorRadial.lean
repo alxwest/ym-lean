@@ -48,7 +48,7 @@ theorem diagonalTaylor_of_radial {E E' : Type*}
   change iteratedFDeriv ℝ k (fun t : ℝ => c * h (t • r)) 0 =
     c • iteratedFDeriv ℝ k (fun t : ℝ => h (t • r)) 0 at hm
   rw [hm]
-  simp only [ContinuousMultilinearMap.smul_apply, smul_eq_mul]
+  simp only [smul_apply, smul_eq_mul]
 
 theorem BalancedMomenta_smul {G : CompactSimpleGaugeGroup} (legs : List (ExternalLeg G))
     (q : Fin legs.length → Spacetime) (hq : BalancedMomenta legs q) (t : ℝ) :

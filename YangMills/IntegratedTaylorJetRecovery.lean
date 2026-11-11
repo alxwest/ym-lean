@@ -22,7 +22,7 @@ theorem filteredTaylorPolynomial_complex_sum {E : Type*}
   intro k hk
   unfold filteredTaylorSeries
   split_ifs
-  · simp [ContinuousMultilinearMap.smul_apply, Complex.real_smul]
+  · simp [smul_apply, Complex.real_smul]
   · simp
 
 /-- Conserving extension of the computed local density is the literal finite

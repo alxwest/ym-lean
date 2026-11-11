@@ -73,7 +73,7 @@ instance boundedMonomialFinite (d : ℕ) :
 
 /-- The full bounded-weight polynomial slice, before invariance or identities. -/
 def boundedSlice (d : ℕ) : Submodule ℝ (CurvatureJetPolynomial G) :=
-  Finsupp.supported ℝ ℝ {m | (monomialDimension (G := G)) m ≤ d}
+  AddMonoidAlgebra.supported ℝ ℝ {m | (monomialDimension (G := G)) m ≤ d}
 
 lemma mem_boundedSlice (d : ℕ) (p : CurvatureJetPolynomial G) :
     p ∈ boundedSlice d ↔ HasDimensionAtMost d p := by
@@ -84,7 +84,7 @@ instance boundedSlice_finiteDimensional (d : ℕ) : FiniteDimensional ℝ (bound
   letI : FiniteDimensional ℝ ({m : CurvatureJetCoordinate G →₀ ℕ // (monomialDimension (G := G)) m ≤ d} →₀ ℝ) := inferInstance
   let e : boundedSlice (G := G) d ≃ₗ[ℝ]
       ({m : CurvatureJetCoordinate G →₀ ℕ // (monomialDimension (G := G)) m ≤ d} →₀ ℝ) :=
-    Finsupp.supportedEquivFinsupp (R := ℝ) (M := ℝ)
+    AddMonoidAlgebra.supportedEquivFinsupp (R := ℝ) (S := ℝ)
       {m : CurvatureJetCoordinate G →₀ ℕ | (monomialDimension (G := G)) m ≤ d}
   exact e.symm.finiteDimensional
 

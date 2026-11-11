@@ -262,7 +262,7 @@ bosonic jets carry the multiplicity factorial; the original polynomial is
 not changed or silently replaced by its normalized basis representative. -/
 def normalizedPotentialExpansion (P : PotentialPolynomial G) (g : ℝ) :
     LocalMonomial G →₀ ℂ :=
-  P.sum (fun m c => Finsupp.single (potentialMonomialToLocal m)
+  (AddMonoidAlgebra.coeff P).sum (fun m c => Finsupp.single (potentialMonomialToLocal m)
     ((c : ℂ) * (g : ℂ) ^ m (.inl ()) *
       ((potentialMonomialToLocal m).multiplicityFactorial : ℂ)))
 

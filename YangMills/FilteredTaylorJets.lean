@@ -57,7 +57,7 @@ theorem filteredTaylorPolynomial_jet (D d : ℕ) (f : E → ℂ)
   ext v
   have hs := (filteredTaylorPolynomial_powerSeries D d f).toHasFPowerSeriesOnBall
   rw [hs.iteratedFDeriv_eq_sum_of_completeSpace v]
-  simp only [filteredTaylorSeries, if_pos hn, ContinuousMultilinearMap.smul_apply]
+  simp only [filteredTaylorSeries, if_pos hn, smul_apply]
   simp_rw [smooth_iteratedFDeriv_perm f smooth 0 n v]
   simp only [Finset.sum_const, Finset.card_univ, Fintype.card_perm, Fintype.card_fin]
   have hn0 : (Nat.factorial n : ℝ) ≠ 0 := by exact_mod_cast Nat.factorial_ne_zero n

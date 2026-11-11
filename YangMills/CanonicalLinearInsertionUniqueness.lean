@@ -24,7 +24,7 @@ theorem extractCoefficient_difference_smooth (m : LocalMonomial G)
 
 /-- The actual insertion boundary regularity supplies the actual homogeneous
 linear flow hypotheses, without an additional coordinate normalization. -/
-def InsertionFlowConditions.singleRegularity {background : FlowFamily G}
+theorem InsertionFlowConditions.singleRegularity {background : FlowFamily G}
     {L : InsertedFlowFamily G} {F : OversubtractedFamily G} {μ : ℝ}
     (h : InsertionFlowConditions background L F μ)
     (A : LocalMonomial G) (x : Spacetime) (UV : ℝ) :

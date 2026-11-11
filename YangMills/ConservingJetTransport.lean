@@ -40,7 +40,7 @@ theorem momentumJet_compCLM_of_equal_jets (legs : List (ExternalLeg G))
     apply sub_eq_zero.mp
     apply doublePi_multilinear_zero
     intro p
-    simp only [ContinuousMultilinearMap.sub_apply]
+    simp only [sub_apply]
     rw [← momentumJet_ofFn, ← momentumJet_ofFn, jets p, sub_self]
   unfold momentumJet
   rw [C.iteratedFDeriv_comp_right smoothF 0

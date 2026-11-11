@@ -23,7 +23,7 @@ lemma momentumJet_difference_smooth {legs : List (ExternalLeg G)}
   simp only [sub_eq_add_neg]
   rw [fun_iteratedFDeriv_add_apply hfa hha.neg]
   rw [show (fun p => -h p) = -h from rfl, iteratedFDeriv_neg_apply]
-  simp only [ContinuousMultilinearMap.add_apply, ContinuousMultilinearMap.neg_apply]
+  simp only [add_apply, neg_apply]
 
 /-- The mixed IR/marginal/UV normalization determines a cutoff-constant
 flow difference. All derivatives are actual reduced momentum derivatives. -/

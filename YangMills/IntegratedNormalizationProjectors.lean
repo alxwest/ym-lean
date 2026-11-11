@@ -18,7 +18,7 @@ theorem extractCoefficient_const_mul_regular (m : LocalMonomial G)
   change iteratedFDeriv ℝ m.momentumDirections.length (fun p => c * F m.legs p) q =
     c • iteratedFDeriv ℝ m.momentumDirections.length (F m.legs) q at hi
   rw [hi]
-  simp only [ContinuousMultilinearMap.smul_apply, smul_eq_mul]
+  simp only [smul_apply, smul_eq_mul]
   ring
 
 theorem extractCoefficient_sum_regular {J : Type*} (S : Finset J)
@@ -30,7 +30,7 @@ theorem extractCoefficient_sum_regular {J : Type*} (S : Finset J)
   unfold extractCoefficient
   have hi := congrFun (iteratedFDeriv_sum hF) q
   rw [hi]
-  simp only [Finset.sum_apply, ContinuousMultilinearMap.sum_apply, Finset.mul_sum]
+  simp only [Finset.sum_apply, sum_apply, Finset.mul_sum]
 
 /-- Projecting the constructed finite amplitude gives the SAME computed
 scalar jet matrix. Smoothness comes from the actual insertion family. -/

@@ -91,7 +91,7 @@ theorem momentumJet_sub_regular {legs : List (ExternalLeg G)}
   simp only [sub_eq_add_neg]
   rw [fun_iteratedFDeriv_add_apply hF hH.neg]
   rw [show (fun p => -H p) = -H from rfl, iteratedFDeriv_neg_apply]
-  simp only [ContinuousMultilinearMap.add_apply, ContinuousMultilinearMap.neg_apply]
+  simp only [add_apply, neg_apply]
 
 /-- Source TableII's zero relevant IR jets are preserved at the leading
 restoration order by a massless integrated response. No broader relevant

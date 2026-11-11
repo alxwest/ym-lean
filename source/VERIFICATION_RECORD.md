@@ -9,6 +9,33 @@ For the meaning of the statuses, see the [certification contract](../CERTIFICATI
 use the [glossary](GLOSSARY.md). The results below are historical run results; editing this document
 does not constitute rerunning those checks.
 
+## Lean 4.32 upgrade (11 November 2026)
+
+The current toolchain is Lean **4.32.0**, with Mathlib **v4.32.0** pinned to
+`81a5d257c8e410db227a6665ed08f64fea08e997`. All nine dependency revisions
+match the October submission in the sibling `ym-ymg` checkout.
+
+Compatibility changes use the new `AddMonoidAlgebra` coefficient wrapper and
+supported-submodule API, replace deprecated multilinear-map application lemmas,
+update a norm simplification, supply an explicit real scalar type, and mark six
+proposition-valued declarations as theorems. Warnings remain errors; the target
+definitions and axiom allowlist are unchanged.
+
+Validation completed successfully:
+
+- Full library build: 3,553 jobs.
+- `python3 scripts/check_proofs.py`: exit 0, with 40 Python regressions,
+  17 proof-audit cases, 21 kernel-inspector rejection cases and both target-shape checks.
+- Specification verifier: `SPECIFICATION_READY`, exit 0.
+- Existence-only verifier without a proof: target shape passed,
+  `PROOF_NOT_SUBMITTED`, exit 2.
+
+Local logs and JSON reports are in `.lake/upgrade-4.32-checks.log`,
+`.lake/upgrade-4.32-specification.json` and `.lake/upgrade-4.32-existence.json`.
+Both reports retain `clay_certificate=false`. Matching toolchains and dependency
+revisions does not supply the missing import integration or a proof bridge from
+ym-ymg's `JointExistence` to this repository's `YangMillsExistenceOnly` target.
+
 ## Lean 4.31 upgrade (26 October 2026)
 
 That upgrade used Lean **4.31.0**, with Mathlib **v4.31.0** pinned to

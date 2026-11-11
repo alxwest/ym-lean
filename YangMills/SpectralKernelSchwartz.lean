@@ -112,8 +112,7 @@ lemma integrable_spectralVector_of_integrable {H : Type*} [NormedAddCommGroup H]
   apply (hf.norm.mul_const ‖v‖).mono'
     (hf.aestronglyMeasurable.smul (continuous_spectralOrbit Q continuousQ v).aestronglyMeasurable)
   filter_upwards [] with a
-  simp only [norm_smul, LinearIsometryEquiv.norm_map]
-  exact le_rfl
+  simp [norm_smul]
 
 /-- Every derivative of the actual spectral kernel has Schwartz decay. -/
 theorem spectralKernel_decay (f : TestFunction) (k n : ℕ) :

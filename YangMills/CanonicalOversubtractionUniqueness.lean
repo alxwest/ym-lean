@@ -23,7 +23,7 @@ structure InhomogeneousInsertionRegularity (background source F : FlowFamily G) 
 
 /-- Changing only the written source by a proved equality leaves the SAME
 actual differential equation unchanged on its physical cutoff interval. -/
-def InhomogeneousInsertionRegularity.changeSource
+theorem InhomogeneousInsertionRegularity.changeSource
     {background source target F : FlowFamily G} {UV : ℝ}
     (h : InhomogeneousInsertionRegularity background source F UV)
     (eq : ∀ loop Λ legs q, 0 < Λ → Λ < UV → source loop Λ UV legs q = target loop Λ UV legs q) :
@@ -147,7 +147,7 @@ theorem InsertionCluster.originCluster_insertions (input : InsertionCluster G) :
   simp [InsertionCluster.originCluster, InsertionCluster.insertions,
     InsertionCluster.atOrigin, shiftInsertions, List.map_append]
 
-def InsertionFlowConditions.oversubtractionRegularity
+theorem InsertionFlowConditions.oversubtractionRegularity
     {background : FlowFamily G} {L : InsertedFlowFamily G}
     {F : OversubtractedFamily G} {μ : ℝ}
     (h : InsertionFlowConditions background L F μ)

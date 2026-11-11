@@ -12,7 +12,8 @@ variable {G : CompactSimpleGaugeGroup}
 
 def engineeringPart (degree : ℕ) (p : CurvatureJetPolynomial G) : CurvatureJetPolynomial G := by
   classical
-  exact Finsupp.filter (fun m => monomialDimension m = degree) p
+  exact AddMonoidAlgebra.ofCoeff
+    (Finsupp.filter (fun m => monomialDimension m = degree) (AddMonoidAlgebra.coeff p))
 
 lemma engineeringPart_coeff (degree : ℕ) (p : CurvatureJetPolynomial G)
     (m : CurvatureJetCoordinate G →₀ ℕ) :

@@ -11,7 +11,7 @@ namespace YangMills.IntegratedNormalization
 open YangMills.Perturbative YangMills.PerturbativeFlow
 variable {G : CompactSimpleGaugeGroup}
 
-def IntegratedWardConditions.reducedRegularity {B : InvariantForm G} {e : ColorFrame B}
+theorem IntegratedWardConditions.reducedRegularity {B : InvariantForm G} {e : ColorFrame B}
     {A I : ScaleCouplingFamily G} {terms : ℝ → List (LocalVertex G)}
     (h : IntegratedWardConditions e A I terms) (μ g UV : ℝ) (hμ : 0 < μ) (hUV : μ ≤ UV) :
     ReducedLinearInsertionRegularity (A μ g) (I μ g) UV where

@@ -92,7 +92,7 @@ theorem conservingPointwiseNormalizationResponse_jet_continuous
       apply continuousOn_finsetSum _
       intro p hp
       exact (pointwiseNormalizationResponse_jet_continuous L I D μ g UV loop h labels
-        (List.ofFn p) (conservingMomentumMap labels q)).const_smul _
+        (List.ofFn p) (conservingMomentumMap labels q)).const_smul (M := ℝ) _
     apply hc.congr
     intro Λ hΛ
     dsimp only
