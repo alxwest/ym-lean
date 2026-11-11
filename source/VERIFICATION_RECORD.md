@@ -11,7 +11,7 @@ does not constitute rerunning those checks.
 
 ## Lean 4.31 upgrade (26 October 2026)
 
-The current toolchain is Lean **4.31.0**, with Mathlib **v4.31.0** pinned to
+That upgrade used Lean **4.31.0**, with Mathlib **v4.31.0** pinned to
 `fabf563a7c95a166b8d7b6efca11c8b4dc9d911f` in the Lake manifest. The compatibility
 edits were adapted from the [Millennium repository's port at `7f4523a`](https://github.com/alxwest/LeanMillenniumPrizeProblems/commit/7f4523a9909aeaa9cdae172c75c4b2809f01f819),
 before its separate Physlib integration. This repository keeps its existing

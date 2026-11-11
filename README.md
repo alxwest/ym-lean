@@ -171,11 +171,11 @@ python3 scripts/check_proofs.py
 python3 scripts/verify_submission.py --claim specification
 ```
 
-The current development uses **Lean 4.31.0** and **Mathlib v4.31.0**.
+The current development uses **Lean 4.32.0** and **Mathlib v4.32.0**.
 `lake` is Lean's build tool. The pinned Lean version is in
 [lean-toolchain](lean-toolchain), and the pinned mathlib dependency (Lean's
 mathematical library) is recorded in [lake-manifest.json](lake-manifest.json).
-The Lean 4.31 port retains warnings-as-errors and uses
+The Lean 4.32 build retains warnings-as-errors and uses
 `backward.isDefEq.respectTransparency=false` for compatibility with the earlier
 proof elaboration. This setting changes elaboration, not the allowed axioms.
 
@@ -221,6 +221,28 @@ not independently certify its semantic equivalence to every formulation
 of four-dimensional Yang–Mills existence, nor a physical mass gap.
 No such proof is supplied. Without a proof, the mode reports
 `PROOF_NOT_SUBMITTED` after checking the target shape.
+
+### Run the ym-ymg submission through the existence verifier
+
+With `ym-ymg` checked out alongside this repository, run:
+
+```sh
+./scripts/verify_ym_ymg.sh
+```
+
+The launcher selects the October 2026 submission's `Solution.lean`, theorem
+`YangMills.jointExistence`, and `--claim existence`. It saves the JSON result
+to `.lake/ym-ymg-existence-report.json` and preserves the verifier's exit code.
+For another checkout location, set `YM_YMG_ROOT=/absolute/path/to/ym-ymg`.
+
+**The current submission is not directly compatible.** Its imports are not
+available in this project's Lake environment, and its theorem proves
+`YangMills.JointExistence` rather
+than `YangMills.YangMillsExistenceOnly.{u}`. The launcher submits the original
+source for diagnostics; it does not install or port its dependencies. Acceptance
+requires a shared import/dependency environment and a proved bridge to this
+repository's exact universe-polymorphic target. The existence flag alone does
+not establish that bridge.
 
 ### Submitting a future proof
 
