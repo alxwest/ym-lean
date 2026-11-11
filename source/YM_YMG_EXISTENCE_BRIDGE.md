@@ -46,6 +46,17 @@ These are **source-side ingredients**, not yet a checked cross-project theorem:
 3. The centered stress trace is the **same** `TraceExtension.center F` field used in the construction. The [`TraceTest.centered` and `shortDistance` clauses](https://github.com/alxwest/YM-ymg/blob/55ba9fc36293b3f4d52c6b1f813169a0be76ee98/submissions/openai-20261028/submission/ChallengeSpec.lean) are retained by the construction; [`NonzeroPhysicalObservable.probe_from_trace`](https://github.com/alxwest/YM-ymg/blob/55ba9fc36293b3f4d52c6b1f813169a0be76ee98/submissions/openai-20261028/checks/NonzeroPhysicalObservable.lean) derives `center F ≠ 0` from the source's leading trace estimates.
 4. Faithfulness combined with the nonzero **label** would give some nonzero smeared trace operator; centeredness and cyclicity then give the `HasFieldExcitation` result above. This avoids requiring an unproved *Euclidean nonzero correlator → Minkowski nonzero two-point word* implication.
 
+## Verified source/target spacetime coordinate convention
+
+[`YMYMGSpacetimeBridge.lean`](../YangMills/YMYMGSpacetimeBridge.lean) supplies
+an explicit invertible reindexing of `EuclideanSpace ℝ (Fin 4)` (source
+physical time at coordinate 3) onto `Fin 4 → ℝ` (target physical time at
+coordinate 0). It verifies the **same bilinear Minkowski form**, the
+source's norm-based **forward cone** and **spacelike-separation criterion**.
+This is a theorem over the exact common Mathlib mathematical types; it does
+not claim to import the source's full Wightman representation or transport
+its Poincare operator fields, smearing tests or spectral measure.
+
 ## Exact source-facing obstacles still open
 
 | Required transport | What exists in YM-ymg | What is not yet formalized across the repositories |
