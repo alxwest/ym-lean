@@ -230,19 +230,30 @@ With `ym-ymg` checked out alongside this repository, run:
 ./scripts/verify_ym_ymg.sh
 ```
 
-The launcher selects the October 2026 submission's `Solution.lean`, theorem
-`YangMills.jointExistence`, and `--claim existence`. It saves the JSON result
+The launcher selects the October 2026 submission's `Solution.lean` and
+`--claim existence`. It saves the JSON result
 to `.lake/ym-ymg-existence-report.json` and preserves the verifier's exit code.
 For another checkout location, set `YM_YMG_ROOT=/absolute/path/to/ym-ymg`.
 
-**The current submission is not directly compatible.** Its imports are not
-available in this project's Lake environment, and its theorem proves
-`YangMills.JointExistence` rather
-than `YangMills.YangMillsExistenceOnly.{u}`. The launcher submits the original
-source for diagnostics; it does not install or port its dependencies. Acceptance
-requires a shared import/dependency environment and a proved bridge to this
-repository's exact universe-polymorphic target. The existence flag alone does
-not establish that bridge.
+The launcher checks that the toolchains and dependency revisions match, reuses
+ym-lean's dependency checkouts through a generated Lake package override, and
+builds the internal `YM` imports in the submission checkout. Both projects
+define incompatible names such as `YangMills.TestFunction`, so the launcher
+also generates and compiles copies of the public wrapper modules under
+`YMGSubmission` in `.lake/ym-ymg-integration`. Only the public namespace and
+wrapper imports are renamed; the internal `YM` modules are reused. The submitted
+theorem is therefore named `YMGSubmission.jointExistence` in this environment.
+Both build directories are added to the verifier's import path. The original
+submission sources and pinned manifest are unchanged. The first build is
+substantial; rerunning the command reuses completed modules. Build errors stop
+the launcher before proof verification. The generated package override lives at
+`.lake/ym-ymg-packages.json`.
+
+**Import availability does not establish compatibility of the statements.**
+The submitted theorem proves `YangMills.JointExistence` rather than
+`YangMills.YangMillsExistenceOnly.{u}`. Acceptance still requires a proved bridge
+to this repository's exact universe-polymorphic target. The existence flag
+alone does not establish that bridge.
 
 ### Submitting a future proof
 
