@@ -1,3 +1,4 @@
 import YangMills.YangMillsSpecification
 import YangMills.ExistenceOnly
+import YangMills.YMYMGExistenceBridge
 import YangMills.Verification
