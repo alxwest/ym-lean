@@ -222,6 +222,12 @@ of four-dimensional Yang–Mills existence, nor a physical mass gap.
 No such proof is supplied. Without a proof, the mode reports
 `PROOF_NOT_SUBMITTED` after checking the target shape.
 
+For an independent, gap-free comparison with the October Wilson construction,
+see the [YM-ymg existence-only kinematic bridge](source/YM_YMG_EXISTENCE_BRIDGE.md).
+It proves a conditional non-vacuum excitation implication and records the
+unproved source-to-target Wightman/kernel/perturbative bridges. It does **not**
+prove `YangMillsExistenceOnly` or certify the external construction.
+
 ### Submitting a future proof
 
 ```sh
