@@ -62,10 +62,15 @@ an explicit invertible reindexing of `EuclideanSpace ℝ (Fin 4)` (source
 physical time at coordinate 3) onto `Fin 4 → ℝ` (target physical time at
 coordinate 0). It verifies the **same bilinear Minkowski form**, the
 source's norm-based **forward cone** and **spacelike-separation criterion**.
-This is a theorem over the exact common Mathlib mathematical types; it does
-additionally gives an **all-arity continuous linear equivalence** of the
-source `SchwartzMap (Points n) ℂ` and the target's full joint Schwartz
-space. It proves inverse transport of continuous n-point functionals and
+The source type identities were checked directly in
+`YM/Space/Configurations.lean` (`Points n := PiLp 2 (fun _ : Fin n => E4)`),
+`YM/Distribution/Tests.lean` (`Probe X := SchwartzMap X ℂ`),
+`YM/Distribution/Product.lean` (`Joint n := Probe (Points n)`),
+and `YM/Boundary/Contour.lean` (`Surface.W n` outputs
+`Distn (Points n)`, a continuous linear functional).
+The theorem uses exactly those common Mathlib mathematical types,
+including an **all-arity continuous linear equivalence** of the source
+and target full joint Schwartz spaces. It proves inverse transport of continuous n-point functionals and
 preservation of tensor-product test evaluations. Thus the joint Schwartz
 **test-space** and its linear functional type are no longer obstacles.
 It does not import the source's full Wightman representation or identify
