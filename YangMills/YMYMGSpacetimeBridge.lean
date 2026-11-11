@@ -137,4 +137,208 @@ theorem ymymgSource_spacelike_iff (x y : EuclideanSpace ℝ (Fin 4)) :
   rw [SpacelikeSeparated, ← ymymgToTarget_sub,
     ymymgToTarget_minkowskiSquare]
 
+/-- The time-axis permutation is a REAL-LINEAR isomorphism of the exact
+source and target continuum point spaces. -/
+def ymymgTargetLinearEquiv : EuclideanSpace ℝ (Fin 4) ≃ₗ[ℝ] Spacetime where
+  toEquiv := ymymgTargetPointEquiv
+  map_add' := by
+    intro x y
+    funext i
+    rfl
+  map_smul' := by
+    intro a x
+    funext i
+    rfl
+
+/-- Since both point spaces are finite-dimensional normed real vector spaces,
+the coordinate equivalence and its inverse are automatically continuous. -/
+def ymymgTargetContinuousLinearEquiv :
+    EuclideanSpace ℝ (Fin 4) ≃L[ℝ] Spacetime :=
+  ymymgTargetLinearEquiv.toContinuousLinearEquiv
+
+/-- Transport any full single-point Schwartz test from the target to
+the source coordinates, preserving the original Schwartz topology. -/
+def ymymgPullbackSchwartz :
+    SchwartzMap Spacetime ℂ →L[ℂ]
+      SchwartzMap (EuclideanSpace ℝ (Fin 4)) ℂ :=
+  SchwartzMap.compCLMOfContinuousLinearEquiv ℂ
+    ymymgTargetContinuousLinearEquiv
+
+/-- Transport source-coordinate Schwartz tests back to ym-lean's coordinates. -/
+def ymymgPushforwardSchwartz :
+    SchwartzMap (EuclideanSpace ℝ (Fin 4)) ℂ →L[ℂ]
+      SchwartzMap Spacetime ℂ :=
+  SchwartzMap.compCLMOfContinuousLinearEquiv ℂ
+    ymymgTargetContinuousLinearEquiv.symm
+
+/-- The source→target single-point Schwartz transport has a left inverse. -/
+theorem ymymgSchwartz_pull_push
+    (f : SchwartzMap (EuclideanSpace ℝ (Fin 4)) ℂ) :
+    ymymgPullbackSchwartz (ymymgPushforwardSchwartz f) = f := by
+  apply SchwartzMap.ext
+  intro x
+  change f (targetToYmymgPoint (ymymgToTargetPoint x)) = f x
+  rw [targetToYmymg_ymymgToTarget]
+
+/-- The target→source single-point Schwartz transport has a left inverse. -/
+theorem ymymgSchwartz_push_pull (f : SchwartzMap Spacetime ℂ) :
+    ymymgPushforwardSchwartz (ymymgPullbackSchwartz f) = f := by
+  apply SchwartzMap.ext
+  intro x
+  change f (ymymgToTargetPoint (targetToYmymgPoint x)) = f x
+  rw [ymymgToTarget_targetToYmymg]
+
+/-- A continuously invertible transport of all one-point Schwartz
+test functions. The two algebraic inverses above are continuous. -/
+def ymymgSchwartzLinearEquiv :
+    SchwartzMap (EuclideanSpace ℝ (Fin 4)) ℂ ≃ₗ[ℂ]
+      SchwartzMap Spacetime ℂ :=
+  LinearEquiv.mk ymymgPushforwardSchwartz.toLinearMap
+    ymymgPullbackSchwartz ymymgSchwartz_pull_push ymymgSchwartz_push_pull
+
+def ymymgSchwartzContinuousLinearEquiv :
+    SchwartzMap (EuclideanSpace ℝ (Fin 4)) ℂ ≃L[ℂ]
+      SchwartzMap Spacetime ℂ :=
+  ContinuousLinearEquiv.mk ymymgSchwartzLinearEquiv
+    ymymgPushforwardSchwartz.continuous ymymgPullbackSchwartz.continuous
+
+/-- Exactly the source public `Points n` type (a finite L² product of
+four-dimensional Euclidean points), with time as the last coordinate. -/
+abbrev YmymgJointPoints (n : ℕ) :=
+  PiLp 2 (fun _ : Fin n => EuclideanSpace ℝ (Fin 4))
+
+/-- Source joint configuration → target ordered n-point configuration. -/
+def ymymgJointToTarget (n : ℕ) (x : YmymgJointPoints n) :
+    Fin n → Spacetime :=
+  fun i => ymymgToTargetPoint (x i)
+
+/-- Target ordered n-point configuration → source joint configuration. -/
+def targetToYmymgJoint (n : ℕ) (x : Fin n → Spacetime) :
+    YmymgJointPoints n :=
+  WithLp.toLp 2 fun i => targetToYmymgPoint (x i)
+
+@[simp] theorem targetToYmymgJoint_ymymgJointToTarget (n : ℕ)
+    (x : YmymgJointPoints n) :
+    targetToYmymgJoint n (ymymgJointToTarget n x) = x := by
+  apply PiLp.ext
+  intro i
+  exact targetToYmymg_ymymgToTarget (x i)
+
+@[simp] theorem ymymgJointToTarget_targetToYmymgJoint (n : ℕ)
+    (x : Fin n → Spacetime) :
+    ymymgJointToTarget n (targetToYmymgJoint n x) = x := by
+  funext i
+  exact ymymgToTarget_targetToYmymg (x i)
+
+/-- The source's full joint-point data and the target's full n-point
+data are linearly equivalent for every arity. -/
+def ymymgJointLinearEquiv (n : ℕ) :
+    YmymgJointPoints n ≃ₗ[ℝ] (Fin n → Spacetime) where
+  toFun := ymymgJointToTarget n
+  invFun := targetToYmymgJoint n
+  left_inv := targetToYmymgJoint_ymymgJointToTarget n
+  right_inv := ymymgJointToTarget_targetToYmymgJoint n
+  map_add' := by
+    intro x y
+    funext i j
+    rfl
+  map_smul' := by
+    intro a x
+    funext i j
+    rfl
+
+/-- Finite-dimensionality supplies continuity of the source/target
+n-point equivalence, without choosing a new Euclidean measure. -/
+def ymymgJointContinuousLinearEquiv (n : ℕ) :
+    YmymgJointPoints n ≃L[ℝ] (Fin n → Spacetime) :=
+  (ymymgJointLinearEquiv n).toContinuousLinearEquiv
+
+/-- Full Schwartz tests from the target n-point spacetime, pulled back
+into the source's exact `Points n` coordinate type. -/
+def ymymgJointPullback (n : ℕ) :
+    SchwartzMap (Fin n → Spacetime) ℂ →L[ℂ]
+      SchwartzMap (YmymgJointPoints n) ℂ :=
+  SchwartzMap.compCLMOfContinuousLinearEquiv ℂ
+    (ymymgJointContinuousLinearEquiv n)
+
+/-- Source joint Schwartz tests become full target joint Schwartz tests.
+This is not restricted to products or to the off-diagonal domain. -/
+def ymymgJointPushforward (n : ℕ) :
+    SchwartzMap (YmymgJointPoints n) ℂ →L[ℂ]
+      SchwartzMap (Fin n → Spacetime) ℂ :=
+  SchwartzMap.compCLMOfContinuousLinearEquiv ℂ
+    (ymymgJointContinuousLinearEquiv n).symm
+
+theorem ymymgJointPull_push (n : ℕ)
+    (f : SchwartzMap (YmymgJointPoints n) ℂ) :
+    ymymgJointPullback n (ymymgJointPushforward n f) = f := by
+  apply SchwartzMap.ext
+  intro x
+  change f (targetToYmymgJoint n (ymymgJointToTarget n x)) = f x
+  rw [targetToYmymgJoint_ymymgJointToTarget]
+
+theorem ymymgJointPush_pull (n : ℕ)
+    (f : SchwartzMap (Fin n → Spacetime) ℂ) :
+    ymymgJointPushforward n (ymymgJointPullback n f) = f := by
+  apply SchwartzMap.ext
+  intro x
+  change f (ymymgJointToTarget n (targetToYmymgJoint n x)) = f x
+  rw [ymymgJointToTarget_targetToYmymgJoint]
+
+/-- A continuous linear equivalence of full joint Schwartz spaces,
+for EVERY arity, provided the source's continuum test type is the
+`SchwartzMap (Points n) ℂ` type used by its boundary reconstruction. -/
+def ymymgJointSchwartzLinearEquiv (n : ℕ) :
+    SchwartzMap (YmymgJointPoints n) ℂ ≃ₗ[ℂ]
+      SchwartzMap (Fin n → Spacetime) ℂ :=
+  LinearEquiv.mk (ymymgJointPushforward n).toLinearMap
+    (ymymgJointPullback n) (ymymgJointPull_push n) (ymymgJointPush_pull n)
+
+def ymymgJointSchwartzContinuousLinearEquiv (n : ℕ) :
+    SchwartzMap (YmymgJointPoints n) ℂ ≃L[ℂ]
+      SchwartzMap (Fin n → Spacetime) ℂ :=
+  ContinuousLinearEquiv.mk (ymymgJointSchwartzLinearEquiv n)
+    (ymymgJointPushforward n).continuous (ymymgJointPullback n).continuous
+
+/-- Transport a continuous source joint Schwartz correlation functional
+to the actual target full n-point Schwartz test space. -/
+def ymymgJointKernelToTarget (n : ℕ)
+    (K : SchwartzMap (YmymgJointPoints n) ℂ →L[ℂ] ℂ) :
+    SchwartzMap (Fin n → Spacetime) ℂ →L[ℂ] ℂ :=
+  K.comp (ymymgJointPullback n)
+
+/-- The inverse transport, without any restriction to separated points. -/
+def ymymgJointKernelToSource (n : ℕ)
+    (K : SchwartzMap (Fin n → Spacetime) ℂ →L[ℂ] ℂ) :
+    SchwartzMap (YmymgJointPoints n) ℂ →L[ℂ] ℂ :=
+  K.comp (ymymgJointPushforward n)
+
+@[simp] theorem ymymgJointKernelSourceTarget (n : ℕ)
+    (K : SchwartzMap (YmymgJointPoints n) ℂ →L[ℂ] ℂ) :
+    ymymgJointKernelToSource n (ymymgJointKernelToTarget n K) = K := by
+  ext f
+  change K (ymymgJointPullback n (ymymgJointPushforward n f)) = K f
+  rw [ymymgJointPull_push]
+
+@[simp] theorem ymymgJointKernelTargetSource (n : ℕ)
+    (K : SchwartzMap (Fin n → Spacetime) ℂ →L[ℂ] ℂ) :
+    ymymgJointKernelToTarget n (ymymgJointKernelToSource n K) = K := by
+  ext f
+  change K (ymymgJointPushforward n (ymymgJointPullback n f)) = K f
+  rw [ymymgJointPush_pull]
+
+/-- Product-test evaluations are pointwise invariant under the
+source→target coordinate reindexing. This is the exact tensor test
+identity needed to match physical n-point vacuum words later. -/
+theorem ymymgJointTensorPointwise (n : ℕ)
+    (tests : Fin n → SchwartzMap (EuclideanSpace ℝ (Fin 4)) ℂ)
+    (x : YmymgJointPoints n) :
+    (∏ i : Fin n, (ymymgPushforwardSchwartz (tests i))
+      (ymymgJointToTarget n x i)) =
+    (∏ i : Fin n, tests i (x i)) := by
+  apply Finset.prod_congr rfl
+  intro i _
+  change tests i (targetToYmymgPoint (ymymgToTargetPoint (x i))) = tests i (x i)
+  rw [targetToYmymg_ymymgToTarget]
+
 end YangMills
