@@ -23,6 +23,10 @@ class PrepareTests(unittest.TestCase):
             (directory / "lake-manifest.json").write_text(json.dumps(self.manifest))
         for name in ("Construction.lean", "Solution.lean"):
             (self.submission / name).write_text("-- fixture\n")
+        bridge = self.root / "integrations" / "ym_ymg"
+        bridge.mkdir(parents=True)
+        for name in ("Translation.lean", "Solution.lean"):
+            (bridge / name).write_text(f"-- trusted {name}\n")
         self.root_patch = patch.object(prepare_ym_ymg, "ROOT", self.root)
         self.root_patch.start()
         self.addCleanup(self.root_patch.stop)
@@ -72,6 +76,11 @@ class PrepareTests(unittest.TestCase):
         self.assertFalse((stage / "YMGSubmission/Challenge.lean").exists())
         self.assertEqual((self.submission / "Solution.lean").read_text(), solution)
         self.assertIn("theorem YMGSubmission.solution", (stage / "YMGSubmission/Solution.lean").read_text())
+        self.assertEqual((stage / "YMGBridge/Translation.lean").read_text(),
+                         "-- trusted Translation.lean\n")
+        self.assertEqual((stage / "YMGBridge/Solution.lean").read_text(),
+                         "-- trusted Solution.lean\n")
+        self.assertIn('name = "YMGBridge"', (stage / "lakefile.toml").read_text())
         timestamp = copied.stat().st_mtime_ns
         prepare_ym_ymg.stage_wrappers(self.submission, [], "1.2.0")
         self.assertEqual(copied.stat().st_mtime_ns, timestamp)

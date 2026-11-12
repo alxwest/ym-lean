@@ -19,6 +19,17 @@ private def ymTarget := dottedName "YangMills.YangMillsExistenceAndMassGap"
 private def qftTarget := dottedName "YangMills.QFTExistenceAndMassGap"
 private def existenceTarget := dottedName "YangMills.YangMillsExistenceOnly"
 
+/-- A compiled theorem of a different signature is not evidence of a false
+proof. Exit 2 distinguishes this from compilation or unapproved-axiom failures.
+The exact-target acceptance conditions below are unchanged. -/
+private def signatureMismatch (info : TheoremVal) (expected reason : String) : IO UInt32 := do
+  IO.eprintln s!"INCOMPATIBLE_PROOF_SIGNATURE: {reason}"
+  IO.eprintln s!"Expected type: {expected}"
+  IO.eprintln s!"Submitted type: {info.type}"
+  IO.eprintln s!"Submitted universe parameters: {info.levelParams}"
+  IO.eprintln "A proved translation is required; the transitive-axiom audit was not run."
+  return 2
+
 /-- Check the compiled definition, not editable coverage labels. -/
 private def checkYMDefinition (env : Environment) : Except String Unit := do
   let some (.defnInfo info) := env.checked.get.find? ymTarget
@@ -86,20 +97,22 @@ private def inspect (mode moduleText theoremText : String) : IO UInt32 := do
   | some (.thmInfo info) =>
     if mode == "qft" then
       unless info.type == mkConst qftTarget do
-        IO.eprintln "REJECTED: proof has wrong or conditional target type"
-        return 1
+        return ← signatureMismatch info "YangMills.QFTExistenceAndMassGap"
+          "proof has wrong or conditional target type"
     else if mode == "existence" then
       let [u] := info.levelParams
-        | IO.eprintln "REJECTED: existence-only proof must have ONE universe parameter"; return 1
+        | return ← signatureMismatch info "YangMills.YangMillsExistenceOnly.{u}"
+            "existence-only proof must have ONE universe parameter"
       unless info.type == mkConst existenceTarget [.param u] do
-        IO.eprintln "REJECTED: proof has wrong, fixed-universe or conditional existence-only type"
-        return 1
+        return ← signatureMismatch info "YangMills.YangMillsExistenceOnly.{u}"
+          "proof has wrong, fixed-universe or conditional existence-only type"
     else
       let [u] := info.levelParams
-        | IO.eprintln "REJECTED: Yang--Mills proof must have ONE universe parameter"; return 1
+        | return ← signatureMismatch info "YangMills.YangMillsExistenceAndMassGap.{u}"
+            "Yang--Mills proof must have ONE universe parameter"
       unless info.type == mkConst ymTarget [.param u] do
-        IO.eprintln "REJECTED: proof has wrong, fixed-universe or conditional target type"
-        return 1
+        return ← signatureMismatch info "YangMills.YangMillsExistenceAndMassGap.{u}"
+          "proof has wrong, fixed-universe or conditional target type"
     let axioms ← (Lean.collectAxioms theoremName : CoreM (Array Name)).toIO'
       { fileName := "<proof-inspector>", fileMap := default } { env := env }
     let extra := axioms.filter (fun ax => !isAllowedAxiom ax)
