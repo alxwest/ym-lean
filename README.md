@@ -436,3 +436,14 @@ the prose problem. The [verification record](source/VERIFICATION_RECORD.md)
 reports the checks performed and their limits. This repository presents a
 proposed specification and supporting proofs, not a Yang–Mills existence
 proof, and makes no claim of external mathematical acceptance.
+
+## 7. License
+
+The project's original Lean code, scripts and documentation are licensed under
+the [Apache License, Version 2.0](LICENSE). See [NOTICE](NOTICE) for copyright,
+attribution and third-party material.
+
+The bundled [*Quantum Yang–Mills Theory*](source/yangmills.pdf) paper by Arthur
+Jaffe and Edward Witten is third-party reference material and is excluded from
+this license grant. Dependencies and external submission sources retain their
+own licenses and notices.
