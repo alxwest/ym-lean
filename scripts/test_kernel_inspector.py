@@ -97,6 +97,12 @@ def main():
             result=inspect(mode,module,theorem);output=result.stdout+result.stderr
             if result.returncode==0 or marker not in output:
                 raise RuntimeError(f'Inspector failed to reject {theorem}:\n{output}')
+            if marker in ('ONE universe', 'wrong or conditional', 'fixed-universe',
+                          'conditional', 'wrong, fixed-universe or conditional'):
+                if result.returncode != 2 or 'INCOMPATIBLE_PROOF_SIGNATURE:' not in result.stderr:
+                    raise RuntimeError(f'Wrong signature was not classified for {theorem}:\n{output}')
+            elif result.returncode != 1:
+                raise RuntimeError(f'Axiom/declaration failure misclassified for {theorem}:\n{output}')
             print('PASS_KERNEL_INSPECTOR_REJECTED_'+theorem,flush=True)
         # No correct proof exists in these fixtures; there is deliberately
         # no success assertion for either existence theorem.

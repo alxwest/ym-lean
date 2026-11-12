@@ -429,6 +429,17 @@ def verify(root: Path, claim: str, proof_file: Path | None = None,
                 expected_marker = ("YM_KERNEL_CHECK_PASSED:" if ym_claim else
                                    "YM_EXISTENCE_KERNEL_CHECK_PASSED:" if existence_claim
                                    else "QFT_KERNEL_CHECK_PASSED:")
+                if (inspected.returncode == 2 and
+                        "INCOMPATIBLE_PROOF_SIGNATURE:" in inspected.stderr):
+                    report.update(
+                        status="INCOMPATIBLE_PROOF_SIGNATURE",
+                        kernel_verification_status="incompatible_signature",
+                        proof_submission_status="incompatible_signature",
+                        axiom_audit_status="not_run_signature_mismatch")
+                    report["error"] = (
+                        "The compiled theorem proves a different statement or universe instance; "
+                        "a proved translation to the requested target is required")
+                    return report, 2
                 if inspected.returncode == 0 and expected_marker in inspected.stdout:
                     if ym_claim:
                         report.update(status="YANG_MILLS_KERNEL_PROOF_ACCEPTED",

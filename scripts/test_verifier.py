@@ -273,6 +273,31 @@ class SourceContractTests(unittest.TestCase):
         self.assertEqual(rc,1)
         self.assertFalse(report['existence_only_kernel_certificate'])
 
+    def test_incompatible_signature_is_not_an_existence_certificate(self):
+        inspection = subprocess.CompletedProcess(
+            ['fixture'], 2, '', 'INCOMPATIBLE_PROOF_SIGNATURE: wrong target\n')
+        for mode in ('existence', 'yangmills', 'qft'):
+            with self.subTest(mode=mode):
+                report, rc, _ = self.proof_case(mode, inspection)
+                self.assertEqual(rc, 2)
+                self.assertEqual(report['status'], 'INCOMPATIBLE_PROOF_SIGNATURE')
+                self.assertEqual(report['axiom_audit_status'], 'not_run_signature_mismatch')
+                self.assertFalse(report['existence_only_kernel_certificate'])
+                self.assertFalse(report['yang_mills_kernel_certificate'])
+                self.assertFalse(report['qft_only_certificate'])
+                self.assertFalse(report['clay_certificate'])
+
+    def test_signature_marker_requires_trusted_exit_and_stderr(self):
+        for inspection in (
+            self.cp(2, 'INCOMPATIBLE_PROOF_SIGNATURE: spoofed stdout'),
+            subprocess.CompletedProcess(['fixture'], 1, '', 'INCOMPATIBLE_PROOF_SIGNATURE:'),
+            subprocess.CompletedProcess(['fixture'], 0, '', 'INCOMPATIBLE_PROOF_SIGNATURE:'),
+        ):
+            report, rc, _ = self.proof_case('existence', inspection)
+            self.assertEqual(rc, 1)
+            self.assertEqual(report['status'], 'PROOF_REJECTED')
+            self.assertFalse(report['existence_only_kernel_certificate'])
+
     def test_qft_certificate_never_clay(self):
         report,rc,calls=self.proof_case('qft',self.cp(text='QFT_KERNEL_CHECK_PASSED: Foo'))
         self.assertEqual(rc,0); self.assertTrue(report['qft_only_certificate']); self.assertFalse(report['clay_certificate'])

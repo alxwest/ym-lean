@@ -216,23 +216,30 @@ the reviewed *mass-gap* admission gate to be enabled. The JSON result uses
 `existence_only_kernel_certificate`, leaving the mass-gap and Clay
 certificates false.
 
+A compiled theorem with a different type or universe signature reports
+`INCOMPATIBLE_PROOF_SIGNATURE` (exit 2), with the expected and submitted
+types. Its transitive-axiom audit is not reached, and it receives no
+certificate. Compilation and unapproved-axiom failures remain failures
+(exit 1). The accepted target and axiom allowlist are unchanged.
+
 A Lean proof would validate this **specified** existence-only statement,
 not independently certify its semantic equivalence to every formulation
 of four-dimensional Yang–Mills existence, nor a physical mass gap.
 No such proof is supplied. Without a proof, the mode reports
 `PROOF_NOT_SUBMITTED` after checking the target shape.
 
-### Run the ym-ymg submission through the existence verifier
+### Translate and check the ym-ymg source statement
 
 With `ym-ymg` checked out alongside this repository, run:
 
 ```sh
-./scripts/verify_ym_ymg.sh
+./scripts/translate_ym_ymg.sh
 ```
 
-The launcher selects the October 2026 submission's `Solution.lean` and
-`--claim existence`. It saves the JSON result
-to `.lake/ym-ymg-existence-report.json` and preserves the verifier's exit code.
+This checks a translation of the **October 2026 source statement**, and exits
+0 with `SOURCE_TRANSLATION_CHECKED` when its proof has the exact translated
+type and only permitted transitive axioms. **This is not an
+`EXISTENCE_ONLY_KERNEL_PROOF_ACCEPTED` result.**
 For another checkout location, set `YM_YMG_ROOT=/absolute/path/to/ym-ymg`.
 
 The launcher checks that the toolchains and dependency revisions match, reuses
@@ -243,17 +250,62 @@ also generates and compiles copies of the public wrapper modules under
 `YMGSubmission` in `.lake/ym-ymg-integration`. Only the public namespace and
 wrapper imports are renamed; the internal `YM` modules are reused. The submitted
 theorem is therefore named `YMGSubmission.jointExistence` in this environment.
-Both build directories are added to the verifier's import path. The original
+The original
 submission sources and pinned manifest are unchanged. The first build is
 substantial; rerunning the command reuses completed modules. Build errors stop
-the launcher before proof verification. The generated package override lives at
-`.lake/ym-ymg-packages.json`.
+the launcher before proof verification. The generated package override lives
+at `.lake/ym-ymg-packages.json`; build output is saved to
+`.lake/ym-ymg-translation-build.log`.
+
+[Translation.lean](integrations/ym_ymg/Translation.lean) defines a gauge group
+on a carrier in any universe with an actual continuous group isomorphism to
+the source's matrix group. It proves that the induced matrix representation
+is faithful, continuous and has the same image. The target
+`YMGBridge.PresentedJointExistence.{u}` retains the original Wilson family,
+volume-sequence quantifiers and all four hierarchy properties on the same
+witness. `presentedJointExistence_iff_source` proves equivalence with the
+original `JointExistence`, in both directions. The universe is used by the
+carrier, not added as an unused binder.
+
+[Solution.lean](integrations/ym_ymg/Solution.lean) applies that equivalence to
+the original proof. Both bridge files are staged from this repository under
+`YMGBridge`. A separate trusted inspector checks the compiled translated
+target shape, theorem signature and transitive axioms. The predicates still
+have the submission's definitions; this is a source-statement translation,
+not an independent semantic certification of those definitions.
+
+To attempt the stricter ym-lean target after checking the source translation:
+
+```sh
+./scripts/verify_ym_ymg.sh
+```
+
+This submits `YMGBridge.jointExistence` to `--claim existence` and saves the
+result to `.lake/ym-ymg-existence-report.json`. **It currently exits 2 with
+`INCOMPATIBLE_PROOF_SIGNATURE`:** the universe parameter now matches, but
+`YMGBridge.PresentedJointExistence.{u}` is not
+`YangMills.YangMillsExistenceOnly.{u}`. All certificate flags remain false.
 
 **Import availability does not establish compatibility of the statements.**
-The submitted theorem proves `YangMills.JointExistence` rather than
-`YangMills.YangMillsExistenceOnly.{u}`. Acceptance still requires a proved bridge
-to this repository's exact universe-polymorphic target. The existence flag
-alone does not establish that bridge.
+The translation does not construct a matrix presentation for every
+`CompactSimpleGaugeGroup`, transport its Lie algebra/composite observables,
+or prove the additional physical requirements of `FilteredExistenceCandidate`.
+Those are remaining obligations, including the all-orders comparison in
+[issue #18](https://github.com/alxwest/ym-lean/issues/18). See
+[the logic audit and crosswalk](https://github.com/alxwest/ym-lean/issues/24).
+The existence flag alone does not establish that bridge.
+
+Run the real translation controls after building the integration:
+
+```sh
+python3 scripts/test_ym_ymg_translation.py
+python3 scripts/test_kernel_inspector.py
+python3 -m unittest discover -s scripts -p 'test_*.py'
+```
+
+The GitHub Actions job runs the Python tests and launcher syntax checks.
+The Lean integration controls above require the sibling submission and its
+build cache and are separate from that lightweight CI job.
 
 ### Submitting a future proof
 

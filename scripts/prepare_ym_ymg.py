@@ -38,12 +38,15 @@ def stage_wrappers(submission: Path, overrides: list[dict], version: str) -> Pat
         renamed = re.sub(r"^import ([^\n]+)$", rename_import, source, flags=re.MULTILINE)
         renamed = re.sub(r"\bYangMills\b", "YMGSubmission", renamed)
         write_if_changed(stage / "YMGSubmission" / f"{module}.lean", renamed)
+    for module in ("Translation", "Solution"):
+        bridge = ROOT / "integrations" / "ym_ymg" / f"{module}.lean"
+        write_if_changed(stage / "YMGBridge" / f"{module}.lean", bridge.read_text())
     write_if_changed(stage / "lean-toolchain", (submission / "lean-toolchain").read_text())
     write_if_changed(stage / "lakefile.toml", '\n'.join([
         'name = "ym_ymg_integration"', '[leanOptions]', 'maxHeartbeats = 0',
         'maxRecDepth = 4096', '[[require]]', 'name = "ym_core"',
         f'path = {json.dumps(str(submission))}', '[[lean_lib]]',
-        'name = "YMGSubmission"', '',
+        'name = "YMGSubmission"', '[[lean_lib]]', 'name = "YMGBridge"', '',
     ]))
     dependency = dict(name="ym_core", scope="", type="path", dir=str(submission),
                       inherited=False, configFile="lakefile.toml", manifestFile="lake-manifest.json")
