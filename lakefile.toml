@@ -12,3 +12,8 @@ rev = "v4.32.0"
 [[lean_lib]]
 name = "YangMills"
 moreLeanArgs = ["-DautoImplicit=false", "-DwarningAsError=true"]
+
+[[lean_lib]]
+name = "YMResearch"
+srcDir = "integrations/alxwest_ym"
+moreLeanArgs = ["-DautoImplicit=false", "-DwarningAsError=true"]

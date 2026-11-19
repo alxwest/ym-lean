@@ -315,6 +315,11 @@ targets. It records the open analytic inputs and provides commands for the
 [Lean comparison](integrations/ym4/Comparison.lean), which checks the finite
 plaquette formula and consequences for nontriviality and the spectral clause.
 
+Run `lake build YMResearch` to check the joint Wilson exterior comparison for
+F2 and the transfer from a common decay rate or fixed-time bound to the
+native Hamiltonian gap. The [alxwest/ym integration](integrations/alxwest_ym/README.md)
+records the required inputs and their scope for YM4.
+
 ### Submitting a future proof
 
 ```sh
