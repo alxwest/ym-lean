@@ -307,6 +307,14 @@ The GitHub Actions job runs the Python tests and launcher syntax checks.
 The Lean integration controls above require the sibling submission and its
 build cache and are separate from that lightweight CI job.
 
+### Compare the YM4 manuscript with the native targets
+
+The [YM4 source review](source/YM4_SOURCE_REVIEW.md) maps the conditional
+Wilson `SU(2)` scalar construction to the existence-only and full mass-gap
+targets. It records the open analytic inputs and provides commands for the
+[Lean comparison](integrations/ym4/Comparison.lean), which checks the finite
+plaquette formula and consequences for nontriviality and the spectral clause.
+
 ### Submitting a future proof
 
 ```sh
