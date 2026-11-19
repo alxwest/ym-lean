@@ -320,6 +320,14 @@ F2 and the transfer from a common decay rate or fixed-time bound to the
 native Hamiltonian gap. The [alxwest/ym integration](integrations/alxwest_ym/README.md)
 records the required inputs and their scope for YM4.
 
+### Compare alxwest/ym with the native targets
+
+The [alxwest/ym source review](source/ALXWEST_YM_SOURCE_REVIEW.md) compares the
+selected dyadic heat/Hodge construction, sampled Wilson results and Qcos
+countermodel tests with the native existence and mass-gap requirements. It
+links the open construction issues and records the checks run against both
+repositories.
+
 ### Submitting a future proof
 
 ```sh
