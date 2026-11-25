@@ -25,6 +25,15 @@ and its requirements before exploring the implementation. The
 remaining notes; the [glossary](source/GLOSSARY.md) explains recurring terms
 and notation with links to their technical sources.
 
+## Comparative Lean subproof census
+
+The [Lean subproof comparison](source/subproofs/README.md) tracks comparable
+Yang–Mills formalisation projects against a shared requirement map. See the
+[reviewed baseline chart](source/subproofs/baseline.svg) and
+[baseline tables](source/subproofs/baseline.md), or run the
+[comparison workflow](https://github.com/alxwest/ym-lean/actions/workflows/subproof-comparison.yml)
+to refresh the declaration counts. The census is not a proof acceptance result.
+
 ## 1. What is the mathematical problem?
 
 A Yang–Mills theory describes gauge fields: fields whose mathematical
