@@ -1,0 +1,1949 @@
+{
+  "schema_version": 1,
+  "reference": "source/requirements.json",
+  "method": "Scoped review plus lexical named source declaration import closures; not kernel certification.",
+  "areas": [
+    {
+      "id": "gibbs",
+      "label": "Finite gauge Gibbs law",
+      "requirement_ids": [
+        "group",
+        "ym-identification"
+      ]
+    },
+    {
+      "id": "reflection",
+      "label": "Lattice reflection positivity",
+      "requirement_ids": [
+        "qft-axioms"
+      ]
+    },
+    {
+      "id": "compactness",
+      "label": "Compactness / subsequences",
+      "requirement_ids": [
+        "qft-axioms",
+        "spacetime"
+      ]
+    },
+    {
+      "id": "hilbert",
+      "label": "Positive-kernel Hilbert space",
+      "requirement_ids": [
+        "qft-axioms"
+      ]
+    },
+    {
+      "id": "semigroup",
+      "label": "Positive-time semigroup",
+      "requirement_ids": [
+        "qft-axioms"
+      ]
+    },
+    {
+      "id": "generator",
+      "label": "Positive generator / spectrum",
+      "requirement_ids": [
+        "qft-axioms",
+        "physical-gap"
+      ]
+    },
+    {
+      "id": "continuum",
+      "label": "Scalar continuum limit",
+      "requirement_ids": [
+        "spacetime",
+        "ym-identification",
+        "qft-axioms"
+      ]
+    },
+    {
+      "id": "excitation",
+      "label": "Surviving physical excitation",
+      "requirement_ids": [
+        "nontrivial"
+      ]
+    },
+    {
+      "id": "continuum-os",
+      "label": "Continuum Euclidean symmetry / OS",
+      "requirement_ids": [
+        "qft-axioms",
+        "spacetime"
+      ]
+    },
+    {
+      "id": "wightman",
+      "label": "Relativistic Wightman reconstruction",
+      "requirement_ids": [
+        "qft-axioms",
+        "spacetime"
+      ]
+    },
+    {
+      "id": "uv",
+      "label": "Asymptotic freedom / tuned coupling",
+      "requirement_ids": [
+        "ultraviolet",
+        "ym-identification"
+      ]
+    },
+    {
+      "id": "finite-gap",
+      "label": "Finite gap / correlation decay",
+      "requirement_ids": [
+        "physical-gap"
+      ]
+    },
+    {
+      "id": "physical-gap",
+      "label": "Physical continuum mass gap",
+      "requirement_ids": [
+        "physical-gap",
+        "universal-existence"
+      ]
+    },
+    {
+      "id": "ope",
+      "label": "Composite observables / OPE",
+      "requirement_ids": [
+        "gauge-observables",
+        "renormalized-filtration",
+        "ope"
+      ]
+    },
+    {
+      "id": "stress",
+      "label": "Stress / Ward / trace",
+      "requirement_ids": [
+        "stress-tensor",
+        "ultraviolet"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "YM4",
+      "label": "YM4",
+      "repository": "ethanwsussman/Yang--Mills-LLM-experiment",
+      "ref": "HEAD",
+      "reviewed_revision": "3932084a9b82fc79466b4a2faad9ec032b637445",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Scalar SU(2) fixed-observable continuum route; construction inputs and independent assessment remain limitations.",
+      "packages": [
+        {
+          "root": "YM4 Lean",
+          "include": [
+            "**/*.lean",
+            "*.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "YM4 Lean/YangMills/Construction/Lattice/WilsonWeightGaugeInvarianceProof.lean",
+            "YM4 Lean/YangMills/Construction/Lattice/WilsonActionAsAPlaquetteSumAndSymmetriesOfProductHaarProof.lean"
+          ]
+        },
+        "reflection": {
+          "status": "complete",
+          "roots": [
+            "YM4 Lean/YangMills/Construction/ReflectionPositivity/ReflectionPositivityOnSplitToriProof.lean"
+          ]
+        },
+        "compactness": {
+          "status": "complete",
+          "roots": [
+            "YM4 Lean/YangMills/Construction/InfiniteLattice/PeriodicGibbsStatesAreConvexAndWeaklyCompactProof.lean"
+          ]
+        },
+        "hilbert": {
+          "status": "complete",
+          "roots": [
+            "YM4 Lean/YangMills/Construction/HilbertSpaces/ReconstructionFromAPositiveFormProof.lean"
+          ]
+        },
+        "semigroup": {
+          "status": "complete",
+          "roots": [
+            "YM4 Lean/YangMills/Construction/ReflectionPositiveLimits/ReconstructionFromAContractionAtADenseSetOfTimesProof.lean"
+          ]
+        },
+        "generator": {
+          "status": "complete",
+          "roots": [
+            "YM4 Lean/YangMills/Construction/HilbertSpaces/GeneratorOfASemigroupOfPositiveContractionsProof.lean"
+          ]
+        },
+        "continuum": {
+          "status": "conditional",
+          "roots": [
+            "YM4 Lean/Formulation/FixedObservableContinuum.lean"
+          ],
+          "note": "Scalar fixed-observable conclusion only; hypotheses and mathematical review remain."
+        },
+        "excitation": {
+          "status": "conditional",
+          "roots": [
+            "YM4 Lean/Formulation/FixedObservableContinuum.lean"
+          ]
+        },
+        "continuum-os": {
+          "status": "conditional",
+          "roots": [
+            "YM4 Lean/Formulation/WilsonOSProof.lean",
+            "YM4 Lean/Formulation/FixedObservableContinuum.lean"
+          ]
+        },
+        "wightman": {
+          "status": "conditional",
+          "roots": [
+            "YM4 Lean/Reconstruction/FixedObservable.lean"
+          ],
+          "note": "Selected scalar reconstruction, not a full all-group physical theory."
+        },
+        "uv": {
+          "status": "partial",
+          "roots": [
+            "YM4 Lean/Formulation/FixedObservableContinuum.lean",
+            "YM4 Lean/YangMills/ContinuumLimit/SlopeOfTheRun.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "OpenAI",
+      "label": "OpenAI",
+      "repository": "yang-mills-group/OpenAI-YM-20261028",
+      "ref": "HEAD",
+      "reviewed_revision": "3456e5e75cf8d4cd558955a5c7638fba2d68f464",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Released JointExistence specification for closed matrix groups with nonabelian simple real Lie algebra; does not assert a physical gap or exact ym-lean equivalence.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "YM/**/*.lean",
+            "YM.lean",
+            "*.lean",
+            "verification/*.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "YM/Wilson/Symmetry.lean"
+          ]
+        },
+        "reflection": {
+          "status": "complete",
+          "roots": [
+            "YM/Slice/Reflection.lean"
+          ]
+        },
+        "compactness": {
+          "status": "complete",
+          "roots": [
+            "YM/Extraction/Simultaneous.lean"
+          ]
+        },
+        "hilbert": {
+          "status": "complete",
+          "roots": [
+            "YM/Hilbert/Kolmogorov.lean"
+          ]
+        },
+        "semigroup": {
+          "status": "complete",
+          "roots": [
+            "YM/OS/Dynamics.lean"
+          ]
+        },
+        "generator": {
+          "status": "complete",
+          "roots": [
+            "YM/Spectral/Frequencies.lean",
+            "YM/Spectral/Projection.lean"
+          ]
+        },
+        "continuum": {
+          "status": "complete",
+          "roots": [
+            "YM/Independent/ConstructionRun.lean"
+          ],
+          "note": "Completion under the released JointExistence criterion, not exact ym-lean."
+        },
+        "excitation": {
+          "status": "complete",
+          "roots": [
+            "TraceBridge.lean",
+            "YM/Independent/Core.lean"
+          ]
+        },
+        "continuum-os": {
+          "status": "complete",
+          "roots": [
+            "YM/Extraction/Harvest.lean",
+            "YM/EveryPhase/Pack.lean",
+            "YM/Independent/ConstructionRun.lean"
+          ]
+        },
+        "wightman": {
+          "status": "complete",
+          "roots": [
+            "HierarchyBridge.lean",
+            "YM/EveryPhase/Extension.lean",
+            "YM/Independent/ConstructionRun.lean"
+          ]
+        },
+        "uv": {
+          "status": "complete",
+          "roots": [
+            "YM/Pert/Asymptotics/RawAxis.lean",
+            "YM/Independent/ConstructionRun.lean"
+          ],
+          "note": "Tuned Wilson coefficient and public short-distance tests, not full all-order MS-bar matching."
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "complete",
+          "roots": [
+            "verification/CompactCheck.lean"
+          ],
+          "note": "Separated OPE in the public construction; not all prescriptions."
+        },
+        "stress": {
+          "status": "partial",
+          "roots": [
+            "TraceBridge.lean"
+          ],
+          "note": "Constructed centered stress trace; broader ym-lean stress conditions not certified."
+        }
+      }
+    },
+    {
+      "id": "DyadicYM",
+      "label": "DyadicYM",
+      "repository": "alxwest/ym",
+      "ref": "refs/heads/research/qcos-dyadic-lean",
+      "reviewed_revision": "226a88ee173ee62a2fc00a16ee0f04a643905ae2",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "formal/ym-lean/README.md",
+      "scope": "Native simplicial/dyadic regulator and reconstructed auxiliary sectors; physical field survival and Qcos-to-physical-Hamiltonian comparison open.",
+      "packages": [
+        {
+          "root": "formal/ym-lean",
+          "include": [
+            "DyadicYM/**/*.lean",
+            "DyadicYM.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "formal/ym-lean/DyadicYM/SimplicialGibbs.lean"
+          ]
+        },
+        "reflection": {
+          "status": "complete",
+          "roots": [
+            "formal/ym-lean/DyadicYM/SimplicialReflectionPositive.lean"
+          ]
+        },
+        "compactness": {
+          "status": "complete",
+          "roots": [
+            "formal/ym-lean/DyadicYM/WordLimit.lean"
+          ]
+        },
+        "hilbert": {
+          "status": "complete",
+          "roots": [
+            "formal/ym-lean/DyadicYM/WordLimit.lean"
+          ],
+          "note": "Positive-kernel reconstruction machinery, not by itself a physical field."
+        },
+        "semigroup": {
+          "status": "complete",
+          "roots": [
+            "formal/ym-lean/DyadicYM/DyadicTimeLimit.lean"
+          ]
+        },
+        "generator": {
+          "status": "complete",
+          "roots": [
+            "formal/ym-lean/DyadicYM/LogHamiltonian.lean"
+          ],
+          "note": "Positive generator in reconstructed auxiliary sector, not yet identified with interacting physical Hamiltonian."
+        },
+        "continuum": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/SimplexBulkCorrelations.lean",
+            "formal/ym-lean/DyadicYM/SimplexSpatialLaw.lean",
+            "formal/ym-lean/DyadicYM/SimplexCylinderDynamics.lean"
+          ]
+        },
+        "excitation": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/SimplexReflectedState.lean",
+            "formal/ym-lean/DyadicYM/SimplexCurvatureBand.lean",
+            "formal/ym-lean/DyadicYM/SimplexCurvatureSpectrum.lean"
+          ],
+          "note": "Finite positive energy spectral weight still unproved."
+        },
+        "continuum-os": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/SimplexSpatialReflection.lean",
+            "formal/ym-lean/DyadicYM/SimplexSpatialKernel.lean",
+            "formal/ym-lean/DyadicYM/SimplexCylinderCorrelation.lean"
+          ]
+        },
+        "wightman": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/SchwartzKernels.lean",
+            "formal/ym-lean/DyadicYM/WightmanSpectrum.lean",
+            "formal/ym-lean/DyadicYM/NativeBoostEscape.lean",
+            "formal/ym-lean/DyadicYM/LorentzBoost.lean",
+            "formal/ym-lean/DyadicYM/SimplexCurvatureRelativity.lean",
+            "formal/ym-lean/DyadicYM/SimplexCurvaturePointTest.lean"
+          ]
+        },
+        "uv": {
+          "status": "conditional",
+          "roots": [
+            "formal/ym-lean/DyadicYM/RunningCoupling.lean",
+            "formal/ym-lean/DyadicYM/DyadicRunningScale.lean",
+            "formal/ym-lean/DyadicYM/SimplexRunningVariance.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/OccupiedGapRecovery.lean"
+          ]
+        },
+        "physical-gap": {
+          "status": "conditional",
+          "roots": [
+            "formal/ym-lean/DyadicYM.lean"
+          ],
+          "note": "Qcos recovery theorem requires comparison and field witnesses."
+        },
+        "ope": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/CompositeKernels.lean",
+            "formal/ym-lean/DyadicYM/CompactCompositeCore.lean"
+          ]
+        },
+        "stress": {
+          "status": "partial",
+          "roots": [
+            "formal/ym-lean/DyadicYM/NativeStressWard.lean",
+            "formal/ym-lean/DyadicYM/SimplexMetricTrace.lean"
+          ]
+        }
+      },
+      "private_source": true
+    },
+    {
+      "id": "Nissim",
+      "label": "Nissim",
+      "repository": "rn9801/strong-coupling-lattice-yang-mills",
+      "ref": "HEAD",
+      "reviewed_revision": "bc7383d023f0c58a16312764a32422248aa42ebe",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "STATUS.md",
+      "scope": "Infinite-volume cubic lattice, explicit strong-coupling disk; no physical continuum limit or OS reconstruction.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "YangMills/**/*.lean",
+            "YangMills.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "YangMills/Gauge/FiniteVolume.lean",
+            "YangMills/Gauge/Specification.lean",
+            "YangMills/Gauge/Holonomy.lean"
+          ]
+        },
+        "reflection": {
+          "status": "complete",
+          "roots": [
+            "YangMills/StrongCoupling/ConcreteSiteReflectionPositivity.lean",
+            "YangMills/StrongCoupling/ConcreteLinkReflectionPositivity.lean",
+            "YangMills/StrongCoupling/ConcreteDiagonalReflectionPositivity.lean"
+          ],
+          "note": "Infinite-volume strong-coupling lattice reflection positivity."
+        },
+        "compactness": {
+          "status": "complete",
+          "roots": [
+            "YangMills/StrongCoupling/InfiniteVolumeMeasure.lean",
+            "YangMills/StrongCoupling/CenteredInfiniteVolume.lean"
+          ],
+          "note": "Fixed-spacing thermodynamic limit only."
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "complete",
+          "roots": [
+            "YangMills/StrongCoupling/ExponentialClustering.lean"
+          ],
+          "note": "Exponential clustering at fixed spacing in the strong-coupling disk."
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Bundschu",
+      "label": "Bundschu",
+      "repository": "ColinBundschu/mass-gap",
+      "ref": "HEAD",
+      "reviewed_revision": "9a93f328885f0c6336bd3552e497f731bf07ec54",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Constructive finite spectral brackets and group-classification data; uniform volume/cutoff and relativistic continuum obligations remain.",
+      "packages": [
+        {
+          "root": "lean",
+          "include": [
+            "MassGap/**/*.lean",
+            "MassGap.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "lean/MassGap/Lattice.lean",
+            "lean/MassGap/Link.lean",
+            "lean/MassGap/Network.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "partial",
+          "roots": [
+            "lean/MassGap/Speccut.lean",
+            "lean/MassGap/Attained.lean"
+          ]
+        },
+        "continuum": {
+          "status": "partial",
+          "roots": [
+            "lean/MassGap/Continuum.lean"
+          ],
+          "note": "Constructive bracket data only, no proved relativistic continuum."
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "partial",
+          "roots": [
+            "lean/MassGap/Decimation.lean",
+            "lean/MassGap/Depthchain.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "complete",
+          "roots": [
+            "lean/MassGap/Main.lean",
+            "lean/MassGap/Speccut.lean"
+          ],
+          "note": "Selected finite Hamiltonian truncations, not a uniform volume or cutoff gap."
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "WilsonLoopRG",
+      "label": "Wilson Loop RG",
+      "repository": "MathePhysics/4D_Wilson_Loop_RG",
+      "ref": "HEAD",
+      "reviewed_revision": "a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Finite-volume Wilson-loop RG programme; Lean formalises supporting estimates, not the full manuscript continuum theorem.",
+      "packages": [
+        {
+          "root": "LEAN/CoreLean",
+          "include": [
+            "CoreLean/**/*.lean",
+            "CoreLean.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/BakerCampbellHausdorff",
+          "include": [
+            "BakerCampbellHausdorff/**/*.lean",
+            "BakerCampbellHausdorff.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/BlockPoincare",
+          "include": [
+            "BlockPoincare/**/*.lean",
+            "BlockPoincare.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/CompactLieHeatKernel",
+          "include": [
+            "CompactLieHeatKernel/**/*.lean",
+            "CompactLieHeatKernel.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/FriedrichsExtension",
+          "include": [
+            "FriedrichsExtension/**/*.lean",
+            "FriedrichsExtension.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/GaussianBlockSpin",
+          "include": [
+            "GaussianBlockSpin/**/*.lean",
+            "GaussianBlockSpin.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/KatoRellich",
+          "include": [
+            "KatoRellich/**/*.lean",
+            "KatoRellich.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/LieGroupExponential",
+          "include": [
+            "LieGroupExponential/**/*.lean",
+            "LieGroupExponential.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/PeterWeyl",
+          "include": [
+            "PeterWeyl/**/*.lean",
+            "PeterWeyl.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/SchwarzTheorem",
+          "include": [
+            "SchwarzTheorem/**/*.lean",
+            "SchwarzTheorem.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/SpectralTheorem",
+          "include": [
+            "SpectralTheorem/**/*.lean",
+            "SpectralTheorem.lean"
+          ]
+        },
+        {
+          "root": "LEAN/Libraries/TotalisationSafety",
+          "include": [
+            "TotalisationSafety/**/*.lean",
+            "TotalisationSafety.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "LEAN/CoreLean/CoreLean/Lattice.lean",
+            "LEAN/CoreLean/CoreLean/GaugeFixing.lean",
+            "LEAN/CoreLean/CoreLean/LatticesTorus.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "partial",
+          "roots": [
+            "LEAN/CoreLean/CoreLean/WardMaster.lean",
+            "LEAN/CoreLean/CoreLean/SmallFieldOperator.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "partial",
+          "roots": [
+            "LEAN/CoreLean/CoreLean/WardMaster.lean"
+          ]
+        }
+      }
+    },
+    {
+      "id": "SolidSF",
+      "label": "SolidSF",
+      "repository": "solidsf-inc/yang-mills-attempt",
+      "ref": "HEAD",
+      "reviewed_revision": "0608b6273e9b6932b838da6373498b8584158ee1",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "SU(2) Wilson-measure estimates; prior positive-gap claim withdrawn. Conditional bridges and reward-hacked modules must not count as completed proofs.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "JesseMath/Physics/*.lean",
+            "JesseMath/Linter/AxiomAudit.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "JesseMath/Physics/LatticeYangMills.lean",
+            "JesseMath/Physics/YangMillsHaar.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "conditional",
+          "roots": [
+            "JesseMath/Physics/YangMillsContinuumCompactness.lean"
+          ]
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "conditional",
+          "roots": [
+            "JesseMath/Physics/YangMillsContinuumLimitBridge.lean",
+            "JesseMath/Physics/YangMillsRenormalizedObservableLimits.lean"
+          ]
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "conditional",
+          "roots": [
+            "JesseMath/Physics/YangMillsOsterwalderSchraderInheritance.lean"
+          ]
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "partial",
+          "roots": [
+            "JesseMath/Physics/YangMillsWeakCoupling.lean",
+            "JesseMath/Physics/YangMillsWilsonSmallField.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "partial",
+          "roots": [
+            "JesseMath/Physics/YangMillsWilsonLinkRadialPoincare.lean"
+          ]
+        },
+        "physical-gap": {
+          "status": "conditional",
+          "roots": [
+            "JesseMath/Physics/YangMillsPhysicalGap.lean"
+          ],
+          "note": "Abstract dense-core bridge; uniform decay assumption still required."
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Luaartist",
+      "label": "Luaartist",
+      "repository": "luaartist/Yang-Mills-Lean-4-Scaffold-Archive",
+      "ref": "HEAD",
+      "reviewed_revision": "d49de97cb3ca4db88701c455b80c44da9839c7c5",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "PROOF_STATUS_CHART.md",
+      "scope": "Finite projected-model gap and explicit continuum obligation structures; selected roots can package assumptions.",
+      "packages": [
+        {
+          "root": "src",
+          "include": [
+            "YangMills/**/*.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "src/YangMills/FiniteLatticeLinks.lean",
+            "src/YangMills/FiniteTorusCanonical.lean",
+            "src/YangMills/GaugeCovariance.lean",
+            "src/YangMills/A1WilsonActionWitnesses.lean"
+          ]
+        },
+        "reflection": {
+          "status": "partial",
+          "roots": [
+            "src/YangMills/FiniteTorusReflection.lean"
+          ]
+        },
+        "compactness": {
+          "status": "conditional",
+          "roots": [
+            "src/YangMills/DirectedApproximation.lean",
+            "src/YangMills/DirectedLimitCertificates.lean"
+          ]
+        },
+        "hilbert": {
+          "status": "conditional",
+          "roots": [
+            "src/YangMills/QuantumFoundations.lean",
+            "src/YangMills/OsterwalderSchraderReconstruction.lean"
+          ]
+        },
+        "semigroup": {
+          "status": "partial",
+          "roots": [
+            "src/YangMills/PositiveTimeRegion.lean"
+          ]
+        },
+        "generator": {
+          "status": "partial",
+          "roots": [
+            "src/YangMills/ActiveSectorHamiltonian.lean",
+            "src/YangMills/SpectralGapCertificates.lean"
+          ]
+        },
+        "continuum": {
+          "status": "conditional",
+          "roots": [
+            "src/YangMills/ContinuumMassGapProgram.lean"
+          ]
+        },
+        "excitation": {
+          "status": "open",
+          "roots": [
+            "src/YangMills/ContinuumMassGapProgram.lean"
+          ]
+        },
+        "continuum-os": {
+          "status": "conditional",
+          "roots": [
+            "src/YangMills/OsterwalderSchraderReconstruction.lean"
+          ]
+        },
+        "wightman": {
+          "status": "conditional",
+          "roots": [
+            "src/YangMills/QuantumWightman.lean",
+            "src/YangMills/OsterwalderSchraderReconstruction.lean"
+          ]
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "complete",
+          "roots": [
+            "src/YangMills/MassGapTheorem.lean",
+            "src/YangMills/ProjectedGapCertificates.lean"
+          ]
+        },
+        "physical-gap": {
+          "status": "conditional",
+          "roots": [
+            "src/YangMills/ContinuumMassGapProgram.lean",
+            "src/YangMills/BridgeToClay.lean"
+          ]
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Consensus",
+      "label": "Consensus",
+      "repository": "consensusframework/yang-mills-mass-gap",
+      "ref": "HEAD",
+      "reviewed_revision": "3c91be1c44033638c9fd002ba6684ca5c736f10e",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Finite-volume Wilson lattice polymer/covariance bounds; the repository explicitly leaves HasLatticeMassGap and the continuum open.",
+      "packages": [
+        {
+          "root": "Phase3",
+          "include": [
+            "LatticeGauge/**/*.lean",
+            "LatticeGauge.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "Phase3/LatticeGauge/Gibbs.lean",
+            "Phase3/LatticeGauge/GaugeInvariance.lean",
+            "Phase3/LatticeGauge/HaarUnitary.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "partial",
+          "roots": [
+            "Phase3/LatticeGauge/CovarianceDecay.lean",
+            "Phase3/LatticeGauge/Translation.lean"
+          ],
+          "note": "Finite-volume covariance bounds; HasLatticeMassGap is open."
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Elvin40",
+      "label": "Elvin40",
+      "repository": "elvin40/yang-mills",
+      "ref": "HEAD",
+      "reviewed_revision": "5d305ca2304608fb65e815bc85f8416ee48762ae",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "SU(2) Bałaban weak Theorem 2w and finite-torus route, conditional on published inputs and certificate hypotheses.",
+      "packages": [
+        {
+          "root": "lean",
+          "include": [
+            "YmLean/**/*.lean",
+            "YmLean.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "lean/YmLean/GpyLattice.lean",
+            "lean/YmLean/GaugeMin.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "conditional",
+          "roots": [
+            "lean/YmLean/TheoremK.lean",
+            "lean/YmLean/H2Box.lean",
+            "lean/YmLean/LemmaDHist.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "4Y-M",
+      "label": "4Y-M",
+      "repository": "anaxia-research/4Y-M",
+      "ref": "HEAD",
+      "reviewed_revision": "3df6d08c86e433b29d389afec6da8c800ca8f2e3",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Finite analytical and numerical certificates; continuum gap inequalities are conditional criteria, not physical construction.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "YangMills/**/*.lean",
+            "YangMills.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "YangMills/WilsonAction.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "partial",
+          "roots": [
+            "YangMills/RunningCoupling.lean"
+          ]
+        },
+        "finite-gap": {
+          "status": "partial",
+          "roots": [
+            "YangMills/StrongCoupling/StarThreshold.lean",
+            "YangMills/StrongCoupling/Thresholds.lean"
+          ]
+        },
+        "physical-gap": {
+          "status": "conditional",
+          "roots": [
+            "YangMills/LimitRatio.lean",
+            "YangMills/SpectralNoGo.lean"
+          ]
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Lautanen",
+      "label": "Lautanen",
+      "repository": "Eric-Lautanen/YangMills",
+      "ref": "HEAD",
+      "reviewed_revision": "5f96a08611ad717faebe1b6fd19f4479caf3e5ca",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "docs/STATUS.md",
+      "scope": "Gauge and positive-definite/transfer infrastructure; continuum and mass gap are directly assumed by project axioms.",
+      "packages": [
+        {
+          "root": "src/lean",
+          "include": [
+            "YangMills/**/*.lean",
+            "YangMills.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "src/lean/YangMills/Proofs/LatticeMeasure.lean",
+            "src/lean/YangMills/Proofs/GaugeInvariance.lean",
+            "src/lean/YangMills/Lattice.lean",
+            "src/lean/YangMills/GaugeTheory.lean"
+          ]
+        },
+        "reflection": {
+          "status": "conditional",
+          "roots": [
+            "src/lean/YangMills/Proofs/ReflectionPositivity.lean",
+            "src/lean/YangMills/Proofs/TransferMatrix.lean"
+          ]
+        },
+        "compactness": {
+          "status": "open",
+          "roots": [
+            "src/lean/YangMills/ContinuumLimit.lean"
+          ]
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": [
+            "src/lean/YangMills/ContinuumLimit.lean"
+          ]
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": [
+            "src/lean/YangMills/OSAxioms.lean"
+          ]
+        },
+        "wightman": {
+          "status": "open",
+          "roots": [
+            "src/lean/YangMills/OSAxioms.lean"
+          ]
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": [
+            "src/lean/YangMills/Proofs/MassGapProof.lean"
+          ],
+          "note": "The physical gap is a project axiom, not derived."
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Douglas",
+      "label": "Douglas LGT",
+      "repository": "mrdouglasny/lgt",
+      "ref": "HEAD",
+      "reviewed_revision": "b8793ccf6a51e00e9e2b1685ba191b8626e37137",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "U(n) strong-coupling finite torus exponential correlation decay, not a continuum mass gap.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "LGT/**/*.lean",
+            "LGT.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "complete",
+          "roots": [
+            "LGT/MassGap/YMMeasure.lean",
+            "LGT/Gibbs/YMIsGibbs.lean",
+            "LGT/WilsonAction/GaugeInvariance.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "complete",
+          "roots": [
+            "LGT/MassGap/StrongCoupling.lean"
+          ],
+          "note": "U(n) strong-coupling finite torus correlation decay only."
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "OpenAIExtension",
+      "label": "OpenAI gap extension",
+      "repository": "rohanarun/yang-mills-mass-gap-auto-research",
+      "ref": "HEAD",
+      "reviewed_revision": "ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Dependent follow-up to OpenAI; abstract dense-family/Laplace gap criteria with dynamical estimates still open; not an independent existence attempt.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "auto-research/**/*.lean",
+            "research/**/*.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "auto-research/general/2026-11-11-T03-upstream-branch-audit/BranchCorollary.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "conditional",
+          "roots": [
+            "auto-research/general/2026-11-11-T02-laplace-support/LaplaceSupport.lean",
+            "auto-research/general/2026-11-11-T02-uniform-projection-criterion/lean/GapCriteria.lean"
+          ]
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "FMCAD",
+      "label": "FMCAD",
+      "repository": "submission-fmcad-2026/submission-fmcad-2026",
+      "ref": "HEAD",
+      "reviewed_revision": "b637ab9a3d92c259b6561982ba57475f9908da9b",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "README.md",
+      "scope": "Geometric and algebraic interfaces; terminal OS package and spectral model do not instantiate the physical ym-lean target.",
+      "packages": [
+        {
+          "root": ".",
+          "include": [
+            "YangMills/**/*.lean",
+            "YangMills.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "partial",
+          "roots": [
+            "YangMills/Algebra/SUN.lean",
+            "YangMills/Algebra/LinkIntegral.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": [
+            "YangMills/Physics/StatisticalMechanics.lean"
+          ]
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": [
+            "YangMills/Physics/MassGap.lean"
+          ],
+          "note": "Abstract package does not state physical Wightman conditions."
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": [
+            "YangMills/Physics/MassGap.lean"
+          ],
+          "note": "Terminal formula/interface is not a proved physical gap."
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Merchant",
+      "label": "Merchant",
+      "repository": "merchantmoh-debug/Yang-Mills-Solution-Lean-4",
+      "ref": "HEAD",
+      "reviewed_revision": "ecbc9fdca0f77db5033fea11aa2be8aa43c01b57",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "src/YM_Core/MassGap.lean",
+      "scope": "Gap conclusion follows from assumed inequalities; existence axiom is True.",
+      "packages": [
+        {
+          "root": "src",
+          "include": [
+            "YM_Core/**/*.lean",
+            "YM_Core.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "open",
+          "roots": [
+            "src/YM_Core/GaugeOrbitSpace.lean",
+            "src/YM_Core/YangMills.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": [
+            "src/YM_Core/MassGap.lean"
+          ],
+          "note": "Assumed gap inequality, existence axiom True."
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "YuanXian",
+      "label": "YuanXian",
+      "repository": "YuanXian-Theory/YXT-YangMills",
+      "ref": "HEAD",
+      "reviewed_revision": "e8ac799b97a7df46481405960d2d370bdc7de0fd",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "lean/YangMillsMassGap.lean",
+      "scope": "Incomplete instanton formalisation, unresolved sorry placeholders; no verified physical continuum construction.",
+      "packages": [
+        {
+          "root": "lean",
+          "include": [
+            "*.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "open",
+          "roots": [
+            "lean/GaugeField.lean"
+          ]
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": [
+            "lean/OsterwalderSchrader.lean"
+          ]
+        },
+        "wightman": {
+          "status": "open",
+          "roots": [
+            "lean/OsterwalderSchrader.lean"
+          ]
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": [
+            "lean/YangMillsMassGap.lean"
+          ],
+          "note": "Incomplete instanton construction with unresolved placeholders."
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    },
+    {
+      "id": "Eriksson",
+      "label": "Eriksson",
+      "repository": "lluiseriksson/ym-mass-gap-lean-verification",
+      "ref": "HEAD",
+      "reviewed_revision": "fc4631d6afd3a99074bae7327e6aae33bbc86376",
+      "reviewed_on": "2026-11-25",
+      "review_evidence": "lean/YMProof.lean",
+      "scope": "Only the trivial placeholder Lean file in this repository; no substantive checked subproof credited.",
+      "packages": [
+        {
+          "root": "lean",
+          "include": [
+            "*.lean"
+          ]
+        }
+      ],
+      "cells": {
+        "gibbs": {
+          "status": "open",
+          "roots": []
+        },
+        "reflection": {
+          "status": "open",
+          "roots": []
+        },
+        "compactness": {
+          "status": "open",
+          "roots": []
+        },
+        "hilbert": {
+          "status": "open",
+          "roots": []
+        },
+        "semigroup": {
+          "status": "open",
+          "roots": []
+        },
+        "generator": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum": {
+          "status": "open",
+          "roots": []
+        },
+        "excitation": {
+          "status": "open",
+          "roots": []
+        },
+        "continuum-os": {
+          "status": "open",
+          "roots": []
+        },
+        "wightman": {
+          "status": "open",
+          "roots": []
+        },
+        "uv": {
+          "status": "open",
+          "roots": []
+        },
+        "finite-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "physical-gap": {
+          "status": "open",
+          "roots": []
+        },
+        "ope": {
+          "status": "open",
+          "roots": []
+        },
+        "stress": {
+          "status": "open",
+          "roots": []
+        }
+      }
+    }
+  ]
+}

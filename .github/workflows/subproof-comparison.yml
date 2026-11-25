@@ -1,0 +1,71 @@
+name: Lean subproof comparison
+
+on:
+  workflow_dispatch:
+    inputs:
+      snapshot:
+        description: Latest upstream revisions or the pinned reviewed baseline
+        type: choice
+        options:
+          - latest
+          - reviewed
+        default: latest
+  schedule:
+    - cron: '23 5 * * 1'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/subproof-comparison.yml'
+      - 'scripts/compare_subproofs.py'
+      - 'scripts/test_compare_subproofs.py'
+      - 'source/subproofs/**'
+      - 'source/requirements.json'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lean-subproof-comparison-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.12'
+      - name: Test the census
+        run: python3 -m unittest discover -s scripts -p 'test_compare_subproofs.py'
+      - name: Fetch and compare registered Lean sources
+        env:
+          SNAPSHOT: ${{ inputs.snapshot || 'latest' }}
+          YM_SUBPROOF_DYADIC_TOKEN: ${{ secrets.YM_SUBPROOF_DYADIC_TOKEN }}
+        run: |
+          python3 scripts/compare_subproofs.py --mode "$SNAPSHOT" --output subproof-report
+      - name: Publish comparison to the job summary
+        if: always()
+        run: |
+          if test -f subproof-report/report.md; then
+            cat subproof-report/report.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            printf 'No comparison report was produced. See the census logs.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - name: Upload chart and audit data
+        id: artifact
+        if: always() && hashFiles('subproof-report/report.json') != ''
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: lean-subproof-comparison
+          path: subproof-report/
+          if-no-files-found: error
+          retention-days: 90
+      - name: Link to the chart artifact
+        if: always() && steps.artifact.outcome == 'success'
+        env:
+          ARTIFACT_URL: ${{ steps.artifact.outputs.artifact-url }}
+        run: printf '\n[Download the full SVG chart, CSV, JSON, and Markdown report](%s)\n' "$ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
