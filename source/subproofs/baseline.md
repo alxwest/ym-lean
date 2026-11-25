@@ -1,29 +1,29 @@
 # Lean subproof comparison
 
-Snapshot mode: **reviewed** · Reference: `624eafeb6114ce71aa84c246882edb24cc4f8a7a`
+Snapshot mode: **reviewed** · Reference: `1c3e00830293c627ba30fbf457cc961161285916`
 
-Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Status is scoped review, not a kernel or Clay verdict. Shared dependencies may recur. Gray/review-required means the upstream revision changed. A dash is not a measured zero.
+Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Colours show the last assessed proof status, not a fresh kernel or Clay verdict. Counts use the fetched revision; the status assessment revision is recorded separately. Shared dependencies may recur. A dash means no selected module; n/a means count unavailable.
 
-| Framework | Source modules | Source declarations | Union of selected closures | Revision | Review |
-|---|---:|---:|---:|---|---|
-| YM4 | 12,589 | 171,527 | 171,415 | [3932084a9b](https://github.com/ethanwsussman/Yang--Mills-LLM-experiment/tree/3932084a9b82fc79466b4a2faad9ec032b637445) | reviewed |
-| OpenAI | 9,474 | 99,516 | 99,476 | [3456e5e75c](https://github.com/yang-mills-group/OpenAI-YM-20261028/tree/3456e5e75cf8d4cd558955a5c7638fba2d68f464) | reviewed |
-| DyadicYM | 488 | 5,380 | 5,380 | [226a88ee17](https://github.com/alxwest/ym/tree/226a88ee173ee62a2fc00a16ee0f04a643905ae2) | reviewed |
-| Nissim | 108 | 3,144 | 2,628 | [bc7383d023](https://github.com/rn9801/strong-coupling-lattice-yang-mills/tree/bc7383d023f0c58a16312764a32422248aa42ebe) | reviewed |
-| Bundschu | 144 | 19,628 | 17,471 | [9a93f32888](https://github.com/ColinBundschu/mass-gap/tree/9a93f328885f0c6336bd3552e497f731bf07ec54) | reviewed |
-| Wilson Loop RG | 652 | 9,954 | 2,401 | [a82aefbb07](https://github.com/MathePhysics/4D_Wilson_Loop_RG/tree/a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04) | reviewed |
-| SolidSF | 32 | 3,684 | 1,566 | [0608b6273e](https://github.com/solidsf-inc/yang-mills-attempt/tree/0608b6273e9b6932b838da6373498b8584158ee1) | reviewed |
-| Luaartist | 99 | 2,525 | 487 | [d49de97cb3](https://github.com/luaartist/Yang-Mills-Lean-4-Scaffold-Archive/tree/d49de97cb3ca4db88701c455b80c44da9839c7c5) | reviewed |
-| Consensus | 121 | 1,948 | 1,372 | [3c91be1c44](https://github.com/consensusframework/yang-mills-mass-gap/tree/3c91be1c44033638c9fd002ba6684ca5c736f10e) | reviewed |
-| Elvin40 | 81 | 1,323 | 633 | [5d305ca230](https://github.com/elvin40/yang-mills/tree/5d305ca2304608fb65e815bc85f8416ee48762ae) | reviewed |
-| 4Y-M | 40 | 855 | 76 | [3df6d08c86](https://github.com/anaxia-research/4Y-M/tree/3df6d08c86e433b29d389afec6da8c800ca8f2e3) | reviewed |
-| Lautanen | 58 | 728 | 708 | [5f96a08611](https://github.com/Eric-Lautanen/YangMills/tree/5f96a08611ad717faebe1b6fd19f4479caf3e5ca) | reviewed |
-| Douglas LGT | 31 | 396 | 307 | [b8793ccf6a](https://github.com/mrdouglasny/lgt/tree/b8793ccf6a51e00e9e2b1685ba191b8626e37137) | reviewed |
-| OpenAI gap extension | 8 | 29 | 15 | [ff784a0ae4](https://github.com/rohanarun/yang-mills-mass-gap-auto-research/tree/ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6) | reviewed |
-| FMCAD | 34 | 491 | 191 | [b637ab9a3d](https://github.com/submission-fmcad-2026/submission-fmcad-2026/tree/b637ab9a3d92c259b6561982ba57475f9908da9b) | reviewed |
-| Merchant | 7 | 30 | 30 | [ecbc9fdca0](https://github.com/merchantmoh-debug/Yang-Mills-Solution-Lean-4/tree/ecbc9fdca0f77db5033fea11aa2be8aa43c01b57) | reviewed |
-| YuanXian | 8 | 29 | 13 | [e8ac799b97](https://github.com/YuanXian-Theory/YXT-YangMills/tree/e8ac799b97a7df46481405960d2d370bdc7de0fd) | reviewed |
-| Eriksson | 1 | 2 | 0 | [fc4631d6af](https://github.com/lluiseriksson/ym-mass-gap-lean-verification/tree/fc4631d6afd3a99074bae7327e6aae33bbc86376) | reviewed |
+| Framework | Source modules | Source declarations | Union of selected closures | Count revision | Status revision | Count data |
+|---|---:|---:|---:|---|---|---|
+| YM4 | 12,589 | 171,527 | 171,415 | [3932084a9b](https://github.com/ethanwsussman/Yang--Mills-LLM-experiment/tree/3932084a9b82fc79466b4a2faad9ec032b637445) | [3932084a9b](https://github.com/ethanwsussman/Yang--Mills-LLM-experiment/tree/3932084a9b82fc79466b4a2faad9ec032b637445) | available |
+| OpenAI | 9,474 | 99,516 | 99,476 | [3456e5e75c](https://github.com/yang-mills-group/OpenAI-YM-20261028/tree/3456e5e75cf8d4cd558955a5c7638fba2d68f464) | [3456e5e75c](https://github.com/yang-mills-group/OpenAI-YM-20261028/tree/3456e5e75cf8d4cd558955a5c7638fba2d68f464) | available |
+| DyadicYM | 488 | 5,380 | 5,380 | [226a88ee17](https://github.com/alxwest/ym/tree/226a88ee173ee62a2fc00a16ee0f04a643905ae2) | [226a88ee17](https://github.com/alxwest/ym/tree/226a88ee173ee62a2fc00a16ee0f04a643905ae2) | available |
+| Nissim | 108 | 3,144 | 2,628 | [bc7383d023](https://github.com/rn9801/strong-coupling-lattice-yang-mills/tree/bc7383d023f0c58a16312764a32422248aa42ebe) | [bc7383d023](https://github.com/rn9801/strong-coupling-lattice-yang-mills/tree/bc7383d023f0c58a16312764a32422248aa42ebe) | available |
+| Bundschu | 144 | 19,628 | 17,471 | [9a93f32888](https://github.com/ColinBundschu/mass-gap/tree/9a93f328885f0c6336bd3552e497f731bf07ec54) | [9a93f32888](https://github.com/ColinBundschu/mass-gap/tree/9a93f328885f0c6336bd3552e497f731bf07ec54) | available |
+| Wilson Loop RG | 652 | 9,954 | 2,401 | [a82aefbb07](https://github.com/MathePhysics/4D_Wilson_Loop_RG/tree/a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04) | [a82aefbb07](https://github.com/MathePhysics/4D_Wilson_Loop_RG/tree/a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04) | available |
+| SolidSF | 32 | 3,684 | 1,566 | [0608b6273e](https://github.com/solidsf-inc/yang-mills-attempt/tree/0608b6273e9b6932b838da6373498b8584158ee1) | [0608b6273e](https://github.com/solidsf-inc/yang-mills-attempt/tree/0608b6273e9b6932b838da6373498b8584158ee1) | available |
+| Luaartist | 99 | 2,525 | 487 | [d49de97cb3](https://github.com/luaartist/Yang-Mills-Lean-4-Scaffold-Archive/tree/d49de97cb3ca4db88701c455b80c44da9839c7c5) | [d49de97cb3](https://github.com/luaartist/Yang-Mills-Lean-4-Scaffold-Archive/tree/d49de97cb3ca4db88701c455b80c44da9839c7c5) | available |
+| Consensus | 121 | 1,948 | 1,372 | [3c91be1c44](https://github.com/consensusframework/yang-mills-mass-gap/tree/3c91be1c44033638c9fd002ba6684ca5c736f10e) | [3c91be1c44](https://github.com/consensusframework/yang-mills-mass-gap/tree/3c91be1c44033638c9fd002ba6684ca5c736f10e) | available |
+| Elvin40 | 81 | 1,323 | 633 | [5d305ca230](https://github.com/elvin40/yang-mills/tree/5d305ca2304608fb65e815bc85f8416ee48762ae) | [5d305ca230](https://github.com/elvin40/yang-mills/tree/5d305ca2304608fb65e815bc85f8416ee48762ae) | available |
+| 4Y-M | 40 | 855 | 76 | [3df6d08c86](https://github.com/anaxia-research/4Y-M/tree/3df6d08c86e433b29d389afec6da8c800ca8f2e3) | [3df6d08c86](https://github.com/anaxia-research/4Y-M/tree/3df6d08c86e433b29d389afec6da8c800ca8f2e3) | available |
+| Lautanen | 58 | 728 | 708 | [5f96a08611](https://github.com/Eric-Lautanen/YangMills/tree/5f96a08611ad717faebe1b6fd19f4479caf3e5ca) | [5f96a08611](https://github.com/Eric-Lautanen/YangMills/tree/5f96a08611ad717faebe1b6fd19f4479caf3e5ca) | available |
+| Douglas LGT | 31 | 396 | 307 | [b8793ccf6a](https://github.com/mrdouglasny/lgt/tree/b8793ccf6a51e00e9e2b1685ba191b8626e37137) | [b8793ccf6a](https://github.com/mrdouglasny/lgt/tree/b8793ccf6a51e00e9e2b1685ba191b8626e37137) | available |
+| OpenAI gap extension | 8 | 29 | 15 | [ff784a0ae4](https://github.com/rohanarun/yang-mills-mass-gap-auto-research/tree/ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6) | [ff784a0ae4](https://github.com/rohanarun/yang-mills-mass-gap-auto-research/tree/ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6) | available |
+| FMCAD | 34 | 491 | 191 | [b637ab9a3d](https://github.com/submission-fmcad-2026/submission-fmcad-2026/tree/b637ab9a3d92c259b6561982ba57475f9908da9b) | [b637ab9a3d](https://github.com/submission-fmcad-2026/submission-fmcad-2026/tree/b637ab9a3d92c259b6561982ba57475f9908da9b) | available |
+| Merchant | 7 | 30 | 30 | [ecbc9fdca0](https://github.com/merchantmoh-debug/Yang-Mills-Solution-Lean-4/tree/ecbc9fdca0f77db5033fea11aa2be8aa43c01b57) | [ecbc9fdca0](https://github.com/merchantmoh-debug/Yang-Mills-Solution-Lean-4/tree/ecbc9fdca0f77db5033fea11aa2be8aa43c01b57) | available |
+| YuanXian | 8 | 29 | 13 | [e8ac799b97](https://github.com/YuanXian-Theory/YXT-YangMills/tree/e8ac799b97a7df46481405960d2d370bdc7de0fd) | [e8ac799b97](https://github.com/YuanXian-Theory/YXT-YangMills/tree/e8ac799b97a7df46481405960d2d370bdc7de0fd) | available |
+| Eriksson | 1 | 2 | 0 | [fc4631d6af](https://github.com/lluiseriksson/ym-mass-gap-lean-verification/tree/fc4631d6afd3a99074bae7327e6aae33bbc86376) | [fc4631d6af](https://github.com/lluiseriksson/ym-mass-gap-lean-verification/tree/fc4631d6afd3a99074bae7327e6aae33bbc86376) | available |
 
 | Framework | Finite gauge Gibbs law | Lattice reflection positivity | Compactness / subsequences | Positive-kernel Hilbert space | Positive-time semigroup | Positive generator / spectrum |
 |---|---:|---:|---:|---:|---:|---:|
@@ -110,7 +110,7 @@ Counts are named source declarations in selected project-local import closures, 
 
 ## Scope and review evidence
 
-🟢 Complete · 🟡 Partial · 🟣 Conditional · 🔴 Open · ⚪ Review required / unavailable
+🟢 Complete · 🟡 Partial · 🟣 Conditional · 🔴 Open
 
 - **YM4**: Scalar SU(2) fixed-observable continuum route; construction inputs and independent assessment remain limitations. [Reviewed evidence](https://github.com/ethanwsussman/Yang--Mills-LLM-experiment/blob/3932084a9b82fc79466b4a2faad9ec032b637445/README.md).
   - Scalar continuum limit: Scalar fixed-observable conclusion only; hypotheses and mathematical review remain.

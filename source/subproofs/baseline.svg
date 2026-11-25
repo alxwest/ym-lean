@@ -13,10 +13,6 @@
 <text x="339" y="66" font-size="11">conditional</text>
 <circle cx="484" cy="62" r="5" fill="#c62828"/>
 <text x="494" y="66" font-size="11">open</text>
-<circle cx="639" cy="62" r="5" fill="#64748b"/>
-<text x="649" y="66" font-size="11">review-required</text>
-<circle cx="794" cy="62" r="5" fill="#64748b"/>
-<text x="804" y="66" font-size="11">unavailable</text>
 <text x="253.0" y="80" text-anchor="middle" font-size="10.5" font-weight="600">Finite gauge Gibbs</text>
 <text x="253.0" y="92" text-anchor="middle" font-size="10.5" font-weight="600">law</text>
 <text x="253.0" y="113" font-size="9" text-anchor="middle" fill="#64748b">0–10,213</text>
@@ -66,177 +62,177 @@
 <rect x="4" y="120" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="135" font-size="12" font-weight="600">YM4</text>
 <text x="14" y="148" font-size="9" fill="#64748b">3932084a9b</text>
-<g><title>YM4 · Finite gauge Gibbs law · complete · 8123 · reviewed: complete · </title>
+<g><title>YM4 · Finite gauge Gibbs law · complete · 8123 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="204" cy="133" r="4" fill="#15803d"/>
 <text x="302" y="137" text-anchor="end" font-size="11.5">8,123</text>
 <rect x="200" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="142" width="82.7173" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>YM4 · Lattice reflection positivity · complete · 743 · reviewed: complete · </title>
+<g><title>YM4 · Lattice reflection positivity · complete · 743 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="320" cy="133" r="4" fill="#15803d"/>
 <text x="418" y="137" text-anchor="end" font-size="11.5">743</text>
 <rect x="316" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="316" y="142" width="29.4033" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>YM4 · Compactness / subsequences · complete · 2219 · reviewed: complete · </title>
+<g><title>YM4 · Compactness / subsequences · complete · 2219 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="436" cy="133" r="4" fill="#15803d"/>
 <text x="534" y="137" text-anchor="end" font-size="11.5">2,219</text>
 <rect x="432" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="142" width="104.0000" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>YM4 · Positive-kernel Hilbert space · complete · 1210 · reviewed: complete · </title>
+<g><title>YM4 · Positive-kernel Hilbert space · complete · 1210 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="552" cy="133" r="4" fill="#15803d"/>
 <text x="650" y="137" text-anchor="end" font-size="11.5">1,210</text>
 <rect x="548" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="548" y="142" width="104.0000" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>YM4 · Positive-time semigroup · complete · 1607 · reviewed: complete · </title>
+<g><title>YM4 · Positive-time semigroup · complete · 1607 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="668" cy="133" r="4" fill="#15803d"/>
 <text x="766" y="137" text-anchor="end" font-size="11.5">1,607</text>
 <rect x="664" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="664" y="142" width="104.0000" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>YM4 · Positive generator / spectrum · complete · 1338 · reviewed: complete · </title>
+<g><title>YM4 · Positive generator / spectrum · complete · 1338 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="784" cy="133" r="4" fill="#15803d"/>
 <text x="882" y="137" text-anchor="end" font-size="11.5">1,338</text>
 <rect x="780" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="780" y="142" width="13.2791" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>YM4 · Scalar continuum limit · conditional · 168955 · reviewed: conditional · Scalar fixed-observable conclusion only; hypotheses and mathematical review remain.</title>
+<g><title>YM4 · Scalar continuum limit · conditional · 168955 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · Scalar fixed-observable conclusion only; hypotheses and mathematical review remain.</title>
 <circle cx="900" cy="133" r="4" fill="#9333ea"/>
 <text x="998" y="137" text-anchor="end" font-size="11.5">168,955</text>
 <rect x="896" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="142" width="104.0000" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>YM4 · Surviving physical excitation · conditional · 168955 · reviewed: conditional · </title>
+<g><title>YM4 · Surviving physical excitation · conditional · 168955 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1016" cy="133" r="4" fill="#9333ea"/>
 <text x="1114" y="137" text-anchor="end" font-size="11.5">168,955</text>
 <rect x="1012" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1012" y="142" width="104.0000" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>YM4 · Continuum Euclidean symmetry / OS · conditional · 169021 · reviewed: conditional · </title>
+<g><title>YM4 · Continuum Euclidean symmetry / OS · conditional · 169021 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1132" cy="133" r="4" fill="#9333ea"/>
 <text x="1230" y="137" text-anchor="end" font-size="11.5">169,021</text>
 <rect x="1128" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="142" width="104.0000" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>YM4 · Relativistic Wightman reconstruction · conditional · 171349 · reviewed: conditional · Selected scalar reconstruction, not a full all-group physical theory.</title>
+<g><title>YM4 · Relativistic Wightman reconstruction · conditional · 171349 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · Selected scalar reconstruction, not a full all-group physical theory.</title>
 <circle cx="1248" cy="133" r="4" fill="#9333ea"/>
 <text x="1346" y="137" text-anchor="end" font-size="11.5">171,349</text>
 <rect x="1244" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="142" width="104.0000" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>YM4 · Asymptotic freedom / tuned coupling · partial · 168955 · reviewed: partial · </title>
+<g><title>YM4 · Asymptotic freedom / tuned coupling · partial · 168955 · count: counted · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1364" cy="133" r="4" fill="#b77900"/>
 <text x="1462" y="137" text-anchor="end" font-size="11.5">168,955</text>
 <rect x="1360" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="142" width="104.0000" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>YM4 · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>YM4 · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1480" cy="133" r="4" fill="#c62828"/>
 <text x="1578" y="137" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YM4 · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>YM4 · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1596" cy="133" r="4" fill="#c62828"/>
 <text x="1694" y="137" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YM4 · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>YM4 · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1712" cy="133" r="4" fill="#c62828"/>
 <text x="1810" y="137" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YM4 · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>YM4 · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 3932084a9b82fc79466b4a2faad9ec032b637445 · </title>
 <circle cx="1828" cy="133" r="4" fill="#c62828"/>
 <text x="1926" y="137" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="142" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="170" font-size="12" font-weight="600">OpenAI</text>
 <text x="14" y="183" font-size="9" fill="#64748b">3456e5e75c</text>
-<g><title>OpenAI · Finite gauge Gibbs law · complete · 206 · reviewed: complete · </title>
+<g><title>OpenAI · Finite gauge Gibbs law · complete · 206 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="204" cy="168" r="4" fill="#15803d"/>
 <text x="302" y="172" text-anchor="end" font-size="11.5">206</text>
 <rect x="200" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="177" width="2.0977" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Lattice reflection positivity · complete · 491 · reviewed: complete · </title>
+<g><title>OpenAI · Lattice reflection positivity · complete · 491 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="320" cy="168" r="4" fill="#15803d"/>
 <text x="418" y="172" text-anchor="end" font-size="11.5">491</text>
 <rect x="316" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="316" y="177" width="19.4307" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Compactness / subsequences · complete · 19 · reviewed: complete · </title>
+<g><title>OpenAI · Compactness / subsequences · complete · 19 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="436" cy="168" r="4" fill="#15803d"/>
 <text x="534" y="172" text-anchor="end" font-size="11.5">19</text>
 <rect x="432" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="177" width="0.8905" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Positive-kernel Hilbert space · complete · 27 · reviewed: complete · </title>
+<g><title>OpenAI · Positive-kernel Hilbert space · complete · 27 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="552" cy="168" r="4" fill="#15803d"/>
 <text x="650" y="172" text-anchor="end" font-size="11.5">27</text>
 <rect x="548" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="548" y="177" width="2.3207" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Positive-time semigroup · complete · 515 · reviewed: complete · </title>
+<g><title>OpenAI · Positive-time semigroup · complete · 515 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="668" cy="168" r="4" fill="#15803d"/>
 <text x="766" y="172" text-anchor="end" font-size="11.5">515</text>
 <rect x="664" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="664" y="177" width="33.3292" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Positive generator / spectrum · complete · 79 · reviewed: complete · </title>
+<g><title>OpenAI · Positive generator / spectrum · complete · 79 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="784" cy="168" r="4" fill="#15803d"/>
 <text x="882" y="172" text-anchor="end" font-size="11.5">79</text>
 <rect x="780" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="780" y="177" width="0.7840" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Scalar continuum limit · complete · 96797 · reviewed: complete · Completion under the released JointExistence criterion, not exact ym-lean.</title>
+<g><title>OpenAI · Scalar continuum limit · complete · 96797 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · Completion under the released JointExistence criterion, not exact ym-lean.</title>
 <circle cx="900" cy="168" r="4" fill="#15803d"/>
 <text x="998" y="172" text-anchor="end" font-size="11.5">96,797</text>
 <rect x="896" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="177" width="59.5832" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Surviving physical excitation · complete · 73373 · reviewed: complete · </title>
+<g><title>OpenAI · Surviving physical excitation · complete · 73373 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="1016" cy="168" r="4" fill="#15803d"/>
 <text x="1114" y="172" text-anchor="end" font-size="11.5">73,373</text>
 <rect x="1012" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1012" y="177" width="45.1646" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Continuum Euclidean symmetry / OS · complete · 96797 · reviewed: complete · </title>
+<g><title>OpenAI · Continuum Euclidean symmetry / OS · complete · 96797 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="1132" cy="168" r="4" fill="#15803d"/>
 <text x="1230" y="172" text-anchor="end" font-size="11.5">96,797</text>
 <rect x="1128" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="177" width="59.5600" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Relativistic Wightman reconstruction · complete · 99465 · reviewed: complete · </title>
+<g><title>OpenAI · Relativistic Wightman reconstruction · complete · 99465 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="1248" cy="168" r="4" fill="#15803d"/>
 <text x="1346" y="172" text-anchor="end" font-size="11.5">99,465</text>
 <rect x="1244" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="177" width="60.3701" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Asymptotic freedom / tuned coupling · complete · 96797 · reviewed: complete · Tuned Wilson coefficient and public short-distance tests, not full all-order MS-bar matching.</title>
+<g><title>OpenAI · Asymptotic freedom / tuned coupling · complete · 96797 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · Tuned Wilson coefficient and public short-distance tests, not full all-order MS-bar matching.</title>
 <circle cx="1364" cy="168" r="4" fill="#15803d"/>
 <text x="1462" y="172" text-anchor="end" font-size="11.5">96,797</text>
 <rect x="1360" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="177" width="59.5832" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>OpenAI · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="1480" cy="168" r="4" fill="#c62828"/>
 <text x="1578" y="172" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>OpenAI · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · </title>
 <circle cx="1596" cy="168" r="4" fill="#c62828"/>
 <text x="1694" y="172" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI · Composite observables / OPE · complete · 85 · reviewed: complete · Separated OPE in the public construction; not all prescriptions.</title>
+<g><title>OpenAI · Composite observables / OPE · complete · 85 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · Separated OPE in the public construction; not all prescriptions.</title>
 <circle cx="1712" cy="168" r="4" fill="#15803d"/>
 <text x="1810" y="172" text-anchor="end" font-size="11.5">85</text>
 <rect x="1708" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1708" y="177" width="27.3684" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>OpenAI · Stress / Ward / trace · partial · 73373 · reviewed: partial · Constructed centered stress trace; broader ym-lean stress conditions not certified.</title>
+<g><title>OpenAI · Stress / Ward / trace · partial · 73373 · count: counted · status revision: 3456e5e75cf8d4cd558955a5c7638fba2d68f464 · Constructed centered stress trace; broader ym-lean stress conditions not certified.</title>
 <circle cx="1828" cy="168" r="4" fill="#b77900"/>
 <text x="1926" y="172" text-anchor="end" font-size="11.5">73,373</text>
 <rect x="1824" y="177" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -245,91 +241,91 @@
 <rect x="4" y="190" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="205" font-size="12" font-weight="600">DyadicYM</text>
 <text x="14" y="218" font-size="9" fill="#64748b">226a88ee17</text>
-<g><title>DyadicYM · Finite gauge Gibbs law · complete · 516 · reviewed: complete · </title>
+<g><title>DyadicYM · Finite gauge Gibbs law · complete · 516 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="204" cy="203" r="4" fill="#15803d"/>
 <text x="302" y="207" text-anchor="end" font-size="11.5">516</text>
 <rect x="200" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="212" width="5.2545" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>DyadicYM · Lattice reflection positivity · complete · 670 · reviewed: complete · </title>
+<g><title>DyadicYM · Lattice reflection positivity · complete · 670 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="320" cy="203" r="4" fill="#15803d"/>
 <text x="418" y="207" text-anchor="end" font-size="11.5">670</text>
 <rect x="316" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="316" y="212" width="26.5145" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>DyadicYM · Compactness / subsequences · complete · 43 · reviewed: complete · </title>
+<g><title>DyadicYM · Compactness / subsequences · complete · 43 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="436" cy="203" r="4" fill="#15803d"/>
 <text x="534" y="207" text-anchor="end" font-size="11.5">43</text>
 <rect x="432" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="212" width="2.0153" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>DyadicYM · Positive-kernel Hilbert space · complete · 43 · reviewed: complete · Positive-kernel reconstruction machinery, not by itself a physical field.</title>
+<g><title>DyadicYM · Positive-kernel Hilbert space · complete · 43 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · Positive-kernel reconstruction machinery, not by itself a physical field.</title>
 <circle cx="552" cy="203" r="4" fill="#15803d"/>
 <text x="650" y="207" text-anchor="end" font-size="11.5">43</text>
 <rect x="548" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="548" y="212" width="3.6959" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>DyadicYM · Positive-time semigroup · complete · 71 · reviewed: complete · </title>
+<g><title>DyadicYM · Positive-time semigroup · complete · 71 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="668" cy="203" r="4" fill="#15803d"/>
 <text x="766" y="207" text-anchor="end" font-size="11.5">71</text>
 <rect x="664" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="664" y="212" width="4.5949" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>DyadicYM · Positive generator / spectrum · complete · 46 · reviewed: complete · Positive generator in reconstructed auxiliary sector, not yet identified with interacting physical Hamiltonian.</title>
+<g><title>DyadicYM · Positive generator / spectrum · complete · 46 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · Positive generator in reconstructed auxiliary sector, not yet identified with interacting physical Hamiltonian.</title>
 <circle cx="784" cy="203" r="4" fill="#15803d"/>
 <text x="882" y="207" text-anchor="end" font-size="11.5">46</text>
 <rect x="780" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="780" y="212" width="0.4565" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>DyadicYM · Scalar continuum limit · partial · 2967 · reviewed: partial · </title>
+<g><title>DyadicYM · Scalar continuum limit · partial · 2967 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="900" cy="203" r="4" fill="#b77900"/>
 <text x="998" y="207" text-anchor="end" font-size="11.5">2,967</text>
 <rect x="896" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="212" width="1.8263" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>DyadicYM · Surviving physical excitation · partial · 3418 · reviewed: partial · Finite positive energy spectral weight still unproved.</title>
+<g><title>DyadicYM · Surviving physical excitation · partial · 3418 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · Finite positive energy spectral weight still unproved.</title>
 <circle cx="1016" cy="203" r="4" fill="#b77900"/>
 <text x="1114" y="207" text-anchor="end" font-size="11.5">3,418</text>
 <rect x="1012" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1012" y="212" width="2.1039" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>DyadicYM · Continuum Euclidean symmetry / OS · partial · 2980 · reviewed: partial · </title>
+<g><title>DyadicYM · Continuum Euclidean symmetry / OS · partial · 2980 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="1132" cy="203" r="4" fill="#b77900"/>
 <text x="1230" y="207" text-anchor="end" font-size="11.5">2,980</text>
 <rect x="1128" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="212" width="1.8336" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>DyadicYM · Relativistic Wightman reconstruction · partial · 3486 · reviewed: partial · </title>
+<g><title>DyadicYM · Relativistic Wightman reconstruction · partial · 3486 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="1248" cy="203" r="4" fill="#b77900"/>
 <text x="1346" y="207" text-anchor="end" font-size="11.5">3,486</text>
 <rect x="1244" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="212" width="2.1158" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>DyadicYM · Asymptotic freedom / tuned coupling · conditional · 1231 · reviewed: conditional · </title>
+<g><title>DyadicYM · Asymptotic freedom / tuned coupling · conditional · 1231 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="1364" cy="203" r="4" fill="#9333ea"/>
 <text x="1462" y="207" text-anchor="end" font-size="11.5">1,231</text>
 <rect x="1360" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="212" width="0.7577" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>DyadicYM · Finite gap / correlation decay · partial · 657 · reviewed: partial · </title>
+<g><title>DyadicYM · Finite gap / correlation decay · partial · 657 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="1480" cy="203" r="4" fill="#b77900"/>
 <text x="1578" y="207" text-anchor="end" font-size="11.5">657</text>
 <rect x="1476" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="212" width="4.2001" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>DyadicYM · Physical continuum mass gap · conditional · 5380 · reviewed: conditional · Qcos recovery theorem requires comparison and field witnesses.</title>
+<g><title>DyadicYM · Physical continuum mass gap · conditional · 5380 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · Qcos recovery theorem requires comparison and field witnesses.</title>
 <circle cx="1596" cy="203" r="4" fill="#9333ea"/>
 <text x="1694" y="207" text-anchor="end" font-size="11.5">5,380</text>
 <rect x="1592" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="212" width="104.0000" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>DyadicYM · Composite observables / OPE · partial · 323 · reviewed: partial · </title>
+<g><title>DyadicYM · Composite observables / OPE · partial · 323 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="1712" cy="203" r="4" fill="#b77900"/>
 <text x="1810" y="207" text-anchor="end" font-size="11.5">323</text>
 <rect x="1708" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1708" y="212" width="104.0000" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>DyadicYM · Stress / Ward / trace · partial · 2679 · reviewed: partial · </title>
+<g><title>DyadicYM · Stress / Ward / trace · partial · 2679 · count: counted · status revision: 226a88ee173ee62a2fc00a16ee0f04a643905ae2 · </title>
 <circle cx="1828" cy="203" r="4" fill="#b77900"/>
 <text x="1926" y="207" text-anchor="end" font-size="11.5">2,679</text>
 <rect x="1824" y="212" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -337,81 +333,81 @@
 </g>
 <text x="14" y="240" font-size="12" font-weight="600">Nissim</text>
 <text x="14" y="253" font-size="9" fill="#64748b">bc7383d023</text>
-<g><title>Nissim · Finite gauge Gibbs law · complete · 217 · reviewed: complete · </title>
+<g><title>Nissim · Finite gauge Gibbs law · complete · 217 · count: counted · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="204" cy="238" r="4" fill="#15803d"/>
 <text x="302" y="242" text-anchor="end" font-size="11.5">217</text>
 <rect x="200" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="247" width="2.2097" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Nissim · Lattice reflection positivity · complete · 2628 · reviewed: complete · Infinite-volume strong-coupling lattice reflection positivity.</title>
+<g><title>Nissim · Lattice reflection positivity · complete · 2628 · count: counted · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · Infinite-volume strong-coupling lattice reflection positivity.</title>
 <circle cx="320" cy="238" r="4" fill="#15803d"/>
 <text x="418" y="242" text-anchor="end" font-size="11.5">2,628</text>
 <rect x="316" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="316" y="247" width="104.0000" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Nissim · Compactness / subsequences · complete · 2006 · reviewed: complete · Fixed-spacing thermodynamic limit only.</title>
+<g><title>Nissim · Compactness / subsequences · complete · 2006 · count: counted · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · Fixed-spacing thermodynamic limit only.</title>
 <circle cx="436" cy="238" r="4" fill="#15803d"/>
 <text x="534" y="242" text-anchor="end" font-size="11.5">2,006</text>
 <rect x="432" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="247" width="94.0171" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Nissim · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="552" cy="238" r="4" fill="#c62828"/>
 <text x="650" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Positive-time semigroup · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="668" cy="238" r="4" fill="#c62828"/>
 <text x="766" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="784" cy="238" r="4" fill="#c62828"/>
 <text x="882" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Scalar continuum limit · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="900" cy="238" r="4" fill="#c62828"/>
 <text x="998" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Surviving physical excitation · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1016" cy="238" r="4" fill="#c62828"/>
 <text x="1114" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1132" cy="238" r="4" fill="#c62828"/>
 <text x="1230" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1248" cy="238" r="4" fill="#c62828"/>
 <text x="1346" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1364" cy="238" r="4" fill="#c62828"/>
 <text x="1462" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Finite gap / correlation decay · complete · 501 · reviewed: complete · Exponential clustering at fixed spacing in the strong-coupling disk.</title>
+<g><title>Nissim · Finite gap / correlation decay · complete · 501 · count: counted · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · Exponential clustering at fixed spacing in the strong-coupling disk.</title>
 <circle cx="1480" cy="238" r="4" fill="#15803d"/>
 <text x="1578" y="242" text-anchor="end" font-size="11.5">501</text>
 <rect x="1476" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="247" width="3.2029" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Nissim · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1596" cy="238" r="4" fill="#c62828"/>
 <text x="1694" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Composite observables / OPE · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1712" cy="238" r="4" fill="#c62828"/>
 <text x="1810" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Nissim · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Nissim · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: bc7383d023f0c58a16312764a32422248aa42ebe · </title>
 <circle cx="1828" cy="238" r="4" fill="#c62828"/>
 <text x="1926" y="242" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="247" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -419,161 +415,161 @@
 <rect x="4" y="260" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="275" font-size="12" font-weight="600">Bundschu</text>
 <text x="14" y="288" font-size="9" fill="#64748b">9a93f32888</text>
-<g><title>Bundschu · Finite gauge Gibbs law · partial · 10213 · reviewed: partial · </title>
+<g><title>Bundschu · Finite gauge Gibbs law · partial · 10213 · count: counted · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="204" cy="273" r="4" fill="#b77900"/>
 <text x="302" y="277" text-anchor="end" font-size="11.5">10,213</text>
 <rect x="200" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="282" width="104.0000" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Bundschu · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="320" cy="273" r="4" fill="#c62828"/>
 <text x="418" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Compactness / subsequences · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="436" cy="273" r="4" fill="#c62828"/>
 <text x="534" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="552" cy="273" r="4" fill="#c62828"/>
 <text x="650" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Positive-time semigroup · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="668" cy="273" r="4" fill="#c62828"/>
 <text x="766" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Positive generator / spectrum · partial · 10479 · reviewed: partial · </title>
+<g><title>Bundschu · Positive generator / spectrum · partial · 10479 · count: counted · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="784" cy="273" r="4" fill="#b77900"/>
 <text x="882" y="277" text-anchor="end" font-size="11.5">10,479</text>
 <rect x="780" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="780" y="282" width="104.0000" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Bundschu · Scalar continuum limit · partial · 14931 · reviewed: partial · Constructive bracket data only, no proved relativistic continuum.</title>
+<g><title>Bundschu · Scalar continuum limit · partial · 14931 · count: counted · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · Constructive bracket data only, no proved relativistic continuum.</title>
 <circle cx="900" cy="273" r="4" fill="#b77900"/>
 <text x="998" y="277" text-anchor="end" font-size="11.5">14,931</text>
 <rect x="896" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="282" width="9.1908" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Bundschu · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Surviving physical excitation · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1016" cy="273" r="4" fill="#c62828"/>
 <text x="1114" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1132" cy="273" r="4" fill="#c62828"/>
 <text x="1230" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1248" cy="273" r="4" fill="#c62828"/>
 <text x="1346" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Asymptotic freedom / tuned coupling · partial · 11054 · reviewed: partial · </title>
+<g><title>Bundschu · Asymptotic freedom / tuned coupling · partial · 11054 · count: counted · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1364" cy="273" r="4" fill="#b77900"/>
 <text x="1462" y="277" text-anchor="end" font-size="11.5">11,054</text>
 <rect x="1360" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="282" width="6.8043" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Bundschu · Finite gap / correlation decay · complete · 16268 · reviewed: complete · Selected finite Hamiltonian truncations, not a uniform volume or cutoff gap.</title>
+<g><title>Bundschu · Finite gap / correlation decay · complete · 16268 · count: counted · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · Selected finite Hamiltonian truncations, not a uniform volume or cutoff gap.</title>
 <circle cx="1480" cy="273" r="4" fill="#15803d"/>
 <text x="1578" y="277" text-anchor="end" font-size="11.5">16,268</text>
 <rect x="1476" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="282" width="104.0000" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Bundschu · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1596" cy="273" r="4" fill="#c62828"/>
 <text x="1694" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1712" cy="273" r="4" fill="#c62828"/>
 <text x="1810" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Bundschu · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Bundschu · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 9a93f328885f0c6336bd3552e497f731bf07ec54 · </title>
 <circle cx="1828" cy="273" r="4" fill="#c62828"/>
 <text x="1926" y="277" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="282" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="310" font-size="12" font-weight="600">Wilson Loop RG</text>
 <text x="14" y="323" font-size="9" fill="#64748b">a82aefbb07</text>
-<g><title>Wilson Loop RG · Finite gauge Gibbs law · partial · 799 · reviewed: partial · </title>
+<g><title>Wilson Loop RG · Finite gauge Gibbs law · partial · 799 · count: counted · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="204" cy="308" r="4" fill="#b77900"/>
 <text x="302" y="312" text-anchor="end" font-size="11.5">799</text>
 <rect x="200" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="317" width="8.1363" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Wilson Loop RG · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="320" cy="308" r="4" fill="#c62828"/>
 <text x="418" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Compactness / subsequences · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="436" cy="308" r="4" fill="#c62828"/>
 <text x="534" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="552" cy="308" r="4" fill="#c62828"/>
 <text x="650" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Positive-time semigroup · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="668" cy="308" r="4" fill="#c62828"/>
 <text x="766" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="784" cy="308" r="4" fill="#c62828"/>
 <text x="882" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Scalar continuum limit · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="900" cy="308" r="4" fill="#c62828"/>
 <text x="998" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Surviving physical excitation · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1016" cy="308" r="4" fill="#c62828"/>
 <text x="1114" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1132" cy="308" r="4" fill="#c62828"/>
 <text x="1230" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1248" cy="308" r="4" fill="#c62828"/>
 <text x="1346" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Asymptotic freedom / tuned coupling · partial · 2397 · reviewed: partial · </title>
+<g><title>Wilson Loop RG · Asymptotic freedom / tuned coupling · partial · 2397 · count: counted · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1364" cy="308" r="4" fill="#b77900"/>
 <text x="1462" y="312" text-anchor="end" font-size="11.5">2,397</text>
 <rect x="1360" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="317" width="1.4755" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Wilson Loop RG · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1480" cy="308" r="4" fill="#c62828"/>
 <text x="1578" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1596" cy="308" r="4" fill="#c62828"/>
 <text x="1694" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Wilson Loop RG · Composite observables / OPE · open · not counted · count: not-mapped · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1712" cy="308" r="4" fill="#c62828"/>
 <text x="1810" y="312" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Wilson Loop RG · Stress / Ward / trace · partial · 81 · reviewed: partial · </title>
+<g><title>Wilson Loop RG · Stress / Ward / trace · partial · 81 · count: counted · status revision: a82aefbb07ff4fa1dd2e77ed8edaf7ec05547c04 · </title>
 <circle cx="1828" cy="308" r="4" fill="#b77900"/>
 <text x="1926" y="312" text-anchor="end" font-size="11.5">81</text>
 <rect x="1824" y="317" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -582,173 +578,173 @@
 <rect x="4" y="330" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="345" font-size="12" font-weight="600">SolidSF</text>
 <text x="14" y="358" font-size="9" fill="#64748b">0608b6273e</text>
-<g><title>SolidSF · Finite gauge Gibbs law · complete · 82 · reviewed: complete · </title>
+<g><title>SolidSF · Finite gauge Gibbs law · complete · 82 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="204" cy="343" r="4" fill="#15803d"/>
 <text x="302" y="347" text-anchor="end" font-size="11.5">82</text>
 <rect x="200" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="352" width="0.8350" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>SolidSF · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="320" cy="343" r="4" fill="#c62828"/>
 <text x="418" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Compactness / subsequences · conditional · 665 · reviewed: conditional · </title>
+<g><title>SolidSF · Compactness / subsequences · conditional · 665 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="436" cy="343" r="4" fill="#9333ea"/>
 <text x="534" y="347" text-anchor="end" font-size="11.5">665</text>
 <rect x="432" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="352" width="31.1672" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>SolidSF · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="552" cy="343" r="4" fill="#c62828"/>
 <text x="650" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Positive-time semigroup · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="668" cy="343" r="4" fill="#c62828"/>
 <text x="766" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="784" cy="343" r="4" fill="#c62828"/>
 <text x="882" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Scalar continuum limit · conditional · 934 · reviewed: conditional · </title>
+<g><title>SolidSF · Scalar continuum limit · conditional · 934 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="900" cy="343" r="4" fill="#9333ea"/>
 <text x="998" y="347" text-anchor="end" font-size="11.5">934</text>
 <rect x="896" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="352" width="0.5749" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>SolidSF · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Surviving physical excitation · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1016" cy="343" r="4" fill="#c62828"/>
 <text x="1114" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Continuum Euclidean symmetry / OS · conditional · 1311 · reviewed: conditional · </title>
+<g><title>SolidSF · Continuum Euclidean symmetry / OS · conditional · 1311 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1132" cy="343" r="4" fill="#9333ea"/>
 <text x="1230" y="347" text-anchor="end" font-size="11.5">1,311</text>
 <rect x="1128" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="352" width="0.8067" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>SolidSF · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1248" cy="343" r="4" fill="#c62828"/>
 <text x="1346" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Asymptotic freedom / tuned coupling · partial · 773 · reviewed: partial · </title>
+<g><title>SolidSF · Asymptotic freedom / tuned coupling · partial · 773 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1364" cy="343" r="4" fill="#b77900"/>
 <text x="1462" y="347" text-anchor="end" font-size="11.5">773</text>
 <rect x="1360" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="352" width="0.4758" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>SolidSF · Finite gap / correlation decay · partial · 827 · reviewed: partial · </title>
+<g><title>SolidSF · Finite gap / correlation decay · partial · 827 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1480" cy="343" r="4" fill="#b77900"/>
 <text x="1578" y="347" text-anchor="end" font-size="11.5">827</text>
 <rect x="1476" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="352" width="5.2869" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>SolidSF · Physical continuum mass gap · conditional · 23 · reviewed: conditional · Abstract dense-core bridge; uniform decay assumption still required.</title>
+<g><title>SolidSF · Physical continuum mass gap · conditional · 23 · count: counted · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · Abstract dense-core bridge; uniform decay assumption still required.</title>
 <circle cx="1596" cy="343" r="4" fill="#9333ea"/>
 <text x="1694" y="347" text-anchor="end" font-size="11.5">23</text>
 <rect x="1592" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="352" width="0.4446" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>SolidSF · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1712" cy="343" r="4" fill="#c62828"/>
 <text x="1810" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>SolidSF · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>SolidSF · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 0608b6273e9b6932b838da6373498b8584158ee1 · </title>
 <circle cx="1828" cy="343" r="4" fill="#c62828"/>
 <text x="1926" y="347" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="352" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="380" font-size="12" font-weight="600">Luaartist</text>
 <text x="14" y="393" font-size="9" fill="#64748b">d49de97cb3</text>
-<g><title>Luaartist · Finite gauge Gibbs law · partial · 102 · reviewed: partial · </title>
+<g><title>Luaartist · Finite gauge Gibbs law · partial · 102 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="204" cy="378" r="4" fill="#b77900"/>
 <text x="302" y="382" text-anchor="end" font-size="11.5">102</text>
 <rect x="200" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="387" width="1.0387" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Luaartist · Lattice reflection positivity · partial · 15 · reviewed: partial · </title>
+<g><title>Luaartist · Lattice reflection positivity · partial · 15 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="320" cy="378" r="4" fill="#b77900"/>
 <text x="418" y="382" text-anchor="end" font-size="11.5">15</text>
 <rect x="316" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="316" y="387" width="0.5936" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Luaartist · Compactness / subsequences · conditional · 33 · reviewed: conditional · </title>
+<g><title>Luaartist · Compactness / subsequences · conditional · 33 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="436" cy="378" r="4" fill="#9333ea"/>
 <text x="534" y="382" text-anchor="end" font-size="11.5">33</text>
 <rect x="432" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="387" width="1.5466" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Luaartist · Positive-kernel Hilbert space · conditional · 141 · reviewed: conditional · </title>
+<g><title>Luaartist · Positive-kernel Hilbert space · conditional · 141 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="552" cy="378" r="4" fill="#9333ea"/>
 <text x="650" y="382" text-anchor="end" font-size="11.5">141</text>
 <rect x="548" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="548" y="387" width="12.1190" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Luaartist · Positive-time semigroup · partial · 19 · reviewed: partial · </title>
+<g><title>Luaartist · Positive-time semigroup · partial · 19 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="668" cy="378" r="4" fill="#b77900"/>
 <text x="766" y="382" text-anchor="end" font-size="11.5">19</text>
 <rect x="664" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="664" y="387" width="1.2296" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Luaartist · Positive generator / spectrum · partial · 27 · reviewed: partial · </title>
+<g><title>Luaartist · Positive generator / spectrum · partial · 27 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="784" cy="378" r="4" fill="#b77900"/>
 <text x="882" y="382" text-anchor="end" font-size="11.5">27</text>
 <rect x="780" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="780" y="387" width="0.2680" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Luaartist · Scalar continuum limit · conditional · 86 · reviewed: conditional · </title>
+<g><title>Luaartist · Scalar continuum limit · conditional · 86 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="900" cy="378" r="4" fill="#9333ea"/>
 <text x="998" y="382" text-anchor="end" font-size="11.5">86</text>
 <rect x="896" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="387" width="0.0529" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Luaartist · Surviving physical excitation · open · 86 · reviewed: open · </title>
+<g><title>Luaartist · Surviving physical excitation · open · 86 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1016" cy="378" r="4" fill="#c62828"/>
 <text x="1114" y="382" text-anchor="end" font-size="11.5">86</text>
 <rect x="1012" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1012" y="387" width="0.0529" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Luaartist · Continuum Euclidean symmetry / OS · conditional · 111 · reviewed: conditional · </title>
+<g><title>Luaartist · Continuum Euclidean symmetry / OS · conditional · 111 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1132" cy="378" r="4" fill="#9333ea"/>
 <text x="1230" y="382" text-anchor="end" font-size="11.5">111</text>
 <rect x="1128" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="387" width="0.0683" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Luaartist · Relativistic Wightman reconstruction · conditional · 126 · reviewed: conditional · </title>
+<g><title>Luaartist · Relativistic Wightman reconstruction · conditional · 126 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1248" cy="378" r="4" fill="#9333ea"/>
 <text x="1346" y="382" text-anchor="end" font-size="11.5">126</text>
 <rect x="1244" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="387" width="0.0765" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Luaartist · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Luaartist · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1364" cy="378" r="4" fill="#c62828"/>
 <text x="1462" y="382" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Luaartist · Finite gap / correlation decay · complete · 46 · reviewed: complete · </title>
+<g><title>Luaartist · Finite gap / correlation decay · complete · 46 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1480" cy="378" r="4" fill="#15803d"/>
 <text x="1578" y="382" text-anchor="end" font-size="11.5">46</text>
 <rect x="1476" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="387" width="0.2941" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Luaartist · Physical continuum mass gap · conditional · 89 · reviewed: conditional · </title>
+<g><title>Luaartist · Physical continuum mass gap · conditional · 89 · count: counted · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1596" cy="378" r="4" fill="#9333ea"/>
 <text x="1694" y="382" text-anchor="end" font-size="11.5">89</text>
 <rect x="1592" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="387" width="1.7204" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Luaartist · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Luaartist · Composite observables / OPE · open · not counted · count: not-mapped · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1712" cy="378" r="4" fill="#c62828"/>
 <text x="1810" y="382" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Luaartist · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Luaartist · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: d49de97cb3ca4db88701c455b80c44da9839c7c5 · </title>
 <circle cx="1828" cy="378" r="4" fill="#c62828"/>
 <text x="1926" y="382" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="387" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -756,158 +752,158 @@
 <rect x="4" y="400" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="415" font-size="12" font-weight="600">Consensus</text>
 <text x="14" y="428" font-size="9" fill="#64748b">3c91be1c44</text>
-<g><title>Consensus · Finite gauge Gibbs law · complete · 65 · reviewed: complete · </title>
+<g><title>Consensus · Finite gauge Gibbs law · complete · 65 · count: counted · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="204" cy="413" r="4" fill="#15803d"/>
 <text x="302" y="417" text-anchor="end" font-size="11.5">65</text>
 <rect x="200" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="422" width="0.6619" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Consensus · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="320" cy="413" r="4" fill="#c62828"/>
 <text x="418" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Compactness / subsequences · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="436" cy="413" r="4" fill="#c62828"/>
 <text x="534" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="552" cy="413" r="4" fill="#c62828"/>
 <text x="650" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Positive-time semigroup · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="668" cy="413" r="4" fill="#c62828"/>
 <text x="766" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="784" cy="413" r="4" fill="#c62828"/>
 <text x="882" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Scalar continuum limit · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="900" cy="413" r="4" fill="#c62828"/>
 <text x="998" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Surviving physical excitation · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1016" cy="413" r="4" fill="#c62828"/>
 <text x="1114" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1132" cy="413" r="4" fill="#c62828"/>
 <text x="1230" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1248" cy="413" r="4" fill="#c62828"/>
 <text x="1346" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1364" cy="413" r="4" fill="#c62828"/>
 <text x="1462" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Finite gap / correlation decay · partial · 1372 · reviewed: partial · Finite-volume covariance bounds; HasLatticeMassGap is open.</title>
+<g><title>Consensus · Finite gap / correlation decay · partial · 1372 · count: counted · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · Finite-volume covariance bounds; HasLatticeMassGap is open.</title>
 <circle cx="1480" cy="413" r="4" fill="#b77900"/>
 <text x="1578" y="417" text-anchor="end" font-size="11.5">1,372</text>
 <rect x="1476" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="422" width="8.7711" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Consensus · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1596" cy="413" r="4" fill="#c62828"/>
 <text x="1694" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1712" cy="413" r="4" fill="#c62828"/>
 <text x="1810" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Consensus · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Consensus · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 3c91be1c44033638c9fd002ba6684ca5c736f10e · </title>
 <circle cx="1828" cy="413" r="4" fill="#c62828"/>
 <text x="1926" y="417" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="422" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="450" font-size="12" font-weight="600">Elvin40</text>
 <text x="14" y="463" font-size="9" fill="#64748b">5d305ca230</text>
-<g><title>Elvin40 · Finite gauge Gibbs law · partial · 183 · reviewed: partial · </title>
+<g><title>Elvin40 · Finite gauge Gibbs law · partial · 183 · count: counted · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="204" cy="448" r="4" fill="#b77900"/>
 <text x="302" y="452" text-anchor="end" font-size="11.5">183</text>
 <rect x="200" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="457" width="1.8635" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>Elvin40 · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="320" cy="448" r="4" fill="#c62828"/>
 <text x="418" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Compactness / subsequences · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="436" cy="448" r="4" fill="#c62828"/>
 <text x="534" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="552" cy="448" r="4" fill="#c62828"/>
 <text x="650" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Positive-time semigroup · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="668" cy="448" r="4" fill="#c62828"/>
 <text x="766" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="784" cy="448" r="4" fill="#c62828"/>
 <text x="882" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Scalar continuum limit · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="900" cy="448" r="4" fill="#c62828"/>
 <text x="998" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Surviving physical excitation · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1016" cy="448" r="4" fill="#c62828"/>
 <text x="1114" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1132" cy="448" r="4" fill="#c62828"/>
 <text x="1230" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1248" cy="448" r="4" fill="#c62828"/>
 <text x="1346" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Asymptotic freedom / tuned coupling · conditional · 450 · reviewed: conditional · </title>
+<g><title>Elvin40 · Asymptotic freedom / tuned coupling · conditional · 450 · count: counted · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1364" cy="448" r="4" fill="#9333ea"/>
 <text x="1462" y="452" text-anchor="end" font-size="11.5">450</text>
 <rect x="1360" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="457" width="0.2770" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Elvin40 · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1480" cy="448" r="4" fill="#c62828"/>
 <text x="1578" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1596" cy="448" r="4" fill="#c62828"/>
 <text x="1694" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1712" cy="448" r="4" fill="#c62828"/>
 <text x="1810" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Elvin40 · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Elvin40 · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 5d305ca2304608fb65e815bc85f8416ee48762ae · </title>
 <circle cx="1828" cy="448" r="4" fill="#c62828"/>
 <text x="1926" y="452" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="457" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -915,165 +911,165 @@
 <rect x="4" y="470" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="485" font-size="12" font-weight="600">4Y-M</text>
 <text x="14" y="498" font-size="9" fill="#64748b">3df6d08c86</text>
-<g><title>4Y-M · Finite gauge Gibbs law · partial · 12 · reviewed: partial · </title>
+<g><title>4Y-M · Finite gauge Gibbs law · partial · 12 · count: counted · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="204" cy="483" r="4" fill="#b77900"/>
 <text x="302" y="487" text-anchor="end" font-size="11.5">12</text>
 <rect x="200" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="492" width="0.1222" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>4Y-M · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="320" cy="483" r="4" fill="#c62828"/>
 <text x="418" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Compactness / subsequences · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="436" cy="483" r="4" fill="#c62828"/>
 <text x="534" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="552" cy="483" r="4" fill="#c62828"/>
 <text x="650" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Positive-time semigroup · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="668" cy="483" r="4" fill="#c62828"/>
 <text x="766" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="784" cy="483" r="4" fill="#c62828"/>
 <text x="882" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Scalar continuum limit · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="900" cy="483" r="4" fill="#c62828"/>
 <text x="998" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Surviving physical excitation · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1016" cy="483" r="4" fill="#c62828"/>
 <text x="1114" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1132" cy="483" r="4" fill="#c62828"/>
 <text x="1230" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1248" cy="483" r="4" fill="#c62828"/>
 <text x="1346" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Asymptotic freedom / tuned coupling · partial · 8 · reviewed: partial · </title>
+<g><title>4Y-M · Asymptotic freedom / tuned coupling · partial · 8 · count: counted · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1364" cy="483" r="4" fill="#b77900"/>
 <text x="1462" y="487" text-anchor="end" font-size="11.5">8</text>
 <rect x="1360" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1360" y="492" width="0.0049" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>4Y-M · Finite gap / correlation decay · partial · 45 · reviewed: partial · </title>
+<g><title>4Y-M · Finite gap / correlation decay · partial · 45 · count: counted · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1480" cy="483" r="4" fill="#b77900"/>
 <text x="1578" y="487" text-anchor="end" font-size="11.5">45</text>
 <rect x="1476" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="492" width="0.2877" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>4Y-M · Physical continuum mass gap · conditional · 11 · reviewed: conditional · </title>
+<g><title>4Y-M · Physical continuum mass gap · conditional · 11 · count: counted · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1596" cy="483" r="4" fill="#9333ea"/>
 <text x="1694" y="487" text-anchor="end" font-size="11.5">11</text>
 <rect x="1592" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="492" width="0.2126" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>4Y-M · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1712" cy="483" r="4" fill="#c62828"/>
 <text x="1810" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>4Y-M · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>4Y-M · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 3df6d08c86e433b29d389afec6da8c800ca8f2e3 · </title>
 <circle cx="1828" cy="483" r="4" fill="#c62828"/>
 <text x="1926" y="487" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="492" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="520" font-size="12" font-weight="600">Lautanen</text>
 <text x="14" y="533" font-size="9" fill="#64748b">5f96a08611</text>
-<g><title>Lautanen · Finite gauge Gibbs law · complete · 119 · reviewed: complete · </title>
+<g><title>Lautanen · Finite gauge Gibbs law · complete · 119 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="204" cy="518" r="4" fill="#15803d"/>
 <text x="302" y="522" text-anchor="end" font-size="11.5">119</text>
 <rect x="200" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="527" width="1.2118" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Lautanen · Lattice reflection positivity · conditional · 666 · reviewed: conditional · </title>
+<g><title>Lautanen · Lattice reflection positivity · conditional · 666 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="320" cy="518" r="4" fill="#9333ea"/>
 <text x="418" y="522" text-anchor="end" font-size="11.5">666</text>
 <rect x="316" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="316" y="527" width="26.3562" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>Lautanen · Compactness / subsequences · open · 61 · reviewed: open · </title>
+<g><title>Lautanen · Compactness / subsequences · open · 61 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="436" cy="518" r="4" fill="#c62828"/>
 <text x="534" y="522" text-anchor="end" font-size="11.5">61</text>
 <rect x="432" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="432" y="527" width="2.8589" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Lautanen · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="552" cy="518" r="4" fill="#c62828"/>
 <text x="650" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Positive-time semigroup · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="668" cy="518" r="4" fill="#c62828"/>
 <text x="766" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="784" cy="518" r="4" fill="#c62828"/>
 <text x="882" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Scalar continuum limit · open · 61 · reviewed: open · </title>
+<g><title>Lautanen · Scalar continuum limit · open · 61 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="900" cy="518" r="4" fill="#c62828"/>
 <text x="998" y="522" text-anchor="end" font-size="11.5">61</text>
 <rect x="896" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="527" width="0.0375" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Lautanen · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Surviving physical excitation · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1016" cy="518" r="4" fill="#c62828"/>
 <text x="1114" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Continuum Euclidean symmetry / OS · open · 12 · reviewed: open · </title>
+<g><title>Lautanen · Continuum Euclidean symmetry / OS · open · 12 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1132" cy="518" r="4" fill="#c62828"/>
 <text x="1230" y="522" text-anchor="end" font-size="11.5">12</text>
 <rect x="1128" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="527" width="0.0074" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Lautanen · Relativistic Wightman reconstruction · open · 12 · reviewed: open · </title>
+<g><title>Lautanen · Relativistic Wightman reconstruction · open · 12 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1248" cy="518" r="4" fill="#c62828"/>
 <text x="1346" y="522" text-anchor="end" font-size="11.5">12</text>
 <rect x="1244" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="527" width="0.0073" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Lautanen · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1364" cy="518" r="4" fill="#c62828"/>
 <text x="1462" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1480" cy="518" r="4" fill="#c62828"/>
 <text x="1578" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Physical continuum mass gap · open · 69 · reviewed: open · The physical gap is a project axiom, not derived.</title>
+<g><title>Lautanen · Physical continuum mass gap · open · 69 · count: counted · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · The physical gap is a project axiom, not derived.</title>
 <circle cx="1596" cy="518" r="4" fill="#c62828"/>
 <text x="1694" y="522" text-anchor="end" font-size="11.5">69</text>
 <rect x="1592" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="527" width="1.3338" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Lautanen · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Composite observables / OPE · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1712" cy="518" r="4" fill="#c62828"/>
 <text x="1810" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Lautanen · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Lautanen · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: 5f96a08611ad717faebe1b6fd19f4479caf3e5ca · </title>
 <circle cx="1828" cy="518" r="4" fill="#c62828"/>
 <text x="1926" y="522" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="527" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -1081,158 +1077,158 @@
 <rect x="4" y="540" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="555" font-size="12" font-weight="600">Douglas LGT</text>
 <text x="14" y="568" font-size="9" fill="#64748b">b8793ccf6a</text>
-<g><title>Douglas LGT · Finite gauge Gibbs law · complete · 186 · reviewed: complete · </title>
+<g><title>Douglas LGT · Finite gauge Gibbs law · complete · 186 · count: counted · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="204" cy="553" r="4" fill="#15803d"/>
 <text x="302" y="557" text-anchor="end" font-size="11.5">186</text>
 <rect x="200" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="562" width="1.8941" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Douglas LGT · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="320" cy="553" r="4" fill="#c62828"/>
 <text x="418" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Compactness / subsequences · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="436" cy="553" r="4" fill="#c62828"/>
 <text x="534" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="552" cy="553" r="4" fill="#c62828"/>
 <text x="650" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Positive-time semigroup · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="668" cy="553" r="4" fill="#c62828"/>
 <text x="766" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="784" cy="553" r="4" fill="#c62828"/>
 <text x="882" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Scalar continuum limit · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="900" cy="553" r="4" fill="#c62828"/>
 <text x="998" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Surviving physical excitation · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1016" cy="553" r="4" fill="#c62828"/>
 <text x="1114" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1132" cy="553" r="4" fill="#c62828"/>
 <text x="1230" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1248" cy="553" r="4" fill="#c62828"/>
 <text x="1346" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1364" cy="553" r="4" fill="#c62828"/>
 <text x="1462" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Finite gap / correlation decay · complete · 307 · reviewed: complete · U(n) strong-coupling finite torus correlation decay only.</title>
+<g><title>Douglas LGT · Finite gap / correlation decay · complete · 307 · count: counted · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · U(n) strong-coupling finite torus correlation decay only.</title>
 <circle cx="1480" cy="553" r="4" fill="#15803d"/>
 <text x="1578" y="557" text-anchor="end" font-size="11.5">307</text>
 <rect x="1476" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1476" y="562" width="1.9626" height="5" rx="2" fill="#15803d"/>
 </g>
-<g><title>Douglas LGT · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1596" cy="553" r="4" fill="#c62828"/>
 <text x="1694" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Composite observables / OPE · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1712" cy="553" r="4" fill="#c62828"/>
 <text x="1810" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Douglas LGT · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Douglas LGT · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: b8793ccf6a51e00e9e2b1685ba191b8626e37137 · </title>
 <circle cx="1828" cy="553" r="4" fill="#c62828"/>
 <text x="1926" y="557" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="562" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="590" font-size="12" font-weight="600">OpenAI gap extension</text>
 <text x="14" y="603" font-size="9" fill="#64748b">ff784a0ae4</text>
-<g><title>OpenAI gap extension · Finite gauge Gibbs law · partial · 1 · reviewed: partial · </title>
+<g><title>OpenAI gap extension · Finite gauge Gibbs law · partial · 1 · count: counted · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="204" cy="588" r="4" fill="#b77900"/>
 <text x="302" y="592" text-anchor="end" font-size="11.5">1</text>
 <rect x="200" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="597" width="0.0102" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>OpenAI gap extension · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="320" cy="588" r="4" fill="#c62828"/>
 <text x="418" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Compactness / subsequences · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="436" cy="588" r="4" fill="#c62828"/>
 <text x="534" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="552" cy="588" r="4" fill="#c62828"/>
 <text x="650" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Positive-time semigroup · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="668" cy="588" r="4" fill="#c62828"/>
 <text x="766" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="784" cy="588" r="4" fill="#c62828"/>
 <text x="882" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Scalar continuum limit · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="900" cy="588" r="4" fill="#c62828"/>
 <text x="998" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Surviving physical excitation · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1016" cy="588" r="4" fill="#c62828"/>
 <text x="1114" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1132" cy="588" r="4" fill="#c62828"/>
 <text x="1230" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1248" cy="588" r="4" fill="#c62828"/>
 <text x="1346" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1364" cy="588" r="4" fill="#c62828"/>
 <text x="1462" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1480" cy="588" r="4" fill="#c62828"/>
 <text x="1578" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Physical continuum mass gap · conditional · 14 · reviewed: conditional · </title>
+<g><title>OpenAI gap extension · Physical continuum mass gap · conditional · 14 · count: counted · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1596" cy="588" r="4" fill="#9333ea"/>
 <text x="1694" y="592" text-anchor="end" font-size="11.5">14</text>
 <rect x="1592" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="597" width="0.2706" height="5" rx="2" fill="#9333ea"/>
 </g>
-<g><title>OpenAI gap extension · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Composite observables / OPE · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1712" cy="588" r="4" fill="#c62828"/>
 <text x="1810" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>OpenAI gap extension · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>OpenAI gap extension · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: ff784a0ae4a886580dfb8e0c7aa4e9dac6ce94f6 · </title>
 <circle cx="1828" cy="588" r="4" fill="#c62828"/>
 <text x="1926" y="592" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="597" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -1240,160 +1236,160 @@
 <rect x="4" y="610" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="625" font-size="12" font-weight="600">FMCAD</text>
 <text x="14" y="638" font-size="9" fill="#64748b">b637ab9a3d</text>
-<g><title>FMCAD · Finite gauge Gibbs law · partial · 67 · reviewed: partial · </title>
+<g><title>FMCAD · Finite gauge Gibbs law · partial · 67 · count: counted · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="204" cy="623" r="4" fill="#b77900"/>
 <text x="302" y="627" text-anchor="end" font-size="11.5">67</text>
 <rect x="200" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="632" width="0.6823" height="5" rx="2" fill="#b77900"/>
 </g>
-<g><title>FMCAD · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="320" cy="623" r="4" fill="#c62828"/>
 <text x="418" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Compactness / subsequences · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="436" cy="623" r="4" fill="#c62828"/>
 <text x="534" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="552" cy="623" r="4" fill="#c62828"/>
 <text x="650" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Positive-time semigroup · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="668" cy="623" r="4" fill="#c62828"/>
 <text x="766" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="784" cy="623" r="4" fill="#c62828"/>
 <text x="882" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Scalar continuum limit · open · 134 · reviewed: open · </title>
+<g><title>FMCAD · Scalar continuum limit · open · 134 · count: counted · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="900" cy="623" r="4" fill="#c62828"/>
 <text x="998" y="627" text-anchor="end" font-size="11.5">134</text>
 <rect x="896" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="896" y="632" width="0.0825" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>FMCAD · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Surviving physical excitation · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="1016" cy="623" r="4" fill="#c62828"/>
 <text x="1114" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="1132" cy="623" r="4" fill="#c62828"/>
 <text x="1230" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Relativistic Wightman reconstruction · open · 191 · reviewed: open · Abstract package does not state physical Wightman conditions.</title>
+<g><title>FMCAD · Relativistic Wightman reconstruction · open · 191 · count: counted · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · Abstract package does not state physical Wightman conditions.</title>
 <circle cx="1248" cy="623" r="4" fill="#c62828"/>
 <text x="1346" y="627" text-anchor="end" font-size="11.5">191</text>
 <rect x="1244" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="632" width="0.1159" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>FMCAD · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="1364" cy="623" r="4" fill="#c62828"/>
 <text x="1462" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="1480" cy="623" r="4" fill="#c62828"/>
 <text x="1578" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Physical continuum mass gap · open · 191 · reviewed: open · Terminal formula/interface is not a proved physical gap.</title>
+<g><title>FMCAD · Physical continuum mass gap · open · 191 · count: counted · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · Terminal formula/interface is not a proved physical gap.</title>
 <circle cx="1596" cy="623" r="4" fill="#c62828"/>
 <text x="1694" y="627" text-anchor="end" font-size="11.5">191</text>
 <rect x="1592" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="632" width="3.6922" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>FMCAD · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Composite observables / OPE · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="1712" cy="623" r="4" fill="#c62828"/>
 <text x="1810" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>FMCAD · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>FMCAD · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: b637ab9a3d92c259b6561982ba57475f9908da9b · </title>
 <circle cx="1828" cy="623" r="4" fill="#c62828"/>
 <text x="1926" y="627" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="632" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="660" font-size="12" font-weight="600">Merchant</text>
 <text x="14" y="673" font-size="9" fill="#64748b">ecbc9fdca0</text>
-<g><title>Merchant · Finite gauge Gibbs law · open · 12 · reviewed: open · </title>
+<g><title>Merchant · Finite gauge Gibbs law · open · 12 · count: counted · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="204" cy="658" r="4" fill="#c62828"/>
 <text x="302" y="662" text-anchor="end" font-size="11.5">12</text>
 <rect x="200" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="667" width="0.1222" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Merchant · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="320" cy="658" r="4" fill="#c62828"/>
 <text x="418" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Compactness / subsequences · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="436" cy="658" r="4" fill="#c62828"/>
 <text x="534" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="552" cy="658" r="4" fill="#c62828"/>
 <text x="650" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Positive-time semigroup · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="668" cy="658" r="4" fill="#c62828"/>
 <text x="766" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="784" cy="658" r="4" fill="#c62828"/>
 <text x="882" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Scalar continuum limit · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="900" cy="658" r="4" fill="#c62828"/>
 <text x="998" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Surviving physical excitation · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1016" cy="658" r="4" fill="#c62828"/>
 <text x="1114" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1132" cy="658" r="4" fill="#c62828"/>
 <text x="1230" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1248" cy="658" r="4" fill="#c62828"/>
 <text x="1346" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1364" cy="658" r="4" fill="#c62828"/>
 <text x="1462" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1480" cy="658" r="4" fill="#c62828"/>
 <text x="1578" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Physical continuum mass gap · open · 30 · reviewed: open · Assumed gap inequality, existence axiom True.</title>
+<g><title>Merchant · Physical continuum mass gap · open · 30 · count: counted · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · Assumed gap inequality, existence axiom True.</title>
 <circle cx="1596" cy="658" r="4" fill="#c62828"/>
 <text x="1694" y="662" text-anchor="end" font-size="11.5">30</text>
 <rect x="1592" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="667" width="0.5799" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>Merchant · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Composite observables / OPE · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1712" cy="658" r="4" fill="#c62828"/>
 <text x="1810" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Merchant · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Merchant · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: ecbc9fdca0f77db5033fea11aa2be8aa43c01b57 · </title>
 <circle cx="1828" cy="658" r="4" fill="#c62828"/>
 <text x="1926" y="662" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="667" width="104" height="5" rx="2" fill="#e2e8f0"/>
@@ -1401,162 +1397,162 @@
 <rect x="4" y="680" width="1942" height="35" fill="#f1f5f9"/>
 <text x="14" y="695" font-size="12" font-weight="600">YuanXian</text>
 <text x="14" y="708" font-size="9" fill="#64748b">e8ac799b97</text>
-<g><title>YuanXian · Finite gauge Gibbs law · open · 5 · reviewed: open · </title>
+<g><title>YuanXian · Finite gauge Gibbs law · open · 5 · count: counted · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="204" cy="693" r="4" fill="#c62828"/>
 <text x="302" y="697" text-anchor="end" font-size="11.5">5</text>
 <rect x="200" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="200" y="702" width="0.0509" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>YuanXian · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="320" cy="693" r="4" fill="#c62828"/>
 <text x="418" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Compactness / subsequences · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="436" cy="693" r="4" fill="#c62828"/>
 <text x="534" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="552" cy="693" r="4" fill="#c62828"/>
 <text x="650" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Positive-time semigroup · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="668" cy="693" r="4" fill="#c62828"/>
 <text x="766" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="784" cy="693" r="4" fill="#c62828"/>
 <text x="882" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Scalar continuum limit · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="900" cy="693" r="4" fill="#c62828"/>
 <text x="998" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Surviving physical excitation · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1016" cy="693" r="4" fill="#c62828"/>
 <text x="1114" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Continuum Euclidean symmetry / OS · open · 5 · reviewed: open · </title>
+<g><title>YuanXian · Continuum Euclidean symmetry / OS · open · 5 · count: counted · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1132" cy="693" r="4" fill="#c62828"/>
 <text x="1230" y="697" text-anchor="end" font-size="11.5">5</text>
 <rect x="1128" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1128" y="702" width="0.0031" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>YuanXian · Relativistic Wightman reconstruction · open · 5 · reviewed: open · </title>
+<g><title>YuanXian · Relativistic Wightman reconstruction · open · 5 · count: counted · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1248" cy="693" r="4" fill="#c62828"/>
 <text x="1346" y="697" text-anchor="end" font-size="11.5">5</text>
 <rect x="1244" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1244" y="702" width="0.0030" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>YuanXian · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1364" cy="693" r="4" fill="#c62828"/>
 <text x="1462" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1480" cy="693" r="4" fill="#c62828"/>
 <text x="1578" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Physical continuum mass gap · open · 3 · reviewed: open · Incomplete instanton construction with unresolved placeholders.</title>
+<g><title>YuanXian · Physical continuum mass gap · open · 3 · count: counted · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · Incomplete instanton construction with unresolved placeholders.</title>
 <circle cx="1596" cy="693" r="4" fill="#c62828"/>
 <text x="1694" y="697" text-anchor="end" font-size="11.5">3</text>
 <rect x="1592" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 <rect x="1592" y="702" width="0.0580" height="5" rx="2" fill="#c62828"/>
 </g>
-<g><title>YuanXian · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Composite observables / OPE · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1712" cy="693" r="4" fill="#c62828"/>
 <text x="1810" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>YuanXian · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>YuanXian · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: e8ac799b97a7df46481405960d2d370bdc7de0fd · </title>
 <circle cx="1828" cy="693" r="4" fill="#c62828"/>
 <text x="1926" y="697" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="702" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
 <text x="14" y="730" font-size="12" font-weight="600">Eriksson</text>
 <text x="14" y="743" font-size="9" fill="#64748b">fc4631d6af</text>
-<g><title>Eriksson · Finite gauge Gibbs law · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Finite gauge Gibbs law · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="204" cy="728" r="4" fill="#c62828"/>
 <text x="302" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="200" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Lattice reflection positivity · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Lattice reflection positivity · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="320" cy="728" r="4" fill="#c62828"/>
 <text x="418" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="316" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Compactness / subsequences · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Compactness / subsequences · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="436" cy="728" r="4" fill="#c62828"/>
 <text x="534" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="432" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Positive-kernel Hilbert space · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Positive-kernel Hilbert space · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="552" cy="728" r="4" fill="#c62828"/>
 <text x="650" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="548" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Positive-time semigroup · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Positive-time semigroup · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="668" cy="728" r="4" fill="#c62828"/>
 <text x="766" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="664" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Positive generator / spectrum · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Positive generator / spectrum · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="784" cy="728" r="4" fill="#c62828"/>
 <text x="882" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="780" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Scalar continuum limit · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Scalar continuum limit · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="900" cy="728" r="4" fill="#c62828"/>
 <text x="998" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="896" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Surviving physical excitation · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Surviving physical excitation · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1016" cy="728" r="4" fill="#c62828"/>
 <text x="1114" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1012" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Continuum Euclidean symmetry / OS · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Continuum Euclidean symmetry / OS · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1132" cy="728" r="4" fill="#c62828"/>
 <text x="1230" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1128" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Relativistic Wightman reconstruction · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Relativistic Wightman reconstruction · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1248" cy="728" r="4" fill="#c62828"/>
 <text x="1346" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1244" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Asymptotic freedom / tuned coupling · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Asymptotic freedom / tuned coupling · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1364" cy="728" r="4" fill="#c62828"/>
 <text x="1462" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1360" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Finite gap / correlation decay · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Finite gap / correlation decay · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1480" cy="728" r="4" fill="#c62828"/>
 <text x="1578" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1476" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Physical continuum mass gap · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Physical continuum mass gap · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1596" cy="728" r="4" fill="#c62828"/>
 <text x="1694" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1592" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Composite observables / OPE · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Composite observables / OPE · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1712" cy="728" r="4" fill="#c62828"/>
 <text x="1810" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1708" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<g><title>Eriksson · Stress / Ward / trace · open · not counted · reviewed: open · </title>
+<g><title>Eriksson · Stress / Ward / trace · open · not counted · count: not-mapped · status revision: fc4631d6afd3a99074bae7327e6aae33bbc86376 · </title>
 <circle cx="1828" cy="728" r="4" fill="#c62828"/>
 <text x="1926" y="732" text-anchor="end" font-size="11.5">—</text>
 <rect x="1824" y="737" width="104" height="5" rx="2" fill="#e2e8f0"/>
 </g>
-<text x="14" y="778" font-size="11" fill="#475569">— = no selected comparable module or unavailable count; shared imports can recur in multiple columns.</text>
-<text x="14" y="793" font-size="11" fill="#475569">Status applies only to reviewed revision and scope. Gray = review required or unavailable; C?/P?/K?/O? = prior reviewed status. See report.md and report.json.</text>
+<text x="14" y="778" font-size="11" fill="#475569">— = no selected module; n/a = count unavailable; shared imports can recur in multiple columns.</text>
+<text x="14" y="793" font-size="11" fill="#475569">Colours show the last assessed proof status; counts use the displayed source revision. Assessment revisions are recorded in report.md and report.json.</text>
 </g></svg>

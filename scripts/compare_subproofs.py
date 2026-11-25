@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 STATES = {"complete", "partial", "conditional", "open"}
 COLORS = {"complete": "#15803d", "partial": "#b77900", "conditional": "#9333ea",
-          "open": "#c62828", "review-required": "#64748b", "unavailable": "#64748b"}
+          "open": "#c62828"}
 EXCLUDE = {"vendor", ".lake", ".git", "tests", "test", "checks", "audit",
            "attempts", "probes", ".shipping_backups", "massgapchecks", "scripts"}
 TOKEN = re.compile(r'/-|-/|--|"(?:\\.|[^"\\])*"')
@@ -272,10 +272,11 @@ def analyze(project: dict, base: Path, mode: str, local: bool) -> dict:
             seen, outside, issues = closure(roots, files, modules)
             union.update(seen)
             result["errors"].extend(f"{area}: {i}" for i in sorted(issues))
-            state = ("unavailable" if issues or problems else
-                     "review-required" if revision != project["reviewed_revision"] else c["status"])
+            # Mathematical classification and data availability are independent.
+            # Counts can be refreshed without silently changing the assessed status.
+            count_status = "unavailable" if issues or problems else "counted" if roots else "not-mapped"
             result["cells"][area] = {
-                "status": state, "reviewed_status": c["status"], "roots": roots,
+                "status": c["status"], "reviewed_status": c["status"], "count_status": count_status, "roots": roots,
                 "note": c.get("note", ""),
                 "declarations": sum(files[f]["declarations"] for f in seen) if roots and not issues and not problems else None,
                 "root_declarations": sum(files[f]["declarations"] for f in roots if f in files) if roots and not issues and not problems else None,
@@ -290,7 +291,7 @@ def analyze(project: dict, base: Path, mode: str, local: bool) -> dict:
         result["errors"].append(f"{type(exc).__name__}: {str(exc)[:600]}")
     for area, c in project["cells"].items():
         if area not in result["cells"]:
-            result["cells"][area] = {"status": "unavailable", "reviewed_status": c["status"],
+            result["cells"][area] = {"status": c["status"], "reviewed_status": c["status"], "count_status": "unavailable",
                                      "roots": c["roots"], "declarations": None, "note": c.get("note", ""),
                                      "module_count": None}
     if project.get("private_source"):
@@ -312,7 +313,7 @@ def analyze(project: dict, base: Path, mode: str, local: bool) -> dict:
 
 def write_csv(report: dict, out: Path) -> None:
     keys = ["framework", "repository", "revision", "reviewed_revision", "subproof", "status",
-            "reviewed_status", "declarations", "root_declarations", "module_count", "root_count",
+            "reviewed_status", "count_status", "declarations", "root_declarations", "module_count", "root_count",
             "axiom_declarations", "sorry_tokens", "roots", "scope", "note"]
     with (out / "subproofs.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=keys)
@@ -367,18 +368,16 @@ def write_svg(report: dict, out: Path) -> None:
             x = left+j*col
             value = c["declarations"]
             color = COLORS[c["status"]]
-            svg.append(f'<g><title>{esc(label)} · {esc(a["label"])} · {esc(c["status"])} · {esc(value if value is not None else "not counted")} · reviewed: {esc(c["reviewed_status"])} · {esc(c.get("note", ""))}</title>')
+            svg.append(f'<g><title>{esc(label)} · {esc(a["label"])} · {esc(c["status"])} · {esc(value if value is not None else "not counted")} · count: {esc(c.get("count_status", "not-mapped"))} · status revision: {esc(p.get("reviewed_revision", "unspecified"))} · {esc(c.get("note", ""))}</title>')
             svg.append(f'<circle cx="{x+9}" cy="{y+13}" r="4" fill="{color}"/>')
-            if c["status"] == "review-required":
-                code = {"complete":"C","partial":"P","conditional":"K","open":"O"}[c["reviewed_status"]]
-                svg.append(f'<text x="{x+16}" y="{y+17}" font-size="9" fill="#64748b">{code}?</text>')
-            svg.append(f'<text x="{x+col-9}" y="{y+17}" text-anchor="end" font-size="11.5">{value:,}</text>' if value is not None else f'<text x="{x+col-9}" y="{y+17}" text-anchor="end" font-size="11.5">—</text>')
+            display = f"{value:,}" if value is not None else "n/a" if c.get("count_status") == "unavailable" else "—"
+            svg.append(f'<text x="{x+col-9}" y="{y+17}" text-anchor="end" font-size="11.5">{display}</text>')
             svg.append(f'<rect x="{x+5}" y="{y+22}" width="{col-12}" height="5" rx="2" fill="#e2e8f0"/>')
             if value:
                 svg.append(f'<rect x="{x+5}" y="{y+22}" width="{(col-12)*value/maxs[j]:.4f}" height="5" rx="2" fill="{color}"/>')
             svg.append('</g>')
-    svg += [f'<text x="14" y="{height-27}" font-size="11" fill="#475569">— = no selected comparable module or unavailable count; shared imports can recur in multiple columns.</text>',
-            f'<text x="14" y="{height-12}" font-size="11" fill="#475569">Status applies only to reviewed revision and scope. Gray = review required or unavailable; C?/P?/K?/O? = prior reviewed status. See report.md and report.json.</text>',
+    svg += [f'<text x="14" y="{height-27}" font-size="11" fill="#475569">— = no selected module; n/a = count unavailable; shared imports can recur in multiple columns.</text>',
+            f'<text x="14" y="{height-12}" font-size="11" fill="#475569">Colours show the last assessed proof status; counts use the displayed source revision. Assessment revisions are recorded in report.md and report.json.</text>',
             '</g></svg>']
     (out / "subproof-chart.svg").write_text("\n".join(svg), encoding="utf-8")
 
@@ -386,17 +385,19 @@ def write_svg(report: dict, out: Path) -> None:
 def markdown(report: dict) -> str:
     lines = ["# Lean subproof comparison", "",
              f"Snapshot mode: **{report['mode']}** · Reference: `{report['reference_revision']}`", "",
-             "Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Status is scoped review, not a kernel or Clay verdict. Shared dependencies may recur. Gray/review-required means the upstream revision changed. A dash is not a measured zero.", "",
-             "| Framework | Source modules | Source declarations | Union of selected closures | Revision | Review |",
-             "|---|---:|---:|---:|---|---|"]
+             "Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Colours show the last assessed proof status, not a fresh kernel or Clay verdict. Counts use the fetched revision; the status assessment revision is recorded separately. Shared dependencies may recur. A dash means no selected module; n/a means count unavailable.", "",
+             "| Framework | Source modules | Source declarations | Union of selected closures | Count revision | Status revision | Count data |",
+             "|---|---:|---:|---:|---|---|---|"]
     def f(n):
         return "—" if n is None else f"{n:,}"
     for p in report["projects"]:
         rev = p["revision"]
         link = f"[{rev[:10]}](https://github.com/{p['repository']}/tree/{rev})" if rev else "unavailable"
-        review = "errors" if p["errors"] else "reviewed" if rev == p["reviewed_revision"] else "review required"
-        lines.append(f"| {p['label']} | {f(p['total_modules'])} | {f(p['total_declarations'])} | {f(p['union_declarations'])} | {link} | {review} |")
-    icons = {"complete": "🟢", "partial": "🟡", "conditional": "🟣", "open": "🔴", "review-required": "⚪", "unavailable": "⚪"}
+        assessed = p["reviewed_revision"]
+        assessment_link = f"[{assessed[:10]}](https://github.com/{p['repository']}/tree/{assessed})"
+        count_data = "errors" if p["errors"] else "available"
+        lines.append(f"| {p['label']} | {f(p['total_modules'])} | {f(p['total_declarations'])} | {f(p['union_declarations'])} | {link} | {assessment_link} | {count_data} |")
+    icons = {"complete": "🟢", "partial": "🟡", "conditional": "🟣", "open": "🔴"}
     for first, last in [(0,6), (6,13), (13,len(report["areas"]))]:
         aa = report["areas"][first:last]
         if not aa:
@@ -406,16 +407,14 @@ def markdown(report: dict) -> str:
         for p in report["projects"]:
             cells = [p["cells"][a["id"]] for a in aa]
             def cell_text(c):
-                state = icons[c["status"]]
-                if c["status"] == "review-required":
-                    state += " (was " + icons[c["reviewed_status"]] + ")"
-                return f"{state} {f(c['declarations'])}"
+                value = "n/a" if c.get("count_status") == "unavailable" else f(c["declarations"])
+                return f"{icons[c['status']]} {value}"
             lines.append("| " + p["label"] + " | " + " | ".join(cell_text(c) for c in cells) + " |")
     lines += ["", "## Specification crosswalk", "", "| Subproof | source/requirements.json IDs |", "|---|---|"]
     for a in report["areas"]:
         lines.append(f"| {a['label']} | {', '.join(a['requirement_ids'])} |")
     lines += ["", "## Scope and review evidence", "",
-              "🟢 Complete · 🟡 Partial · 🟣 Conditional · 🔴 Open · ⚪ Review required / unavailable", ""]
+              "🟢 Complete · 🟡 Partial · 🟣 Conditional · 🔴 Open", ""]
     for p in report["projects"]:
         link = f"https://github.com/{p['repository']}/blob/{p['reviewed_revision']}/{p['review_evidence']}"
         lines.append(f"- **{p['label']}**: {p['scope']} [Reviewed evidence]({link}).")

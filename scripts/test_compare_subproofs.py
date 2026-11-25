@@ -60,17 +60,25 @@ def text := "theorem fake : True"
         self.assertGreaterEqual(len(registry["projects"]), 18)
         self.assertGreaterEqual(len(registry["areas"]), 15)
 
-    def test_stale_revision_never_promotes_completion(self):
+    def test_new_revision_keeps_assessed_four_state_status(self):
         p = {"id": "P", "label": "P", "repository": "x/y", "ref": "HEAD",
              "scope": "finite", "reviewed_on": "2026-11-25",
              "review_evidence": "README.md", "reviewed_revision": "a"*40,
              "cells": {"gibbs": {"status": "complete", "roots": ["A.lean"]},
-                       "gap": {"status": "open", "roots": []}}}
+                       "gap": {"status": "open", "roots": []},
+                       "partial": {"status": "partial", "roots": ["A.lean"]},
+                       "conditional": {"status": "conditional", "roots": ["A.lean"]}}}
         files = {"A.lean": file(7)}
         with patch.object(c, "prepare", return_value=(Path("."), "b"*40)), \
              patch.object(c, "inventory", return_value=(files, {"A": ["A.lean"]}, [])):
             r = c.analyze(p, Path("."), "latest", False)
-        self.assertEqual(r["cells"]["gibbs"]["status"], "review-required")
+        self.assertEqual(r["cells"]["gibbs"]["status"], "complete")
+        self.assertEqual(r["cells"]["gibbs"]["count_status"], "counted")
+        self.assertEqual(r["revision"], "b"*40)
+        self.assertEqual(r["reviewed_revision"], "a"*40)
+        self.assertEqual(r["cells"]["gap"]["status"], "open")
+        self.assertEqual(r["cells"]["partial"]["status"], "partial")
+        self.assertEqual(r["cells"]["conditional"]["status"], "conditional")
         self.assertEqual(r["cells"]["gibbs"]["reviewed_status"], "complete")
         self.assertEqual(r["cells"]["gibbs"]["declarations"], 7)
         self.assertIsNone(r["cells"]["gap"]["declarations"])
@@ -85,7 +93,8 @@ def text := "theorem fake : True"
              patch.object(c, "inventory", return_value=({"A.lean": file(7)}, {"A": ["A.lean"]}, [])):
             r = c.analyze(p, Path("."), "reviewed", False)
         self.assertTrue(r["errors"])
-        self.assertEqual(r["cells"]["gibbs"]["status"], "unavailable")
+        self.assertEqual(r["cells"]["gibbs"]["status"], "complete")
+        self.assertEqual(r["cells"]["gibbs"]["count_status"], "unavailable")
         self.assertIsNone(r["cells"]["gibbs"]["declarations"])
 
     def test_private_source_redacts_dependency_metadata(self):
