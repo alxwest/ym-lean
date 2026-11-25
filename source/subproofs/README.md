@@ -93,7 +93,11 @@ is not a positive continuum mass gap.
 - **Conditional:** the component relies on additional unproved inputs.
 - **Open:** no completed proof is identified; a module may merely state or
   assume the target.
-The chart always uses these four proof states. A newer upstream commit does
+
+Open cells are displayed blank in the SVG and Markdown comparison, even when
+there are declarations for an unproved target. Their statuses and counts
+remain in CSV/JSON and the aggregate source totals. Column scales use only
+visible counts. A newer upstream commit does
 not change the displayed status: it remains the last assessed classification.
 The count revision and status revision are recorded separately. A missing
 module mapping is shown as a dash; a failed retrieval or count is shown as

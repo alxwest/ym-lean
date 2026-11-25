@@ -1,8 +1,8 @@
 # Lean subproof comparison
 
-Snapshot mode: **reviewed** · Reference: `1c3e00830293c627ba30fbf457cc961161285916`
+Snapshot mode: **reviewed** · Reference: `9055fd7c47c867ff945f277c328696a32b55d6b8`
 
-Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Colours show the last assessed proof status, not a fresh kernel or Clay verdict. Counts use the fetched revision; the status assessment revision is recorded separately. Shared dependencies may recur. A dash means no selected module; n/a means count unavailable.
+Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Colours show the last assessed proof status, not a fresh kernel or Clay verdict. Counts use the fetched revision; the status assessment revision is recorded separately. Shared dependencies may recur. Blank subproof cells mean open; n/a means count unavailable. Open-cell counts remain in CSV/JSON.
 
 | Framework | Source modules | Source declarations | Union of selected closures | Count revision | Status revision | Count data |
 |---|---:|---:|---:|---|---|---|
@@ -30,63 +30,63 @@ Counts are named source declarations in selected project-local import closures, 
 | YM4 | 🟢 8,123 | 🟢 743 | 🟢 2,219 | 🟢 1,210 | 🟢 1,607 | 🟢 1,338 |
 | OpenAI | 🟢 206 | 🟢 491 | 🟢 19 | 🟢 27 | 🟢 515 | 🟢 79 |
 | DyadicYM | 🟢 516 | 🟢 670 | 🟢 43 | 🟢 43 | 🟢 71 | 🟢 46 |
-| Nissim | 🟢 217 | 🟢 2,628 | 🟢 2,006 | 🔴 — | 🔴 — | 🔴 — |
-| Bundschu | 🟡 10,213 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟡 10,479 |
-| Wilson Loop RG | 🟡 799 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| SolidSF | 🟢 82 | 🔴 — | 🟣 665 | 🔴 — | 🔴 — | 🔴 — |
+| Nissim | 🟢 217 | 🟢 2,628 | 🟢 2,006 |  |  |  |
+| Bundschu | 🟡 10,213 |  |  |  |  | 🟡 10,479 |
+| Wilson Loop RG | 🟡 799 |  |  |  |  |  |
+| SolidSF | 🟢 82 |  | 🟣 665 |  |  |  |
 | Luaartist | 🟡 102 | 🟡 15 | 🟣 33 | 🟣 141 | 🟡 19 | 🟡 27 |
-| Consensus | 🟢 65 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| Elvin40 | 🟡 183 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| 4Y-M | 🟡 12 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| Lautanen | 🟢 119 | 🟣 666 | 🔴 61 | 🔴 — | 🔴 — | 🔴 — |
-| Douglas LGT | 🟢 186 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| OpenAI gap extension | 🟡 1 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| FMCAD | 🟡 67 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| Merchant | 🔴 12 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| YuanXian | 🔴 5 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
-| Eriksson | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
+| Consensus | 🟢 65 |  |  |  |  |  |
+| Elvin40 | 🟡 183 |  |  |  |  |  |
+| 4Y-M | 🟡 12 |  |  |  |  |  |
+| Lautanen | 🟢 119 | 🟣 666 |  |  |  |  |
+| Douglas LGT | 🟢 186 |  |  |  |  |  |
+| OpenAI gap extension | 🟡 1 |  |  |  |  |  |
+| FMCAD | 🟡 67 |  |  |  |  |  |
+| Merchant |  |  |  |  |  |  |
+| YuanXian |  |  |  |  |  |  |
+| Eriksson |  |  |  |  |  |  |
 
 | Framework | Scalar continuum limit | Surviving physical excitation | Continuum Euclidean symmetry / OS | Relativistic Wightman reconstruction | Asymptotic freedom / tuned coupling | Finite gap / correlation decay | Physical continuum mass gap |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| YM4 | 🟣 168,955 | 🟣 168,955 | 🟣 169,021 | 🟣 171,349 | 🟡 168,955 | 🔴 — | 🔴 — |
-| OpenAI | 🟢 96,797 | 🟢 73,373 | 🟢 96,797 | 🟢 99,465 | 🟢 96,797 | 🔴 — | 🔴 — |
+| YM4 | 🟣 168,955 | 🟣 168,955 | 🟣 169,021 | 🟣 171,349 | 🟡 168,955 |  |  |
+| OpenAI | 🟢 96,797 | 🟢 73,373 | 🟢 96,797 | 🟢 99,465 | 🟢 96,797 |  |  |
 | DyadicYM | 🟡 2,967 | 🟡 3,418 | 🟡 2,980 | 🟡 3,486 | 🟣 1,231 | 🟡 657 | 🟣 5,380 |
-| Nissim | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟢 501 | 🔴 — |
-| Bundschu | 🟡 14,931 | 🔴 — | 🔴 — | 🔴 — | 🟡 11,054 | 🟢 16,268 | 🔴 — |
-| Wilson Loop RG | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟡 2,397 | 🔴 — | 🔴 — |
-| SolidSF | 🟣 934 | 🔴 — | 🟣 1,311 | 🔴 — | 🟡 773 | 🟡 827 | 🟣 23 |
-| Luaartist | 🟣 86 | 🔴 86 | 🟣 111 | 🟣 126 | 🔴 — | 🟢 46 | 🟣 89 |
-| Consensus | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟡 1,372 | 🔴 — |
-| Elvin40 | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟣 450 | 🔴 — | 🔴 — |
-| 4Y-M | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟡 8 | 🟡 45 | 🟣 11 |
-| Lautanen | 🔴 61 | 🔴 — | 🔴 12 | 🔴 12 | 🔴 — | 🔴 — | 🔴 69 |
-| Douglas LGT | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟢 307 | 🔴 — |
-| OpenAI gap extension | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🟣 14 |
-| FMCAD | 🔴 134 | 🔴 — | 🔴 — | 🔴 191 | 🔴 — | 🔴 — | 🔴 191 |
-| Merchant | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 30 |
-| YuanXian | 🔴 — | 🔴 — | 🔴 5 | 🔴 5 | 🔴 — | 🔴 — | 🔴 3 |
-| Eriksson | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — | 🔴 — |
+| Nissim |  |  |  |  |  | 🟢 501 |  |
+| Bundschu | 🟡 14,931 |  |  |  | 🟡 11,054 | 🟢 16,268 |  |
+| Wilson Loop RG |  |  |  |  | 🟡 2,397 |  |  |
+| SolidSF | 🟣 934 |  | 🟣 1,311 |  | 🟡 773 | 🟡 827 | 🟣 23 |
+| Luaartist | 🟣 86 |  | 🟣 111 | 🟣 126 |  | 🟢 46 | 🟣 89 |
+| Consensus |  |  |  |  |  | 🟡 1,372 |  |
+| Elvin40 |  |  |  |  | 🟣 450 |  |  |
+| 4Y-M |  |  |  |  | 🟡 8 | 🟡 45 | 🟣 11 |
+| Lautanen |  |  |  |  |  |  |  |
+| Douglas LGT |  |  |  |  |  | 🟢 307 |  |
+| OpenAI gap extension |  |  |  |  |  |  | 🟣 14 |
+| FMCAD |  |  |  |  |  |  |  |
+| Merchant |  |  |  |  |  |  |  |
+| YuanXian |  |  |  |  |  |  |  |
+| Eriksson |  |  |  |  |  |  |  |
 
 | Framework | Composite observables / OPE | Stress / Ward / trace |
 |---|---:|---:|
-| YM4 | 🔴 — | 🔴 — |
+| YM4 |  |  |
 | OpenAI | 🟢 85 | 🟡 73,373 |
 | DyadicYM | 🟡 323 | 🟡 2,679 |
-| Nissim | 🔴 — | 🔴 — |
-| Bundschu | 🔴 — | 🔴 — |
-| Wilson Loop RG | 🔴 — | 🟡 81 |
-| SolidSF | 🔴 — | 🔴 — |
-| Luaartist | 🔴 — | 🔴 — |
-| Consensus | 🔴 — | 🔴 — |
-| Elvin40 | 🔴 — | 🔴 — |
-| 4Y-M | 🔴 — | 🔴 — |
-| Lautanen | 🔴 — | 🔴 — |
-| Douglas LGT | 🔴 — | 🔴 — |
-| OpenAI gap extension | 🔴 — | 🔴 — |
-| FMCAD | 🔴 — | 🔴 — |
-| Merchant | 🔴 — | 🔴 — |
-| YuanXian | 🔴 — | 🔴 — |
-| Eriksson | 🔴 — | 🔴 — |
+| Nissim |  |  |
+| Bundschu |  |  |
+| Wilson Loop RG |  | 🟡 81 |
+| SolidSF |  |  |
+| Luaartist |  |  |
+| Consensus |  |  |
+| Elvin40 |  |  |
+| 4Y-M |  |  |
+| Lautanen |  |  |
+| Douglas LGT |  |  |
+| OpenAI gap extension |  |  |
+| FMCAD |  |  |
+| Merchant |  |  |
+| YuanXian |  |  |
+| Eriksson |  |  |
 
 ## Specification crosswalk
 
@@ -110,7 +110,7 @@ Counts are named source declarations in selected project-local import closures, 
 
 ## Scope and review evidence
 
-🟢 Complete · 🟡 Partial · 🟣 Conditional · 🔴 Open
+🟢 Complete · 🟡 Partial · 🟣 Conditional · Blank = open
 
 - **YM4**: Scalar SU(2) fixed-observable continuum route; construction inputs and independent assessment remain limitations. [Reviewed evidence](https://github.com/ethanwsussman/Yang--Mills-LLM-experiment/blob/3932084a9b82fc79466b4a2faad9ec032b637445/README.md).
   - Scalar continuum limit: Scalar fixed-observable conclusion only; hypotheses and mathematical review remain.
