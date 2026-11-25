@@ -93,9 +93,11 @@ is not a positive continuum mass gap.
 - **Conditional:** the component relies on additional unproved inputs.
 - **Open:** no completed proof is identified; a module may merely state or
   assume the target.
-- **Review required:** upstream commit differs from the reviewed commit;
-  counts are refreshed, but the prior status is not promoted or inherited.
-- **Unavailable:** retrieval or mapping failed; no count is asserted.
+The chart always uses these four proof states. A newer upstream commit does
+not change the displayed status: it remains the last assessed classification.
+The count revision and status revision are recorded separately. A missing
+module mapping is shown as a dash; a failed retrieval or count is shown as
+`n/a`, independently of the proof status. The JSON/CSV records count availability.
 
 For each project, the registry records the reviewed revision, scope, evidence
 path, and explicit selected module paths for each cell. These initial review
