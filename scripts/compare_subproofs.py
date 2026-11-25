@@ -20,8 +20,7 @@ from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 STATES = {"complete", "partial", "conditional", "open"}
-COLORS = {"complete": "#15803d", "partial": "#b77900", "conditional": "#9333ea",
-          "open": "#c62828"}
+COLORS = {"complete": "#15803d", "partial": "#b77900", "conditional": "#9333ea"}
 EXCLUDE = {"vendor", ".lake", ".git", "tests", "test", "checks", "audit",
            "attempts", "probes", ".shipping_backups", "massgapchecks", "scripts"}
 TOKEN = re.compile(r'/-|-/|--|"(?:\\.|[^"\\])*"')
@@ -333,7 +332,7 @@ def write_svg(report: dict, out: Path) -> None:
     esc = lambda x: html.escape(str(x), quote=True)
     svg = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">',
            '<title id="title">Lean declaration count by Yang–Mills subproof</title>',
-           '<desc id="desc">All frameworks and all subproofs. Independent linear scale per column. Source closure counts are not proof certification.</desc>',
+           '<desc id="desc">All frameworks and all subproofs. Independent linear scale per column. Blank cells are open. Source closure counts are not proof certification.</desc>',
            f'<rect width="{width}" height="{height}" fill="#fff"/>',
            '<g font-family="system-ui, sans-serif" fill="#172033">',
            '<text x="14" y="24" font-size="19" font-weight="700">Yang–Mills · Lean declaration count by subproof</text>',
@@ -342,7 +341,11 @@ def write_svg(report: dict, out: Path) -> None:
         x = 14+i*155
         svg += [f'<circle cx="{x+5}" cy="62" r="5" fill="{color}"/>',
                 f'<text x="{x+15}" y="66" font-size="11">{esc(status)}</text>']
-    maxs = [max(1, *(p["cells"][a["id"]]["declarations"] or 0 for p in projects)) for a in areas]
+    svg.append('<text x="479" y="66" font-size="11">Blank = open</text>')
+    # Scale only against visible bars; hidden open scaffolds must not
+    # compress the completed, partial and conditional counts.
+    maxs = [max((p["cells"][a["id"]]["declarations"] or 0 for p in projects
+                 if p["cells"][a["id"]]["status"] != "open"), default=0) for a in areas]
     for j, a in enumerate(areas):
         x = left+j*col
         words = a["label"].split()
@@ -354,7 +357,8 @@ def write_svg(report: dict, out: Path) -> None:
                 lines[-1] = (lines[-1] + " " + word).strip()
         for k, line in enumerate(lines):
             svg.append(f'<text x="{x+col/2}" y="{80+k*12}" text-anchor="middle" font-size="10.5" font-weight="600">{esc(line)}</text>')
-        svg.append(f'<text x="{x+col/2}" y="113" font-size="9" text-anchor="middle" fill="#64748b">0–{maxs[j]:,}</text>')
+        if maxs[j]:
+            svg.append(f'<text x="{x+col/2}" y="113" font-size="9" text-anchor="middle" fill="#64748b">0–{maxs[j]:,}</text>')
     for i, p in enumerate(projects):
         y = top+i*row
         if i%2 == 0:
@@ -365,6 +369,8 @@ def write_svg(report: dict, out: Path) -> None:
         svg.append(f'<text x="14" y="{y+28}" font-size="9" fill="#64748b">{esc(rev)}</text>')
         for j, a in enumerate(areas):
             c = p["cells"][a["id"]]
+            if c["status"] == "open":
+                continue
             x = left+j*col
             value = c["declarations"]
             color = COLORS[c["status"]]
@@ -376,7 +382,7 @@ def write_svg(report: dict, out: Path) -> None:
             if value:
                 svg.append(f'<rect x="{x+5}" y="{y+22}" width="{(col-12)*value/maxs[j]:.4f}" height="5" rx="2" fill="{color}"/>')
             svg.append('</g>')
-    svg += [f'<text x="14" y="{height-27}" font-size="11" fill="#475569">— = no selected module; n/a = count unavailable; shared imports can recur in multiple columns.</text>',
+    svg += [f'<text x="14" y="{height-27}" font-size="11" fill="#475569">Blank = open; n/a = count unavailable; all underlying counts are retained in CSV/JSON. Shared imports can recur.</text>',
             f'<text x="14" y="{height-12}" font-size="11" fill="#475569">Colours show the last assessed proof status; counts use the displayed source revision. Assessment revisions are recorded in report.md and report.json.</text>',
             '</g></svg>']
     (out / "subproof-chart.svg").write_text("\n".join(svg), encoding="utf-8")
@@ -385,7 +391,7 @@ def write_svg(report: dict, out: Path) -> None:
 def markdown(report: dict) -> str:
     lines = ["# Lean subproof comparison", "",
              f"Snapshot mode: **{report['mode']}** · Reference: `{report['reference_revision']}`", "",
-             "Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Colours show the last assessed proof status, not a fresh kernel or Clay verdict. Counts use the fetched revision; the status assessment revision is recorded separately. Shared dependencies may recur. A dash means no selected module; n/a means count unavailable.", "",
+             "Counts are named source declarations in selected project-local import closures, not exact theorem dependencies. Colours show the last assessed proof status, not a fresh kernel or Clay verdict. Counts use the fetched revision; the status assessment revision is recorded separately. Shared dependencies may recur. Blank subproof cells mean open; n/a means count unavailable. Open-cell counts remain in CSV/JSON.", "",
              "| Framework | Source modules | Source declarations | Union of selected closures | Count revision | Status revision | Count data |",
              "|---|---:|---:|---:|---|---|---|"]
     def f(n):
@@ -397,7 +403,7 @@ def markdown(report: dict) -> str:
         assessment_link = f"[{assessed[:10]}](https://github.com/{p['repository']}/tree/{assessed})"
         count_data = "errors" if p["errors"] else "available"
         lines.append(f"| {p['label']} | {f(p['total_modules'])} | {f(p['total_declarations'])} | {f(p['union_declarations'])} | {link} | {assessment_link} | {count_data} |")
-    icons = {"complete": "🟢", "partial": "🟡", "conditional": "🟣", "open": "🔴"}
+    icons = {"complete": "🟢", "partial": "🟡", "conditional": "🟣"}
     for first, last in [(0,6), (6,13), (13,len(report["areas"]))]:
         aa = report["areas"][first:last]
         if not aa:
@@ -407,6 +413,8 @@ def markdown(report: dict) -> str:
         for p in report["projects"]:
             cells = [p["cells"][a["id"]] for a in aa]
             def cell_text(c):
+                if c["status"] == "open":
+                    return ""
                 value = "n/a" if c.get("count_status") == "unavailable" else f(c["declarations"])
                 return f"{icons[c['status']]} {value}"
             lines.append("| " + p["label"] + " | " + " | ".join(cell_text(c) for c in cells) + " |")
@@ -414,7 +422,7 @@ def markdown(report: dict) -> str:
     for a in report["areas"]:
         lines.append(f"| {a['label']} | {', '.join(a['requirement_ids'])} |")
     lines += ["", "## Scope and review evidence", "",
-              "🟢 Complete · 🟡 Partial · 🟣 Conditional · 🔴 Open", ""]
+              "🟢 Complete · 🟡 Partial · 🟣 Conditional · Blank = open", ""]
     for p in report["projects"]:
         link = f"https://github.com/{p['repository']}/blob/{p['reviewed_revision']}/{p['review_evidence']}"
         lines.append(f"- **{p['label']}**: {p['scope']} [Reviewed evidence]({link}).")

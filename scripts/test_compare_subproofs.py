@@ -113,18 +113,48 @@ def text := "theorem fake : True"
         self.assertEqual(cell["roots"], [])
         self.assertNotIn("closure_files", cell)
 
-    def test_chart_is_xml_and_contains_every_cell(self):
+    def test_chart_is_xml_and_omits_open_cells(self):
         report = {"areas": [{"id": "a", "label": "A & B"}, {"id": "b", "label": "Other"}],
                   "projects": [{"label": "P < Q", "revision": "a"*40, "cells": {
                       "a": {"status": "partial", "reviewed_status": "partial", "declarations": 17},
-                      "b": {"status": "open", "reviewed_status": "open", "declarations": None}}}]}
+                      "b": {"status": "open", "reviewed_status": "open", "declarations": 99999}}}]}
         with tempfile.TemporaryDirectory() as d:
             c.write_svg(report, Path(d))
             root = ElementTree.parse(Path(d)/"subproof-chart.svg").getroot()
             titles = root.findall(".//{http://www.w3.org/2000/svg}title")
-            self.assertEqual(len(titles), 3)
+            self.assertEqual(len(titles), 2)
+            self.assertNotIn("99,999", (Path(d)/"subproof-chart.svg").read_text())
+            self.assertNotIn("#c62828", (Path(d)/"subproof-chart.svg").read_text())
             self.assertIn("P < Q", titles[1].text)
             self.assertIn("17", titles[1].text)
+
+    def test_open_cells_blank_in_markdown_but_counts_remain_in_csv(self):
+        import csv
+        cells = {
+            "a": {"status": "complete", "reviewed_status": "complete",
+                  "declarations": 17, "roots": ["A.lean"]},
+            "b": {"status": "open", "reviewed_status": "open",
+                  "declarations": 99999, "roots": ["B.lean"]},
+        }
+        report = {"mode": "reviewed", "reference_revision": "a"*40,
+                  "areas": [{"id": "a", "label": "A", "requirement_ids": []},
+                            {"id": "b", "label": "B", "requirement_ids": []}],
+                  "projects": [{"label": "P", "repository": "x/y", "scope": "finite",
+                                "revision": "a"*40, "reviewed_revision": "a"*40,
+                                "review_evidence": "README.md", "errors": [],
+                                "total_modules": 2, "total_declarations": 100016,
+                                "union_declarations": 100016, "cells": cells}]}
+        md = c.markdown(report)
+        self.assertIn("| P | 🟢 17 |  |", md)
+        self.assertNotIn("99,999", md)
+        self.assertNotIn("🔴", md)
+        with tempfile.TemporaryDirectory() as d:
+            c.write_csv(report, Path(d))
+            with (Path(d)/"subproofs.csv").open() as f:
+                rows = list(csv.DictReader(f))
+            self.assertEqual(rows[1]["status"], "open")
+            self.assertEqual(rows[1]["declarations"], "99999")
+        self.assertEqual(cells["b"]["declarations"], 99999)
 
 
 if __name__ == "__main__":
